@@ -1,7 +1,8 @@
 package com.chixing.service;
 
 import com.chixing.entity.Evaluation;
-import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface IEvaluationService{
-
+    int save(Evaluation evaluation);
+    int remove(int evaId);
+    int update(Evaluation evaluation);
+    Evaluation getById(int evaId);
+    List<Evaluation> getByPage(Integer pageNum);
 }

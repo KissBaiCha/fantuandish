@@ -1,7 +1,8 @@
 package com.chixing.service;
 
 import com.chixing.entity.MyCoupon;
-import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface IMyCouponService  {
-
+    int save(MyCoupon myCoupon);
+    int remove(int myCouponId);
+    int update(MyCoupon myCoupon);
+    MyCoupon getById(int myCouponId);
+    List<MyCoupon> getByPage(Integer pageNum);
+    List<MyCoupon> getMyCoupon(int customerId);
 }

@@ -71,7 +71,7 @@ public class Evaluation implements Serializable {
     /**
      * 更新时间
      */
-    private String evaUpdateTime;
+    private LocalDateTime evaUpdateTime;
 
     private String other1;
 
