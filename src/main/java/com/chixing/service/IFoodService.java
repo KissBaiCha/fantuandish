@@ -10,7 +10,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *
  * @author baomidou
  * @since 2022-09-30
+ * 查 get  增 save  改 update   删 remove
  */
 public interface IFoodService  {
-
+     Food getById(Integer foodId);
+     int save(Food food);
+     int update(Food food);
+     int remove(Integer foodId);
 }

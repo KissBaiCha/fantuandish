@@ -1,7 +1,7 @@
 package com.chixing.service;
 
 import com.chixing.entity.Shop;
-import com.baomidou.mybatisplus.extension.service.IService;
+
 
 /**
  * <p>
@@ -10,7 +10,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *
  * @author baomidou
  * @since 2022-09-30
+ * 查 get  增 save  改 update   删 remove
  */
-public interface IShopService {
-    Shop getById(int shopId);
+public interface IShopService{
+    Shop getById(Integer shopId);
+    int save(Shop shop);
+    int update(Shop shop);
+    int remove(Integer shopId);
 }
