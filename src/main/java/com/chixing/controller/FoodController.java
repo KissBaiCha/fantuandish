@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Controller
+@RestController
 public class FoodController {
     @Resource
     private IFoodService foodService;
@@ -21,25 +21,21 @@ public class FoodController {
 //     int delete(Integer foodId);
 
     @GetMapping("/food")
-    @ResponseBody
     private Food getById(@RequestParam("id")Integer foodId){
         return foodService.getById(foodId);
     }
 
     @PostMapping("/food")
-    @ResponseBody
     private int save(Food food){
         return foodService.save(food);
     }
 
     @PostMapping("/food/update")
-    @ResponseBody
     private int update(Food food){
         return foodService.update(food);
     }
 
     @DeleteMapping("/food")
-    @ResponseBody
     private int remove(@RequestParam("id")Integer foodId){
         return foodService.remove(foodId);
     }
