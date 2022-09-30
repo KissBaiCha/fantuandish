@@ -11,8 +11,6 @@ public class GeomagicStudio {
         FastAutoGenerator.create("jdbc:p6spy:mysql://192.168.186.85:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai", "root", "20001023")
                 .globalConfig(builder -> {
                     builder.author("baomidou") // 设置作者
-                            .enableSwagger() // 开启 swagger 模式
-                            .fileOverride() // 覆盖已生成文件
                             .outputDir("D://fantuandish"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
@@ -36,7 +34,10 @@ public class GeomagicStudio {
                             .addInclude("shop")
                             .addInclude("shop_collection")
                             .addInclude("shop_img")
-                            .addTablePrefix("t_", "c_"); // 设置过滤表前缀
+                            .addTablePrefix("t_", "c_")
+                            .entityBuilder()
+                            .enableLombok()
+                            .build(); // 设置过滤表前缀
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
