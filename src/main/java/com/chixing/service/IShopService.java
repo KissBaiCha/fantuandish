@@ -2,6 +2,8 @@ package com.chixing.service;
 
 import com.chixing.entity.Shop;
 
+import java.util.List;
+
 
 /**
  * <p>
@@ -17,4 +19,7 @@ public interface IShopService{
     int save(Shop shop);
     int update(Shop shop);
     int remove(Integer shopId);
+
+    //多条件筛选
+    List<Shop> getBySift(String foodType,Float shopAvgCost);
 }
