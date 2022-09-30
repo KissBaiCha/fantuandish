@@ -1,5 +1,7 @@
 package com.chixing.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Food;
 import com.chixing.mapper.FoodMapper;
 import com.chixing.service.IFoodService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -20,24 +23,44 @@ import javax.annotation.Resource;
 @Service
 public class FoodServiceImpl implements IFoodService {
     @Resource
-    private FoodMapper mapper;//持久层依赖导入
+    private FoodMapper foodMapper;//持久层依赖导入
     @Override
     public Food getById(Integer foodId) {
-        return mapper.selectById(foodId);
+        return foodMapper.selectById(foodId);
     }
 
     @Override
     public int save(Food food) {
-        return mapper.insert(food);
+        return foodMapper.insert(food);
     }
 
     @Override
     public int update(Food food) {
-        return mapper.updateById(food);
+        return foodMapper.updateById(food);
     }
 
     @Override
     public int remove(Integer foodId) {
-        return mapper.deleteById(foodId);
+        return foodMapper.deleteById(foodId);
+    }
+
+    @Override
+    public List<Food> getByPage(Integer pageNum) {
+        Page<Food> page = new Page<>(pageNum,3);
+        return foodMapper.selectPage(page,null).getRecords();
+    }
+
+    @Override
+    public List<Food> getByPrice() {
+        QueryWrapper<Food> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("food_price");
+        return foodMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<Food> getByScore() {
+        QueryWrapper<Food> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("food_score");
+        return foodMapper.selectList(wrapper);
     }
 }

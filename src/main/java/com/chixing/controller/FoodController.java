@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 public class FoodController {
@@ -41,5 +42,20 @@ public class FoodController {
     @ResponseBody
     private int remove(@RequestParam("id")Integer foodId){
         return foodService.remove(foodId);
+    }
+
+    @GetMapping("/food/getByPage/{pageNum}")
+    public List<Food> getByPage(@PathVariable("pageNum")Integer pageNum){
+        return foodService.getByPage(pageNum);
+    }
+
+    @GetMapping("/food/getByPrice")
+    public List<Food> getByPrice(){
+        return foodService.getByPrice();
+    }
+
+    @GetMapping("/food/getByScore")
+    public List<Food> getByScore(){
+        return foodService.getByScore();
     }
 }
