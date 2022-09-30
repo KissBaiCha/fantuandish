@@ -60,7 +60,7 @@ public class Coupon implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime couponCteateTime;
+    private LocalDateTime couponCreateTime;
 
     /**
      * 更新时间
