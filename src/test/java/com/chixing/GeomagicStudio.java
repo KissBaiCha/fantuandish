@@ -22,6 +22,20 @@ public class GeomagicStudio {
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("coupon") // 设置需要生成的表名
+                            .addInclude("customer")
+                            .addInclude("eva_img")
+                            .addInclude("evaluation")
+                            .addInclude("flow")
+                            .addInclude("food")
+                            .addInclude("food_collection")
+                            .addInclude("food_img")
+                            .addInclude("my_coupon")
+                            .addInclude("order")
+                            .addInclude("praise")
+                            .addInclude("second_kill")
+                            .addInclude("shop")
+                            .addInclude("shop_collection")
+                            .addInclude("shop_img")
                             .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
