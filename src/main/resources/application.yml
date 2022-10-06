@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://192.168.186.85:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:p6spy:mysql://localhost:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: 20001023
+    password: root
   rabbitmq:
     host: localhost
     port: 5672
@@ -22,3 +22,5 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+  type-aliases-package: com.entity
+  mapper-locations: classpath:com/chixing/mapper/*.xml

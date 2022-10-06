@@ -1,7 +1,9 @@
 package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chixing.entity.Food;
 import com.chixing.entity.Shop;
+import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.ShopMapper;
 import com.chixing.service.IShopService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -23,6 +26,8 @@ import java.util.List;
 public class ShopServiceImpl implements IShopService {
     @Resource
     private ShopMapper shopMapper;
+    @Resource
+    private FoodMapper foodMapper;
     @Override
     public Shop getById(Integer shopId) {
         return shopMapper.selectById(shopId);
@@ -43,13 +48,23 @@ public class ShopServiceImpl implements IShopService {
         return shopMapper.deleteById(shopId);
     }
 
+    @Override
+    public List<Shop> getByFoodType(String foodType) {
+        List<Shop> shopList = shopMapper.selectByFoodType(foodType);
+        return shopList;
+    }
 
     @Override
-    public List<Shop> getBySift(String foodType, Float shopAvgCost) {
-        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
-        //筛选业务
-        List<Shop> shopList = shopMapper.selectList(wrapper);
-        return null;
+    public List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
+        List<Shop> shopList = shopMapper.selectByShopAvgCost(shopMinCost,shopMaxCost);
+        return shopList;
+    }
+
+
+    @Override
+    public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
+        List<Shop> shopList = shopMapper.selectBySift(foodType,shopMinCost,shopMaxCost);
+        return shopList;
     }
 
 

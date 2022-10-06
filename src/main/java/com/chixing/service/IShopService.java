@@ -21,5 +21,7 @@ public interface IShopService{
     int remove(Integer shopId);
 
     //多条件筛选
-    List<Shop> getBySift(String foodType,Float shopAvgCost);
+    List<Shop> getByFoodType(String foodType);
+    List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
+    List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost);
 }

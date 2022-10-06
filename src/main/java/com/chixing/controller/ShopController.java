@@ -20,9 +20,9 @@ public class ShopController {
     @Resource
     private IShopService shopService;
 
-    @GetMapping("/shop")
+    @GetMapping("/shop/{id}")
     @ResponseBody
-    private Shop getById(@RequestParam("id") Integer shopId){
+    private Shop getById(@PathVariable("id") Integer shopId){
         return shopService.getById(shopId);
     }
 
@@ -44,9 +44,23 @@ public class ShopController {
         return shopService.remove(shopId);
     }
 
-    @GetMapping("/shop/{foodId}{foodPrice}")
-    private List<Shop> getBySift(){
-        List<Shop> shopList = new ArrayList<>();
+    @GetMapping("/shop/foodType")
+    @ResponseBody
+    private List<Shop> getByFoodType(@RequestParam("foodType")String foodType){
+        List<Shop> shopList = shopService.getByFoodType(foodType);
+        System.out.println(shopService.getByFoodType(foodType));
+        return shopList;
+    }
+    @GetMapping("/shop/shopAvgCost")
+    @ResponseBody
+    private List<Shop> getByShopAvgCost(@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
+        List<Shop> shopList = shopService.getByShopAvgCost(shopMinCost,shopMaxCost);
+        return shopList;
+    }
+    @GetMapping("/shop/sift")
+    @ResponseBody
+    private List<Shop> getBySift(@RequestParam("foodType")String foodType,@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
+        List<Shop> shopList = shopService.getBySift(foodType,shopMinCost,shopMaxCost);
         return shopList;
     }
 }
