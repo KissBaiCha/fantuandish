@@ -3,7 +3,12 @@ package com.chixing.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -30,6 +35,9 @@ public class MyOrder implements Serializable {
     private Integer foodId;
     private Integer orderType;
     private Integer orderStatus;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:DD:ss")
+    @JsonDeserialize(using = LocalDateDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDateTime orderCreatTime;
     private BigDecimal orderOnePrice;
     private BigDecimal orderPrice;

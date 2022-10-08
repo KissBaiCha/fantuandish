@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class Flow implements Serializable {
     /**
      * 流水id
      */
+    @TableId
     private Integer flowId;
 
     /**
