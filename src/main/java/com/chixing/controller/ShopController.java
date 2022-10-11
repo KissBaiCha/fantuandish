@@ -48,7 +48,7 @@ public class ShopController {
     @ResponseBody
     private List<Shop> getByFoodType(@RequestParam("foodType")String foodType){
         List<Shop> shopList = shopService.getByFoodType(foodType);
-        System.out.println(shopService.getByFoodType(foodType));
+        shopList.forEach(System.out::println);
         return shopList;
     }
     @GetMapping("/shop/shopAvgCost")
