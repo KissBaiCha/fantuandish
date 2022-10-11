@@ -43,7 +43,7 @@ public class FoodCollection implements Serializable {
     /**
      * 收藏时间
      */
-    private LocalDateTime foodCollectionCteateTime;
+    private LocalDateTime foodCollectionCreateTime;
 
     /**
      * 更新时间
