@@ -4,29 +4,12 @@
 
     <resultMap id="shopToFood" type="com.chixing.entity.Shop">
 
-        <id column="id" jdbcType="VARCHAR" property="id" />
-        <result column="shop_id" jdbcType="VARCHAR" property="shopId" />
-        <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
-        <result column="shop_create_time" jdbcType="VARCHAR" property="shopCreateTime" />
-        <result column="shop_province" jdbcType="VARCHAR" property="shopProvince" />
-        <result column="shop_city" jdbcType="INTEGER" property="shopCity" />
-        <result column="shop_area" jdbcType="INTEGER" property="shopArea" />
-        <result column="shop_address_detail" jdbcType="TIMESTAMP" property="shopAddressDetail" />
-        <result column="shop_telno" jdbcType="TIMESTAMP" property="shopTelno" />
-        <result column="shop_open_time" jdbcType="TIMESTAMP" property="shopOpenTime" />
-        <result column="shop_close_time" jdbcType="TIMESTAMP" property="shopCloseTime" />
-        <result column="shop_score" jdbcType="TIMESTAMP" property="shopScore" />
-        <result column="shop_avg_cost" jdbcType="TIMESTAMP" property="shopAvgCost" />
-        <result column="shop_main_img" jdbcType="TIMESTAMP" property="shopMainImg" />
-        <result column="shop_detail" jdbcType="TIMESTAMP" property="shopDetail" />
-        <result column="shop_longitude" jdbcType="TIMESTAMP" property="shopLongitude" />
-        <result column="shop_latitude" jdbcType="TIMESTAMP" property="shopLatitude" />
-        <result column="other1" jdbcType="TIMESTAMP" property="other1" />
-        <result column="other2" jdbcType="TIMESTAMP" property="other2" />
-        <result column="shop_cteate_time" jdbcType="TIMESTAMP" property="shopCteateTime" />
-        <result column="shop_update_time" jdbcType="TIMESTAMP" property="shopUpdateTime" />
+
+
     <collection property="shopId" ofType="com.chixing.entity.Food">
+
     </collection>
+
     </resultMap>
     <select id="selectByFoodType" resultMap="shopToFood">
         select s.*

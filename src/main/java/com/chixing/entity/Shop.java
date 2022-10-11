@@ -124,4 +124,31 @@ public class Shop implements Serializable {
      * 更新时间
      */
     private LocalDateTime shopUpdateTime;
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "shopId=" + shopId +
+                ", shopName='" + shopName + '\'' +
+                ", shopCreateTime=" + shopCreateTime +
+                ", shopProvince='" + shopProvince + '\'' +
+                ", shopCity='" + shopCity + '\'' +
+                ", shopArea='" + shopArea + '\'' +
+                ", shopStreet='" + shopStreet + '\'' +
+                ", shopAddressDetail='" + shopAddressDetail + '\'' +
+                ", shopTelno=" + shopTelno +
+                ", shopOpenTime=" + shopOpenTime +
+                ", shopCloseTime=" + shopCloseTime +
+                ", shopScore=" + shopScore +
+                ", shopAvgCost=" + shopAvgCost +
+                ", shopMainImg='" + shopMainImg + '\'' +
+                ", shopDetail='" + shopDetail + '\'' +
+                ", shopLongitude=" + shopLongitude +
+                ", shopLatitude=" + shopLatitude +
+                ", other1='" + other1 + '\'' +
+                ", other2='" + other2 + '\'' +
+                ", shopCteateTime=" + shopCteateTime +
+                ", shopUpdateTime=" + shopUpdateTime +
+                '}';
+    }
 }
