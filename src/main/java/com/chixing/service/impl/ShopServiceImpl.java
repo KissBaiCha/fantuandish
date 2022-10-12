@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -50,8 +51,15 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getByFoodType(String foodType) {
-        List<Shop> shopList = shopMapper.selectByFoodType(foodType);
-        return shopList;
+        QueryWrapper<Food> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("food_type",foodType);
+        List<Food> foods = foodMapper.selectList(queryWrapper);
+        List<Integer> collect = foods.stream()
+                .map(Food::getShopId)
+                .collect(Collectors.toList());
+        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
+        shopQueryWrapper.in("shop_id",collect);
+        return shopMapper.selectList(shopQueryWrapper);
     }
 
     @Override
