@@ -54,9 +54,9 @@ public class ShopServiceImpl implements IShopService {
         QueryWrapper<Food> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("food_type",foodType);
         List<Food> foods = foodMapper.selectList(queryWrapper);
-        List<Integer> collect = foods.stream()
+        Set<Integer> collect = foods.stream()
                 .map(Food::getShopId)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         shopQueryWrapper.in("shop_id",collect);
         return shopMapper.selectList(shopQueryWrapper);
@@ -64,15 +64,24 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
-        List<Shop> shopList = shopMapper.selectByShopAvgCost(shopMinCost,shopMaxCost);
+        QueryWrapper<Shop> queryWrapper = new QueryWrapper<>();
+        queryWrapper.between("shop_avg_cost",shopMinCost,shopMaxCost);
+        List<Shop> shopList = shopMapper.selectList(queryWrapper);
         return shopList;
     }
 
 
     @Override
     public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
-        List<Shop> shopList = shopMapper.selectBySift(foodType,shopMinCost,shopMaxCost);
-        return shopList;
+        QueryWrapper<Food> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("food_type",foodType);
+        List<Food> foods = foodMapper.selectList(queryWrapper);
+        Set<Integer> collect = foods.stream()
+                .map(Food::getShopId)
+                .collect(Collectors.toSet());
+        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
+        shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
+        return shopMapper.selectList(shopQueryWrapper);
     }
 
 

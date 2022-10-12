@@ -14,8 +14,4 @@ import java.util.List;
  * @since 2022-09-30
  */
 public interface ShopMapper extends BaseMapper<Shop> {
-    List<Shop> selectByFoodType(String foodType);
-    List<Shop> selectByShopAvgCost(Float shopMinCost,Float shopMaxCost);
-    List<Shop> selectBySift(String foodType,Float shopMinCost,Float shopMaxCost);
-
 }
