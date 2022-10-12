@@ -29,7 +29,7 @@ public class ShopServiceImpl implements IShopService {
     private FoodMapper foodMapper;
     private QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
     private QueryWrapper<Food> foodQueryWrapper = new QueryWrapper<>();
-    private void cleanQuery(){
+    private void cleanQueryWrapper(){
         foodQueryWrapper.clear();
         shopQueryWrapper.clear();
     }
@@ -55,7 +55,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getByFoodType(String foodType) {
-        cleanQuery();
+        cleanQueryWrapper();
         foodQueryWrapper.eq("food_type",foodType);
         List<Food> foods = foodMapper.selectList(foodQueryWrapper);
         Set<Integer> collect = foods.stream()
@@ -67,7 +67,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
-        cleanQuery();
+        cleanQueryWrapper();
         shopQueryWrapper.between("shop_avg_cost",shopMinCost,shopMaxCost);
         List<Shop> shopList = shopMapper.selectList(shopQueryWrapper);
         return shopList;
@@ -76,7 +76,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
-        cleanQuery();
+        cleanQueryWrapper();
         foodQueryWrapper.eq("food_type",foodType);
         List<Food> foods = foodMapper.selectList(foodQueryWrapper);
         Set<Integer> collect = foods.stream()
