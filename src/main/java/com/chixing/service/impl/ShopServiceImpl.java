@@ -6,8 +6,6 @@ import com.chixing.entity.Shop;
 import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.ShopMapper;
 import com.chixing.service.IShopService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -82,6 +80,20 @@ public class ShopServiceImpl implements IShopService {
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
         return shopMapper.selectList(shopQueryWrapper);
+    }
+
+    @Override
+    public List<Shop> getByPrice() {
+        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("shop_avg_cost");
+        return shopMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<Shop> getByScore() {
+        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("shop_score");
+        return shopMapper.selectList(wrapper);
     }
 
 

@@ -24,4 +24,8 @@ public interface IShopService{
     List<Shop> getByFoodType(String foodType);
     List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
     List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost);
+    //价格排序
+    List<Shop> getByPrice();
+    //评分排序
+    List<Shop> getByScore();
 }

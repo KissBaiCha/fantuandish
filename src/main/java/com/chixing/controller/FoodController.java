@@ -2,9 +2,6 @@ package com.chixing.controller;
 
 import com.chixing.entity.Food;
 import com.chixing.service.IFoodService;
-import com.chixing.service.impl.FoodServiceImpl;
-import com.sun.xml.internal.ws.wsdl.writer.document.http.Address;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
