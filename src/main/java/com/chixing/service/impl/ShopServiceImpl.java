@@ -27,6 +27,12 @@ public class ShopServiceImpl implements IShopService {
     private ShopMapper shopMapper;
     @Resource
     private FoodMapper foodMapper;
+    private QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
+    private QueryWrapper<Food> foodQueryWrapper = new QueryWrapper<>();
+    private void cleanQuery(){
+        foodQueryWrapper.clear();
+        shopQueryWrapper.clear();
+    }
     @Override
     public Shop getById(Integer shopId) {
         return shopMapper.selectById(shopId);
@@ -49,51 +55,49 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public List<Shop> getByFoodType(String foodType) {
-        QueryWrapper<Food> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("food_type",foodType);
-        List<Food> foods = foodMapper.selectList(queryWrapper);
+        cleanQuery();
+        foodQueryWrapper.eq("food_type",foodType);
+        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
         Set<Integer> collect = foods.stream()
                 .map(Food::getShopId)
                 .collect(Collectors.toSet());
-        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         shopQueryWrapper.in("shop_id",collect);
         return shopMapper.selectList(shopQueryWrapper);
     }
 
     @Override
     public List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
-        QueryWrapper<Shop> queryWrapper = new QueryWrapper<>();
-        queryWrapper.between("shop_avg_cost",shopMinCost,shopMaxCost);
-        List<Shop> shopList = shopMapper.selectList(queryWrapper);
+        cleanQuery();
+        shopQueryWrapper.between("shop_avg_cost",shopMinCost,shopMaxCost);
+        List<Shop> shopList = shopMapper.selectList(shopQueryWrapper);
         return shopList;
     }
 
 
     @Override
     public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
-        QueryWrapper<Food> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("food_type",foodType);
-        List<Food> foods = foodMapper.selectList(queryWrapper);
+        cleanQuery();
+        foodQueryWrapper.eq("food_type",foodType);
+        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
         Set<Integer> collect = foods.stream()
                 .map(Food::getShopId)
                 .collect(Collectors.toSet());
-        QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
         return shopMapper.selectList(shopQueryWrapper);
     }
 
     @Override
     public List<Shop> getByPrice() {
-        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("shop_avg_cost");
-        return shopMapper.selectList(wrapper);
+        shopQueryWrapper.clear();
+        shopQueryWrapper.orderByDesc("shop_avg_cost");
+        return shopMapper.selectList(shopQueryWrapper);
     }
 
     @Override
     public List<Shop> getByScore() {
-        QueryWrapper<Shop> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("shop_score");
-        return shopMapper.selectList(wrapper);
+        shopQueryWrapper.clear();
+        shopQueryWrapper.orderByDesc("shop_score");
+        return shopMapper.selectList(shopQueryWrapper);
     }
 
 
