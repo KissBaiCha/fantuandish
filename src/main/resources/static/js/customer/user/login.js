@@ -1,19 +1,33 @@
-layui.use(['form', 'util', 'laydate'], function(){
-    var form = layui.form;
-    var layer = layui.layer;
-    var util = layui.util;
-});
 
-$(".get-verifyCodeBtn").click(function (){
-    $(".get-verifyCodeBtn").html("60s")
-    layer.msg('验证码发送成功');
-})
-//^[1][3,4,5,7,8][0-9]{9}$ 电话号
-$(".userTel").blur(function (){
-   let userTel = $(".userTel").val();
-   if(userTel === "" || !/^[1][3,4,5,7,8][0-9]{9}$/.test(userTel)){
-       layer.msg('请输入合法手机号');
-       return false;
-   }
-   return true;
+$(".loginBtn").click(function (){
+    console.log("正在登录")
+    $.ajax({
+        type:"post",
+        url:"customer/login",
+        data:{
+            customerName:$(".login-username").val(),
+            customerPwd:$(".login-password").val()
+        },
+        success:function (result){
+            console.log("result:" + result.message);
+            console.log("result:" + result.code);
+            console.log("result:" + result.data.token);
+            //保存信息到本地，里面都 token
+            var token = result.data.token;
+            // console.log("token:" + token);
+            localStorage.setItem("token",token);
+            $.ajax({
+                type: "post",
+                url: "jiemi",
+                headers: {'token': token},
+                success:function (data) {
+                    alert("登录成功");
+                    console.log(data)
+                }
+            })
+        },
+        error:function (errResult) {
+            alert(errResult.message)
+        }
+    })
 })

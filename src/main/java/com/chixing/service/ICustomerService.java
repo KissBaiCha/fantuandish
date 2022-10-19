@@ -1,5 +1,6 @@
 package com.chixing.service;
 
+import com.chixing.commons.R;
 import com.chixing.entity.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface ICustomerService {
-
+    /**
+     * 登录
+     * @param customer 用户信息封装
+     * @return 返回前端数据封装
+     */
+    R<String> loginByName(Customer customer);
+    R<String> loginByCode(Customer customer,Integer code);
 }

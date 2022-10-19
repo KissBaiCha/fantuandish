@@ -5,7 +5,7 @@
     <title>登录</title>
     <base href="http://localhost:8080/fan/">
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="layui/css/layui.css">
@@ -42,18 +42,18 @@
                                 <!--          提示信息              -->
                                 <span class="login-msg"></span>
                                 <!--         登录表单            -->
-                                <form class="layui-form" action="javascript:;" lay-filter="example">
+                                <form class="layui-form" method="post">
                                     <!--         用户名输入框          -->
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-tongYong">
-                                            <input type="text" name="username" lay-verify="title" autocomplete="off"
+                                            <input type="text" name="customerName" lay-verify="title" autocomplete="off"
                                                    placeholder="用户名\手机号" class="layui-input login-username">
                                         </div>
                                     </div>
                                     <!--         密码输入框           -->
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-tongYong">
-                                            <input type="password" name="password" placeholder="密码" autocomplete="off"
+                                            <input type="password" name="customerPwd" placeholder="密码" autocomplete="off"
                                                    class="layui-input login-password">
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     </div>
                                     <!--         登录按钮          -->
                                     <div class="layui-form-item">
-                                        <button class=" login-btn">登录</button>
+                                        <button class="login-btn">登录</button>
                                     </div>
                                     <!--          注册链接             -->
                                     <div class="layui-form-item">
@@ -97,8 +97,8 @@
 
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-tongYong">
-                                            <input type="text" name="username" lay-verify="title" autocomplete="off"
-                                                   placeholder="请输入手机号" class="layui-input userTel">
+                                            <input type="text" name="customerTel" lay-verify="title" autocomplete="off"
+                                                   placeholder="请输入手机号" class="layui-input customerTel">
                                         </div>
                                     </div>
                                     <!--         验证码输入框           -->
