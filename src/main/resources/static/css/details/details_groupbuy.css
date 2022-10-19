@@ -1,0 +1,298 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.layui-main .group_product_msg{
+    width: 100%;
+    height: 400px;
+    background-color: #f4f4f4;
+    /* background-color: #c5fd6c; */
+    position: relative;
+    float: left;
+    margin-top: 15px;
+}
+
+/* --------------轮播图--------------------------- */
+.group_product_msg .layui-carousel{
+    width: 600px !important;
+    height: 350px !important;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: absolute;
+    float: left;
+}
+.layui-carousel img{
+    width: 600px;
+    height: 350px;
+
+}
+.group_product_msg .product_name{
+    font-size: 24px;
+    font-weight: bolder;
+    margin-left: 700px;
+    margin-top: 20px;
+    float: left;
+}
+.group_product_msg .product_price{
+    width: 370px;
+    height: 60px;
+    background-color: #a66cfd;
+    margin-left: 700px;
+    margin-top: 70px;
+    border-radius: 6px;
+}
+
+.product_price p{
+   line-height: 60px;
+   color: white;
+}
+.product_price .pricesign1{
+    margin-left: 20px;
+
+}
+.product_price .shop{
+    margin-left: 5px;
+}
+
+.product_price .newprice{
+    font-size: 40px;
+}
+
+.group_product_msg .star{
+    margin-left: 720px;
+
+}
+
+.group_product_msg .assess{
+    margin-top: 1px;
+    margin-left: 724px;
+   
+}
+
+.group_product_msg .collect{
+    width: 70px;
+    height: 27px;
+    /* background-color: coral; */
+    margin-left: 800px;
+    margin-top: -30px;
+}
+
+
+
+.collect .collect-logo{
+    width: 27px;
+    height: 100%;
+    /* background-color: dodgerblue; */
+    cursor: pointer;
+    float: left;
+    
+}
+.collect .collect-logo:hover{
+    background-image: url("../../images/details/groupbuy/collect-logo-after.svg");
+}
+
+.collect .lollect-text{
+    display: block;
+    float: left;
+    padding-left: 3px;
+    font-size: 16px;
+    padding-top: 5px;
+
+
+}
+
+.group_product_msg .startGroupBuy{
+    width: 180px;
+    height: 60px;
+    /* background-color: #a66cfd; */
+    margin-left: 880px;
+    margin-top: 117px;
+}
+
+.startGroupBuy .submit-btn{
+    width: 100%;
+    height: 100%;
+    background-color: #a66cfd;
+    border-width: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+}
+
+/* ----------------------邀请加入拼团----------------------------- */
+.layui-main .pintuan{
+    width: 75%;
+    height: 200px;
+    background-color: #f4f4f4;
+    float: left;
+    margin-top: 20px;
+}
+
+.pintuan .group1,.group2{
+    width: 840px;
+    height: 80px;
+    /* background-color: bisque; */
+    margin-top: 10px;
+    margin-left: 18px;
+}
+
+.group1 img,.group2 img{
+    width: 65px;
+    height: 65px;
+    background-color: #a66cfd;
+    margin-left: 10px;
+    margin-top: 7px;
+    float: left;
+}
+
+.group1 .btn-pintuan,.group2 .btn-pintuan{
+    display: block;
+    width: 85px;
+    height: 55px;
+    background-color: #a66cfd;
+    float: left;
+    margin-top: 11px;
+    margin-left: 460px;
+    border-radius: 10px;
+    border-width: 0;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    
+}
+
+
+/* --------------------------团购详情、购买须知---------------------------------------- */
+.layui-main .groupbuy_details{
+    width: 75%;
+    height: 400px;
+    float: left;
+    margin-top: 15px;
+}
+.groupbuy_details .layui-tab .layui-tab-title li:hover{
+    color: #a66cfd;
+}
+
+.groupbuy_details .details-msg{
+    width: 100%;
+    height: 600px;
+    background-color: #f4f4f4;
+    float: left;
+}
+.layui-form .layui-table{
+    width: 800px;
+    margin-top: 30px;
+    margin-left: 35px;
+
+}
+
+.layui-table tr th,td{
+    text-align: center;
+
+}
+
+.layui-form .groupbuy-text{
+    width: 800px;
+    height: 200px;
+    /* background-color: #ead294; */
+    margin-left: 35px;
+    margin-top: 30px;
+}
+.groupbuy-text .eattime{
+    font-weight: bolder;
+}
+
+.layui-tab-content .layui-tab-item .groupbuy-mustknow{
+    width: 840px;
+    height: 300px;
+    /* background-color: bisque; */
+    margin-left: 35px;
+    margin-top: 30px;
+
+}
+.groupbuy-mustknow .listtitle{
+    font-size: 16px;
+    padding-bottom: 15px;
+    font-weight: bolder;
+    
+}
+.groupbuy-mustknow .list_maohao{
+    font-weight: bolder;
+    margin-left: 3px;
+}
+
+.groupbuy-mustknow .listtext1,.listtext2,.listtext3,.listtext4{
+    margin-left: 80px;
+}
+
+
+
+/* -----------------------团购推荐---------------------- */
+.layui-main .group_recommend{
+    width: 270px;
+    height:700px;
+    background-color: #f4f4f4;
+    float: left;
+    margin-top: -201px;
+    margin-left: 15px;
+}
+.group_recommend .text{
+    width: 100%;
+    height: 50px;
+    /* background-color: aqua; */
+    line-height: 50px;
+    text-align: center;
+    font-size: 15px;
+    color: grey;
+}
+.group_recommend ul li{
+    width: 100%;
+    height: 235px;
+    /* background-color: antiquewhite; */
+    margin-bottom: 10px;
+    position: relative;
+}
+ul .look-pro-img{
+    width: 100%;
+    height: 190px;
+    /* background-color: #e67070; */
+    float: left;
+}
+
+.look-pro-img img{
+    width: 240px;
+    height: 190px;
+    float: left;
+    margin-left: 16px;
+
+}
+li .look-pro-msg {
+    display: block;
+    width: 100%;
+    height: 25px;
+    /* background-color: chartreuse; */
+    float: left;
+    position: relative;
+}
+li .look-pro-msg span{
+    color: grey;
+    padding-left: 16px;
+}
+li .look-pro-price{
+    font-weight: bolder;
+    font-size: 15px;
+    margin-left: 16px;
+}
+/* -----------------底部----------------------- */
+.detail-bottom{
+    height: 30px;
+    margin-top: 200px;
+    color: #b4acac;
+
+}
+.detail-bottom a{
+    color: #b4acac;
+    text-decoration: none;
+}

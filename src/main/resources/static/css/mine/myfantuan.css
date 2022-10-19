@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.layui-main{
+    min-width: 1200px;
+}
+
+
+/* ---------------我的饭团 左侧栏----------------------- */
+.layui-main .orders-container{
+    width: 100%;
+    height: 800px;
+    /* background-color: rgb(240, 203, 154); */
+    margin-top: 20px;
+    float: left;
+    
+}
+
+
+.orders-container .layui-nav{
+    height: 600px;
+    float: left;
+    background-color: #f4f4f4;
+}
+.layui-nav .layui-nav-item a{
+    color: grey;
+}
+.layui-nav.layui-nav-tree.layui-inline .layui-nav-item a:hover{
+    color: #a66cfd;
+
+}
+.layui-nav .layui-nav-item.layui-nav-itemed a{
+    color: grey;
+}
+

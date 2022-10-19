@@ -1,0 +1,267 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #f6f6f6;
+}
+.main{
+    width: 100%;
+    height: 1500px;
+    margin: 0 auto;
+    /* background-color: aqua; */
+}
+/* .main .header{
+    width: 100%;
+    height: 150px;
+    margin-bottom: 12px;
+    background-color: #FFF;
+} */
+
+.main .pro-main{
+    width: 79%;
+    height: auto;
+    float: left;
+}
+/*筛选区*/
+.main .fifter{
+    width: 100%;
+    height: 200px;
+    /* background-color: aquamarine; */
+    background-color: #FFF;
+}
+/*列表区*/
+.main .prolist{
+    width: 100%;
+    height: 600px;
+    margin-top: 12px;
+    /* background-color: #FFF; */
+    /* background-color: wheat; */
+}
+/*推荐区*/
+.main .recommend{
+    width: 20%;
+    height: 920px;
+    /* background-color: #FFF; */
+    /* background-color: rgb(170, 118, 51); */
+    float: right;
+    margin-top: 12px;
+}
+/*布局end*/
+
+/*=========================筛选===============================*/
+.fifter .Condition{
+    width: 95%;
+    height: 100px;
+    line-height: 24px;
+    font-size: 14px;
+    padding-top: 25px;
+    margin-left: 20px;
+    /* background-color:aqua ; */
+}
+.fifter .Condition label{
+    width: 80px;
+    height: 24px;
+    float: left;
+}
+
+.Condition .Select{
+    width: auto;
+    height: auto;
+    float: left;
+}
+
+.Select a{
+    width: 100px;
+    height: 24px;
+    margin-bottom: 30px;
+}
+.Condition :nth-child(11){
+    margin-left: 100px;
+}
+.Select span{
+    width: 50px;
+    height: 100%;
+}
+.Select .fifters{
+    display: block;
+    width: 100px;
+    height: 24px;
+    color: gray;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+}
+.Select .active span{
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255,107,55);
+}
+
+/*========================商品列表===============================*/
+.pro-main .prolist .sort{
+    width: 100%;
+    height: 50px;
+    background-color: #FFF;
+    /* background-color: rgb(0, 0, 0); */
+    /* border-bottom: 1px solid lightgray; */
+}
+.prolist .sort a{
+    display: block;
+    width: 65px;
+    line-height: 50px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    margin-right: 20px;
+    color: #666464;
+    float: left;
+}
+.prolist .sort a:first-child{
+    margin-left: 10px;
+}
+.prolist .sort a:hover{
+    color: rgb(255,107,55);
+}
+.prolist .pro{
+    width: 100%;
+    height: 170px;
+    /* background-color: yellowgreen; */
+}
+.prolist .pro li{
+    padding-bottom: 25px;
+    list-style: none;
+    border-top: 1px solid rgba(211, 211, 211, 0.492);
+    background-color: #FFF;
+}
+.prolist .pro li:hover{
+    background-color: rgba(248, 248, 248);
+}
+.prolist .pro li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: normal;
+}
+.prolist .pro li a.proimg{
+    display: block;
+    width: 200px;
+    height: 130px;
+    float: left;
+    margin: 20px 15px 0 15px;
+}
+.prolist .pro li img{
+    width: 100%;
+    height: 100%;
+}
+.prolist .pro li h4{
+    height: 22px;
+    width: 450px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+.prolist .pro li label i{
+    display: inline-block;
+    height: 13px;
+    width: 16px;
+    bottom: 0;
+    background-image: url(../images/index-soucang.png);
+    background-repeat: no-repeat;
+}
+.prolist .pro .comment span{
+    color: rgb(255,107,55);
+}
+.prolist .pro li span{
+    font-size: 12px;
+}
+.prolist .pro li .sty{
+    display: block;
+    margin-top: 10px;
+}
+.prolist .pro li .sty a{
+    color: #999;
+}
+/*分页*/
+.prolist .paging{
+    height: 100px;
+    margin-top: 10px;
+    background-color: #FFF;
+ }
+ .prolist .paging #demo7{
+    margin-left: 25%;
+    padding-top: 25px;
+ }
+ .layui-laypage .layui-laypage-curr .layui-laypage-em{
+    background-color: rgb(255,107,55);
+ }
+ .layui-laypage-default a:hover {
+    color:rgb(255,107,55);
+ }
+/*========================推荐===============================*/
+.recommend li{
+    width: 100%;
+    height: 190px;
+    list-style: none;
+    padding-top: 10px;
+    background-color: #FFF;
+    /* background-color: aqua; */
+}
+.recommend li:hover{
+    background-color: rgba(248, 248, 248);
+}
+.recommend ul h4{
+    padding: 10px 8%;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFF;
+}
+.recommend li img{
+    width: 84%;
+    height: 120px;
+    margin-left: 8%;
+    border-radius: 5px;
+}
+.recommend li h6{
+    height: 20px;
+    overflow: hidden;
+    margin: 0 8%;
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+}
+.recommend li h6 {
+    text-decoration: none;
+    line-height: 20px;
+    color: rgb(0, 0, 0);
+}
+.recommend li span{
+    height: 20px;
+    width: 80px;
+    overflow: hidden;   
+    display: block;
+    margin: 0 8%;
+    font-size: 12px;
+    color: rgba(100, 95, 95, 0.464);
+    float: left;
+}
+.recommend li span label{
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(230, 67, 71);
+}
+.recommend li span label:first-child{
+    font-size: 13px;
+}
+.recommend li .seckillbtn{
+    width: 90px;
+    height: 30px;
+    float: right;
+    margin: -13px 8% 0 0;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    background-color: rgb(230, 67, 71);
+}
+
+
+

@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.html{
+    background-color: #f6f6f6;
+}
+.header{
+    width: 100%;
+    height: 130px;
+    border-bottom: 2px solid rgb(255,107,55);
+    background-color: #fff;
+}
+.header .top-nav{
+    height: 35px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f6f6f6;
+}
+.top-main{
+    height: 100%;
+}
+.header .top-main .layui-nav {
+    position: relative;
+    font-size: 0;
+    box-sizing: border-box;
+    border-radius: 25px;
+    background-color: #f6f6f6;
+}
+.header .layui-nav .layui-nav-item {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    line-height: 35px;
+}
+.layui-nav-item .layui-nav-child {
+    display: none;
+    position: absolute;
+    left: 0;
+    top:33px;
+    min-width: 100%;
+    line-height: 36px;
+    padding: 5px 0;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
+    border: 1px solid #eee;
+    background-color: #fff;
+    z-index: 100;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+.header .layui-nav .layui-nav-item a{
+    color: black;
+}
+.header .header-tip{
+    height: 95px;
+    width: 1160px;
+    margin: 0 auto;
+}
+/*搜索*/
+.logo-input{
+    display: block;
+    height:100%;
+}
+.search-box{
+    height:100%;
+}
+/*logo图片*/
+.logo-img{
+    margin-top: 7px;
+    height: 100%;
+    display: inline-block;
+}
+.searchbox-input{
+    margin-left: 20px;
+    margin-top: 25px;
+}
+.header .search-btn{
+    margin: 3px 0 0 5px;
+    background-color:rgb(255,107,55) ;
+    border: 1px solid rgb(255,107,55);
+}
+.header .user-tip{
+    height: 100%;
+}
+.user-center{
+    margin-top: 10px;
+    background-color:rgb(255,107,55) ;
+}
+.layui-nav-bar{
+    background-color: rgb(255,107,55);
+}

@@ -1,0 +1,314 @@
+.html{
+    background-color: #f6f6f6;
+}
+
+.main{
+
+}
+ul{
+    list-style: none;
+}
+.mybtn{
+    display: block;
+    color: white;
+    background-color: rgb(255,107,55)!important;
+    border: rgb(255,107,55)!important;
+}
+/*选项卡颜色*/
+.layui-tab-brief>.layui-tab-title .layui-this {
+    color: rgb(255,107,55);
+}
+.layui-tab-brief>.layui-tab-title .layui-this:after {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid rgb(255,107,55);
+}
+/*星星颜色*/
+.layui-rate li i.layui-icon {
+    font-size: 20px;
+    color: rgb(255,107,55);
+}
+/*灰色面包屑*/
+.detail-shop-dish .dish-nav{
+    height: 43px;
+    background-color: #f6f6f6;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.layui-breadcrumb a:hover{
+    color: rgb(255,107,55)!important;
+}
+/*商品信息主体*/
+.dish-details{
+    min-height: 288px;
+    width: 100%;
+}
+.dish-details .dish-pictures-area{
+    width: 100%;
+    height: 220px;
+    padding: 34px 0;
+}
+/*详情bigImg*/
+.dish-pictures-area .picture-preview{
+    float: left;
+    width: 220px;
+    height: 100%;
+}
+/*详情ImgList*/
+.dish-pictures-area .picture-list{
+    float: left;
+    height: 100%;
+    width: 64px;
+}
+/*商品详细信息*/
+.dish-pictures-area .dish-info-area{
+    float: left;
+    margin-left: 24px;
+    height: 100%;
+    width: 532px;
+}
+/*商品名称*/
+.dish-info-area .dish-name{
+    width: auto;
+    height: 40px;
+}
+.dish-info-area #dish-name{
+    color: black;
+    font-size: 30px;
+}
+.dish-name .sum-people{
+    float: right;
+    margin-right: 10px;
+    color: black;
+    font-size: 14px;
+    line-height: 40px;
+}
+/*商品价格*/
+.dish-info-area .dish-price{
+    width: auto;
+    margin-top: 10px;
+    color: red;
+    font-size: 34px;
+}
+#text-price{
+    color: #8c8c8c;
+    font-size: 14px;
+}
+#buybuybuy{
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    float: left;
+}
+/*购买按钮*/
+.but-btn{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+/*右侧*/
+.aside-shop-dish{
+    min-height: 300px;
+}
+/*右侧-店铺信息*/
+.shop-info-wrap{
+    height: 200px;
+    margin: 20px 20px;
+}
+.shop-info-tip{
+    height: 100%;
+}
+.shop-info-tip .shop-info-head{
+    background-color: #f6f6f6;
+    height: 45%;
+}
+.grade-item{
+    float: left;
+    width: 70%;
+    height: 50%;
+}
+/*价格*/
+.people-one-price{
+    float: left;
+    height: 50%;
+}
+#people-one-price,.people-one-price i{
+    color: rgb(255,107,55);
+}
+/*商店名*/
+.shop-info-tip .shop-info-head a{
+    display: block;
+    width: 100%;
+    font-size: 20px;
+}
+.shop-info-tip .shop-info-head a:hover{
+    color: rgb(255,107,55);
+}
+.shop-info-head-name{
+    display: block;
+    padding-left:10px;
+}
+/*右侧-推荐美食*/
+.recommend-dish{
+    margin: 20px 20px;
+}
+.recommend-dish-item{
+    width: 100%;
+    height: 250px;
+
+    margin: 20px auto;
+}
+/*文字*/
+.recommend-text{
+    width: 200px;
+    height: 30px;
+    color: #bd1125;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 85px;
+}
+/*图标*/
+.hot-img{
+    margin: 5px 90px 0 0;
+    float: right;
+    display: block;
+    height: 18px;
+    width: 18px;
+    background: url("/images/details/fire.svg") no-repeat;
+}
+
+.dish-item-img{
+    width: 120px;
+    height: 120px;
+    margin-left: 30px;
+}
+/*菜名*/
+.dish-item-name{
+    width: 100%;
+    height: 44px;
+    text-align: center;
+    color: #bd0000;
+    font-size: 20px;
+    line-height: 44px;
+}
+/*价格*/
+.dish-item-price{
+    display: block;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: left;
+    font-size: 16px;
+    color: #942131;
+}
+/*原价*/
+.dish-item-price .dish-item-before{
+    color: #8c8c8c;
+    width: 30%;
+    display: block;
+    float: right;
+    font-size: 10px;
+}
+/*评价*/
+.dish-comment-wrap{
+    width:100%;
+    padding-top: 20px;
+}
+/*评价head*/
+.dish-comment-head{
+    height: 40px;
+    border-bottom: 2px solid #d0c8c8;
+}
+.dish-comment-head span{
+    line-height: 40px;
+    font-size: 26px;
+}
+.appraise{
+    display: block;
+    float: right;
+    margin-right: 30px;
+}
+/*评价列表*/
+.dish-comment-list{
+    width: 100%;
+
+}
+.dish-comment-list .comment{
+    width: 100%;
+    padding-bottom: 26px;
+    zoom: 1;
+    padding-top: 26px;
+    text-align: center;
+}
+/*用户头像*/
+.user-tip img{
+    display: block;
+    margin: 0 auto 5px;
+}
+/*用户名*/
+.dish-comment-list .user-name{
+    display: inline-block;
+}
+/*评分*/
+.grade-tip{
+    height: 29px;
+    background-color: #f6f6f6;
+    padding: 8px 10px 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    zoom: 1;
+}
+.comment-details-text{
+    text-align: left;
+}
+/*<!--评价图片-->*/
+.comment-details .shop-pictures{
+    zoom: 1;
+    padding: 12px 10px 5px;
+    height: 68px;
+}
+.shop-pictures .comment-img-item{
+    display: block;
+    float: left;
+    margin: 2px 5px;
+}
+.comment-details .comment-details-date{
+    color: #8c8c8c;
+    margin-top: 5px;
+}
+.comment-img-item:hover{
+    border: 1px solid rgb(255,107,55);
+}
+/*点赞*/
+.comment-perfect{
+    width: 50px;
+    height: 30px;
+    float: right;
+    display: block;
+}
+.comment-perfect .perfect-img{
+    display: block;
+    float: left;
+    margin-left: 3px;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background: url("/images/details/perfect.svg") no-repeat;
+}
+.comment-perfect span{
+    font-size: 12px;
+    display: block;
+    float: left;
+    margin-left: 3px;
+}
+/*虎*/
+#bodymovin{
+    width: 30px;
+    height: 30px;
+}
+.user-block{
+    display: block;
+}
+

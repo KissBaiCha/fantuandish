@@ -1,0 +1,135 @@
+html, body {
+    background: #FFF;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/*头*/
+.header-mini{
+    display: block;
+    height: 70px;
+    border-bottom: 2px solid #D8D8D8;
+}
+.header-mini .layui-col-xs12{
+    height: 100%;
+}
+.header-mini .wrapper {
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 980px;
+    height: 100%;
+}
+/*logo*/
+.logo{
+    display: block;
+    width: 700px;
+    height: 45px;
+    float: left;
+}
+/*登录*/
+.login-block{
+    display: block;
+    width:250px;
+    height: 45px;
+    float: right;
+}
+/*已有账号？*/
+.login-block-text{
+    width: auto;
+    height: auto;
+    line-height: 45px;
+    color: #666;
+    font-size: 14px;
+    float: left;
+    margin-left: 40px;
+}
+/*登录按钮*/
+.layui-btn{
+    display: inline-block;
+    vertical-align: middle;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid transparent;
+    padding: 0 18px;
+    background-color: #a66cfd;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/*注册页面*/
+.content {
+    margin:0 auto 30px;
+    padding: 10px 0;
+    width: 980px;
+    min-height: 300px;
+
+
+}
+/*提示文字*/
+.layui-form-label {
+    float: left;
+    display: block;
+    padding: 9px 9px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+.content .layui-form-item {
+    margin-bottom: 30px;
+    clear: both;
+    *zoom: 1;
+}
+.content .layui-input{
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    float: left;
+}
+.register-code{
+    margin-left: 28px;
+    display: block;
+    float: left;
+}
+.get-register-code{
+    display: block;
+    float: left;
+}
+/*中*/
+.register-mid{
+    border-bottom: 2px solid #D8D8D8    ;
+}
+/*左*/
+.register-left{
+    height: 440px;
+    border-bottom: 2px solid #D8D8D8;
+    border-left: 2px solid #D8D8D8;
+}
+.register-left .left-girl{
+    margin-right: auto;
+    margin-top: 230px;
+    display: block;
+    width: 232px;
+    height: 210px;
+}
+/*右*/
+.register-right{
+    height: 440px;
+    border-bottom: 2px solid #D8D8D8;
+    border-right: 2px solid #D8D8D8;
+}
+.register-right .right-girl{
+    margin-left: auto;
+    margin-top: 228px;
+    display: block;
+    width: 216px;
+    height: 212px;
+}
+

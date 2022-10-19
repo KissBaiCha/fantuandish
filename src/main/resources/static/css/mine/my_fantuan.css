@@ -1,0 +1,15 @@
+.orders-container .welcome{
+    width: 980px;
+    height: 200px;
+    background-color: #f4f4f4;
+    float: left;
+    margin-left: 5px;
+}
+
+.welcome .wel_text{
+    font-size: 30px;
+    line-height: 200px;
+    margin-left: 300px;
+    color: #a66cfd;
+
+}

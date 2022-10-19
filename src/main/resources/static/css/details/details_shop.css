@@ -1,0 +1,332 @@
+.test{
+    min-width: 1160px;
+}
+body{
+    background: #f6f6f6;
+}
+/* 头部 */
+/* 商家信息 */
+.shop-info{
+    width: 70%;
+    height: 260px;
+    background-color: #FFF;
+    float: left;
+}
+/* 商家图片 轮播 */
+.shop-img{
+    width: 29%;
+    height: 260px;
+    float:right;  
+}
+/* 套餐 */
+.set-meal{
+    width: 70%;
+    height: 155px;
+    margin-top: 12px;
+    background-color: #FFF;
+    float: left;
+}
+/* 推荐菜品 */
+.dishesli-recommend{
+    width: 29%;
+    height: 487px;
+    margin-top: 12px;
+    background-color: #FFF;
+    float: right;
+}
+/* 所有菜品 */
+.dishesli-all{
+    width: 70%;
+    height: 320px;
+    margin-top: 12px;
+    background-color: #FFF;
+    float: left;
+}
+/* 店铺详情 */
+.details-shop{
+    margin-top: 6px;
+    width: 70%;
+    height: 500px;
+    /* background-color: #a66cfd; */
+    float: left;
+}
+
+/* 店铺信息 */
+.shop-info h1{
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0 20px 15px;
+}
+.shop-info .score{
+    margin-bottom: 10px;
+}
+.shop-info .score .score-img{
+    margin: 0 5px 0 15px;
+}
+.shop-info .score label i{
+    display: inline-block;
+    height: 14px;
+    width: 16px;
+    background-image: url(../../images/details-shop-soucang.png);
+    background-repeat: no-repeat;
+}
+.shop-info .score label{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(255,107,55);
+}
+.shop-info p{
+    font-size: 14px;
+    color: #666666;
+    margin: 25px 0 10px 15px;
+}
+.shop-info p span{
+    margin-left: 10px;
+}
+.shop-info .pl{
+    margin-left: 10px;
+    color: #666666 !important;
+    font-weight: normal !important;
+}
+.shop-info p a:hover{
+    color: #333;
+}
+.shop-info .location{
+    display: inline-block;
+    margin-left: 5px;
+    height: 14px;
+    width: 14px;
+    background-image: url(../../images/shop-location-icon.png);
+}
+.shop-info .collect{
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-top: 20px ;
+    float: right;
+}
+.shop-info .collect i{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image:url(../../images/details/collect-a.png);
+}
+.shop-info .collect:hover i{
+    background-image:url(../../images/details/collect-b.png);
+}
+.shop-info .collect-info{
+    display: block;
+    width: 45px;
+    margin: 23px 10px 0 5px;
+    text-align: center;
+    float: right;
+}
+/* 优惠促销 */
+.set-meal h1{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 10px 15px;
+}
+.set-meal .set-meal-list{
+    width: 98%;
+    height: 60%;
+    margin-left: 15px;
+}
+.set-meal .set-meal-list li{
+    width: 48%;
+    height: 90px;
+    margin-right: 12px;
+    border: 1px solid #ebebeb;
+    float: left;
+}
+.set-meal .set-meal-list li:hover{
+    border: 1px solid rgb(255,107,55);
+}
+.set-meal .set-meal-list li a:hover{
+    color: #333;
+}
+.set-meal .set-meal-list li img{
+    width: 120px;
+    height: 100%;
+    float: left;
+}
+.set-meal .set-meal-list li h2{
+    font-size: 18px;
+    margin: 10px 0 15px 130px;
+}
+.set-meal .set-meal-list li label{
+    margin-left: 10px;
+}
+.set-meal .set-meal-list li label span{
+    font-size: 12px;
+}
+.set-meal .set-meal-list li .set-mea-price{
+    margin-top: 25px;
+}
+.set-meal .set-meal-list li .now-price .mark{
+    font-size: 16px;
+}
+.set-meal .set-meal-list li .now-price span{
+    font-size: 24px;
+    color: rgb(255,107,55);
+}
+.set-meal .set-meal-list li .had-sell{
+    margin-left: 50px;
+}
+.set-meal .set-meal-list li .tuan{
+    border-radius: 3px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    margin: 10px 15px 0 0;
+    color: #fff;
+    background-color: rgb(255,107,55);
+    float: right;
+}
+/* 推荐菜 */
+.dishesli-recommend h1{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 10px 5%;
+}
+.dishesli-recommend li{
+    width: 90%;
+    height: 120px;
+    /* background-color: #a66cfd; */
+    border-bottom: 1px solid lightgray;
+    margin: 0 0 10px 5%;
+    padding-bottom: 10px;
+}
+.dishesli-recommend li img{
+    width: 150px;
+    height: 80%;
+    margin-top: 13px;
+    float: left;
+}
+.dishesli-recommend li :nth-child(2){
+    width: 130px;
+    height: 20px;
+    margin:0 10px 20px 160px;
+    padding-top: 30px;
+    overflow: hidden;
+}
+.dishesli-recommend li :nth-child(3){
+    width: 150px;
+    height: 32px;
+    font-size: 12px;
+    margin:0 10px 10px 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #666666;
+}
+
+/* 全部菜品 */
+.layui-tab-brief>.layui-tab-title .layui-this{
+    color: rgb(255,107,55);
+}
+.layui-tab-brief>.layui-tab-title li{
+    font-size: 16px;
+    font-weight: bold;
+}
+.layui-tab-brief>.layui-tab-title .layui-this:after{
+    border-bottom: 2px solid rgb(255,107,55);
+}
+.dishesli-ads li{
+    width: 118px;
+    height: 118px;
+    float: left;
+    margin-left: 13px;
+    margin-bottom: 10px;
+    border: 1px solid #ebebeb;
+}
+.dishesli-ads li img{
+    width: 100%;
+    height: 94.4px;
+}
+.dishesli-ads li:hover{
+    border: 1px solid rgb(255,107,55);
+}
+.dishesli-ads li a:hover{
+    color: #333;
+}
+.dishesli-ads li p{
+    font-size: 12px;
+    margin: 3px;
+}
+.dishesli-ads li label{
+    position: relative;
+    bottom: 110px;
+    left: 85px;
+    font-size: 12px;
+    color: #FFF;
+    text-shadow: 2px 2px 2px rgb(0 0 0 / 65%);
+}
+.brand-story img{
+    width: 300px;
+    height: 200px;
+    float: left;
+    margin: 20px;
+}
+.brand-story h1{
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px 0;
+}
+.brand-story p{
+    height: 175px;
+    font-size: 14px;
+    line-height:25px;
+    padding-right: 30px;
+    overflow: hidden;
+}
+
+/* 地图 */
+#container {
+    width: 100%;
+    height: 100%;
+}
+.map{
+    position: fixed;
+    width: 800px; 
+    height: 450px;
+    top: 100px; 
+    left: 300px; 
+    display: none;
+    background-color: #FFF;
+    z-index: 3;
+}
+.map .closemap{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../../images/map-close-icon.png);
+}
+.map .title h1{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 10px 15px;
+}
+.map .title p{
+    height: 25px;
+    font-size: 12px;
+    margin: 10px 15px;
+    color: #333333;
+    border-bottom: 1px solid #ebebeb;
+}
+
+/* 蒙版 */
+.cover{
+    background: #000;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    z-index: 2;
+    display: none;
+}

@@ -1,0 +1,125 @@
+/* ------------------------------orders-body------------------------------- */
+.orders-container .orders-body{
+    width: 980px;
+    height: 600px;
+    /* background-color: darkseagreen; */
+    float: left;
+    margin-left: 5px;
+}
+
+
+.orders-container .orders-body ul li{
+    width: 100%;
+    height: 150px;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+   
+}
+.orders-body .product_img{
+    width: 150px;
+    height: 150px;
+    /* background-color: aqua; */
+    float: left;
+}
+
+.product_img a{
+    width: 100%;
+    height: 100%;
+}
+
+.product_img a img{
+    width: 100%;
+    height: 100%;
+
+}
+.orders-body .product_msg{
+    width: 260px;
+    height: 100%;
+    /* background-color: blueviolet; */
+    float: left;
+}
+.product_msg .product_title{
+    width: 150px;
+    height: 30px;
+    display: block;
+    font-size: 17px;
+    /* background-color: aqua; */
+    margin-left: 15px;
+    margin-top: 30px;
+}
+.product_msg .text_time{
+    display: block;
+    width: 70px;
+    height: 20px;
+    /* background-color: rgb(21, 153, 153); */
+    margin-left: 15px;
+    float: left;
+    font-size: 14px;
+}
+.product_msg .time{
+    float: left;
+    width: 150px;
+    height: 20px;
+    /* background-color: darkgoldenrod; */
+    font-size: 14px;
+    padding-top: 3px;
+}
+
+
+.product_msg .text_number{
+    display: block;
+    width: 40px;
+    height: 20px;
+    /* background-color: burlywood; */
+    margin-left: 15px;
+    float: left;
+    font-size: 14px;
+    
+   
+}
+.product_msg .number{
+    display: block;
+    float: left;
+    width: 20px;
+    height: 17px;
+    /* background-color: antiquewhite; */
+    padding-top: 3px;
+}
+
+.orders-body .sum_price{
+    width: 100px;
+    height: 100%;
+    /* background-color: rgb(51, 107, 156); */
+    float: left;
+    margin-left: 50px;
+    text-align: center;
+    line-height: 150px;
+    color: grey;
+}
+
+.orders-body .zhuangtai{
+    width: 100px;
+    height: 100%;
+    /* background-color: blanchedalmond; */
+    float: left;
+    margin-left: 50px;
+    text-align: center;
+    line-height: 150px;
+    color: grey;
+
+}
+
+
+.orders-body .other{
+    width: 100px;
+    height: 100%;
+    /* background-color: blanchedalmond; */
+    float: left;
+    margin-left: 50px;
+    text-align: center;
+    line-height: 150px;
+}
+
+.orders-body a{
+    color: #a66cfd;
+}

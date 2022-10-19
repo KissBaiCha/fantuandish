@@ -1,0 +1,109 @@
+.layui-main .my_msg{
+    width: 980px;
+    height: 600px;
+    background-color: #f4f4f4;
+    float: left;
+    margin-left:10px;
+}
+
+.my_msg .msg,.head_img,.name,.birthday,.updatePhone{
+    width: 100%;
+    height: 90px;
+    /* background-color: aqua; */
+    margin-bottom: 15px;
+    
+}
+.msg .person{
+    font-size: 20px;
+    display: block;
+    margin-left:50px;
+   padding-top: 10px;   
+}
+
+.msg .account{
+    font-size: 16px;
+    display: block;
+    margin-left: 53px;
+    
+}
+.head_img .touxiang,.name .nicheng,.birthday .shengri,.updatePhone .shoujihao{
+    font-size: 20px;
+    display: block;
+    line-height: 90px;
+    margin-left: 50px;
+    float: left;
+}
+.head_img .layui-upload{
+    width: 600px;
+    height: 100%;
+    /* background-color: darksalmon; */
+    float: left;
+    margin-left: 70px;
+
+}
+
+.layui-upload .layui-upload-list{
+    width: 90px;
+    height: 90%;
+    /* background-color: crimson; */
+    float: left;
+    margin-top: 4px;
+    border: 1px grey;
+}
+.layui-upload-list .layui-upload-img{
+    width: 100%;
+    height: 100%;
+}
+.layui-upload .layui-btn{
+    width: 90px;
+    height: 45px;
+    margin-left: 700px;
+    display: block;
+    float: left;
+    margin-top: -70px;
+    background-color: #a66cfd;
+}
+
+.name .nichengkuang{
+    width: 200px;
+    height: 40px;
+    margin-left: 70px;
+    margin-top:25px ;
+    border:none;
+    padding-left: 10px;
+    color: rgb(102, 99, 99);
+    background-color:white;
+}
+
+.birthday .layui-form{
+
+    float: left;
+    margin-left: 70px;
+    margin-top: 25px;
+}
+.layui-input-inline .layui-input{
+    width: 210px;
+    height: 40px;
+}
+
+.updatePhone .phonenumber{
+    width: 200px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 25px;
+    border:none;
+    background-color:white;
+    padding-left: 10px;
+}
+
+.my_msg .update,.save{
+    width: 80px;
+    height: 40px;
+    background-color: #a66cfd;
+    border:none;
+    margin-right: 50px;
+}
+
+.my_msg .update{
+    margin-left: 350px;
+}

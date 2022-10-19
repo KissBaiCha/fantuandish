@@ -1,0 +1,14 @@
+.footer-content a{
+    color: #8c8c8c;
+    text-decoration: none;
+    text-align: center;
+    margin-right: 40px;
+    line-height: 100%;
+}
+.footer-content .col-md-2{
+    height: 100%;
+    margin-top: 20px;
+}
+.footer-content span{
+    color: #8c8c8c;
+}

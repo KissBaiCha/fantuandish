@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*----------------订单支付时间倒计时--------------  */
+.layui-main .order_pay_time{
+    width: 100%;
+    height: 50px;
+    background-color: #f4f4f4;
+    margin-top: 20px;
+}
+
+.order_pay_time .pay_time{
+    width: 380px;
+    height: 100%;
+    /* background-color: rgb(210, 142, 53); */
+    float: left;
+    margin-left: 400px;
+}
+.pay_time .time_logo{
+    width: 20px;
+    height: 20px;
+    /* background-color: aqua; */
+    float: left;
+    background: url("../../../images/order_pay_time.svg");
+    margin-top: 14px;
+}
+.pay_time span{
+    display: block;
+    list-style: 50px;
+    float: left;
+    line-height: 50px;
+    padding-left: 5px;
+    color: rgb(115, 114, 114);
+}
+
+.pay_time span.time{
+    display: block;
+    color: #a66cfd;
+    font-size: 18px;
+}
+
+
+/* --------------待支付产品------------- */
+.layui-main .pay_product{
+    width: 100%;
+    height: 80px;
+    background-color: #f4f4f4;
+    margin-top: 20px;
+}
+.pay_product .pro_name{
+    width: 600px;
+    height: 100%;
+    /* background-color: bisque; */
+    overflow: hidden;
+    padding-left: 15px;
+    float: left;
+
+}
+
+.pro_name span{
+    display: block;
+    line-height:80px ;
+    font-size: 18px;
+
+}
+.pay_product .pro_price{
+    width: 150px;
+    height: 100%;
+    /* background-color: #e7d04e; */
+    float: left;
+    margin-left: 380px;
+}
+
+.pro_price span{
+    line-height: 80px;
+    color: #a66cfd;
+    padding-left: 10px;
+   
+
+}
+
+.pro_price .yingfu{
+    font-weight: 400;
+
+
+}
+.pro_price .price{
+    font-size: 25px;
+    font-weight: 600;
+
+}
+
+/* ---------------支付宝支付------------------- */
+.pay_way .layui-tab-content .layui-tab-item.layui-show{
+    margin-left: 15px;
+}
+.pay_way .fukuan{
+    width:300px;
+    height: 150px;
+    /* background-color: #e08a9f; */
+    margin-left: 850px;
+    margin-top: 200px;
+}
+.pay_way span{
+    color: #a66cfd;
+    font-weight: 400;
+    padding-left: 140px;
+
+}
+
+.pay_way span.fukuan_pri{
+    font-size: 25px;
+    font-weight: 600px;
+    padding-left: 5px;
+}
+
+
+.fukuan .gopay{
+    width: 110px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #a66cfd;
+    color: white;
+    border-width: 0;
+    margin-left:140px;
+    margin-top: 20px;
+
+}
+
+.fukuan_price .update_order{
+    position: relative;
+    display: block;
+    width: 90px;
+    height: 30px;
+    /* background-color: cyan; */
+    margin-top: -27px;
+    margin-left: 40px;
+    color: grey;
+    
+}

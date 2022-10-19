@@ -1,0 +1,191 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*商品订单评价区*/
+.orderpic{
+    width:100%;
+    height: 200px;
+    margin-top: 20px;
+    /* background-color: rgb(132, 236, 29); * /
+}
+.orderpic img{/*商品图片*/
+    width:95%;
+    height: 200px;
+}
+.ordermsg{/*商品信息*/
+    width:100%;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 20px 1px  gray ;
+
+}
+.name{/*商品名字*/
+    width: 300px;
+    height: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid gray;
+
+}
+.name span{
+    font-size: 26px;
+    font-weight: 37px;
+}
+.score{/*商品评分区*/
+    width: 250px;
+    height: 30px;
+    background-color: #fff;
+}
+.o-cont{/*星星区*/
+    width: 120px;
+    height: 30px;
+
+}
+.o-star{/*星星*/
+    width: 200px;
+    height: 30px;
+    margin-top: -40px;
+}
+.score span{/*商品人均消费区*/
+    display: block;
+    float: left;
+    width: 80px;
+    height: 20px;
+    margin-left: 130px;
+    margin-top: -25px;
+
+}
+.score span{/*商品人均消费区 文字*/
+    font-size: 14px;
+    font-weight: bolder;
+}
+.order-aps{/*下单商品名称区*/
+    margin-left: 20px;
+    margin-top: 20px;
+
+}
+.order-aps span{/*下单商品名称区 文字*/
+    font-size: 16px;
+}
+.order-score{/*商品评分*/
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-bottom: 1px solid gray;
+
+}
+.recommend{/*附近推荐区*/
+    width: 90%;
+    margin-left: 10px;
+    margin-top: -200px;
+    float: left;
+    box-shadow:  0 0 10px 1px rgb(181, 179, 179);
+
+}
+.title{/*附近推荐 标题区*/
+    width: 240px;
+    height: 40px;
+    margin-top:10px;
+    margin-left: 10px;
+
+}
+.title span{/*附近推荐 标题区 文字*/
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.recom{/*推荐商品区*/
+    width:100%;
+    height: 280px;   
+    margin-bottom: 20px;
+
+
+}
+.recom-pic {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.recom-msg{/* 推荐商品 店名、评分、人均消费 信息区*/
+    width: 100%;
+
+}
+.info{/* 推荐商品 店名*/
+    width: 90%;
+    float: left;
+
+}
+.info span{/* 推荐商品 店名  文字*/
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.UEditor{/* 富文本编辑器*/
+    float: left;
+    width: 75%;
+    margin-top: 50px;
+    /* height: 650px; */
+
+}
+
+
+  #editor—wrapper {
+    border: 1px solid #ccc;
+    z-index: 100; /* 按需定义 */
+  }
+  #toolbar-container { border-bottom: 1px solid #ccc; }
+  #editor-container { height: 500px; }
+  .editor-content-view {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .editor-content-view p,
+  .editor-content-view li {
+    white-space: pre-wrap; /* 保留空格 */
+  }
+  
+  .editor-content-view blockquote {
+    border-left: 8px solid #d0e5f2;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #f1f1f1;
+  }
+  
+  .editor-content-view code {
+    font-family: monospace;
+    background-color: #eee;
+    padding: 3px;
+    border-radius: 3px;
+  }
+  .editor-content-view pre>code {
+    display: block;
+    padding: 10px;
+  }
+  
+  .editor-content-view table {
+    border-collapse: collapse;
+  }
+  .editor-content-view td,
+  .editor-content-view th {
+    border: 1px solid #ccc;
+    min-width: 50px;
+    height: 20px;
+  }
+  .editor-content-view th {
+    background-color: #f1f1f1;
+  }
+  
+  .editor-content-view ul,
+  .editor-content-view ol {
+    padding-left: 20px;
+  }
+  
+  .editor-content-view input[type="checkbox"] {
+    margin-right: 5px;
+  }

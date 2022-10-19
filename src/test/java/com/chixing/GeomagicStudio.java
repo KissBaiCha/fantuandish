@@ -28,7 +28,7 @@ public class GeomagicStudio {
                             .addInclude("food_collection")
                             .addInclude("food_img")
                             .addInclude("my_coupon")
-                            .addInclude("order")
+                            .addInclude("my_order")
                             .addInclude("praise")
                             .addInclude("second_kill")
                             .addInclude("shop")
