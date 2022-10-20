@@ -2,6 +2,10 @@ server:
   servlet:
     context-path: /fan
 spring:
+#静态资源
+  web:
+    resources:
+      static-locations: classpath:templates/,classpath:static/
   datasource:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     url: jdbc:p6spy:mysql://192.168.186.85:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
