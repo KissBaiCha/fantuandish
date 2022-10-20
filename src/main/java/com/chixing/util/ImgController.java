@@ -20,6 +20,7 @@ public class ImgController {
     @ResponseBody
     @PostMapping("upload")
     public String sendFile( MultipartFile myfile){
+        // images/log  ---- user ----- customer ------ food ---- shop ----
         return AliOssUtil.sendImg(myfile,"images");
     }
 }

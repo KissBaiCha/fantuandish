@@ -43,14 +43,13 @@ public class JwtUtil {
         Map<String, Object> map = new HashMap<>(2);
         map.put("alg", "HS256");
         map.put("typ", "JWT");
-        String token = JWT.create()
+        return JWT.create()
                 .withHeader(map)
                 .withIssuer("FanTuan")
                 .withClaim("token", JSON.toJSONString(customerTokenVO))
-                .withExpiresAt(expireDate) //超时设置,设置过期的日期
-                .withIssuedAt(new Date()) //签发时间
-                .sign(Algorithm.HMAC256(SECRET)); //SECRET加密
-        return token;
+                .withExpiresAt(expireDate)
+                .withIssuedAt(new Date())
+                .sign(Algorithm.HMAC256(SECRET));
     }
     public static boolean verifyToken(String token){
         DecodedJWT jwt = null;
@@ -78,7 +77,7 @@ public class JwtUtil {
         }
         return true;
     }
-    public static String getUserName(String token){
+    public static String getCusName(String token){
         try{
             DecodedJWT jwt= JWT.decode(token);
             CustomerTokenVO token1 = JSON.to(CustomerTokenVO.class, jwt.getClaim("token").asString());
@@ -88,10 +87,11 @@ public class JwtUtil {
             return null;
         }
     }
-    public static Integer getUserId(String token){
+    public static Integer getCusId(String token){
         try{
             DecodedJWT jwt= JWT.decode(token);
-            return  jwt.getClaim("userId").asInt() ;
+            CustomerTokenVO token1 = JSON.to(CustomerTokenVO.class, jwt.getClaim("token").asString());
+            return token1.getCusId();
         }catch (JWTDecodeException e) {
             e.printStackTrace();
             return null;
