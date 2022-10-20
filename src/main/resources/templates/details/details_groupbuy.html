@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团购详情</title>
+    <link rel="icon" href="../images/minilogo.png">
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/details/details_groupbuy.css">
+    <link rel="stylesheet" href="../css/details/details_header.css">
+
+</head>
+<body>
+<div class="layui-main">
+    <!-- ----------------------头部-------------------------- -->
+    <div class="header">
+        <div class="layui-row header-tip">
+            <!--      logo      -->
+            <div class="layui-col-xs3 logo-input">
+                <a href="/funTuanFood/index1.html" title="饭团网" class="logo-img">
+                    <img src="../images/mylogo.png" width="200" height="72">
+                </a>
+            </div>
+            <!--    搜索    -->
+            <div class="layui-col-xs6 search-box">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item searchbox-input">
+                        <div class="layui-input-block" style="margin-left: 10px">
+                            <input style="border: 2px solid #a66cfd;width: 80%;display: block;float: left" type="text"
+                                   name="title" autocomplete="off"
+                                   placeholder="点此进入美食猩球" class="layui-input">
+                            <div class="layui-btn-container" style="display: block;float: left">
+                                <button type="button"
+                                        class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--    用户    -->
+            <div class="layui-col-xs3 user-tip">
+                <div class="layui-row">
+                    <div class="layui-col-xs12 user-block">
+                        <ul class="layui-nav user-center">
+                            <li class="layui-nav-item"><a href="">用户名</a></li>
+                            <li class="layui-nav-item">
+                                <a href="javascript:;">我的饭团</a>
+                                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                                    <dd><a href="javascript:;">我的订单</a></dd>
+                                    <dd><a href="javascript:;">我的优惠券</a></dd>
+                                    <dd><a href="javascript:;">我的收藏</a></dd>
+                                    <hr>
+                                    <dd><a href="javascript:;">退出</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="group_product_msg">
+        <!-- ---------轮播图----------------- -->
+        <div class="layui-carousel" id="test1" lay-filter="test1">
+            <div carousel-item="">
+                <div>
+                    <img src="../images/details/groupbuy/lunbo1.jfif">
+                </div>
+                <div>
+                    <img src="../images/details/groupbuy/lunbo2.jfif">
+                </div>
+                <div>
+                    <img src="../images/details/groupbuy/lunbo3.jfif">
+                </div>
+                <div>
+                    <img src="../images/details/groupbuy/lunbo4.jfif">
+                </div>
+            </div>
+        </div>
+
+        <p class="product_name">和牛畅吃套餐</p>
+        <div class="product_price">
+            <p>
+                <i class="pricesign1">￥</i>
+                <span class="newprice">216</span>
+                <i class="shop">门店价</i>
+                <i class="pricesign2">￥</i>
+                <span class="oldprice">249</span>
+            </p>
+        </div>
+        <!-- 评分星号 -->
+        <div class="star" id="test9"></div>
+
+        <p class="assess">
+            <span>64</span>
+            <i>条团购评论</i>
+        </p>
+
+
+        <div class="startGroupBuy">
+            <input type="submit" class="submit-btn" value="发起团购">
+        </div>
+
+        <div class="collect">
+            <img class="collect-logo" src="../images/details/groupbuy/collect-logo-before.svg">
+            <span class="lollect-text">收藏</span>
+        </div>
+
+    </div>
+    <!-- ---------------邀请加入拼团------------------- -->
+
+    <div class="pintuan">
+        <div class="group1">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+
+            <input type="submit" class="btn-pintuan" value="参与拼团">
+
+        </div>
+        <div class="group2">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+            <img src="../images/details/groupbuy/pintuan-img.jpg">
+
+            <input type="submit" class="btn-pintuan" value="参与拼团">
+        </div>
+
+    </div>
+    <!-- --------------团购详情、购买须知---------------------- -->
+    <div class="groupbuy_details">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">团购详情</li>
+                <li>购买须知</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <!-- -------------团购详情---------------------- -->
+                    <div class="layui-form">
+                        <table class="layui-table">
+                            <tr>
+                                <th>名称</th>
+                                <th>人数</th>
+                                <th>普通价格</th>
+                                <th>团购价格</th>
+                            </tr>
+                            <tr>
+                                <td>和牛畅吃套餐</td>
+                                <td>1位</td>
+                                <td>249</td>
+                                <td>216</td>
+                            </tr>
+                        </table>
+
+
+                        <div class="groupbuy-text">
+                            <span class="eattime"> 和牛畅吃套餐:11:00-14:00,17:00-21:00</span><br>
+                            <span> 最多可用餐2小时</span>
+                            <p>
+                                ·锅底七选一(可选鸳鸯锅，每桌一个锅底)薄切牛舌·雪花猪肉·牛排肉·安格斯后胸·雪花牛上脑·
+                                和牛·雪山和牛·牛肩肉·特色菜每位五选一(蒲烧牛舌、火灸嫚鱼、焦糖鹅肝、日式烤庸蝶鱼、
+                                法式羊排)·季节限定海鲜拼盘八款(鲍鱼、南美白虾、贝柱、巴沙鱼、Q弹墨鱼仔、扇贝、
+                                男朋友剥的虾、蟹柳)·主厨严选特制甜品——畅吃(提拉米苏大福、焦糖布丁、红颜鲜奶酪、
+                                榴莲大福、芒果鼠、原味生巧、马卡龙)﹒有机蔬菜丸滑——自助选取台·意大利手工冰淇淋——五款
+                                畅吃(抹茶、榴莲、咸蛋黄、巧克力、费列罗)·网红饮品——不限量畅喝·水果小菜——不限量畅吃·
+                                特选秘制酱料——自助选取台
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="groupbuy-mustknow">
+                        <p>
+                            <span class="listtitle" >有效日期</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">2020-06-01至2022-09-18</span>
+                        </p>
+
+                        <p>
+                            <span class="listtitle">除外日期</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">有效期内周末、法定节假日通用</span>
+                        </p>
+
+                        <p>
+                            <span class="listtitle">预约提醒</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">为了保证您良好体验，可提前致电商家是否有位，消费高峰期可能需要等位</span>
+                        </p>
+
+                        <p>
+                            <span class="listtitle">温馨提示</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">1、1.2米(含)以下儿童免费(每位大人限带2位儿童),1.2米(不含)~1.4米(不含)儿童可享半价，1.4米(含)以上按照成人计算</span><br>
+                            <span class="listtext1">2、到店请先出示团购券，每张美团券仅限一个成人使用，身高1.4米以上儿童记入人数</span><br>
+                            <span class="listtext2">购买用户不可同时享受商家其他优惠</span><br>
+                            <span class="listtext3">部分菜品因时令原因有所不同，请以店内当日实际供应为准</span><br>
+                            <span class="listtext4">使用优惠券购买团单，有效期以优惠券规则为准</span>
+                        </p>
+
+                        <p>
+                            <span class="listtitle">商家服务</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">商家提供免费WiFi</span>
+                        </p>
+
+                        <p>
+                            <span class="listtitle">发票信息</span>
+                            <span class="list_maohao">:</span>
+                            <span class="listtext">本单发票由商家提供，请在消费时向商家索取</span>
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- ---------------------看了此团购的人也看了---------------------- -->
+    <div class="group_recommend">
+
+        <div class="text">
+            <strong>团购推荐</strong>
+        </div>
+        <ul>
+            <li>
+                <a href="" class="look-pro-img">
+                    <img src="../images/details/groupbuy/tuijian1.jpg">
+                </a>
+
+                <a href="" class="look-pro-msg">
+                    <span>阿拉提羊肉串大王</span>
+                </a>
+                <a href="" class="look-pro-msg"></a>
+
+                <p class="look-pro-price">
+                    <i>￥</i>
+                    <span>23.9</span>
+                </p>
+            </li>
+
+
+            <li>
+                <a href="" class="look-pro-img">
+                    <img src="../images/details/groupbuy/tuijian1.jpg">
+                </a>
+
+                <a href="" class="look-pro-msg">
+                    <span>阿拉提羊肉串大王</span>
+                </a>
+
+                <p class="look-pro-price">
+                    <i>￥</i>
+                    <span>23.9</span>
+                </p>
+            </li>
+
+
+            <li>
+                <a href="" class="look-pro-img">
+                    <img src="../images/details/groupbuy/tuijian1.jpg">
+                </a>
+
+                <a href="" class="look-pro-msg">
+                    <span>阿拉提羊肉串大王</span>
+                </a>
+
+                <p class="look-pro-price">
+                    <i>￥</i>
+                    <span>23.9</span>
+                </p>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <!-- -----------------底部--------------------- -->
+    <div class="layui-row">
+        <div class="layui-edge-bottom detail-bottom">
+            <div class="layui-col-xs2">
+                关于饭团
+            </div>
+            <div class="layui-col-xs2">
+                加入我们
+            </div>
+            <div class="layui-col-xs2">
+                商家入驻
+            </div>
+            <div class="layui-col-xs2">
+                帮助中心
+            </div>
+            <div class="layui-col-xs2">
+                手机APP
+            </div>
+            <div class="layui-col-xs2">
+                <a href="javascript:;" title="@张旭 @刘海萍 @刘丽 @商建">@作者</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------ -->
+    <script src="../layui/layui.js"></script>
+    <script src="../js/details/details_groupbuy.js"></script>
+    <script>
+        layui.use(['carousel', 'form'], function () {
+            var carousel = layui.carousel
+                , form = layui.form;
+            //轮播
+            carousel.render({
+                elem: '#test1'
+            });
+        });
+        layui.use(['rate'], function () {
+            var rate = layui.rate;
+
+            //评分只读
+            rate.render({
+                elem: '#test9'
+                , value: 4
+                , readonly: true
+            });
+        });
+
+        // 团购详情
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //导航点击事件
+            element.on('nav(demo)', function (elem) {
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+    </script>
+
+
+</div>
+
+</body>
+</html>

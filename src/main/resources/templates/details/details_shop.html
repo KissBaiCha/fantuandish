@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店铺详情</title>
+    <link rel="icon" href="images/minilogo.png">
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/details/details_shop.css">
+    <link rel="stylesheet" href="../css/details/details_header.css">
+</head>
+<body>
+            <!--                     头部                         -->
+            <div class="header">
+                <div class="top-nav ">
+                    <div class="layui-main top-main layui-row">
+                        <div class="layui-col-xs4">
+                            <span>&nbsp</span>
+                        </div>
+                        <div class="layui-col-xs4">
+                            <span>&nbsp</span>
+                        </div>
+                        <div class="layui-col-xs4">
+                            <ul class="layui-nav" lay-filter="">
+                                <li class="layui-nav-item"><a href="">登录/注册</a></li>
+                                <li class="layui-nav-item"><a href="">帮助中心</a></li>
+                                <li class="layui-nav-item">
+                                    <a href="javascript:;">我的饭团</a>
+                                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                                        <dd><a href="">订单中心</a></dd>
+                                        <dd><a href="">我的优惠券</a></dd>
+                                        <dd><a href="">我的收藏</a></dd>
+                                    </dl>
+                                </li>
+            
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row header-tip ">
+            
+                    <!--      logo      -->
+                    <div class="layui-col-xs3 logo-input">
+                        <a href="../index.html" title="饭团网" class="logo-img">
+                            <img src="../images/mylogo.png"  width="200" height="72">
+                        </a>
+                    </div>
+                    <!--    搜索    -->
+                    <div class="layui-col-xs6 search-box">
+                        <form class="layui-form layui-form-pane" action="">
+                            <div class="layui-form-item searchbox-input">
+                                <div class="layui-input-block" style="margin-left: 10px">
+                                    <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                                           placeholder="点此进入美食猩球" class="layui-input">
+                                    <div class="layui-btn-container" style="display: block;float: left">
+                                        <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <div class="cover"></div>
+    <div class="layui-main test">
+
+        <!--                   店家 信息                      -->
+        <div class="shop-info">
+            <span class="collect-info">收藏</span><a href="javascript:" class="collect" title="收藏"><i></i></a>
+            <h1>青鹤谷(苏州店)</h1>
+            <div class="score">
+                <label class="score-img"><i></i><i></i><i></i><i></i><i></i></label>
+                <label>5</label><label>分</label>
+                <label class="pl">1234<span>条评论</span></label>
+            </div>
+            <p>地址:<a href="javascript:void(0)" class="dingwei"><span>李公堤三期21幢(近金鸡湖景区)</span><i class="location"></i></a></p>
+            <p>电话:<span>0521-67635689</span></p>
+            <p>营业时间:<span>周一至周五 11:30-14:00 16:30-21:00 周六,周日 11:30-21:00</span></p>
+
+        </div>
+        <!--                  店家图片 轮播                   -->
+        <div class="shop-img">
+            <div class="layui-carousel" id="test3" lay-filter="test4">
+                <div carousel-item="">
+                  <div><img src="../images/index-pro.webp"></div>
+                  <div><img src="../images/index-pro.webp"></div>
+                  <div><img src="../images/index-pro.webp"></div>
+                </div>
+              </div> 
+        </div>
+        <!--                     套餐                         -->
+        <div class="set-meal">
+            <h1>优惠促销</h1>
+            <div class="set-meal-list">
+                <ul>
+                    <li>
+                        <a href="details_groupbuy.html">
+                            <div class="tuan">团</div>
+                            <img src="../images/index-pro.webp">
+                            <h2>隐居家宴套餐</h2>
+                                <label class="now-price"><span class="mark">￥</span><span>18</span><span>.00</span></label>
+                                <label class="old-price"><del><span>￥</span><span>20</span><span>.00</span></del></label>
+                                <label class="had-sell"><span>已售</span><span>3386</span></label>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="details_product.html">
+                            <div class="tuan">团</div>
+                            <img src="../images/index-pro.webp">
+                            <h2>隐居家宴套餐</h2>
+                                <label class="now-price"><span class="mark">￥</span><span>18</span><span>.00</span></label>
+                                <label class="old-price"><del><span>￥</span><span>20</span><span>.00</span></del></label>
+                                <label class="had-sell"><span>已售</span><span>3386</span></label>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--                   推荐 菜品                      -->
+        <div class="dishesli-recommend">
+            <ul>
+                <h1>推荐菜品</h1>
+                <li>
+                    <a href="details_product.html">
+                        <img src="../images/index-pro.webp">
+                        <p>清蒸白鱼</p>
+                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="details_product.html">
+                        <img src="../images/index-pro.webp">
+                        <p>清蒸白鱼</p>
+                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="details_product.html">
+                        <img src="../images/index-pro.webp">
+                        <p>清蒸白鱼</p>
+                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        <!--                   菜品 列表                      -->
+        <div class="dishesli-all">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">全部菜品</li>
+                    <li>品牌故事</li>
+                </ul>
+                <div class="layui-tab-content" style="height: 100px;">
+                    <div class="layui-tab-item layui-show">
+                        <ul class="dishesli-ads">
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+        
+        
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="details_product.html">
+                                    <img src="../images/index-pro.webp" alt="">
+                                    <p>清蒸白鱼</p>
+                                    <label><span>￥</span><span>68</span></label>
+                                </a>
+                            </li>
+        
+        
+        
+        
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="brand-story">
+                            <img src="">
+                            <h1>关于 青鹤谷</h1>
+                            <p>青鹤谷是一家韩国料理店，位于李公堤三期21幢(近金鸡湖景区)
+                                餐厅布置的一片韩式古色古香的味道，外面围墙上有传统的韩风壁画，
+                                桌椅板凳都是采用了古朴的木制家具，配着典型传统韩式的装修，整
+                                个楼面又极开阔，让人很舒服。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+
+        <!-- <div class="details-shop">
+            <div class="layui-tab layui-tab-card">
+                <ul class="layui-tab-title">
+                  <li class="layui-this">适用门店</li>
+                  <li>团购详情</li>
+                  <li>购买须知</li>
+                  <li>店铺评价</li>
+                </ul>
+                <div class="layui-tab-content" style="height: 100px;">
+                  <div class="layui-tab-item layui-show">1</div>
+                  <div class="layui-tab-item">2</div>
+                  <div class="layui-tab-item">3</div>
+                  <div class="layui-tab-item">4</div>
+                  <div class="layui-tab-item">5</div>
+                </div>
+              </div>
+        </div> -->
+    <!--                   地图                     -->
+    <div class="map">
+        <a href="" class="closemap"></a>
+        <div class="title">
+            <h1>青鹤谷(苏州店)</h1>
+            <p>地址：<span>李公堤三期21幢(近金鸡湖景区)</span></p>
+        </div>
+        <div id="container"></div>
+    </div>
+    <!--                   蒙版                     -->
+
+
+    <script src="https://webapi.amap.com/maps?v=2.0&key=9e22f5fb845cd3a6dd91682f66ace415"></script>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/details/details_shop.js"></script>
+</body>
+</html>
+
+
