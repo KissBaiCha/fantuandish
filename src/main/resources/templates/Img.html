@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script src=" https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.js"></script>
+  <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data" id="imgform">
+    <input type="file" name="myfile" id="myfile">
+</form>
+
+
+
+<div id="preview">
+
+</div>
+
+
+<script type="text/javascript" >
+    $("#myfile").change( function() {
+        $("#imgform").ajaxSubmit({
+            url: "upload",
+            method: 'POST',
+            datType: 'json',
+            success: function (data) {
+                console.log(data)
+                $("#preview").html("<img src = " + data +">")
+            },
+            error: function (data) {
+                alert(data);
+            }
+        })
+    })
+</script>
+</body>
+</html>
