@@ -21,6 +21,8 @@ public class ImgController {
     @PostMapping("upload")
     public String sendFile( MultipartFile myfile){
         // images/log  ---- user ----- customer ------ food ---- shop ----
-        return AliOssUtil.sendImg(myfile,"images");
+        //  images/filter_page  筛选页Img
+        //  images/details_shop 店铺详情页Img
+        return AliOssUtil.sendImg(myfile,"images/");
     }
 }
