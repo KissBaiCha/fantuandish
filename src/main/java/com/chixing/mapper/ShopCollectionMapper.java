@@ -2,6 +2,7 @@ package com.chixing.mapper;
 
 import com.chixing.entity.ShopCollection;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author baomidou
  * @since 2022-09-30
  */
+@Mapper
 public interface ShopCollectionMapper extends BaseMapper<ShopCollection> {
 
 }

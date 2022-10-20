@@ -9,6 +9,7 @@ $(".loginBtn").click(function (){
             customerPwd:$(".login-password").val()
         },
         success:function (result){
+            alert(result.message);
             console.log("result:" + result.message);
             console.log("result:" + result.code);
             console.log("result:" + result.data.token);
@@ -16,18 +17,16 @@ $(".loginBtn").click(function (){
             var token = result.data.token;
             // console.log("token:" + token);
             localStorage.setItem("token",token);
+            var newToken = localStorage.getItem("token")
             $.ajax({
                 type: "post",
                 url: "jiemi",
-                headers: {'token': token},
+                headers: {'token': newToken},
                 success:function (data) {
                     alert("登录成功");
                     console.log(data)
                 }
             })
         },
-        error:function (errResult) {
-            alert(errResult.message)
-        }
     })
 })

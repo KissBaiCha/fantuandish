@@ -2,6 +2,7 @@ package com.chixing.mapper;
 
 import com.chixing.entity.Food;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author baomidou
  * @since 2022-09-30
  */
-//@Repository//告诉bean容器 这是mapper
+@Mapper
 public interface FoodMapper extends BaseMapper<Food> {
 
 }
