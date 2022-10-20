@@ -2,9 +2,264 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="icon" href="images/minilogo.png">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+
 </head>
 <body>
-aaaaa
+
+<!--                     头部                         -->
+<div class="header">
+    <div class="top-nav ">
+        <div class="layui-main top-main layui-row">
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <ul class="layui-nav" lay-filter="">
+                    <li class="layui-nav-item" ><a href="" class="title">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" class="title">我的饭团</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            <dd><a href="">订单中心</a></dd>
+                            <dd><a href="">我的优惠券</a></dd>
+                            <dd><a href="">我的收藏</a></dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row header-tip">
+
+        <!--      logo      -->
+        <div class="layui-col-xs3 logo-input">
+            <a href="../index.html" title="饭团网" class="logo-img">
+                <img src="images/mylogo.png"  width="200" height="72">
+            </a>
+        </div>
+        <!--    搜索    -->
+        <div class="layui-col-xs6 search-box">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item searchbox-input">
+                    <div class="layui-input-block" style="margin-left: 10px">
+                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                               placeholder="点此进入美食猩球" class="layui-input">
+                        <div class="layui-btn-container" style="display: block;float: left">
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="layui-main">
+    <div class="main">
+        <!--                     筛选区                         -->
+        <div class="fifter">
+            <div class="Condition">
+                <label>分类：</label>
+                <div class="Select fifter1">
+                    <a href="javascript:void(0)" class="fifters active"><span>所有</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>蛋糕甜点</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>火锅</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>自助餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>小吃快餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>西餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>云贵菜</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>海鲜</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>川菜</span></a>
+                    <br>
+                    <a href="javascript:void(0)" class="fifters"><span>鱼鲜</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>烤肉</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>西餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>饮品店</span></a>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- <div class="Condition">
+                <label>区域：</label>
+                <div class="Select fifter2">
+                    <a href="javascript:void(0)" class="fifters active">所有</a>
+                    <a href="javascript:void(0)" class="fifters">工业园区</a>
+                    <a href="javascript:void(0)" class="fifters">吴中区</a>
+                    <a href="javascript:void(0)" class="fifters">吴江区</a>
+                    <a href="javascript:void(0)" class="fifters">常熟市</a>
+                    <a href="javascript:void(0)" class="fifters">虎丘区</a>
+                    <a href="javascript:void(0)" class="fifters">姑苏区</a>
+                </div>
+            </div> -->
+
+            <div class="Condition">
+                <label>用餐人数：</label>
+                <div class="Select fifter3">
+                    <a href="javascript:void(0)" class="fifters active"><span>所有</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>单人餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>双人餐</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>3-4人</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>5-6人</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>7-8人</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>9-10人</span></a>
+                    <a href="javascript:void(0)" class="fifters"><span>10人以上</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="pro-main">
+
+
+
+
+
+
+
+            <!--                     列表区                         -->
+            <div class="prolist">
+                <div class="sort">
+                    <a href="">默认</a>
+                    <a href="">价格</a>
+                    <a href="">好评最多</a>
+                </div>
+                <div class="pro">
+                    <ul>
+                        <li>
+                            <a href="details/details_shop.html" class="proimg"><img src="images/index-pro.webp"></a>
+                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
+                            <label><i></i><i></i><i></i><i></i><i></i></label>
+                            <label>5</label><label>分</label>
+                            <a href="" class="comment">
+                                <span>1234</span>
+                                <span>条评论</span>
+                            </a>
+                            <span class="sty"><a href="">观前街地区</a></span>
+                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
+                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                        </li>
+                        <li>
+                            <a href="details/details_shop.html" class="proimg"><img src="images/index-pro.webp"></a>
+                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
+                            <label><i></i><i></i><i></i><i></i><i></i></label>
+                            <label>5</label><label>分</label>
+                            <a href="" class="comment">
+                                <span>1234</span>
+                                <span>条评论</span>
+                            </a>
+                            <span class="sty"><a href="">观前街地区</a></span>
+                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
+                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                        </li>
+                        <li>
+                            <a href="details/details_shop.html" class="proimg"><img src="images/index-pro.webp"></a>
+                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
+                            <label><i></i><i></i><i></i><i></i><i></i></label>
+                            <label>5</label><label>分</label>
+                            <a href="" class="comment">
+                                <span>1234</span>
+                                <span>条评论</span>
+                            </a>
+                            <span class="sty"><a href="">观前街地区</a></span>
+                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
+                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                        </li>
+                        <li>
+                            <a href="details/details_shop.html" class="proimg"><img src="images/index-pro.webp"></a>
+                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
+                            <label><i></i><i></i><i></i><i></i><i></i></label>
+                            <label>5</label><label>分</label>
+                            <a href="" class="comment">
+                                <span>1234</span>
+                                <span>条评论</span>
+                            </a>
+                            <span class="sty"><a href="">观前街地区</a></span>
+                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
+                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                        </li>
+
+                    </ul>
+
+                    <!-- 分页 -->
+                    <div class="paging">
+                        <div id="demo7"></div>
+                        <!-- <ul>
+                            <li><a href="">上一页</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">下一页</a></li>
+                        </ul> -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--                     推荐区                         -->
+        <div class="recommend">
+            <ul>
+                <h4>限时优惠</h4>
+                <li>
+                    <a href="secondkill/seckill.html">
+                        <img src="images/index-pro.webp" >
+                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
+                        <span>观前街地区</span>
+                    </a>
+                    <span><label>￥</label><label>188.0</label></span>
+                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
+                </li>
+
+                <li>
+                    <a href="secondkill/seckill.html">
+                        <img src="images/index-pro.webp" >
+                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
+                        <span>观前街地区</span>
+                    </a>
+                    <span><label>￥</label><label>188.0</label></span>
+                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
+                </li>
+                <li>
+                    <a href="secondkill/seckill.html">
+                        <img src="images/index-pro.webp" >
+                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
+                        <span>观前街地区</span>
+                    </a>
+                    <span><label>￥</label><label>188.0</label></span>
+                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
+                </li>
+                <li>
+                    <a href="secondkill/seckill.html">
+                        <img src="images/index-pro.webp" >
+                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
+                        <span>观前街地区</span>
+                    </a>
+                    <span><label>￥</label><label>188.0</label></span>
+                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/index.js"></script>
+<script src="layui/layui.js"></script>
 </body>
 </html>
+<script>
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+        });
+    })
+</script>
