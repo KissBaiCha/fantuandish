@@ -32,9 +32,14 @@ public enum ResultCodeEnum {
     /**
      * 该手机号未注册
      */
-    NO_FIND_ANT_ERR(401,"请先注册")
+    NO_FIND_ANT_ERR(401,"请先注册"),
+    /**
+     *  没有美食收藏
+     */
+    NO_FOODCOLLECTION(501,"您还没有收藏美食")
     ;
     /**
+     *
      * 状态码
      */
     private final Integer code;
