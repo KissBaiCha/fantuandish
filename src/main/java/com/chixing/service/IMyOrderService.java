@@ -1,6 +1,7 @@
 package com.chixing.service;
 
 
+import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
 
 import java.util.List;
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public interface IMyOrderService {
     MyOrder getById(String orderId);
-    List<MyOrder> getAll();
-    int save(MyOrder myOrder);
+    List<MyOrder> getAllByCusId(Integer cusId);
+    boolean save(Integer cusId,Integer myCouponId,Integer foodId,Boolean isSecondKill);
     boolean update(MyOrder myOrder);
     boolean remove(String orderId);
 

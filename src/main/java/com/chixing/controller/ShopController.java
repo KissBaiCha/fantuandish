@@ -5,6 +5,7 @@ import com.chixing.service.IShopService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 // Shop getById(Integer shopId);
@@ -18,7 +19,7 @@ public class ShopController {
     private IShopService shopService;
 
     @GetMapping("/shop/{id}")
-    private Shop getById(@PathVariable("id") Integer shopId){
+    private Shop getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
         return shopService.getById(shopId);
     }
 

@@ -38,7 +38,8 @@ public class MyOrder implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:DD:ss")
     @JsonDeserialize(using = LocalDateDeserializer.class)		// 反序列化
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDateTime orderCreatTime;
+    private LocalDateTime orderCreateTime;
+    private LocalDateTime orderUpdateTime;
     private BigDecimal orderOnePrice;
     private BigDecimal orderPrice;
     private Integer couponId;
