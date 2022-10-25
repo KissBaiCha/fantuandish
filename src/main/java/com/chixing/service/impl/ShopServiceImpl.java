@@ -1,6 +1,7 @@
 package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Food;
 import com.chixing.entity.Shop;
 import com.chixing.mapper.FoodMapper;
@@ -90,14 +91,16 @@ public class ShopServiceImpl implements IShopService {
     public List<Shop> getByPrice() {
         shopQueryWrapper.clear();
         shopQueryWrapper.orderByDesc("shop_avg_cost");
-        return shopMapper.selectList(shopQueryWrapper);
+        Page<Shop> page = new Page<>(1,4);
+        return shopMapper.selectPage(page,shopQueryWrapper).getRecords();
     }
 
     @Override
     public List<Shop> getByScore() {
         shopQueryWrapper.clear();
         shopQueryWrapper.orderByDesc("shop_score");
-        return shopMapper.selectList(shopQueryWrapper);
+        Page<Shop> page = new Page<>(1,4);
+        return shopMapper.selectPage(page,shopQueryWrapper).getRecords();
     }
 
 

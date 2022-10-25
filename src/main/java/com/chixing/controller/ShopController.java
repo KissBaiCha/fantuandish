@@ -3,6 +3,7 @@ package com.chixing.controller;
 import com.chixing.entity.Shop;
 import com.chixing.service.IShopService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -89,7 +90,10 @@ public class ShopController {
      * @return  店铺集合
      */
     @GetMapping("/shop/getByScore")
-    public List<Shop> getByScore(){
-        return shopService.getByScore();
+    public ModelAndView getByScore(){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getByScore());
+        mav.setViewName("shop_list");
+        return mav;
     }
 }
