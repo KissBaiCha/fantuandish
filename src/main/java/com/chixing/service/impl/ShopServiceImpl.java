@@ -55,6 +55,12 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
+    public List<Shop> getByPage(Integer pageNum) {
+        Page<Shop> page = new Page<>(pageNum,4);
+        return shopMapper.selectPage(page,null).getRecords();
+    }
+
+    @Override
     public List<Shop> getByFoodType(String foodType) {
         cleanQueryWrapper();
         foodQueryWrapper.eq("food_type",foodType);

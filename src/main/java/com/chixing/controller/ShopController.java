@@ -20,22 +20,22 @@ public class ShopController {
     private IShopService shopService;
 
     @GetMapping("/shop/{id}")
-    private Shop getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
+    public Shop getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
         return shopService.getById(shopId);
     }
 
     @PostMapping("/shop")
-    private int save(Shop shop){
+    public int save(Shop shop){
         return shopService.save(shop);
     }
 
     @PostMapping("/shop/update")
-    private int update(Shop shop){
+    public int update(Shop shop){
         return shopService.update(shop);
     }
 
     @DeleteMapping("/shop")
-    private int remove(@RequestParam("id") Integer shopId){
+    public int remove(@RequestParam("id") Integer shopId){
         return shopService.remove(shopId);
     }
 
@@ -45,10 +45,18 @@ public class ShopController {
      * @return  店铺集合
      */
     @GetMapping("/shop/foodType")
-    private List<Shop> getByFoodType(@RequestParam("foodType")String foodType){
+    public List<Shop> getByFoodType(@RequestParam("foodType")String foodType){
         List<Shop> shopList = shopService.getByFoodType(foodType);
         shopList.forEach(System.out::println);
         return shopList;
+    }
+
+    @GetMapping("/shop/getIndex/{pageNum}")
+    public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getByPage(pageNum));
+        mav.setViewName("shop_list");
+        return mav;
     }
 
     /**
@@ -58,7 +66,7 @@ public class ShopController {
      * @return  店铺集合
      */
     @GetMapping("/shop/shopAvgCost")
-    private List<Shop> getByShopAvgCost(@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
+    public List<Shop> getByShopAvgCost(@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
         List<Shop> shopList = shopService.getByShopAvgCost(shopMinCost,shopMaxCost);
         return shopList;
     }
@@ -71,7 +79,7 @@ public class ShopController {
      * @return  店铺集合
      */
     @GetMapping("/shop/sift")
-    private List<Shop> getBySift(@RequestParam("foodType")String foodType,@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
+    public List<Shop> getBySift(@RequestParam("foodType")String foodType,@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
         List<Shop> shopList = shopService.getBySift(foodType,shopMinCost,shopMaxCost);
         return shopList;
     }

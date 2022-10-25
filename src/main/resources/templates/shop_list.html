@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base href="http://localhost:8080/fan/">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页</title>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <link rel="stylesheet" href="../css/shop_list.css">
-    <link rel="stylesheet" href="../css/details/details_header.css">
-    <link rel="stylesheet" href="../css/shop_list.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/shop_list.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="css/shop_list.css">
 
 </head>
 <body>
@@ -45,7 +46,7 @@
 
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="../index.html" title="饭团网" class="logo-img">
+            <a href="index.html" title="饭团网" class="logo-img">
                 <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
             </a>
         </div>
@@ -135,58 +136,20 @@
                 </div>
                 <div class="pro">
                     <ul>
-                        <li>
-                            <a href="details/details_shop.html" class="proimg"><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D"></a>
-                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
+                        <li th:each="shop:${shop}">
+                            <a href="details/details_shop.html" class="proimg"><img th:src="${shop.shopMainImg}"></a>
+                            <h4><a href="details/details_shop.html" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
                             <label><i></i><i></i><i></i><i></i><i></i></label>
-                            <label>5</label><label>分</label>
+                            <label th:text="${shop.shopScore}">5</label><label>分</label>
                             <a href="" class="comment">
                                 <span>1234</span>
                                 <span>条评论</span>
                             </a>
-                            <span class="sty"><a href="">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
+                            <span class="sty"><a href="" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
+                            <span class="sty"><a href="">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
                             <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
                         </li>
-                        <li>
-                            <a href="details/details_shop.html" class="proimg"><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D"></a>
-                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
-                            <label><i></i><i></i><i></i><i></i><i></i></label>
-                            <label>5</label><label>分</label>
-                            <a href="" class="comment">
-                                <span>1234</span>
-                                <span>条评论</span>
-                            </a>
-                            <span class="sty"><a href="">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
-                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
-                        </li>
-                        <li>
-                            <a href="details/details_shop.html" class="proimg"><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D"></a>
-                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
-                            <label><i></i><i></i><i></i><i></i><i></i></label>
-                            <label>5</label><label>分</label>
-                            <a href="" class="comment">
-                                <span>1234</span>
-                                <span>条评论</span>
-                            </a>
-                            <span class="sty"><a href="">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
-                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
-                        </li>
-                        <li>
-                            <a href="details/details_shop.html" class="proimg"><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D"></a>
-                            <h4><a href="details/details_shop.html">熊猫不走生日蛋糕（苏州店）</a></h4>
-                            <label><i></i><i></i><i></i><i></i><i></i></label>
-                            <label>5</label><label>分</label>
-                            <a href="" class="comment">
-                                <span>1234</span>
-                                <span>条评论</span>
-                            </a>
-                            <span class="sty"><a href="">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span>141.0</span></a></span>
-                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
-                        </li>
+
 
                     </ul>
 
@@ -250,8 +213,8 @@
         </div>
     </div>
 </div>
-<script src="../js/shop_list.js"></script>
-<script src="../layui/layui.js"></script>
+<script src="js/shop_list.js"></script>
+<script src="layui/layui.js"></script>
 </body>
 </html>
 <script>

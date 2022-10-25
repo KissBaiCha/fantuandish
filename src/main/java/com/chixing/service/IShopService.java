@@ -19,7 +19,8 @@ public interface IShopService{
     int save(Shop shop);
     int update(Shop shop);
     int remove(Integer shopId);
-
+    //默认分页查询
+    List<Shop> getByPage(Integer pageNum);
     //多条件筛选
     List<Shop> getByFoodType(String foodType);
     List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
