@@ -55,6 +55,7 @@ public class ShopController {
     public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPage(pageNum));
+        mav.addObject("pageNum",pageNum);
         mav.setViewName("shop_list");
         return mav;
     }

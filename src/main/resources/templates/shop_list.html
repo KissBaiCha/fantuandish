@@ -154,6 +154,7 @@
                     </ul>
 
                     <!-- 分页 -->
+                    <input type="hidden" id="pagenum" th:value="${pageNum}">
                     <div class="paging">
                         <div id="demo7"></div>
                         <!-- <ul>
@@ -218,18 +219,20 @@
 </body>
 </html>
 <script>
+
     layui.use(['laypage', 'layer'], function () {
+        var pagenum = document.getElementById("pagenum").value;
         var laypage = layui.laypage
             , layer = layui.layer;
         laypage.render({
             elem: 'demo7'
             ,count: 100,
+            curr:pagenum,
             jump:function (obj,first){
-                page1 = obj.curr;
-                console.log(page1)
+                pageNum = obj.curr;
+                console.log(pageNum)
                 if (!first){
-                    window.location.href="http://localhost:8080/fan/shop/getIndex/"+page1;
-
+                    window.location.href="http://localhost:8080/fan/shop/getIndex/"+pageNum;
                 }
             }
         });
