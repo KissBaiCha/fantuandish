@@ -1,7 +1,10 @@
 package com.chixing.controller;
 
+import com.chixing.entity.SecondKill;
 import com.chixing.entity.Shop;
+import com.chixing.service.IFoodService;
 import com.chixing.service.IShopService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,12 +19,17 @@ import java.util.List;
 // 查 get  增 save  改 update   删 remove
 @RestController
 public class ShopController {
-    @Resource
+    @Autowired
     private IShopService shopService;
+    @Autowired
+    private IFoodService foodService;
 
     @GetMapping("/shop/{id}")
-    public Shop getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
-        return shopService.getById(shopId);
+    public ModelAndView getById(@PathVariable("id") Integer shopId){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getById(shopId));
+        mav.setViewName("details/details_shop");
+        return mav;
     }
 
     @PostMapping("/shop")
@@ -55,6 +63,7 @@ public class ShopController {
     public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPage(pageNum));
+        mav.addObject("skfood",foodService.getSKPro());
         mav.setViewName("shop_list");
         return mav;
     }
@@ -92,6 +101,7 @@ public class ShopController {
     public ModelAndView getByPrice(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPrice(pageNum));
+        mav.addObject("skfood",foodService.getSKPro());
         mav.setViewName("shop_list");
         return mav;
     }
@@ -104,6 +114,7 @@ public class ShopController {
     public ModelAndView getByScore(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByScore(pageNum));
+        mav.addObject("skfood",foodService.getSKPro());
         mav.setViewName("shop_list");
         return mav;
     }

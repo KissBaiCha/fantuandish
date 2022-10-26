@@ -137,7 +137,7 @@
                 <div class="pro">
                     <ul>
                         <li th:each="shop:${shop.records}">
-                            <a href="details/details_shop.html" class="proimg"><img th:src="${shop.shopMainImg}"></a>
+                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="proimg"><img th:src="${shop.shopMainImg}"></a>
                             <h4><a href="details/details_shop.html" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
                             <label><i></i><i></i><i></i><i></i><i></i></label>
                             <label th:text="${shop.shopScore}">5</label><label>分</label>
@@ -173,43 +173,19 @@
         <div class="recommend">
             <ul>
                 <h4>限时优惠</h4>
-                <li>
+
+
+                <li th:each="skfood:${skfood}">
                     <a href="secondkill/seckill.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
-                        <span>观前街地区</span>
+                        <img th:src="${skfood.value.foodMainImg}">
+                        <h6 th:text="${skfood.value.foodName}">熊猫不走生日蛋糕（苏州店）</h6>
+                        <span th:text="'库存：'+${skfood.key.secondKillStock}"></span>
                     </a>
-                    <span><label>￥</label><label>188.0</label></span>
+                    <span><label>￥</label><label th:text="${skfood.key.secondKillPrice}">188.0</label></span>
                     <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
                 </li>
 
-                <li>
-                    <a href="secondkill/seckill.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
-                        <span>观前街地区</span>
-                    </a>
-                    <span><label>￥</label><label>188.0</label></span>
-                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
-                </li>
-                <li>
-                    <a href="secondkill/seckill.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
-                        <span>观前街地区</span>
-                    </a>
-                    <span><label>￥</label><label>188.0</label></span>
-                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
-                </li>
-                <li>
-                    <a href="secondkill/seckill.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <h6>熊猫不走生日蛋糕（苏州店）</h6>
-                        <span>观前街地区</span>
-                    </a>
-                    <span><label>￥</label><label>188.0</label></span>
-                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
-                </li>
+
 
             </ul>
         </div>

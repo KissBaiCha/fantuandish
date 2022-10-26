@@ -2,8 +2,11 @@ package com.chixing.service;
 
 import com.chixing.entity.Food;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chixing.entity.SecondKill;
+import com.chixing.entity.Shop;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,4 +29,7 @@ public interface IFoodService  {
      List<Food> getByPrice();
      //评分排序
      List<Food> getByScore();
+
+     //秒杀商品
+     Map<SecondKill,Food> getSKPro();
 }

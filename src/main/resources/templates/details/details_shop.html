@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base href="http://localhost:8080/fan/">
     <meta charset="UTF-8">
     <title>店铺详情</title>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <link rel="stylesheet" href="../css/details/details_shop.css">
-    <link rel="stylesheet" href="../css/details/details_header.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/details/details_shop.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
 </head>
 <body>
             <!--                     头部                         -->
@@ -66,15 +67,15 @@
         <!--                   店家 信息                      -->
         <div class="shop-info">
             <span class="collect-info">收藏</span><a href="javascript:" class="collect" title="收藏"><i></i></a>
-            <h1>青鹤谷(苏州店)</h1>
+            <h1 th:text="${shop.shopName}">青鹤谷(苏州店)</h1>
             <div class="score">
                 <label class="score-img"><i></i><i></i><i></i><i></i><i></i></label>
-                <label>5</label><label>分</label>
+                <label th:text="${shop.shopScore}">5</label><label>分</label>
                 <label class="pl">1234<span>条评论</span></label>
             </div>
-            <p>地址:<a href="javascript:void(0)" class="dingwei"><span>李公堤三期21幢(近金鸡湖景区)</span><i class="location"></i></a></p>
-            <p>电话:<span>0521-67635689</span></p>
-            <p>营业时间:<span>周一至周五 11:30-14:00 16:30-21:00 周六,周日 11:30-21:00</span></p>
+            <p>地址:<a href="javascript:void(0)" class="dingwei"><span th:text="${shop.shopAddressDetail}">李公堤三期21幢(近金鸡湖景区)</span><i class="location"></i></a></p>
+            <p>电话:<span th:text="${shop.shopTelno}">0521-67635689</span></p>
+            <p>营业时间:<span th:text="${shop.shopOpenTime}">周一至周五 11:30-14:00 16:30-21:00 周六,周日 11:30-21:00</span></p>
 
         </div>
         <!--                  店家图片 轮播                   -->
@@ -294,8 +295,8 @@
 
 
     <script src="https://webapi.amap.com/maps?v=2.0&key=9e22f5fb845cd3a6dd91682f66ace415"></script>
-    <script src="../layui/layui.js"></script>
-    <script src="../js/details/details_shop.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="js/details/details_shop.js"></script>
 
 </body>
 </html>
