@@ -118,6 +118,9 @@ body{
     color: #666464;
     float: left;
 }
+.a_onclick{
+    color: rgb(255,107,55) !important;
+}
 .prolist .sort a:first-child{
     margin-left: 10px;
 }

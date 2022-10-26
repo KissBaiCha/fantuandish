@@ -27,3 +27,12 @@ fun(".fifter1","fifters");
 // fun(".fifter2","fifters");
 fun(".fifter3","fifters");
 
+document.querySelector(".sort").onclick = function(event){
+    var element = event.target;
+    var arr = document.querySelector(".sort").children;
+    for(var i=0;i<arr.length;i++){
+        arr[i].className = "";
+    }
+    element.className = "a_onclick";
+    console.log(element.innerText);
+}

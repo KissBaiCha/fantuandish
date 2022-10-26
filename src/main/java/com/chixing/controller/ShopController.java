@@ -1,6 +1,5 @@
 package com.chixing.controller;
 
-import com.chixing.entity.SecondKill;
 import com.chixing.entity.Shop;
 import com.chixing.service.IFoodService;
 import com.chixing.service.IShopService;
@@ -8,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 // Shop getById(Integer shopId);
@@ -24,6 +21,11 @@ public class ShopController {
     @Autowired
     private IFoodService foodService;
 
+    /**
+     * 筛选页跳转查询店铺信息
+     * @param shopId
+     * @return
+     */
     @GetMapping("/shop/{id}")
     public ModelAndView getById(@PathVariable("id") Integer shopId){
         ModelAndView mav = new ModelAndView();
@@ -121,4 +123,12 @@ public class ShopController {
         mav.setViewName("shop_list");
         return mav;
     }
+
+
+//    @GetMapping("/shop/get/{pageNum}")
+//    public String getAll(@PathVariable("pageNum")String pageNum){
+//        ModelAndView mav = new ModelAndView();
+//        System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddd"+pageNum);
+//        return "aaa";
+//    }
 }
