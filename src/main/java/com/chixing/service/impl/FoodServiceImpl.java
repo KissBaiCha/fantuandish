@@ -78,7 +78,6 @@ public class FoodServiceImpl implements IFoodService {
     @Override
     public Map<SecondKill,Food> getSKPro() {
         Map<SecondKill,Food> map = new HashMap<>();
-        wrapper.clear();
         Page<SecondKill> page = new Page<>(1,4);
         List<SecondKill> secondKills = secondKillMapper.selectPage(page,null).getRecords();
         if (secondKills.size()>0){
@@ -90,5 +89,46 @@ public class FoodServiceImpl implements IFoodService {
             return map;
         }
         return null;
+    }
+
+    @Override
+    public Map<SecondKill, Food> getSKProById(Integer shopId) {
+        Map<SecondKill,Food> map = new HashMap<>();
+        wrapper.clear();
+        wrapper.eq("shop_id",shopId);
+        List<Food> foods = foodMapper.selectList(wrapper);
+        QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
+        Set<Integer> collect = foods.stream()
+                .map(Food::getFoodId)
+                .collect(Collectors.toSet());
+        secondKillQueryWrapper.in("food_id",collect);
+        Page<SecondKill> page = new Page<>(1,2);
+        List<SecondKill> secondKills = secondKillMapper.selectPage(page,secondKillQueryWrapper).getRecords();
+
+        if (secondKills.size()>0){
+            for (SecondKill secondKill : secondKills){
+                Integer foodId = secondKill.getFoodId();
+                Food food = foodMapper.selectById(foodId);
+                map.put(secondKill,food);
+            }
+            return map;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Food> getShopProByShopId(Integer shopId) {
+        wrapper.clear();
+        wrapper.eq("shop_id",shopId);
+        List<Food> foods = foodMapper.selectList(wrapper);
+        return foods;
+    }
+
+    @Override
+    public List<Food> getShopProByScore(Integer shopId) {
+        wrapper.clear();
+        wrapper.eq("shop_id",shopId);
+        wrapper.orderByDesc("food_recommend_status");
+        return foodMapper.selectList(wrapper);
     }
 }

@@ -30,6 +30,12 @@ public interface IFoodService  {
      //评分排序
      List<Food> getByScore();
 
-     //秒杀商品
+     //筛选页秒杀美食
      Map<SecondKill,Food> getSKPro();
+     //店铺主页秒杀美食
+     Map<SecondKill,Food> getSKProById(Integer shopId);
+     //店铺主页美食
+     List<Food> getShopProByShopId(Integer shopId);
+     //店铺推荐美食
+     List<Food> getShopProByScore(Integer shopId);
 }

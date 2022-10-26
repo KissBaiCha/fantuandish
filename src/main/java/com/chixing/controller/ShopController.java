@@ -28,6 +28,9 @@ public class ShopController {
     public ModelAndView getById(@PathVariable("id") Integer shopId){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getById(shopId));
+        mav.addObject("skpros",foodService.getSKProById(shopId));
+        mav.addObject("foods",foodService.getShopProByShopId(shopId));
+        mav.addObject("sellfoods",foodService.getShopProByScore(shopId));
         mav.setViewName("details/details_shop");
         return mav;
     }

@@ -93,28 +93,22 @@
             <h1>优惠促销</h1>
             <div class="set-meal-list">
                 <ul>
-                    <li>
+
+
+                    <li th:each="skpro:${skpros}">
                         <a href="details_groupbuy.html">
-                            <div class="tuan">团</div>
-                            <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                            <h2>隐居家宴套餐</h2>
-                                <label class="now-price"><span class="mark">￥</span><span>18</span><span>.00</span></label>
-                                <label class="old-price"><del><span>￥</span><span>20</span><span>.00</span></del></label>
-                                <label class="had-sell"><span>已售</span><span>3386</span></label>
+                            <div class="tuan">抢</div>
+                            <img th:src="${skpro.value.foodMainImg}" >
+                            <h2 th:text="${skpro.value.foodName}">隐居家宴套餐</h2>
+                                <label class="now-price"><span class="mark">￥</span><span th:text="${skpro.key.secondKillPrice}">18</span><!--<span>.00</span>--></label>
+                                <label class="old-price"><del><span>￥</span><span th:text="${skpro.value.foodPrice}">20</span><!--<span>.00</span>--></del></label>
+                                <label class="had-sell"><span>已售</span><span th:text="${skpro.key.secondKillStock}">3386</span></label>
                             </p>
                         </a>
                     </li>
-                    <li>
-                        <a href="details_product.html">
-                            <div class="tuan">团</div>
-                            <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                            <h2>隐居家宴套餐</h2>
-                                <label class="now-price"><span class="mark">￥</span><span>18</span><span>.00</span></label>
-                                <label class="old-price"><del><span>￥</span><span>20</span><span>.00</span></del></label>
-                                <label class="had-sell"><span>已售</span><span>3386</span></label>
-                            </p>
-                        </a>
-                    </li>
+
+
+
                 </ul>
             </div>
         </div>
@@ -122,27 +116,17 @@
         <div class="dishesli-recommend">
             <ul>
                 <h1>推荐菜品</h1>
-                <li>
+
+
+
+                <li th:each="sellfood:${sellfoods}">
                     <a href="details_product.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <p>清蒸白鱼</p>
-                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
+                        <img th:src="${sellfood.foodMainImg}" >
+                        <p th:text="${sellfood.foodName}">清蒸白鱼</p>
+                        <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
                     </a>
                 </li>
-                <li>
-                    <a href="details_product.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <p>清蒸白鱼</p>
-                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="details_product.html">
-                        <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" >
-                        <p>清蒸白鱼</p>
-                        <p>清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
-                    </a>
-                </li>
+
                 
             </ul>
         </div>
@@ -156,90 +140,15 @@
                 <div class="layui-tab-content" style="height: 100px;">
                     <div class="layui-tab-item layui-show">
                         <ul class="dishesli-ads">
-                            <li>
+
+
+
+
+                            <li th:each="food:${foods}">
                                 <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-        
-        
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="details_product.html">
-                                    <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" alt="">
-                                    <p>清蒸白鱼</p>
-                                    <label><span>￥</span><span>68</span></label>
+                                    <img th:src="${food.foodMainImg}">
+                                    <p th:text="${food.foodName}">清蒸白鱼</p>
+                                    <label><span>￥</span><span th:text="${food.foodPrice}">68</span></label>
                                 </a>
                             </li>
         
@@ -251,8 +160,8 @@
                     <div class="layui-tab-item">
                         <div class="brand-story">
                             <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D">
-                            <h1>关于 青鹤谷</h1>
-                            <p>青鹤谷是一家韩国料理店，位于李公堤三期21幢(近金鸡湖景区)
+                            <h1 th:text="'关于 '+${shop.shopName}">关于 青鹤谷</h1>
+                            <p th:text="${shop.shopDetail}">青鹤谷是一家韩国料理店，位于李公堤三期21幢(近金鸡湖景区)
                                 餐厅布置的一片韩式古色古香的味道，外面围墙上有传统的韩风壁画，
                                 桌椅板凳都是采用了古朴的木制家具，配着典型传统韩式的装修，整
                                 个楼面又极开阔，让人很舒服。
@@ -286,8 +195,8 @@
     <div class="map">
         <a href="" class="closemap"></a>
         <div class="title">
-            <h1>青鹤谷(苏州店)</h1>
-            <p>地址：<span>李公堤三期21幢(近金鸡湖景区)</span></p>
+            <h1 th:text="${shop.shopName}">青鹤谷(苏州店)</h1>
+            <p>地址：<span th:text="${shop.shopAddressDetail}">李公堤三期21幢(近金鸡湖景区)</span></p>
         </div>
         <div id="container"></div>
     </div>
