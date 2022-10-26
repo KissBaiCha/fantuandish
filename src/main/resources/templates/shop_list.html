@@ -130,13 +130,13 @@
             <!--                     列表区                         -->
             <div class="prolist">
                 <div class="sort">
-                    <a href="">默认</a>
-                    <a href="">价格</a>
-                    <a href="">好评最多</a>
+                    <a href="http://localhost:8080/fan/shop/getIndex/1">默认</a>
+                    <a href="http://localhost:8080/fan/shop/getByPrice/1">价格</a>
+                    <a href="http://localhost:8080/fan/shop/getByScore/1">好评最多</a>
                 </div>
                 <div class="pro">
                     <ul>
-                        <li th:each="shop:${shop}">
+                        <li th:each="shop:${shop.records}">
                             <a href="details/details_shop.html" class="proimg"><img th:src="${shop.shopMainImg}"></a>
                             <h4><a href="details/details_shop.html" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
                             <label><i></i><i></i><i></i><i></i><i></i></label>
@@ -154,7 +154,8 @@
                     </ul>
 
                     <!-- 分页 -->
-                    <input type="hidden" id="pagenum" th:value="${pageNum}">
+                    <input type="hidden" id="pagenum" th:value="${shop.current}">
+                    <input type="hidden" id="total" th:value="${shop.total}">
                     <div class="paging">
                         <div id="demo7"></div>
                         <!-- <ul>
@@ -214,6 +215,7 @@
         </div>
     </div>
 </div>
+
 <script src="js/shop_list.js"></script>
 <script src="layui/layui.js"></script>
 </body>
@@ -222,17 +224,19 @@
 
     layui.use(['laypage', 'layer'], function () {
         var pagenum = document.getElementById("pagenum").value;
+        var total = document.getElementById("total").value;
         var laypage = layui.laypage
             , layer = layui.layer;
         laypage.render({
             elem: 'demo7'
-            ,count: 100,
+            ,count: total,
+            limit:4,
             curr:pagenum,
             jump:function (obj,first){
                 pageNum = obj.curr;
                 console.log(pageNum)
                 if (!first){
-                    window.location.href="http://localhost:8080/fan/shop/getIndex/"+pageNum;
+                    window.location.href=window.location.pathname+"/"+"../"+pageNum;
                 }
             }
         });

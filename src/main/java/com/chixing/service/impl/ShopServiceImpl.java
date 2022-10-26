@@ -55,9 +55,9 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public List<Shop> getByPage(Integer pageNum) {
+    public Page<Shop> getByPage(Integer pageNum) {
         Page<Shop> page = new Page<>(pageNum,4);
-        return shopMapper.selectPage(page,null).getRecords();
+        return shopMapper.selectPage(page,null);
     }
 
     @Override
@@ -94,19 +94,19 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public List<Shop> getByPrice() {
+    public Page<Shop> getByPrice(Integer pageNum) {
         shopQueryWrapper.clear();
         shopQueryWrapper.orderByDesc("shop_avg_cost");
-        Page<Shop> page = new Page<>(1,4);
-        return shopMapper.selectPage(page,shopQueryWrapper).getRecords();
+        Page<Shop> page = new Page<>(pageNum,4);
+        return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
     @Override
-    public List<Shop> getByScore() {
+    public Page<Shop> getByScore(Integer pageNum) {
         shopQueryWrapper.clear();
         shopQueryWrapper.orderByDesc("shop_score");
-        Page<Shop> page = new Page<>(1,4);
-        return shopMapper.selectPage(page,shopQueryWrapper).getRecords();
+        Page<Shop> page = new Page<>(pageNum,4);
+        return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
 

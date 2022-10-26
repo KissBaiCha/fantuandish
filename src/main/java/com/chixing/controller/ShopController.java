@@ -55,7 +55,6 @@ public class ShopController {
     public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPage(pageNum));
-        mav.addObject("pageNum",pageNum);
         mav.setViewName("shop_list");
         return mav;
     }
@@ -89,19 +88,22 @@ public class ShopController {
      * 排序（价格降序）
      * @return  店铺集合
      */
-    @GetMapping("/shop/getByPrice")
-    public List<Shop> getByPrice(){
-        return shopService.getByPrice();
+    @GetMapping("/shop/getByPrice/{pageNum}")
+    public ModelAndView getByPrice(@PathVariable("pageNum")Integer pageNum){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getByPrice(pageNum));
+        mav.setViewName("shop_list");
+        return mav;
     }
 
     /**
      * 排序（评分降序）
      * @return  店铺集合
      */
-    @GetMapping("/shop/getByScore")
-    public ModelAndView getByScore(){
+    @GetMapping("/shop/getByScore/{pageNum}")
+    public ModelAndView getByScore(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByScore());
+        mav.addObject("shop",shopService.getByScore(pageNum));
         mav.setViewName("shop_list");
         return mav;
     }

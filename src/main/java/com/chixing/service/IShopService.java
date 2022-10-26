@@ -1,5 +1,6 @@
 package com.chixing.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Shop;
 
 import java.util.List;
@@ -20,13 +21,13 @@ public interface IShopService{
     int update(Shop shop);
     int remove(Integer shopId);
     //默认分页查询
-    List<Shop> getByPage(Integer pageNum);
+    Page<Shop> getByPage(Integer pageNum);
     //多条件筛选
     List<Shop> getByFoodType(String foodType);
     List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
     List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost);
     //价格排序
-    List<Shop> getByPrice();
+    Page<Shop> getByPrice(Integer pageNum);
     //评分排序
-    List<Shop> getByScore();
+    Page<Shop> getByScore(Integer pageNum);
 }
