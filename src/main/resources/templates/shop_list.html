@@ -223,7 +223,15 @@
             , layer = layui.layer;
         laypage.render({
             elem: 'demo7'
-            , count: 100
+            ,count: 100,
+            jump:function (obj,first){
+                page1 = obj.curr;
+                console.log(page1)
+                if (!first){
+                    window.location.href="http://localhost:8080/fan/shop/getIndex/"+page1;
+
+                }
+            }
         });
     })
 </script>
