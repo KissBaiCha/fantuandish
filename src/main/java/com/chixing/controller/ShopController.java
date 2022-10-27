@@ -52,23 +52,28 @@ public class ShopController {
         return shopService.remove(shopId);
     }
 
-    /**
-     * 条件筛选（食品类型）
-     * @param foodType  食品类型
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/foodType")
-    public List<Shop> getByFoodType(@RequestParam("foodType")String foodType){
-        List<Shop> shopList = shopService.getByFoodType(foodType);
-        shopList.forEach(System.out::println);
-        return shopList;
-    }
 
     @GetMapping("/shop/getIndex/{pageNum}")
     public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPage(pageNum));
         mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
+        mav.setViewName("shop_list");
+        return mav;
+    }
+
+    /**
+     * 条件筛选（食品类型）
+     * @param foodType  食品类型
+     * @return  店铺集合
+     */
+    @GetMapping("/shop/foodType")
+    public ModelAndView getByFoodType(@RequestParam("foodType")String foodType){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getByFoodType(foodType));
+        mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
         mav.setViewName("shop_list");
         return mav;
     }
@@ -125,10 +130,32 @@ public class ShopController {
     }
 
 
-//    @GetMapping("/shop/get/{pageNum}")
-//    public String getAll(@PathVariable("pageNum")String pageNum){
-//        ModelAndView mav = new ModelAndView();
-//        System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddd"+pageNum);
+//    @GetMapping("/shop/get/{id}ggg{name}")
+//    public String getAll(@PathVariable(value = "id",required = false)Integer id,@PathVariable(value = "name",required = false)Integer name){
+//        System.out.println(id);
+//        System.out.println(name);
 //        return "aaa";
+//    }
+
+//    @GetMapping("/shop/get/{pagenum}")
+//    public ModelAndView getAll(@PathVariable("pagenum")Integer pageNum,
+//                         @MatrixVariable(value = "o",required = false)Integer sort){
+//
+//        ModelAndView mav = new ModelAndView();
+//
+//        if (sort==1)
+//            mav.addObject("shop",shopService.getByPrice(pageNum));
+//        if (sort==2)
+//            mav.addObject("shop",shopService.getByScore(pageNum));
+//        else
+//            mav.addObject("shop",shopService.getByPage(pageNum));
+//        mav.addObject("skfood",foodService.getSKPro());
+//
+//        mav.setViewName("shop_list");
+//
+//
+//        System.out.println(pageNum);
+//        System.out.println(sort);
+//        return mav;
 //    }
 }

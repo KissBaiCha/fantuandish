@@ -16,11 +16,7 @@ class FantuandishApplicationTests {
     IShopService shopService;
     @Test
     void contextLoads() {
-        List<Shop> shops = shopService.getByFoodType("汉堡");
-        System.err.println(shops.size());
-        for (Shop shop : shops) {
-            System.out.println(shop);
-        }
+
 
     }
 

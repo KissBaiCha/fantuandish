@@ -23,7 +23,7 @@ public interface IShopService{
     //默认分页查询
     Page<Shop> getByPage(Integer pageNum);
     //多条件筛选
-    List<Shop> getByFoodType(String foodType);
+    Page<Shop> getByFoodType(String foodType);
     List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
     List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost);
     //价格排序

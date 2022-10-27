@@ -7,6 +7,7 @@ import com.chixing.entity.Shop;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -30,6 +31,8 @@ public interface IFoodService  {
      //评分排序
      List<Food> getByScore();
 
+     //食品类别
+     List<Food> foodTypes();
      //筛选页秒杀美食
      Map<SecondKill,Food> getSKPro();
      //店铺主页秒杀美食

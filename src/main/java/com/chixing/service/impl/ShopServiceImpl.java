@@ -61,7 +61,10 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public List<Shop> getByFoodType(String foodType) {
+    public Page<Shop> getByFoodType(String foodType) {
+
+        Page<Shop> page = new Page<>(1,4);
+
         cleanQueryWrapper();
         foodQueryWrapper.eq("food_type",foodType);
         List<Food> foods = foodMapper.selectList(foodQueryWrapper);
@@ -69,7 +72,7 @@ public class ShopServiceImpl implements IShopService {
                 .map(Food::getShopId)
                 .collect(Collectors.toSet());
         shopQueryWrapper.in("shop_id",collect);
-        return shopMapper.selectList(shopQueryWrapper);
+        return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
     @Override

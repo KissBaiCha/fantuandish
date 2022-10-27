@@ -76,6 +76,17 @@ public class FoodServiceImpl implements IFoodService {
     }
 
     @Override
+    public List<Food> foodTypes() {
+        wrapper.clear();
+        wrapper.select("distinct food_type");
+        List<Food> foodList = foodMapper.selectList(wrapper);
+//        return foodList.stream()
+//                .map(Food::getFoodType)
+//                .collect(Collectors.toSet());
+        return foodList;
+    }
+
+    @Override
     public Map<SecondKill,Food> getSKPro() {
         Map<SecondKill,Food> map = new HashMap<>();
         Page<SecondKill> page = new Page<>(1,4);
