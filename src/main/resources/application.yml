@@ -15,8 +15,6 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-
-
   datasource:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     url: jdbc:p6spy:mysql://192.168.186.85:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
@@ -27,6 +25,21 @@ spring:
     port: 5672
     username: guest
     password: guest
+    publisher-confirm-type: correlated  # 生产者发送消息到交换机 消息确认
+    publisher-returns: true  # 交换机绑定到队列 消息确认
+    listener:
+      simple:
+        acknowledge-mode: manual  #消息手动确认
+        concurrency: 3 #消费者数量
+        max-concurrency: 10  #消费者最大数量
+        prefetch: 1  #消费者每次从队列中取几个消息
+        default-requeue-rejected: true #消息消费失败后，重新进入消费队列中
+        retry:
+          initial-interval: 1000 #1秒后重试
+          enabled: true #启用发布重试
+          max-attempts: 4 #传递消息的最大尝试次数
+          max-interval: 10000 #尝试的最大时间间隔
+          multiplier: 1.0 #应用于先前传递重试时间间隔的乘数
   redis:
     database: 0
     host: 127.0.0.1
