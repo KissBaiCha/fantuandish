@@ -162,4 +162,21 @@ public class ShopController {
 //        System.out.println(sort);
 //        return mav;
 //    }
+//@GetMapping("/shop/getTest/{pageNum}")
+//public ModelAndView getByTest(@PathVariable("pageNum")Integer pageNum,
+//                              @RequestParam(value = "foodType",required = false)String foodType,
+//                              @RequestParam(value = "shopMinCost",required = false)Float shopMinCost,
+//                              @RequestParam(value = "shopMaxCost",required = false)Float shopMaxCost,
+//                              @RequestParam(value = "sort",required = false)Integer sort){
+//    ModelAndView mav = new ModelAndView();
+//    mav.addObject("skfood",foodService.getSKPro());
+//    mav.addObject("foodtypes",foodService.foodTypes());
+//
+//    //默认分页
+//    mav.addObject("shop",shopService.getTest(pageNum,foodType,shopMinCost,shopMaxCost,sort));
+//
+//    mav.setViewName("shop_list");
+//    return mav;
+//}
+
 }

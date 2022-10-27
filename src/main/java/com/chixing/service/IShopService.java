@@ -30,4 +30,7 @@ public interface IShopService{
     Page<Shop> getByPrice(Integer pageNum);
     //评分排序
     Page<Shop> getByScore(Integer pageNum);
+
+    //整合
+//    Page<Shop> getTest(Integer pageNum,String foodType,Float shopMinCost,Float shopMaxCost,Integer sort);
 }

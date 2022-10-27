@@ -62,9 +62,7 @@ public class ShopServiceImpl implements IShopService {
 
     @Override
     public Page<Shop> getByFoodType(String foodType) {
-
         Page<Shop> page = new Page<>(1,4);
-
         cleanQueryWrapper();
         foodQueryWrapper.eq("food_type",foodType);
         List<Food> foods = foodMapper.selectList(foodQueryWrapper);
@@ -114,6 +112,39 @@ public class ShopServiceImpl implements IShopService {
         Page<Shop> page = new Page<>(pageNum,4);
         return shopMapper.selectPage(page,shopQueryWrapper);
     }
+
+//    @Override
+//    public Page<Shop> getTest(Integer pageNum, String foodType, Float shopMinCost, Float shopMaxCost, Integer sort) {
+//        cleanQueryWrapper();
+//        Page<Shop> page = new Page<>(pageNum,4);
+//        if (foodType!=null){
+//            foodQueryWrapper.eq("food_type",foodType);
+//            List<Food> foods = foodMapper.selectList(foodQueryWrapper);
+//            Set<Integer> collect = foods.stream()
+//                    .map(Food::getShopId)
+//                    .collect(Collectors.toSet());
+//            shopQueryWrapper.in("shop_id",collect);
+//        }
+//        if (shopMinCost!=null || shopMaxCost!=null){
+//            if (shopMinCost!=null)
+//                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
+//            if (shopMaxCost!=null)
+//                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
+//        }
+//        if (sort!=null){
+//            if (sort==1){
+//                return shopMapper.selectPage(page,null);
+//            }
+//            if (sort==2){
+//                shopQueryWrapper.orderByDesc("shop_avg_cost");
+//            }
+//            if (sort==3){
+//                shopQueryWrapper.orderByDesc("shop_score");
+//            }
+//        }
+//
+//        return shopMapper.selectPage(page,shopQueryWrapper);
+//    }
 
 
 }
