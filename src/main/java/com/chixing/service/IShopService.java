@@ -24,7 +24,7 @@ public interface IShopService{
     Page<Shop> getByPage(Integer pageNum);
     //多条件筛选
     Page<Shop> getByFoodType(String foodType);
-    List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
+    Page<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost);
     List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost);
     //价格排序
     Page<Shop> getByPrice(Integer pageNum);

@@ -76,11 +76,14 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public List<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
+    public Page<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
         cleanQueryWrapper();
-        shopQueryWrapper.between("shop_avg_cost",shopMinCost,shopMaxCost);
-        List<Shop> shopList = shopMapper.selectList(shopQueryWrapper);
-        return shopList;
+        if (shopMinCost!=null)
+            shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
+        if (shopMaxCost!=null)
+            shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
+        Page<Shop> page = new Page<>(1,4);
+        return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
 

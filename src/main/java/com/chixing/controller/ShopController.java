@@ -85,9 +85,13 @@ public class ShopController {
      * @return  店铺集合
      */
     @GetMapping("/shop/shopAvgCost")
-    public List<Shop> getByShopAvgCost(@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
-        List<Shop> shopList = shopService.getByShopAvgCost(shopMinCost,shopMaxCost);
-        return shopList;
+    public ModelAndView getByShopAvgCost(@RequestParam(value = "shopMinCost",required = false)Float shopMinCost,@RequestParam(value = "shopMaxCost",required = false)Float shopMaxCost){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getByShopAvgCost(shopMinCost,shopMaxCost));
+        mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
+        mav.setViewName("shop_list");
+        return mav;
     }
 
     /**
