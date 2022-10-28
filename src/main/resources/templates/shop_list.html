@@ -88,6 +88,7 @@
 <!--                    <a href="javascript:void(0)" class="fifters"><span>西餐</span></a>-->
 <!--                    <a href="javascript:void(0)" class="fifters"><span>饮品店</span></a>-->
                     <a th:href=" 'http://localhost:8080/fan/shop/foodType?foodType='+${foodtype.foodType}" class="fifters" th:each="foodtype:${foodtypes}" >
+<!--                    <a href="http://localhost:8080/fan/shop/getTest/1" class="fifters" th:each="foodtype:${foodtypes}" >-->
                         <span th:text="${foodtype.foodType}">饮品店</span>
                     </a>
 
@@ -141,6 +142,10 @@
 <!--                    <a href="http://localhost:8080/fan/shop/get/1">默认</a>-->
 <!--                    <a href="http://localhost:8080/fan/shop/get/1;o=1">价格</a>-->
 <!--                    <a href="http://localhost:8080/fan/shop/get/1;o=2">好评最多</a>-->
+<!--                    <a href="javascript:;" onclick="sort('默认')">默认</a>-->
+<!--                    <a href="javascript:;" onclick="sort('价格')">价格</a>-->
+<!--                    <a href="javascript:;" onclick="sort('好评最多')">好评最多</a>-->
+
 
                     <a href="http://localhost:8080/fan/shop/getIndex/1">默认</a>
                     <a href="http://localhost:8080/fan/shop/getByPrice/1">价格</a>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 // Shop getById(Integer shopId);
@@ -116,6 +117,7 @@ public class ShopController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByPrice(pageNum));
         mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
         mav.setViewName("shop_list");
         return mav;
     }
@@ -129,6 +131,7 @@ public class ShopController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getByScore(pageNum));
         mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
         mav.setViewName("shop_list");
         return mav;
     }
@@ -162,21 +165,23 @@ public class ShopController {
 //        System.out.println(sort);
 //        return mav;
 //    }
-//@GetMapping("/shop/getTest/{pageNum}")
-//public ModelAndView getByTest(@PathVariable("pageNum")Integer pageNum,
-//                              @RequestParam(value = "foodType",required = false)String foodType,
-//                              @RequestParam(value = "shopMinCost",required = false)Float shopMinCost,
-//                              @RequestParam(value = "shopMaxCost",required = false)Float shopMaxCost,
-//                              @RequestParam(value = "sort",required = false)Integer sort){
-//    ModelAndView mav = new ModelAndView();
-//    mav.addObject("skfood",foodService.getSKPro());
-//    mav.addObject("foodtypes",foodService.foodTypes());
-//
-//    //默认分页
-//    mav.addObject("shop",shopService.getTest(pageNum,foodType,shopMinCost,shopMaxCost,sort));
-//
-//    mav.setViewName("shop_list");
-//    return mav;
-//}
+@GetMapping("/shop/getTest/{pageNum}")
+public ModelAndView getByTest(@PathVariable("pageNum")Integer pageNum,
+                              HttpServletRequest request){
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("skfood",foodService.getSKPro());
+    mav.addObject("foodtypes",foodService.foodTypes());
+
+    String foodType = request.getHeader("foodType");
+    System.out.println("foodddddddddd类型" + foodType);
+    String foodPrice = request.getHeader("foodPrice");
+    System.out.println("foodttttttttttt价格" + foodPrice);
+    String foodSort = request.getHeader("foodSort");
+    //默认分页
+    mav.addObject("shop",shopService.getTest(pageNum,foodType,foodPrice,foodSort));
+
+    mav.setViewName("shop_list");
+    return mav;
+}
 
 }

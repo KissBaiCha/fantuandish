@@ -113,24 +113,45 @@ public class ShopServiceImpl implements IShopService {
         return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
-//    @Override
-//    public Page<Shop> getTest(Integer pageNum, String foodType, Float shopMinCost, Float shopMaxCost, Integer sort) {
-//        cleanQueryWrapper();
-//        Page<Shop> page = new Page<>(pageNum,4);
-//        if (foodType!=null){
-//            foodQueryWrapper.eq("food_type",foodType);
-//            List<Food> foods = foodMapper.selectList(foodQueryWrapper);
-//            Set<Integer> collect = foods.stream()
-//                    .map(Food::getShopId)
-//                    .collect(Collectors.toSet());
-//            shopQueryWrapper.in("shop_id",collect);
-//        }
-//        if (shopMinCost!=null || shopMaxCost!=null){
-//            if (shopMinCost!=null)
-//                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
-//            if (shopMaxCost!=null)
-//                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
-//        }
+    @Override
+    public Page<Shop> getTest(Integer pageNum, String foodType,String foodPrice,String foodSort) {
+        cleanQueryWrapper();
+        Page<Shop> page = new Page<>(pageNum,4);
+        System.out.println("类型"+foodType+"价格"+foodPrice);
+        if (foodType!=null){
+            System.out.println("类型不为空");
+            foodQueryWrapper.eq("food_type",foodType);
+            List<Food> foods = foodMapper.selectList(foodQueryWrapper);
+            Set<Integer> collect = foods.stream()
+                    .map(Food::getShopId)
+                    .collect(Collectors.toSet());
+            shopQueryWrapper.in("shop_id",collect);
+        }
+        if (foodPrice!=null){
+            System.out.println("价格不为空");
+            if (foodPrice.endsWith("元以上")){
+                String maxPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
+                Float shopMaxCost = Float.valueOf(maxPrice);
+                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
+                System.out.println("元以上");
+            }
+            else if (foodPrice.endsWith("元以下")){
+                String minPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
+                Float shopMinCost = Float.valueOf(minPrice);
+                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
+                System.out.println("元以下");
+            }
+            else {
+                String minPrice =foodPrice.substring(0,foodPrice.indexOf("-"));
+                String maxPrice =foodPrice.substring(foodPrice.indexOf("-"),foodPrice.indexOf("元"));
+                Float shopMinCost = Float.valueOf(minPrice);
+                Float shopMaxCost = Float.valueOf(maxPrice);
+                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
+                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
+                System.out.println("元=====元");
+            }
+        }
+//
 //        if (sort!=null){
 //            if (sort==1){
 //                return shopMapper.selectPage(page,null);
@@ -142,9 +163,9 @@ public class ShopServiceImpl implements IShopService {
 //                shopQueryWrapper.orderByDesc("shop_score");
 //            }
 //        }
-//
-//        return shopMapper.selectPage(page,shopQueryWrapper);
-//    }
+        System.out.println("dddd");
+        return shopMapper.selectPage(page,shopQueryWrapper);
+    }
 
 
 }

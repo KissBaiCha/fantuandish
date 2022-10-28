@@ -32,5 +32,5 @@ public interface IShopService{
     Page<Shop> getByScore(Integer pageNum);
 
     //整合
-//    Page<Shop> getTest(Integer pageNum,String foodType,Float shopMinCost,Float shopMaxCost,Integer sort);
+    Page<Shop> getTest(Integer pageNum,String foodType,String foodPrice,String foodSort);
 }
