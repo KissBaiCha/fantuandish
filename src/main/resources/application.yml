@@ -19,7 +19,7 @@ spring:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     url: jdbc:p6spy:mysql://localhost:3306/fuantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: 20001023
+    password: root
   rabbitmq:
     host: localhost
     port: 5672

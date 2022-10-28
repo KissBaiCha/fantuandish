@@ -1,7 +1,36 @@
 // 筛选
 
 var url = window.location.href;
+
+
 //url处理方法
+var urltext = decodeURIComponent(window.location.href);
+
+if (urltext.includes("foodType="))
+    var foodTypes = urltext.substring(urltext.indexOf("foodType=")+9,urltext.length);
+// if (urltext.includes("foodPrice="))
+//     var foodPrice = url
+
+
+var arr1 = document.querySelector(".fifter1").children;
+for(var i=0;i<arr1.length;i++){
+    arr1[i].className = "fifters";
+    if (arr1[i].firstElementChild.innerText===foodTypes)
+        arr1[i].className = "fifters active";
+
+}
+
+// var arr2 = document.querySelector(".fifter2").children;
+// for(var i=0;i<arr.length;i++){
+//     arr[i].className = "fifters";
+// }
+//
+// var arr3 = document.querySelector(".sort").children;
+// for(var i=0;i<arr.length;i++){
+//     arr[i].className = "fifters";
+// }
+
+
 function stringConcat(url,key,val){
     if (url.substring(url.length-5,url.length)==="get/1")
         url +="?".concat(key,"=",val);
