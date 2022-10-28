@@ -11,20 +11,20 @@
     height: 90px;
     /* background-color: aqua; */
     margin-bottom: 15px;
-    
+
 }
 .msg .person{
     font-size: 20px;
     display: block;
     margin-left:50px;
-   padding-top: 10px;   
+    padding-top: 10px;
 }
 
 .msg .account{
     font-size: 16px;
     display: block;
     margin-left: 53px;
-    
+
 }
 .head_img .touxiang,.name .nicheng,.birthday .shengri,.updatePhone .shoujihao{
     font-size: 20px;
@@ -61,7 +61,7 @@
     display: block;
     float: left;
     margin-top: -70px;
-    background-color: #a66cfd;
+    background-color: rgb(255,107,55);
 }
 
 .name .nichengkuang{

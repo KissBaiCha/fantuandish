@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>我的饭团</title>
     <base href="http://localhost:8080/fan/">
-    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
-    <script src="js/jquery.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="../../images/minilogo.png">
-    <link rel="stylesheet" href="../../layui/css/layui.css">
-    <link rel="stylesheet" href="../../css/mine/myfantuan.css">
-    <link rel="stylesheet" href="../../css/mine/my_fantuan.css">
-    <link rel="stylesheet" href="../../css/details/details_bottom.css">
-    <link rel="stylesheet" href="../../css/details/details_header.css">
+    <title>我的饭团</title>
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <link rel="stylesheet" href="css/mine/myfantuan.css">
+    <link rel="stylesheet" href="css/mine/my_fantuan.css">
+    <link rel="stylesheet" href="css/details/details_bottom.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
+
+
 <!-- ----------------头部------------------------- -->
 <div class="header">
+    <div class="top-nav ">
+        <div class="layui-main top-main layui-row">
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <ul class="layui-nav" lay-filter="">
+                    <li class="layui-nav-item" ><a href="" class="title">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" class="title">我的饭团</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            <dd><a href="">订单中心</a></dd>
+                            <dd><a href="">我的优惠券</a></dd>
+                            <dd><a href="">我的收藏</a></dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="layui-row header-tip">
+
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="/funTuanFood/index1.html" title="饭团网" class="logo-img">
-                <img src="../../images/mylogo.png" width="200" height="72">
+            <a href="../index.html" title="饭团网" class="logo-img">
+                <img src="../../images/mylogo.png"  width="200" height="72">
             </a>
         </div>
         <!--    搜索    -->
@@ -29,7 +57,7 @@
             <form class="layui-form layui-form-pane" action="">
                 <div class="layui-form-item searchbox-input">
                     <div class="layui-input-block" style="margin-left: 10px">
-                        <input style="border: 2px solid #a66cfd;width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
                                placeholder="点此进入美食猩球" class="layui-input">
                         <div class="layui-btn-container" style="display: block;float: left">
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
@@ -38,30 +66,9 @@
                 </div>
             </form>
         </div>
-        <!--    用户    -->
-        <div class="layui-col-xs3 user-tip">
-            <div class="layui-row">
-                <div class="layui-col-xs12 user-block">
-                    <ul class="layui-nav user-center">
-                        <li class="layui-nav-item"><a href="">用户名</a></li>
-                        <li class="layui-nav-item">
-                            <a href="javascript:;">我的饭团</a>
-                            <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                                <dd><a href="javascript:;">我的订单</a></dd>
-                                <dd><a href="javascript:;">我的优惠券</a></dd>
-                                <dd><a href="javascript:;">我的收藏</a></dd>
-                                <hr>
-                                <dd><a href="javascript:;">退出</a></dd>
-                            </dl>
-                        </li>
-                    </ul>
-                    <div id="bodymovin">
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+
 <div class="layui-main">
 
 
@@ -69,31 +76,27 @@
     <div class="orders-container">
 
         <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+            <li class="layui-nav-item"><a href="customer/personal_center/myfantuan.html">我的饭团</a></li>
+
+
             <li class="layui-nav-item layui-nav-itemed">
-            <li class="layui-nav-item"><a href="../personal_center/myfantuan.html">我的饭团</a></li>
-
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:;">订单</a>
+                <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="../personal_center/allorder.html">全部订单</a></dd>
-                    <dd><a href="../personal_center/myorder.html">我的订单</a></dd>
-                    <dd><a href="../personal_center/order_wait_pay.html">待付款</a></dd>
-                    <dd><a href="../personal_center/order_wait_judge.html">待评论</a></dd>
+                    <dd><a href="http://localhost:8080/fan/getAllOrder/1" class="title_next">全部订单</a></dd>
+                    <dd><a href="customer/personal_center/myorder.html" class="title_next">我的订单</a></dd>
+                    <dd><a href="customer/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
+                    <dd><a href="customer/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">我的优惠券</a>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="title">我的优惠券</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="../personal_center/all_quan.html">可用券</a></dd>
-                    <dd><a href="../personal_center/can't_use_quan.html">失效券</a></dd>
+                    <dd><a href="customer/personal_center/all_quan.html" class="title_next">可用券</a></dd>
+                    <dd><a href="customer/personal_center/can't_use_quan.html" class="title_next">失效券</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="../personal_center/user_msg.html">个人信息</a></li>
+            <li class="layui-nav-item"><a href="customer/personal_center/user_msg.html">个人信息</a></li>
         </ul>
-
-    </div>
     <!-- -----------------orders-body-------------------- -->
 
 
@@ -126,23 +129,26 @@
     </div>
 
 
-
+</div>
+</div>
     <!-- -----------------------stop------------------------------- -->
-    <script src="../../layui/layui.js"></script>
+    <script src="layui/layui.js"></script>
 
 
 
-    <script>
-        layui.use('element', function(){
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
-            //导航点击事件
-            element.on('nav(demo)', function(elem){
-                //console.log(elem)
-                layer.msg(elem.text());
-            });
-        });
-    </script>
 
 </body>
 </html>
+
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //导航点击事件
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>

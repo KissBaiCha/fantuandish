@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+
 
 
 @SpringBootTest
@@ -17,7 +17,7 @@ public class OrderTest {
     private IMyOrderService myOrderService;
     @Test
     public void getById(){
-     MyOrder myOrder = myOrderService.getById("1001");
+     MyOrder myOrder = myOrderService.getById("1");
         System.out.println(myOrder);
     }
     @Test
@@ -36,6 +36,7 @@ public class OrderTest {
         System.out.println(result);
 
     }
+
 
 
 

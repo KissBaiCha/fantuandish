@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:8080/fan/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付界面</title>
+
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="icon" href="images/minilogo.png">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="css/customer/pay/order_pay.css">
+
+</head>
+<body>
+
+    <div class="header">
+        <div class="top-nav ">
+            <div class="layui-main top-main layui-row">
+                <div class="layui-col-xs4">
+                    <span>&nbsp</span>
+                </div>
+                <div class="layui-col-xs4">
+                    <span>&nbsp</span>
+                </div>
+                <div class="layui-col-xs4">
+                    <ul class="layui-nav" lay-filter="">
+                        <li class="layui-nav-item" ><a href="" class="title">登录/注册</a></li>
+                        <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;" class="title">我的饭团</a>
+                            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                                <dd><a href="">订单中心</a></dd>
+                                <dd><a href="">我的优惠券</a></dd>
+                                <dd><a href="">我的收藏</a></dd>
+                            </dl>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row header-tip">
+
+            <!--      logo      -->
+            <div class="layui-col-xs3 logo-input">
+                <a href="../index.html" title="饭团网" class="logo-img">
+                    <img src="../../images/mylogo.png"  width="200" height="72">
+                </a>
+            </div>
+            <!--    搜索    -->
+            <div class="layui-col-xs6 search-box">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item searchbox-input">
+                        <div class="layui-input-block" style="margin-left: 10px">
+                            <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                                   placeholder="点此进入美食猩球" class="layui-input">
+                            <div class="layui-btn-container" style="display: block;float: left">
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-main">
+    <!-- ----------------------------订单支付时间倒计时---------------------------------- -->
+    <div class="order_pay_time">
+        <div class="pay_time">
+            <i class="time_logo"></i>
+            <span class="text1">请在</span>
+            <span class="time">29:56</span>
+            <span class="text2">分钟内完成支付，超时订单会自动取消</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ----------------------------待支付产品----------------------------- -->
+    <div class="pay_product">
+        <div class="pro_name">
+            <span>项目:和牛畅吃套餐(锅底七选一（可选鸳鸯锅，每桌一个锅底）+季节限定海鲜拼盘八款)</span>
+        </div>
+
+        <div class="pro_price">
+            <span class="yingfu">应付金额￥</span>
+            <span class="price">216</span>
+        </div>
+    </div>
+
+
+
+    <!-- -----------------------------支付宝支付----------------------------------- -->
+    <div class="pay_way">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">支付宝支付</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <input type="radio" class="pay_Alipay">
+                    <img src="../../images/Alipay.svg">
+
+                    <div class="fukuan">
+                        <div class="fukuan_price">
+                            <span>支付￥</span>
+                            <span class="fukuan_pri">216</span>
+
+                            <input type="submit" value="去付款" class="gopay">
+                            <a href="../personal_center/order_wait_pay.html" class="update_order">返回修改订单</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="layui/layui.js"></script>
+
+</body>
+</html>
+
+
