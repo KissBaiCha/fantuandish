@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="css/shop_list.css">
@@ -74,53 +75,25 @@
                 <label>分类：</label>
                 <div class="Select fifter1">
                     <a href="javascript:void(0)" class="fifters active"><span>所有</span></a>
-<!--                    <a href="javascript:void(0)" class="fifters" ><span>蛋糕甜点</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>火锅</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>自助餐</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>小吃快餐</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>西餐</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>云贵菜</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>海鲜</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>川菜</span></a>-->
-<!--                    <br>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>鱼鲜</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>烤肉</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>西餐</span></a>-->
-<!--                    <a href="javascript:void(0)" class="fifters"><span>饮品店</span></a>-->
-                    <a th:href=" 'http://localhost:8080/fan/shop/foodType?foodType='+${foodtype.foodType}" class="fifters" th:each="foodtype:${foodtypes}" >
-<!--                    <a href="http://localhost:8080/fan/shop/getTest/1" class="fifters" th:each="foodtype:${foodtypes}" >-->
-                        <span th:text="${foodtype.foodType}">饮品店</span>
+                    <a th:href="'javascript:;'" onclick="download_method()" class="fifters" th:each="foodtype:${foodtypes}" >
+                        <span th:text="${foodtype.foodType}">汉堡</span>
                     </a>
 
                     </ul>
                 </div>
             </div>
 
-
-            <!-- <div class="Condition">
-                <label>区域：</label>
-                <div class="Select fifter2">
-                    <a href="javascript:void(0)" class="fifters active">所有</a>
-                    <a href="javascript:void(0)" class="fifters">工业园区</a>
-                    <a href="javascript:void(0)" class="fifters">吴中区</a>
-                    <a href="javascript:void(0)" class="fifters">吴江区</a>
-                    <a href="javascript:void(0)" class="fifters">常熟市</a>
-                    <a href="javascript:void(0)" class="fifters">虎丘区</a>
-                    <a href="javascript:void(0)" class="fifters">姑苏区</a>
-                </div>
-            </div> -->
-
             <div class="Condition">
                 <label>用餐人数：</label>
-                <div class="Select fifter3">
-                    <a href="javascript:void(0)" class="fifters active"><span>所有</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMaxCost=100" class="fifters"><span>100元以下</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=100&shopMaxCost=200" class="fifters"><span>100-200元</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=200&shopMaxCost=400" class="fifters"><span>200-400元</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=400&shopMaxCost=600" class="fifters"><span>400-600元</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=600&shopMaxCost=800" class="fifters"><span>600-800元</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=800&shopMaxCost=1000" class="fifters"><span>800-1000元</span></a>
-                    <a href="http://localhost:8080/fan/shop/shopAvgCost?shopMinCost=1000" class="fifters"><span>1000元以上</span></a>
+                <div class="Select fifter2">
+                    <a href="javascript:void(0)" onclick="download_method()" class="fifters active"><span>所有</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>100元以下</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>100-200元</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>200-400元</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>400-600元</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>600-800元</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>800-1000元</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters"><span>1000元以上</span></a>
                 </div>
             </div>
         </div>
@@ -136,20 +109,9 @@
             <div class="prolist">
                 <div class="sort">
 
-<!--                    <a href="http://localhost:8080/fan/shop/get/1;o=1" class="afterclass">默认</a>-->
-<!--                    <a href="javascript:void(0)">价格</a>-->
-<!--                    <a href="javascript:void(0)">好评最多</a>-->
-<!--                    <a href="http://localhost:8080/fan/shop/get/1">默认</a>-->
-<!--                    <a href="http://localhost:8080/fan/shop/get/1;o=1">价格</a>-->
-<!--                    <a href="http://localhost:8080/fan/shop/get/1;o=2">好评最多</a>-->
-<!--                    <a href="javascript:;" onclick="sort('默认')">默认</a>-->
-<!--                    <a href="javascript:;" onclick="sort('价格')">价格</a>-->
-<!--                    <a href="javascript:;" onclick="sort('好评最多')">好评最多</a>-->
-
-
-                    <a href="http://localhost:8080/fan/shop/getIndex/1">默认</a>
-                    <a href="http://localhost:8080/fan/shop/getByPrice/1">价格</a>
-                    <a href="http://localhost:8080/fan/shop/getByScore/1">好评最多</a>
+                    <a href="javascript:;" onclick="download_method()">默认</a>
+                    <a href="javascript:;" onclick="download_method()">价格</a>
+                    <a href="javascript:;" onclick="download_method()">好评最多</a>
                 </div>
                 <div class="pro">
                     <ul>

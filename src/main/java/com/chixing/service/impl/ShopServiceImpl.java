@@ -132,18 +132,18 @@ public class ShopServiceImpl implements IShopService {
             if (foodPrice.endsWith("元以上")){
                 String maxPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
                 Float shopMaxCost = Float.valueOf(maxPrice);
-                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
+                shopQueryWrapper.ge("shop_avg_cost",shopMaxCost);
                 System.out.println("元以上");
             }
             else if (foodPrice.endsWith("元以下")){
                 String minPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
                 Float shopMinCost = Float.valueOf(minPrice);
-                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
+                shopQueryWrapper.le("shop_avg_cost",shopMinCost);
                 System.out.println("元以下");
             }
             else {
                 String minPrice =foodPrice.substring(0,foodPrice.indexOf("-"));
-                String maxPrice =foodPrice.substring(foodPrice.indexOf("-"),foodPrice.indexOf("元"));
+                String maxPrice =foodPrice.substring(foodPrice.indexOf("-")+1,foodPrice.indexOf("元"));
                 Float shopMinCost = Float.valueOf(minPrice);
                 Float shopMaxCost = Float.valueOf(maxPrice);
                 shopQueryWrapper.ge("shop_avg_cost",shopMinCost);

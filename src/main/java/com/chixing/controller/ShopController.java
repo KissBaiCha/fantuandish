@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Shop getById(Integer shopId);
 //    int save(Shop shop);
@@ -136,52 +138,24 @@ public class ShopController {
         return mav;
     }
 
-
-//    @GetMapping("/shop/get/{id}ggg{name}")
-//    public String getAll(@PathVariable(value = "id",required = false)Integer id,@PathVariable(value = "name",required = false)Integer name){
-//        System.out.println(id);
-//        System.out.println(name);
-//        return "aaa";
-//    }
-
-//    @GetMapping("/shop/get/{pagenum}")
-//    public ModelAndView getAll(@PathVariable("pagenum")Integer pageNum,
-//                         @MatrixVariable(value = "o",required = false)Integer sort){
-//
-//        ModelAndView mav = new ModelAndView();
-//
-//        if (sort==1)
-//            mav.addObject("shop",shopService.getByPrice(pageNum));
-//        if (sort==2)
-//            mav.addObject("shop",shopService.getByScore(pageNum));
-//        else
-//            mav.addObject("shop",shopService.getByPage(pageNum));
-//        mav.addObject("skfood",foodService.getSKPro());
-//
-//        mav.setViewName("shop_list");
-//
-//
+    @GetMapping("/shop/get/{pageNum}")
+    public ModelAndView getAll(@PathVariable("pageNum")Integer pageNum,
+                                     @RequestParam(value = "foodType",required = false)String foodType,
+                                     @RequestParam(value = "foodPrice",required = false)String foodPrice,
+                                     @RequestParam(value = "sort",required = false)String sort){
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("shop",shopService.getTest(pageNum,foodType,foodPrice,sort));
+//        map.put("skfood",foodService.getSKPro());
+//        map.put("foodtypes",foodService.foodTypes());
 //        System.out.println(pageNum);
 //        System.out.println(sort);
-//        return mav;
-//    }
-@GetMapping("/shop/getTest/{pageNum}")
-public ModelAndView getByTest(@PathVariable("pageNum")Integer pageNum,
-                              HttpServletRequest request){
-    ModelAndView mav = new ModelAndView();
-    mav.addObject("skfood",foodService.getSKPro());
-    mav.addObject("foodtypes",foodService.foodTypes());
-
-    String foodType = request.getHeader("foodType");
-    System.out.println("foodddddddddd类型" + foodType);
-    String foodPrice = request.getHeader("foodPrice");
-    System.out.println("foodttttttttttt价格" + foodPrice);
-    String foodSort = request.getHeader("foodSort");
-    //默认分页
-    mav.addObject("shop",shopService.getTest(pageNum,foodType,foodPrice,foodSort));
-
-    mav.setViewName("shop_list");
-    return mav;
-}
+//        return map;
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("shop",shopService.getTest(pageNum,foodType,foodPrice,sort));
+        mav.addObject("skfood",foodService.getSKPro());
+        mav.addObject("foodtypes",foodService.foodTypes());
+        mav.setViewName("shop_list");
+        return mav;
+    }
 
 }
