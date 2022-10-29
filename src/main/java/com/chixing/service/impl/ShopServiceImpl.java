@@ -85,17 +85,17 @@ public class ShopServiceImpl implements IShopService {
     }
 
 
-    @Override
-    public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
-        cleanQueryWrapper();
-        foodQueryWrapper.eq("food_type",foodType);
-        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
-        Set<Integer> collect = foods.stream()
-                .map(Food::getShopId)
-                .collect(Collectors.toSet());
-        shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
-        return shopMapper.selectList(shopQueryWrapper);
-    }
+//    @Override
+//    public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
+//        cleanQueryWrapper();
+//        foodQueryWrapper.eq("food_type",foodType);
+//        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
+//        Set<Integer> collect = foods.stream()
+//                .map(Food::getShopId)
+//                .collect(Collectors.toSet());
+//        shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
+//        return shopMapper.selectList(shopQueryWrapper);
+//    }
 
     @Override
     public Page<Shop> getByPrice(Integer pageNum) {
@@ -114,7 +114,7 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public Page<Shop> getTest(Integer pageNum, String foodType,String foodPrice,String foodSort) {
+    public Page<Shop> getBySift(Integer pageNum, String foodType,String foodPrice,String foodSort) {
         cleanQueryWrapper();
         Page<Shop> page = new Page<>(pageNum,4);
         System.out.println("类型"+foodType+"价格"+foodPrice);
@@ -151,18 +151,15 @@ public class ShopServiceImpl implements IShopService {
                 System.out.println("元=====元");
             }
         }
-//
-//        if (sort!=null){
-//            if (sort==1){
-//                return shopMapper.selectPage(page,null);
-//            }
-//            if (sort==2){
-//                shopQueryWrapper.orderByDesc("shop_avg_cost");
-//            }
-//            if (sort==3){
-//                shopQueryWrapper.orderByDesc("shop_score");
-//            }
-//        }
+
+        if (foodSort!=null){
+            if (foodSort.equals("价格")){
+                shopQueryWrapper.orderByDesc("shop_avg_cost");
+            }
+            if (foodSort.equals("好评最多")){
+                shopQueryWrapper.orderByDesc("shop_score");
+            }
+        }
         System.out.println("dddd");
         return shopMapper.selectPage(page,shopQueryWrapper);
     }

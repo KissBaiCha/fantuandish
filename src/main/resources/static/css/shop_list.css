@@ -101,28 +101,29 @@ body{
 
 /*========================商品列表===============================*/
 .pro-main .prolist .sort{
-    width: 100%;
+    width: 100% !important;;
     height: 50px;
     background-color: #FFF;
     /* background-color: rgb(0, 0, 0); */
     /* border-bottom: 1px solid lightgray; */
 }
-.prolist .sort a{
+.pro-main .prolist .sort2{
+    height: 50px;
+    width: 240px;
+    background-color: #FFF;
+}
+.prolist .sort .sort2 a{
     display: block;
-    width: 65px;
+    width: 80px;
     line-height: 50px;
     text-decoration: none;
     text-align: center;
     font-size: 13px;
-    margin-right: 20px;
     color: #666464;
     float: left;
 }
 .a_active{
     color: rgb(255,107,55) !important;
-}
-.prolist .sort a:first-child{
-    margin-left: 10px;
 }
 .prolist .sort a:hover{
     color: rgb(255,107,55);

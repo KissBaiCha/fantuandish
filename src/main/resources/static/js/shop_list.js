@@ -1,38 +1,28 @@
 // 筛选
 
-var url = window.location.href;
-
-
-//url处理方法
-var urltext = decodeURIComponent(window.location.href);
-
-if (urltext.includes("foodType="))
-    var foodTypes = urltext.substring(urltext.indexOf("foodType=")+9,urltext.length);
-// if (urltext.includes("foodPrice="))
-//     var foodPrice = url
-
-
-var arr1 = document.querySelector(".fifter1").children;
-for(var i=0;i<arr1.length;i++){
-    arr1[i].className = "fifters";
-    if (arr1[i].firstElementChild.innerText===foodTypes)
-        arr1[i].className = "fifters active";
-
+//url取值处理（传入url和参数key,获取参数val）
+function handleUrl(url,key){
+    var lastUrl = url.split(key);
+    if(lastUrl[1].indexOf("&")===-1)
+        var value = lastUrl[1];
+    else
+        var value = lastUrl[1].split("&")[0];
+    return value;
 }
-
-// var arr2 = document.querySelector(".fifter2").children;
-// for(var i=0;i<arr.length;i++){
-//     arr[i].className = "fifters";
-// }
-//
-// var arr3 = document.querySelector(".sort").children;
-// for(var i=0;i<arr.length;i++){
-//     arr[i].className = "fifters";
-// }
-
-
+//url拼接处理（传入url,参数key和value,对url进行拼接）
 function stringConcat(url,key,val){
-    if (url.substring(url.length-5,url.length)==="get/1")
+    // if (url.substring(url.length-5,url.length)==="get/1")
+
+    //处理url每次修改参数返回第一页
+    var firstUrl = url.split("shopsift")[0];
+    var lastUrl = url.split("?")[1];
+    if(!url.includes("?"))
+        url = firstUrl.substring(0,firstUrl.length).concat("shopsift/1");
+    else
+        url =  firstUrl.substring(0,firstUrl.length).concat("shopsift/1?",lastUrl);
+
+
+    if (!url.includes("?"))
         url +="?".concat(key,"=",val);
     else if (!url.includes(key))
         url+="&".concat(key,"=",val);
@@ -50,6 +40,68 @@ function stringConcat(url,key,val){
     }
     return url;
 }
+//删除url参数（当选择所有或默认时,清除url中的key）
+function deleteUrl(url,key) {
+
+    //每次请求返回第一页
+    var firstUrl = url.split("shopsift")[0];
+    var lastUrl = url.split("?")[1];
+    if(!url.includes("?"))
+        url = firstUrl.substring(0,firstUrl.length).concat("shopsift/1");
+    else
+        url =  firstUrl.substring(0,firstUrl.length).concat("shopsift/1?",lastUrl);
+
+
+    var lastUrl = url.split(key);
+    if(lastUrl[1]==null){
+        var delurl = lastUrl[0];
+    }else {
+        if (lastUrl[1].indexOf("&") === -1) {
+            var value = lastUrl[1];
+            delurl = url.substring(0, url.indexOf(key) - 1)
+        } else {
+            value = lastUrl[1].split("&")[0];
+            var urld = url.split(key + value);
+            delurl = urld[0].concat(urld[1].substring(1, urld[1].length))
+        }
+    }
+    return delurl;
+}
+
+var url = window.location.href;
+//url取值
+var urltext = decodeURIComponent(window.location.href);
+
+if (urltext.includes("foodType=")){
+    var foodTypes = handleUrl(urltext,"foodType=");
+var arr1 = document.querySelector(".fifter1").children;
+    for(var i=0;i<arr1.length;i++){
+        arr1[i].className = "fifters";
+        if (arr1[i].firstElementChild.innerText===foodTypes)
+            arr1[i].className = "fifters active";
+    }
+}
+if (urltext.includes("foodPrice=")){
+    var foodPrices = handleUrl(urltext,"foodPrice=");
+    var arr2 = document.querySelector(".fifter2").children;
+        for(var i=0;i<arr2.length;i++){
+        arr2[i].className = "fifters";
+        if (arr2[i].firstElementChild.innerText===foodPrices)
+            arr2[i].className = "fifters active";
+    }
+}
+if (urltext.includes("sort=")){
+    var sorts = handleUrl(urltext,"sort=");
+    var arr3 = document.querySelector(".sort2").children;
+    for(var i=0;i<arr3.length;i++){
+        arr3[i].className = "";
+        if (arr3[i].innerText===sorts)
+            arr3[i].className = "a_active";
+    }
+}
+
+
+
 
 document.querySelector(".fifter1").onclick = function(event){
     var element = event.target;
@@ -60,8 +112,11 @@ document.querySelector(".fifter1").onclick = function(event){
             arr[i].className = "fifters";
         }
         element.className = "fifters active";
-        // url = stringConcat(url,"foodType",element.firstElementChild.innerText);
-        download_method(stringConcat(url,"foodType",element.firstElementChild.innerText))
+        if (element.firstElementChild.innerText==="所有")
+            url = deleteUrl(url,"foodType");
+        else
+            url = stringConcat(url,"foodType",element.firstElementChild.innerText);
+        download_method(url);
         console.log(element.firstElementChild.innerText);
         console.log(url)
     }
@@ -72,7 +127,10 @@ document.querySelector(".fifter1").onclick = function(event){
             arr[i].className = "fifters";
         }
         element.parentElement.className = "fifters active";
-        url = stringConcat(url,"foodType",element.innerText);
+        if (element.innerText==="所有")
+            url = deleteUrl(url,"foodType");
+        else
+            url = stringConcat(url,"foodType",element.innerText);
         download_method(url);
         console.log(element.innerText);
         console.log(url)
@@ -88,7 +146,10 @@ document.querySelector(".fifter2").onclick = function(event){
             arr[i].className = "fifters";
         }
         element.className = "fifters active";
-        url = stringConcat(url,"foodPrice",element.firstElementChild.innerText);
+        if (element.firstElementChild.innerText==="所有")
+            url = deleteUrl(url,"foodPrice");
+        else
+            url = stringConcat(url,"foodPrice",element.firstElementChild.innerText);
         download_method(url);
         console.log(element.firstElementChild.innerText);
 
@@ -101,19 +162,25 @@ document.querySelector(".fifter2").onclick = function(event){
             arr[i].className = "fifters";
         }
         element.parentElement.className = "fifters  active";
-        url = stringConcat(url,"foodPrice",element.innerText);
+        if (element.innerText==="所有")
+            url = deleteUrl(url,"foodPrice");
+        else
+            url = stringConcat(url,"foodPrice",element.innerText);
         download_method(url);
         console.log(element.innerText);
         console.log(url)
     }
 }
-document.querySelector(".sort").onclick = function(event){
+document.querySelector(".sort2").onclick = function(event){
     var element = event.target;
-        var arr = document.querySelector(".sort").children;
+        var arr = document.querySelector(".sort2").children;
         for(var i=0;i<arr.length;i++){
             arr[i].className = "";
         }
-        element.parentElement.className = "a_active";
+        element.className = "a_active";
+    if (element.innerText==="默认")
+        url = deleteUrl(url,"sort");
+    else
         url = stringConcat(url,"sort",element.innerText);
         download_method(url);
         console.log(element.innerText);

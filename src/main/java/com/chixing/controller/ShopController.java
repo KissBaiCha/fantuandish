@@ -56,102 +56,95 @@ public class ShopController {
     }
 
 
-    @GetMapping("/shop/getIndex/{pageNum}")
-    public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByPage(pageNum));
-        mav.addObject("skfood",foodService.getSKPro());
-        mav.addObject("foodtypes",foodService.foodTypes());
-        mav.setViewName("shop_list");
-        return mav;
-    }
+//    @GetMapping("/shop/getIndex/{pageNum}")
+//    public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum){
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("shop",shopService.getByPage(pageNum));
+//        mav.addObject("skfood",foodService.getSKPro());
+//        mav.addObject("foodtypes",foodService.foodTypes());
+//        mav.setViewName("shop_list");
+//        return mav;
+//    }
+//
+//    /**
+//     * 条件筛选（食品类型）
+//     * @param foodType  食品类型
+//     * @return  店铺集合
+//     */
+//    @GetMapping("/shop/foodType")
+//    public ModelAndView getByFoodType(@RequestParam("foodType")String foodType){
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("shop",shopService.getByFoodType(foodType));
+//        mav.addObject("skfood",foodService.getSKPro());
+//        mav.addObject("foodtypes",foodService.foodTypes());
+//        mav.setViewName("shop_list");
+//        return mav;
+//    }
+//
+//    /**
+//     * 条件筛选（人均消费）
+//     * @param shopMinCost   最低人均消费
+//     * @param shopMaxCost   最高人均消费
+//     * @return  店铺集合
+//     */
+//    @GetMapping("/shop/shopAvgCost")
+//    public ModelAndView getByShopAvgCost(@RequestParam(value = "shopMinCost",required = false)Float shopMinCost,@RequestParam(value = "shopMaxCost",required = false)Float shopMaxCost){
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("shop",shopService.getByShopAvgCost(shopMinCost,shopMaxCost));
+//        mav.addObject("skfood",foodService.getSKPro());
+//        mav.addObject("foodtypes",foodService.foodTypes());
+//        mav.setViewName("shop_list");
+//        return mav;
+//    }
+//
+//    /**
+//     * 多条件筛选（食品类型，人均消费）
+//     * @param foodType      食品类型
+//     * @param shopMinCost   最低人均消费
+//     * @param shopMaxCost   最高人均消费
+//     * @return  店铺集合
+//     */
+//    @GetMapping("/shop/sift")
+//    public List<Shop> getBySift(@RequestParam("foodType")String foodType,@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
+//        List<Shop> shopList = shopService.getBySift(foodType,shopMinCost,shopMaxCost);
+//        return shopList;
+//    }
+//
+//    /**
+//     * 排序（价格降序）
+//     * @return  店铺集合
+//     */
+//    @GetMapping("/shop/getByPrice/{pageNum}")
+//    public ModelAndView getByPrice(@PathVariable("pageNum")Integer pageNum){
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("shop",shopService.getByPrice(pageNum));
+//        mav.addObject("skfood",foodService.getSKPro());
+//        mav.addObject("foodtypes",foodService.foodTypes());
+//        mav.setViewName("shop_list");
+//        return mav;
+//    }
+//
+//    /**
+//     * 排序（评分降序）
+//     * @return  店铺集合
+//     */
+//    @GetMapping("/shop/getByScore/{pageNum}")
+//    public ModelAndView getByScore(@PathVariable("pageNum")Integer pageNum){
+//        ModelAndView mav = new ModelAndView();
+//        mav.addObject("shop",shopService.getByScore(pageNum));
+//        mav.addObject("skfood",foodService.getSKPro());
+//        mav.addObject("foodtypes",foodService.foodTypes());
+//        mav.setViewName("shop_list");
+//        return mav;
+//    }
 
-    /**
-     * 条件筛选（食品类型）
-     * @param foodType  食品类型
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/foodType")
-    public ModelAndView getByFoodType(@RequestParam("foodType")String foodType){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByFoodType(foodType));
-        mav.addObject("skfood",foodService.getSKPro());
-        mav.addObject("foodtypes",foodService.foodTypes());
-        mav.setViewName("shop_list");
-        return mav;
-    }
-
-    /**
-     * 条件筛选（人均消费）
-     * @param shopMinCost   最低人均消费
-     * @param shopMaxCost   最高人均消费
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/shopAvgCost")
-    public ModelAndView getByShopAvgCost(@RequestParam(value = "shopMinCost",required = false)Float shopMinCost,@RequestParam(value = "shopMaxCost",required = false)Float shopMaxCost){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByShopAvgCost(shopMinCost,shopMaxCost));
-        mav.addObject("skfood",foodService.getSKPro());
-        mav.addObject("foodtypes",foodService.foodTypes());
-        mav.setViewName("shop_list");
-        return mav;
-    }
-
-    /**
-     * 多条件筛选（食品类型，人均消费）
-     * @param foodType      食品类型
-     * @param shopMinCost   最低人均消费
-     * @param shopMaxCost   最高人均消费
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/sift")
-    public List<Shop> getBySift(@RequestParam("foodType")String foodType,@RequestParam("shopMinCost")Float shopMinCost,@RequestParam("shopMaxCost")Float shopMaxCost){
-        List<Shop> shopList = shopService.getBySift(foodType,shopMinCost,shopMaxCost);
-        return shopList;
-    }
-
-    /**
-     * 排序（价格降序）
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/getByPrice/{pageNum}")
-    public ModelAndView getByPrice(@PathVariable("pageNum")Integer pageNum){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByPrice(pageNum));
-        mav.addObject("skfood",foodService.getSKPro());
-        mav.addObject("foodtypes",foodService.foodTypes());
-        mav.setViewName("shop_list");
-        return mav;
-    }
-
-    /**
-     * 排序（评分降序）
-     * @return  店铺集合
-     */
-    @GetMapping("/shop/getByScore/{pageNum}")
-    public ModelAndView getByScore(@PathVariable("pageNum")Integer pageNum){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getByScore(pageNum));
-        mav.addObject("skfood",foodService.getSKPro());
-        mav.addObject("foodtypes",foodService.foodTypes());
-        mav.setViewName("shop_list");
-        return mav;
-    }
-
-    @GetMapping("/shop/get/{pageNum}")
-    public ModelAndView getAll(@PathVariable("pageNum")Integer pageNum,
+    @GetMapping("/shop/shopsift/{pageNum}")
+    public ModelAndView getBySift(@PathVariable("pageNum")Integer pageNum,
                                      @RequestParam(value = "foodType",required = false)String foodType,
                                      @RequestParam(value = "foodPrice",required = false)String foodPrice,
                                      @RequestParam(value = "sort",required = false)String sort){
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("shop",shopService.getTest(pageNum,foodType,foodPrice,sort));
-//        map.put("skfood",foodService.getSKPro());
-//        map.put("foodtypes",foodService.foodTypes());
-//        System.out.println(pageNum);
-//        System.out.println(sort);
-//        return map;
         ModelAndView mav = new ModelAndView();
-        mav.addObject("shop",shopService.getTest(pageNum,foodType,foodPrice,sort));
+        mav.addObject("shop",shopService.getBySift(pageNum,foodType,foodPrice,sort));
         mav.addObject("skfood",foodService.getSKPro());
         mav.addObject("foodtypes",foodService.foodTypes());
         mav.setViewName("shop_list");

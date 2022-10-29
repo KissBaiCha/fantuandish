@@ -86,7 +86,7 @@
             <div class="Condition">
                 <label>用餐人数：</label>
                 <div class="Select fifter2">
-                    <a href="javascript:void(0)" onclick="download_method()" class="fifters active"><span>所有</span></a>
+                    <a href="javascript:;" onclick="download_method()" class="fifters active"><span>所有</span></a>
                     <a href="javascript:;" onclick="download_method()" class="fifters"><span>100元以下</span></a>
                     <a href="javascript:;" onclick="download_method()" class="fifters"><span>100-200元</span></a>
                     <a href="javascript:;" onclick="download_method()" class="fifters"><span>200-400元</span></a>
@@ -98,20 +98,14 @@
             </div>
         </div>
         <div class="pro-main">
-
-
-
-
-
-
-
             <!--                     列表区                         -->
             <div class="prolist">
                 <div class="sort">
-
-                    <a href="javascript:;" onclick="download_method()">默认</a>
-                    <a href="javascript:;" onclick="download_method()">价格</a>
-                    <a href="javascript:;" onclick="download_method()">好评最多</a>
+                    <div class="sort2">
+                        <a href="javascript:;" onclick="download_method()" class="a_active">默认</a>
+                        <a href="javascript:;" onclick="download_method()">价格</a>
+                        <a href="javascript:;" onclick="download_method()">好评最多</a>
+                    </div>
                 </div>
                 <div class="pro">
                     <ul>
@@ -137,11 +131,6 @@
                     <input type="hidden" id="total" th:value="${shop.total}">
                     <div class="paging">
                         <div id="demo7"></div>
-                        <!-- <ul>
-                            <li><a href="">上一页</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">下一页</a></li>
-                        </ul> -->
                     </div>
 
 
@@ -191,7 +180,15 @@
                 pageNum = obj.curr;
                 console.log(pageNum)
                 if (!first){
-                    window.location.href=window.location.pathname+"/"+"../"+pageNum;
+                    var url = window.location.href;
+                    var firstUrl = url.split("shopsift")[0];
+                    var lastUrl = url.split("?")[1];
+                    if(!url.includes("?")){
+                        url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum);
+                    }else{
+                        url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum,"?",lastUrl);
+                    }
+                    window.location.href=url;
                 }
             }
         });
