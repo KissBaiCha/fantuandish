@@ -2,7 +2,11 @@
 document.querySelector(".dingwei").onclick=function(){
     document.querySelector(".map").style.display = "block";
     document.querySelector(".cover").style.display = "block";
-    document.querySelector(".cover").style.height = screen.height +'px';
+    document.querySelector(".cover").style.height = document.body.scrollHeight +'px';
+}
+document.querySelector(".closemap").onclick=function(){
+    document.querySelector(".map").style.display = "";
+    document.querySelector(".cover").style.display = "";
 }
 var onclicktime = 0;
 document.querySelector(".collect").onclick=function(){
@@ -28,14 +32,18 @@ layui.use(['carousel', 'form'], function () {
     });
 })
 // 店铺地图定位
+var longitude = document.querySelector(".longitude").value;
+var latitude = document.querySelector(".latitude").value;
+console.log(longitude)
+console.log(latitude)
 var map = new AMap.Map('container', {
     zoom:20, //初始化地图层级
-    center: [120.693277,31.297477] //初始化地图中心点
+    center: [longitude,latitude] //初始化地图中心点
 });
 // 定位图标
 var marker = new AMap.Marker({ 
     map: map,
-    position: [120.693277, 31.297477],
+    position: [longitude,latitude],
     icon: '../images/map-location-icon.png' ,
     offset: new AMap.Pixel(-13, -30)
 });

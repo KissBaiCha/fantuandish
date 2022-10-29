@@ -2,6 +2,7 @@ package com.chixing.controller;
 
 import com.chixing.entity.Shop;
 import com.chixing.service.IFoodService;
+import com.chixing.service.IShopImgService;
 import com.chixing.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ public class ShopController {
     private IShopService shopService;
     @Autowired
     private IFoodService foodService;
-
+    @Autowired
+    private IShopImgService shopImgService;
     /**
      * 筛选页跳转查询店铺信息
      * @param shopId
@@ -32,10 +34,17 @@ public class ShopController {
     @GetMapping("/shop/{id}")
     public ModelAndView getById(@PathVariable("id") Integer shopId){
         ModelAndView mav = new ModelAndView();
+        //店铺信息
         mav.addObject("shop",shopService.getById(shopId));
+        //优惠美食
         mav.addObject("skpros",foodService.getSKProById(shopId));
+        //全部美食
         mav.addObject("foods",foodService.getShopProByShopId(shopId));
+        //推荐美食
         mav.addObject("sellfoods",foodService.getShopProByScore(shopId));
+        //店铺图片
+        mav.addObject("shopimgs",shopImgService.getShopSrc(shopId));
+
         mav.setViewName("details/details_shop");
         return mav;
     }

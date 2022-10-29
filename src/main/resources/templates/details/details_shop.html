@@ -82,9 +82,10 @@
         <div class="shop-img">
             <div class="layui-carousel" id="test3" lay-filter="test4">
                 <div carousel-item="">
-                  <div><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" ></div>
-                  <div><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" ></div>
-                  <div><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" ></div>
+                  <div><img th:src="${shop.shopMainImg}" ></div>
+                  <div th:each="shopimg:${shopimgs}"><img th:src="${shopimg.shopImgPath}" ></div>
+<!--                  <div><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" ></div>-->
+<!--                  <div><img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D" ></div>-->
                 </div>
               </div>
         </div>
@@ -174,31 +175,17 @@
         </div>
 
     </div>
-        <!-- <div class="details-shop">
-            <div class="layui-tab layui-tab-card">
-                <ul class="layui-tab-title">
-                  <li class="layui-this">适用门店</li>
-                  <li>团购详情</li>
-                  <li>购买须知</li>
-                  <li>店铺评价</li>
-                </ul>
-                <div class="layui-tab-content" style="height: 100px;">
-                  <div class="layui-tab-item layui-show">1</div>
-                  <div class="layui-tab-item">2</div>
-                  <div class="layui-tab-item">3</div>
-                  <div class="layui-tab-item">4</div>
-                  <div class="layui-tab-item">5</div>
-                </div>
-              </div>
-        </div> -->
+
     <!--                   地图                     -->
     <div class="map">
-        <a href="" class="closemap"></a>
+        <a href="javascript:;" class="closemap"></a>
         <div class="title">
             <h1 th:text="${shop.shopName}">青鹤谷(苏州店)</h1>
             <p>地址：<span th:text="${shop.shopAddressDetail}">李公堤三期21幢(近金鸡湖景区)</span></p>
         </div>
         <div id="container"></div>
+        <input type="hidden" th:value="${shop.shopLongitude}" class="longitude">
+        <input type="hidden" th:value="${shop.shopLatitude}" class="latitude">
     </div>
     <!--                   蒙版                     -->
 

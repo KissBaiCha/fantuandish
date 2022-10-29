@@ -29,7 +29,7 @@ body{
 /* 推荐菜品 */
 .dishesli-recommend{
     width: 29%;
-    height: 487px;
+    height: auto;
     margin-top: 12px;
     background-color: #FFF;
     float: right;
