@@ -66,7 +66,7 @@ body{
 }
 
 .Condition .Select{
-    width: auto;
+    width: 85%;
     height: auto;
     float: left;
 }
@@ -76,7 +76,7 @@ body{
     height: 24px;
     margin-bottom: 30px;
 }
-.Condition :nth-child(11){
+.Condition :nth-child(10){
     margin-left: 100px;
 }
 .Select span{
