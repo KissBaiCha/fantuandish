@@ -20,4 +20,14 @@ public interface ICustomerService {
      */
     R<String> loginByName(Customer customer);
     R<String> loginByCode(Customer customer,Integer code);
+
+
+    /**
+     * 根据id查询用户信息
+     * @param customerId
+     * @return
+     */
+    Customer getCustomerById(Integer customerId);
+
+
 }

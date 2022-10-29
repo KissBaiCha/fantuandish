@@ -75,29 +75,27 @@
     <div class="orders-container">
 
         <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
-            <li class="layui-nav-item"><a href="../personal_center/myfantuan.html">我的饭团</a></li>
+            <li class="layui-nav-item"><a href="root/personal_center/myfantuan.html">我的饭团</a></li>
 
 
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="customer/personal_center/allorder.html" class="title_next">全部订单</a></dd>
-                    <dd><a href="customer/personal_center/myorder.html" class="title_next">我的订单</a></dd>
-                    <dd><a href="customer/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
-                    <dd><a href="customer/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
+                    <dd><a href="root/personal_center/allorder.html" class="title_next">全部订单</a></dd>
+                    <dd><a href="root/personal_center/myorder.html" class="title_next">我的订单</a></dd>
+                    <dd><a href="root/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
+                    <dd><a href="root/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">我的优惠券</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="customer/personal_center/all_quan.html" class="title_next">可用券</a></dd>
-                    <dd><a href="customer/personal_center/can't_use_quan.html" class="title_next">失效券</a></dd>
+                    <dd><a href="root/personal_center/all_quan.html" class="title_next">可用券</a></dd>
+                    <dd><a href="root/personal_center/can't_use_quan.html" class="title_next">失效券</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="customer/personal_center/user_msg.html">个人信息</a></li>
+            <li class="layui-nav-item"><a href="root/personal_center/user_msg.html">个人信息</a></li>
         </ul>
-
-
         <!-- -----------------orders-body 信息修改------------------- -->
         <div class="my_msg">
 
@@ -106,7 +104,8 @@
                 <span class="account">账户设置</span>
             </div>
 
-            <div class="head_img">
+
+            <form class="head_img" role="form">
                 <span class="touxiang">头像</span>
 
                 <div class="layui-upload">
@@ -119,44 +118,37 @@
 
                 </div>
 
-            </div>
+            </form>
 
-            <div class="name">
-                <span class="nicheng">昵称</span>
-                <input type="text" value="昵称" class="nichengkuang">
-            </div>
+            <form class="other_msg" role="form">
 
-
-            <div class="birthday">
-                <span class="shengri">生日</span>
-                <div class="layui-form">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
-                            </div>
-                        </div>
-                    </div>
+                <div class="name">
+                    <span class="nicheng">昵称</span>
+                    <input type="text" value="昵称" class="nichengkuang">
                 </div>
-            </div>
-
-            <div class="updatePhone">
-                <span class="shoujihao">换绑手机</span>
-                <input type="text" value="手机号码" class="phonenumber">
 
 
-            </div>
+                <div class="birthday">
+                    <span class="pwd">密码</span>
+                    <input type="text"  class="mimakuang" value="密码">
+                </div>
 
-            <input type="submit" value="修改" class="update">
-            <input type="submit" value="保存" class="save">
+                <div class="updatePhone">
+                    <span class="shoujihao">换绑手机</span>
+                    <input type="text" value="手机号码" class="phonenumber">
+
+
+                </div>
+
+                <input type="submit" value="修改" class="update">
+                <input type="submit" value="保存" class="save">
+
+
+            </form>
+
 
 
         </div>
-
-
-
-
-
 
         <!-- ---------------------------底部-------------------------------- -->
         <div class="layui-row">
@@ -257,14 +249,11 @@
 </script>
 
 
-
-<script>
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-
-        //常规用法
-        laydate.render({
-            elem: '#test1'
-        });
-    });
-</script>
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        $ajax({-->
+<!--            url:""-->
+<!--        })-->
+<!--        -->
+<!--    })-->
+<!--</script>-->

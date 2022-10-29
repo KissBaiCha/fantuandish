@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="css/cover.css">
+</head>
+<body>
+<div class="header">
+    <div class="top-nav ">
+        <div class="layui-main top-main layui-row">
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <ul class="layui-nav" lay-filter="">
+                    <li class="layui-nav-item" ><a href="user/login.html" class="title">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="index.html" class="title">首页</a></li>
+                    <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="main">
+
+    <div class="layui-carousel" id="test1" lay-filter="test1">
+
+        <div carousel-item="">
+            <div>
+                <img src="images/cover1.png">
+            </div>
+            <div>
+                <img src="images/cover1.png">
+            </div>
+            <div>
+                <img src="images/cover1.png">
+            </div>
+            <div>
+                <img src="images/cover1.png">
+            </div>
+        </div>
+
+
+
+        <div class="welcome">
+            <span class="welFan">欢迎使用饭团</span>
+            <a href="user/login.html" class="login">登录 | 注册</a>
+            <a href="index.html" class="index">首页</a>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<script src="layui/layui.js"></script>
+</body>
+</html>
+
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+        });
+    });
+
+</script>
+
+
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //导航点击事件
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+</script>

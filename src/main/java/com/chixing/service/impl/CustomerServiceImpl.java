@@ -64,4 +64,21 @@ public class CustomerServiceImpl implements ICustomerService {
         }
         return null;
     }
+
+    @Override
+    public Customer getCustomerById(Integer customerId) {
+        //查询用户是否存在
+        Customer customer = customerMapper.selectById(customerId);
+        if (customer == null){
+            System.out.println("数据为空"); //不存在
+        }else {
+            //存在 要传给前端的数据
+            Customer customer1 = new Customer();
+            customer1.setCustomerName(customer.getCustomerName());
+            customer1.setCustomerPwd(customer.getCustomerPwd());
+            customer1.setCustomerTelno(customer.getCustomerTelno());
+        }
+
+        return customer;
+    }
 }

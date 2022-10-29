@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>我的饭团</title>
     <base href="http://localhost:8080/fan/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的饭团</title>
+
+
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
-    <script src="js/jquery.js"></script>
-
-
     <link rel="stylesheet" href="css/mine/myfantuan.css">
     <link rel="stylesheet" href="css/mine/order.css">
     <link rel="stylesheet" href="css/details/details_bottom.css">
     <link rel="stylesheet" href="css/details/details_header.css">
     <link rel="stylesheet" href="layui/css/layui.css">
+
+
 </head>
 <body>
-
-
 <!-- ----------------头部------------------------- -->
 <div class="header">
     <div class="top-nav ">
@@ -48,7 +49,7 @@
 
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="../index.html" title="饭团网" class="logo-img">
+            <a href="index.html" title="饭团网" class="logo-img">
                 <img src="../../images/mylogo.png"  width="200" height="72">
             </a>
         </div>
@@ -68,32 +69,33 @@
         </div>
     </div>
 </div>
+
 <div class="layui-main">
 
     <!-- --------------我的饭团 左侧栏------------------------ -->
     <div class="orders-container">
 
         <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
-            <li class="layui-nav-item"><a href="../personal_center/myfantuan.html">我的饭团</a></li>
+            <li class="layui-nav-item"><a href="root/personal_center/myfantuan.html">我的饭团</a></li>
 
 
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="customer/personal_center/allorder.html" class="title_next">全部订单</a></dd>
-                    <dd><a href="customer/personal_center/myorder.html" class="title_next">我的订单</a></dd>
-                    <dd><a href="customer/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
-                    <dd><a href="customer/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
+                    <dd><a href="root/personal_center/allorder.html" class="title_next">全部订单</a></dd>
+                    <dd><a href="root/personal_center/myorder.html" class="title_next">我的订单</a></dd>
+                    <dd><a href="root/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
+                    <dd><a href="root/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">我的优惠券</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="customer/personal_center/all_quan.html" class="title_next">可用券</a></dd>
-                    <dd><a href="customer/personal_center/can't_use_quan.html" class="title_next">失效券</a></dd>
+                    <dd><a href="root/personal_center/all_quan.html" class="title_next">可用券</a></dd>
+                    <dd><a href="root/personal_center/can't_use_quan.html" class="title_next">失效券</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="customer/personal_center/user_msg.html">个人信息</a></li>
+            <li class="layui-nav-item"><a href="root/personal_center/user_msg.html">个人信息</a></li>
         </ul>
 
 
@@ -103,7 +105,7 @@
             <ul>
                 <li>
                     <div class="product_img">
-                        <a href="">
+                        <a href="details/details_product.html">
                             <img src="../../images/details/groupbuy/lunbo1.jfif"/>
                         </a>
                     </div>
@@ -126,17 +128,45 @@
                     </div>
 
                     <div class="other">
-                        <a href="">商品详情</a>
+                        <a href="details/details_product.html">商品详情</a>
+                    </div>
+
+                </li>
+
+                <li>
+                    <div class="product_img">
+                        <a href="details/details_product.html">
+                            <img src="../../images/details/groupbuy/lunbo1.jfif"/>
+                        </a>
+                    </div>
+                    <div class="product_msg">
+                        <span class="product_title">和牛畅吃套餐</span>
+                        <span class="text_time">下单时间:</span>
+                        <span class="time">2022-09-09 12:22</span>
+                        <span class="text_number">数量:</span>
+                        <span class="number">1</span>
+                    </div>
+
+
+                    <div class="sum_price">
+                        <span class="text_price">总价:￥</span>
+                        <span class="price">216</span>
+                    </div>
+
+                    <div class="zhuangtai">
+                        <span>已关闭</span>
+                    </div>
+
+                    <div class="other">
+                        <a href="details/details_product.html">商品详情</a>
                     </div>
 
                 </li>
 
 
-
-
                 <li>
                     <div class="product_img">
-                        <a href="">
+                        <a href="details/details_product.html">
                             <img src="../../images/details/groupbuy/lunbo1.jfif"/>
                         </a>
                     </div>
@@ -159,13 +189,16 @@
                     </div>
 
                     <div class="other">
-                        <a href="">商品详情</a>
+                        <a href="details/details_product.html">商品详情</a>
                     </div>
 
                 </li>
 
             </ul>
         </div>
+
+        <div id="demo2-1" class="page"></div>
+
     </div>
 
 
@@ -196,15 +229,19 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
-
 <script src="layui/layui.js"></script>
+
+
 </body>
 </html>
 
+
 <script>
+
     layui.use('element', function(){
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
@@ -213,5 +250,21 @@
             //console.log(elem)
             layer.msg(elem.text());
         });
+    });
+</script>
+
+
+
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+
+        laypage.render({
+            elem: 'demo2-1'
+            ,count: 100
+            ,theme: '#FF6B37'
+        });
+
     });
 </script>

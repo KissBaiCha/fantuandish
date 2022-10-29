@@ -123,3 +123,12 @@
 .orders-body a{
     color: rgb(255,107,55);
 }
+
+
+.orders-container .page{
+    margin-left: 450px;
+    margin-top: 150px;
+    float: left;
+
+
+}

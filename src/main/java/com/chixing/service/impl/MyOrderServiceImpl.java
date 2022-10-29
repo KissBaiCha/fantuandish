@@ -1,6 +1,7 @@
 package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
 import com.chixing.entity.SecondKill;
@@ -97,5 +98,13 @@ public class MyOrderServiceImpl implements IMyOrderService {
     @Override
     public boolean remove(String orderId) {
         return myOrderMapper.deleteById(orderId) >0;
+    }
+
+
+
+    @Override
+    public Page<MyOrder> getByPage(Integer pageNum) {
+        Page<MyOrder> page = new Page<>(1,3);
+        return myOrderMapper.selectPage(page,null);
     }
 }
