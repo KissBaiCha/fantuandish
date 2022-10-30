@@ -1,8 +1,8 @@
 
-$(".loginBtn").click(function (){
+$(".login-btn").click(function (){
     console.log("正在登录")
     $.ajax({
-        type:"post",
+        type:"POST",
         url:"customer/login",
         data:{
             customerName:$(".login-username").val(),
@@ -15,18 +15,7 @@ $(".loginBtn").click(function (){
             console.log("result:" + result.data.token);
             //保存信息到本地，里面都 token
             var token = result.data.token;
-            // console.log("token:" + token);
-            localStorage.setItem("token",token);
-            var newToken = localStorage.getItem("token")
-            $.ajax({
-                type: "post",
-                url: "jiemi",
-                headers: {'token': newToken},
-                success:function (data) {
-                    alert("登录成功");
-                    console.log(data)
-                }
-            })
+            window.location.href="shop/getIndex/1";
         },
     })
 })

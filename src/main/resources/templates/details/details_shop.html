@@ -22,8 +22,10 @@
                         </div>
                         <div class="layui-col-xs4">
                             <ul class="layui-nav" lay-filter="">
-                                <li class="layui-nav-item"><a href="">登录/注册</a></li>
-                                <li class="layui-nav-item"><a href="">帮助中心</a></li>
+                                <li class="layui-nav-item">
+                                    <a href="" th:text="${cusName}"> 登录/注册 </a>
+                                </li>
+                                <li class="layui-nav-item"><a href="javascript:;">帮助中心</a></li>
                                 <li class="layui-nav-item">
                                     <a href="javascript:;">我的饭团</a>
                                     <dl class="layui-nav-child"> <!-- 二级菜单 -->
@@ -94,13 +96,11 @@
             <h1>优惠促销</h1>
             <div class="set-meal-list">
                 <ul>
-
 <!--            <p th:text="${#maps.size()}"></p>-->
-
                     <li th:each="skpro:${skpros}">
-                        <a href="details_groupbuy.html">
+                        <a href="">
                             <div class="tuan">抢</div>
-                            <img th:src="${skpro.value.foodMainImg}" >
+                            <img th:src="${skpro.value.foodMainImg}">
                             <h2 th:text="${skpro.value.foodName}">隐居家宴套餐</h2>
                                 <label class="now-price"><span class="mark">￥</span><span th:text="${skpro.key.secondKillPrice}">18</span><!--<span>.00</span>--></label>
                                 <label class="old-price"><del><span>￥</span><span th:text="${skpro.value.foodPrice}">20</span><!--<span>.00</span>--></del></label>
@@ -108,9 +108,6 @@
                             </p>
                         </a>
                     </li>
-
-
-
                 </ul>
             </div>
         </div>
@@ -118,11 +115,8 @@
         <div class="dishesli-recommend">
             <ul>
                 <h1>推荐菜品</h1>
-
-
-
                 <li th:each="sellfood:${sellfoods}">
-                    <a href="details_product.html">
+                    <a href="">
                         <img th:src="${sellfood.foodMainImg}" >
                         <p th:text="${sellfood.foodName}">清蒸白鱼</p>
                         <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
@@ -142,21 +136,15 @@
                 <div class="layui-tab-content" style="height: 100px;">
                     <div class="layui-tab-item layui-show">
                         <ul class="dishesli-ads">
-
-
-
-
                             <li th:each="food:${foods}">
-                                <a href="details_product.html">
-                                    <img th:src="${food.foodMainImg}">
+<!--           <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}+'food/'+ ${food.foodId}">                     -->
+                                <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+ ${food.foodId}">
+                                <img th:src="${food.foodMainImg}">
                                     <p th:text="${food.foodName}">清蒸白鱼</p>
                                     <label><span>￥</span><span th:text="${food.foodPrice}">68</span></label>
                                 </a>
                             </li>
-        
-        
-        
-        
+
                         </ul>
                     </div>
                     <div class="layui-tab-item">

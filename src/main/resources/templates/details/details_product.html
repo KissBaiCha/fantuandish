@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>详情</title>
-    <link rel="icon" href="../images/minilogo.png">
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/details/lottie.js"></script>
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <link rel="stylesheet" href="../css/details/details_product.css">
-    <link rel="stylesheet" href="../css/details/details_bottom.css">
-    <link rel="stylesheet" href="../css/details/details_header.css">
+    <meta charset="UTF-8">
+    <base href="http://localhost:8080/fan/">
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <script src="js/jquery.js"></script>
+    <script src="js/details/lottie.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/details/details_product.css">
+    <link rel="stylesheet" href="css/details/details_bottom.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
     <style>
         body{
             background-color: #fff;
@@ -48,8 +50,8 @@
 
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="../shop_list.html" title="饭团网" class="logo-img">
-                <img src="../images/mylogo.png"  width="200" height="72">
+            <a href="shop_list.html" title="饭团网" class="logo-img">
+                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
             </a>
         </div>
         <!--    搜索    -->
@@ -70,7 +72,6 @@
 </div>
 <div class="layui-main main">
     <!--头-->
-
     <div class="layui-row detail-shop-dish">
         <!--  灰色过度 (面包屑)  -->
         <div class="layui-col-xs12 dish-nav">
@@ -110,7 +111,7 @@
                     <div class="dish-info-area">
                         <!--商品名-->
                         <div class="dish-name">
-                            <span id="dish-name">张家虾仁</span>
+                            <span id="dish-name" th:text="${food.foodName}">张家虾仁</span>
                             <div class="sum-people">
                                 <span class="people-count">1120</span>
                                 <span>人推荐</span>
@@ -119,7 +120,7 @@
                         <!--  商品价格   -->
                         <div class="dish-price">
                             ￥
-                            <span id="dish-price">98</span>
+                            <span id="dish-price" th:text="${food.foodPrice}">98</span>
                             <span id="text-price">店铺价格:<del>168</del></span>
                         </div>
                         <!--       购买按钮        -->
@@ -138,7 +139,7 @@
                     <li>备注信息</li>
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
-                    <div class="layui-tab-item layui-show">原材料:虾仁</div>
+                    <div class="layui-tab-item layui-show" th:text="${food.foodDetail}">原材料:虾仁</div>
                     <div class="layui-tab-item">自购买起48小时内使用</div>
                 </div>
             </div>
@@ -147,19 +148,18 @@
                 <!--       评价header     -->
                 <div class="dish-comment-head">
                     <span>相关评价</span>
-
                 </div>
                 <!--       评价list     -->
                 <div class="dish-comment-list">
                     <ul>
-                        <li class="comment">
+                        <li th:each="e: ${evaList}" class="comment" >
                             <div class="layui-row ">
                                 <!--      用户容器       -->
                                 <div class="layui-col-xs1 user-tip">
                                     <!--      用户头像       -->
-                                    <img src="/images/details/user_head.svg">
+                                    <img th:src="${e.cusHeadImgPath}">
                                     <!--      用户名       -->
-                                    <span class="user-name">用户名1</span>
+                                    <span th:text="${e.cusName}" class="user-name">用户名1</span>
                                 </div>
 
                                 <div class="layui-col-xs11 comment-details">
@@ -167,104 +167,14 @@
                                         <div class="layui-card-header" style="background-color: #f4f4f4">
                                             <div class="grade-tip"></div>
                                         </div>
-                                        <div class="layui-card-body comment-details-text">
+                                        <div th:text="${e.evaContent}" class="layui-card-body comment-details-text">
                                             我靠这是什么东西我这辈子没吃过这么好吃的虾<br>
                                             快要给我吃瞎了
                                             <!--评价图片-->
                                             <div class="shop-pictures">
                                                 <ul>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="comment-details-date">
-                                                <span>2022-8-1</span>
-                                                <div class="comment-perfect">
-                                                    <i class="perfect-img"></i>
-                                                    <span>赞</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="comment">
-                            <div class="layui-row ">
-                                <!--      用户容器       -->
-                                <div class="layui-col-xs1 user-tip">
-                                    <!--      用户头像       -->
-                                    <img src="/images/details/user_head.svg">
-                                    <!--      用户名       -->
-                                    <span class="user-name">用户名1</span>
-                                </div>
-
-                                <div class="layui-col-xs11 comment-details">
-                                    <div class="layui-card">
-                                        <div class="layui-card-header" style="background-color: #f4f4f4">
-                                            <div class="grade-tip"></div>
-                                        </div>
-                                        <div class="layui-card-body comment-details-text">
-                                            我靠这是什么东西我这辈子没吃过这么好吃的虾<br>
-                                            快要给我吃瞎了
-                                            <!--评价图片-->
-                                            <div class="shop-pictures">
-                                                <ul>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="comment-details-date">
-                                                <span>2022-8-1</span>
-                                                <div class="comment-perfect">
-                                                    <i class="perfect-img"></i>
-                                                    <span>赞</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="comment">
-                            <div class="layui-row ">
-                                <!--      用户容器       -->
-                                <div class="layui-col-xs1 user-tip">
-                                    <!--      用户头像       -->
-                                    <img src="/images/details/user_head.svg">
-                                    <!--      用户名       -->
-                                    <span class="user-name">用户名1</span>
-                                </div>
-
-                                <div class="layui-col-xs11 comment-details">
-                                    <div class="layui-card">
-                                        <div class="layui-card-header" style="background-color: #f4f4f4">
-                                            <div class="grade-tip"></div>
-                                        </div>
-                                        <div class="layui-card-body comment-details-text">
-                                            我靠这是什么东西我这辈子没吃过这么好吃的虾<br>
-                                            快要给我吃瞎了
-                                            <!--评价图片-->
-                                            <div class="shop-pictures">
-                                                <ul>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                    <li class="comment-img-item">
-                                                        <img src="/images/details/dish.jpg" alt="" width="68"
+                                                    <li th:each="img: ${e.evaImgList}" class="comment-img-item">
+                                                        <img th:src="${img.evaImgPath}" alt="" width="68"
                                                              height="68">
                                                     </li>
                                                 </ul>
@@ -303,24 +213,27 @@
             <div class="shop-info-wrap">
                 <div class="layui-card shop-info-tip">
                     <div class="layui-card-header shop-info-head">
-                        <a href="" class="shop-info-head-name">张家面馆</a>
+                        <a href="" class="shop-info-head-name" th:text="${shop.shopName}">张家面馆</a>
                         <div class="grade-item">
                             <div class="grade-tip"></div>
                         </div>
-                       <div class="people-one-price">
-                           <span>人均</span>
-                           <i>￥</i>
-                           <span id="people-one-price">75</span>
-                       </div>
                     </div>
                     <div class="layui-card-body">
-                        <div style="height: 50%;margin-bottom: 15px;margin-top: 5px">
-                            <strong>地址:</strong>
-                            <span>苏州工业园区东方文荟苑三区</span>
+                        <div class="people-one-price" style="width: 100%;float: top">
+                            <span>人均</span>
+                            <i>￥</i>
+                            <span id="people-one-price" th:text="${shop.shopAvgCost}">75</span>
                         </div>
-                        <div style="height: 50%">
+                        <div style="height: 20%;margin-bottom: 5px;margin-top: 5px;float: top">
+                            <strong>地址:</strong>
+                            <span th:text="${shop.shopProvince}">苏州工业园区东方文荟苑三区</span>
+                            <span th:text="${shop.shopCity}">苏州工业园区东方文荟苑三区</span>
+                            <span th:text="${shop.shopArea}">苏州工业园区东方文荟苑三区</span>
+                            <span th:text="${shop.shopStreet}">苏州工业园区东方文荟苑三区</span>
+                        </div>
+                        <div style="height: 20%;float: top">
                             <strong>电话:</strong>
-                            <span>13888888888</span>
+                            <span th:text="${shop.shopTelno}">13888888888</span>
                         </div>
 
                     </div>
@@ -333,54 +246,7 @@
             <!--    热销商品     -->
             <div class="recommend-dish">
                 <ul>
-                    <li>
-                        <div class="recommend-dish-item">
-                            <div class="layui-panel">
-                                <div style="padding: 20px 30px;">
-                                    <div class="dish-item-img">
-                                        <a href="javascript:;">
-                                            <img src="/images/details/dish.jpg" alt="" width="120px" height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="dish-item-name">
-                                        <span>刘家虾仁之苏州分仁</span>
-                                    </div>
-                                    <div class="dish-item-price">
-                                        <i>饭团价:￥</i>
-                                        <span>112</span>
-                                        <div class="dish-item-before">
-                                            <i>原价</i>
-                                            <span><del>168</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="recommend-dish-item">
-                            <div class="layui-panel">
-                                <div style="padding: 20px 30px;">
-                                    <div class="dish-item-img">
-                                        <a href="javascript:;">
-                                            <img src="/images/details/dish.jpg" alt="" width="120px" height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="dish-item-name">
-                                        <span>刘家虾仁之苏州分仁</span>
-                                    </div>
-                                    <div class="dish-item-price">
-                                        <i>饭团价:￥</i>
-                                        <span>112</span>
-                                        <div class="dish-item-before">
-                                            <i>原价</i>
-                                            <span><del>168</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+
                     <li>
                         <div class="recommend-dish-item">
                             <div class="layui-panel">
@@ -432,19 +298,7 @@
         </div>
     </div>
 </div>
-<script src="../layui/layui.js"></script>
-<script src="../js/details/details_product.js"></script>
-<script>
-    layui.use(['carousel', 'form'], function () {
-        var carousel = layui.carousel
-            , form = layui.form;
-
-        var ins3 = carousel.render({
-            elem: '#img-list'
-            , width: '220px'
-            , height: '220px'
-        });
-    })
-</script>
+<script src="layui/layui.js"></script>
+<script src="js/details/details_product.js"></script>
 </body>
 </html>

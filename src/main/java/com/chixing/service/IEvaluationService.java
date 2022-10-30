@@ -1,6 +1,7 @@
 package com.chixing.service;
 
 import com.chixing.entity.Evaluation;
+import com.chixing.entity.vo.EvaluationVo;
 
 import java.util.List;
 
@@ -17,5 +18,12 @@ public interface IEvaluationService{
     int remove(int evaId);
     int update(Evaluation evaluation);
     Evaluation getById(int evaId);
-    List<Evaluation> getByPage(Integer pageNum);
+
+    /**
+     *
+     * @param foodId 美食Id
+     * @return 根据美食Id返回所有该美食评论信息（EvaluationVo）包括 用户头像，用户名，评分，评论时间，以及对应的图片
+     */
+    List<EvaluationVo> getByFoodId(Integer foodId);
 }
+

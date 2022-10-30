@@ -28,7 +28,9 @@
             </div>
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
-                    <li class="layui-nav-item" ><a href="" class="title">登录/注册</a></li>
+                    <li class="layui-nav-item" >
+                        <a href="" class="title" th:text="${cusName}">登录/注册</a>
+                    </li>
                     <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
@@ -110,8 +112,7 @@
                     <ul>
                         <li th:each="shop:${shop.records}">
                             <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="proimg"><img th:src="${shop.shopMainImg}"></a>
-                            <h4><a href="details/details_shop.html" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
-                            <label><i></i><i></i><i></i><i></i><i></i></label>
+                            <h4><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
                             <label th:text="${shop.shopScore}">5</label><label>分</label>
                             <a href="" class="comment">
                                 <span>1234</span>

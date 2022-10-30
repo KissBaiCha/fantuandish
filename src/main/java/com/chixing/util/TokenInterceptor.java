@@ -24,7 +24,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
-        String token = request.getHeader("token");
+        String token = (String) request.getSession().getAttribute("token");
         log.info("拦截器获得的token:"+token);
         if (token!=null){
             if (JwtUtil.verifyToken(token)){

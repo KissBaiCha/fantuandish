@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * @author ZhangJiuJiu
+ */
 @RestController
 @RequestMapping("/coupon")
-public class   CouponController {
+public class  CouponController {
 
     @Autowired
     private ICouponService couponService;

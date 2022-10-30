@@ -10,6 +10,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.chixing.entity.vo.CustomerTokenVO;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
@@ -77,8 +78,9 @@ public class JwtUtil {
         }
         return true;
     }
-    public static String getCusName(String token){
+    private static String getCusName(String token){
         try{
+            log.info("获得用户名方法内的token=" + token);
             DecodedJWT jwt= JWT.decode(token);
             CustomerTokenVO token1 = JSON.to(CustomerTokenVO.class, jwt.getClaim("token").asString());
             return token1.getCusName();
@@ -87,7 +89,7 @@ public class JwtUtil {
             return null;
         }
     }
-    public static Integer getCusId(String token){
+    private static Integer getCusId(String token){
         try{
             DecodedJWT jwt= JWT.decode(token);
             CustomerTokenVO token1 = JSON.to(CustomerTokenVO.class, jwt.getClaim("token").asString());
@@ -96,6 +98,12 @@ public class JwtUtil {
             e.printStackTrace();
             return null;
         }
+    }
+    public static String getCusNameBySession(HttpServletRequest request){
+        return getCusName((String)request.getSession().getAttribute("token"));
+    }
+    public static Integer getCusIdBySession(HttpServletRequest request){
+        return getCusId((String)request.getSession().getAttribute("token"));
     }
 
 

@@ -3,6 +3,7 @@ package com.chixing;
 import com.chixing.commons.R;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
+import com.chixing.service.IEvaluationService;
 import com.chixing.service.IFoodCollectionService;
 import com.chixing.service.IMyOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,11 @@ public class ZhangXuTest {
     IFoodCollectionService foodCollectionService;
     @Autowired
     IMyOrderService myOrderService;
+    @Autowired
+    IEvaluationService evaluationService;
+
     @Test
     public void fun1(){
-        myOrderService.save(1,2,2,true);
-
+        evaluationService.getByFoodId(38);
     }
 }
