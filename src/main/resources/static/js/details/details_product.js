@@ -121,3 +121,6 @@ var buy = {
 };
 var buyJson = bodymovin.loadAnimation(buy);    //启动动画
 bodymovin.setSubframeRendering(false);
+
+
+

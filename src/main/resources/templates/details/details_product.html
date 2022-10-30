@@ -111,7 +111,7 @@
                     <div class="dish-info-area">
                         <!--商品名-->
                         <div class="dish-name">
-                            <span id="dish-name" th:text="${food.foodName}">张家虾仁</span>
+                            <span id="dish-name" th:text="${food.foodName}"></span>
                             <div class="sum-people">
                                 <span class="people-count">1120</span>
                                 <span>人推荐</span>
@@ -120,16 +120,17 @@
                         <!--  商品价格   -->
                         <div class="dish-price">
                             ￥
-                            <span id="dish-price" th:text="${food.foodPrice}">98</span>
+                            <span id="dish-price" th:text="${food.foodPrice}"></span>
                             <span id="text-price">店铺价格:<del>168</del></span>
                         </div>
                         <!--       购买按钮        -->
-                        <div class="layui-btn-container but-btn">
-                            <button style="float: left" type="button" class="layui-btn layui-btn-primary layui-btn-radius mybtn">点此购入
-                            </button>
-                            <div id="buybuybuy"></div>
-                        </div>
-
+                        <form action="order" method="post">
+                            <div class="layui-btn-container but-btn">
+                                <input type="hidden" name="foodId" th:value="${food.foodId}">
+                                <input style="float: left" type="submit" value="点此购入" class="layui-btn layui-btn-primary layui-btn-radius mybtn buy_btn">点此购入
+                                </input>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

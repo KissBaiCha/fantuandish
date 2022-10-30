@@ -19,7 +19,7 @@ import java.util.List;
 public interface IMyOrderService {
     MyOrder getById(String orderId);
     List<MyOrder> getAllByCusId(Integer cusId);
-    boolean save(Integer cusId,Integer myCouponId,Integer foodId,Boolean isSecondKill);
+    String save(Integer cusId,Integer myCouponId,Integer foodId,Boolean isSecondKill);
     boolean update(MyOrder myOrder);
     boolean remove(String orderId);
 

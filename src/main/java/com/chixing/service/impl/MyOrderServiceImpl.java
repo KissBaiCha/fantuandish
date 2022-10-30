@@ -57,7 +57,7 @@ public class MyOrderServiceImpl implements IMyOrderService {
     }
 
     @Override
-    public boolean save(Integer cusId,Integer myCouponId ,Integer foodId, Boolean isSecondKill) {
+    public String save(Integer cusId,Integer myCouponId,Integer foodId, Boolean isSecondKill) {
         Food food = foodMapper.selectById(foodId);
         MyOrder myOrder = new MyOrder();
         String uuId = UUID.randomUUID().toString().replace("-", "");
@@ -73,6 +73,7 @@ public class MyOrderServiceImpl implements IMyOrderService {
             Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
             BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
             myOrder.setCouponPrice(couponPrice);
+            myOrder.setOrderPrice(food.getFoodPrice().subtract(myOrder.getCouponPrice()));
         }
         if(isSecondKill){
             myOrder.setOrderType(1);
@@ -85,9 +86,10 @@ public class MyOrderServiceImpl implements IMyOrderService {
         }else{
             myOrder.setOrderType(0);
             myOrder.setOrderOnePrice(food.getFoodPrice());
-            myOrder.setOrderPrice(food.getFoodPrice().subtract(myOrder.getCouponPrice()));
+            myOrder.setOrderPrice(food.getFoodPrice());
         }
-        return myOrderMapper.insert(myOrder) > 0;
+        myOrderMapper.insert(myOrder);
+        return uuId;
     }
 
     @Override
@@ -99,8 +101,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
     public boolean remove(String orderId) {
         return myOrderMapper.deleteById(orderId) >0;
     }
-
-
 
     @Override
     public Page<MyOrder> getByPage(Integer pageNum) {

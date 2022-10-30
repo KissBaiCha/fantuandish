@@ -46,7 +46,7 @@
             <!--      logo      -->
             <div class="layui-col-xs3 logo-input">
                 <a href="../index.html" title="饭团网" class="logo-img">
-                    <img src="../../images/mylogo.png"  width="200" height="72">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
                 </a>
             </div>
             <!--    搜索    -->
@@ -80,11 +80,11 @@
     <!-- ----------------------------待支付产品----------------------------- -->
     <div class="pay_product">
         <div class="pro_name">
-            <span>项目:和牛畅吃套餐(锅底七选一（可选鸳鸯锅，每桌一个锅底）+季节限定海鲜拼盘八款)</span>
+            <span th:text="${food.foodName}">和牛畅吃套餐(锅底七选一（可选鸳鸯锅，每桌一个锅底）+季节限定海鲜拼盘八款)</span>
         </div>
         <div class="pro_price">
             <span class="yingfu">应付金额￥</span>
-            <span class="price">216</span>
+            <span class="price" th:text="${food.foodPrice}">216</span>
         </div>
     </div>
     <!-- -----------------------------支付宝支付----------------------------------- -->
@@ -101,13 +101,14 @@
                     <div class="fukuan">
                         <div class="fukuan_price">
                             <span>支付￥</span>
-                            <span class="fukuan_pri">216</span>
-                            <input type="submit" value="去付款" class="gopay">
+                            <span class="fukuan_pri" th:text="${food.foodPrice}">216</span>
+                            <form action="" method="post">
+                                <input type="submit" value="去付款" class="gopay">
+                            </form>
                             <a href="root/personal_center/order_wait_pay.html" class="update_order">返回修改订单</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
