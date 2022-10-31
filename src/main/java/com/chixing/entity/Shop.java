@@ -8,9 +8,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * <p>
@@ -39,6 +45,8 @@ public class Shop implements Serializable {
     /**
      * 创建时间
      */
+    @JsonDeserialize(using = LocalDateDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalDateSerializer.class)		// 序列化
     private LocalDate shopCreateTime;
 
     /**
@@ -74,11 +82,15 @@ public class Shop implements Serializable {
     /**
      * 营业时间
      */
+    @JsonDeserialize(using = LocalTimeDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalTimeSerializer.class)		// 序列化
     private LocalTime shopOpenTime;
 
     /**
      * 打烊时间
      */
+    @JsonDeserialize(using = LocalTimeDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalTimeSerializer.class)		// 序列化
     private LocalTime shopCloseTime;
 
     /**
@@ -118,11 +130,15 @@ public class Shop implements Serializable {
     /**
      * 创建时间
      */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalDateTimeSerializer.class)		// 序列化
     private LocalDateTime shopCteateTime;
 
     /**
      * 更新时间
      */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)		// 反序列化
+    @JsonSerialize(using = LocalDateTimeSerializer.class)		// 序列化
     private LocalDateTime shopUpdateTime;
 
     @Override

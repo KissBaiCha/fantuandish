@@ -115,13 +115,13 @@
                             <h4><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
                             <label><i></i><i></i><i></i><i></i><i></i></label>
                             <label th:text="${shop.shopScore}">5</label><label>分</label>
-                            <a href="" class="comment">
+                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="comment">
                                 <span>1234</span>
                                 <span>条评论</span>
                             </a>
-                            <span class="sty"><a href="" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
-                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                            <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
+                            <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
+                            <span class="sty">推荐菜：<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"><span>巧克力蛋糕</span></a></span>
                         </li>
 
 
@@ -130,10 +130,12 @@
                     <!-- 分页 -->
                     <input type="hidden" id="pagenum" th:value="${shop.current}">
                     <input type="hidden" id="total" th:value="${shop.total}">
-                    <div class="paging">
+                    <div class="paging" th:if="${#lists.size(shop.records)} eq 0">
+                        <p>暂无符合条件的店铺</p>
+                    </div>
+                    <div class="paging" th:if="${#lists.size(shop.records)} gt 0">
                         <div id="demo7"></div>
                     </div>
-
 
                 </div>
             </div>

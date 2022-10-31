@@ -190,10 +190,13 @@ body{
 .prolist .paging{
     height: 100px;
     margin-top: 10px;
+    text-align: center;
     background-color: #FFF;
  }
+.prolist .paging p{
+    line-height: 100px;
+}
  .prolist .paging #demo7{
-    margin-left: 25%;
     padding-top: 25px;
  }
  .layui-laypage .layui-laypage-curr .layui-laypage-em{
