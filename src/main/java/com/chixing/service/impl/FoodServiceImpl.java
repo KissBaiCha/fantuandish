@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Food;
 import com.chixing.entity.SecondKill;
+import com.chixing.entity.Shop;
 import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.SecondKillMapper;
 import com.chixing.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +80,9 @@ public class FoodServiceImpl implements IFoodService {
         wrapper.clear();
         wrapper.select("distinct food_type");
         List<Food> foodList = foodMapper.selectList(wrapper);
+//        return foodList.stream()
+//                .map(Food::getFoodType)
+//                .collect(Collectors.toSet());
         return foodList;
     }
 

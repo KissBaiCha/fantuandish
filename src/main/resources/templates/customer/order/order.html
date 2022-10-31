@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="css/customer/order/order.css">
     <link rel="stylesheet" href="css/details/details_header.css">
     <link rel="stylesheet" href="layui/css/layui.css">
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-
+    <script src="js/jquery.js"></script>
     <script>
         $(document).ready(function(){
             $(".coupon").hide();
@@ -58,8 +57,8 @@
 
             <!--      logo      -->
             <div class="layui-col-xs3 logo-input">
-                <a href="../index.html" title="饭团网" class="logo-img">
-                    <img src="../../images/mylogo.png"  width="200" height="72">
+                <a href="shop/shopsift/1" title="饭团网" class="logo-img">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
                 </a>
             </div>
             <!--    搜索    -->
@@ -112,12 +111,12 @@
                 <div class="layui-row pro-msg">
                     <div class="layui-col-xs4">
                         <div class="shop-pic">
-                            <img class="spic" src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/yun.png" alt="">
+                            <img class="spic" th:src="${food.foodMainImg}">
                         </div>
                     </div>
                     <div class="layui-col-xs8">
                         <div class="shop-name">
-                            <a href="">WHERE+哪里·云端下午茶咖啡(东方之门店)</a>
+                            <a href="" th:text="${food.foodName}">猫腻·猫咖·撸猫馆: 猫腻·猫咖·撸猫馆单人餐</a>
                         </div>
                     </div>
                 </div>
@@ -125,9 +124,7 @@
             <div class="layui-col-xs2 ">
                 <div class="pro-btn">
                     <div class="btn">
-                        <!-- <a href="javascript:void(0)" class="count-symbol subtraction">-</a> -->
                         <input type="text" class="count" value="1" readonly>
-                        <!-- <a href="javascript:void(0)" class="count-symbol addBtn">+</a> -->
                     </div>
                 </div>
             </div>
@@ -139,9 +136,10 @@
                 </div>
             </div>
             <div class="layui-col-xs2">
-                <div class="sum-price">
+                <div class="sum-price" >
                     <div class="sum">
-                        <span>￥58</span>
+                        ￥
+                        <span th:text="${food.foodPrice}">58</span>
                     </div>
                 </div>
             </div>
@@ -153,18 +151,10 @@
         <div class="layui-row">
             <div class="layui-col-xs9">
                 <div class="coupon1">
-                    <button class="coupon-btn">使用优惠券 ⇩</button>
+                    <button class="coupon-btn">选择优惠券</button>
                     <div class="layui-row coupon">
                         <div class="coupon-one">
                             <input type="radio" name="coupon" value="新用户8折券" />
-                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
-                        </div>
-                        <div class="coupon-two">
-                            <input type="radio" name="coupon" value="满100减10" />
-                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
-                        </div>
-                        <div class="coupon-three">
-                            <input type="radio" name="coupon" value="新用户9折券" />
                             <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
                         </div>
                     </div>
@@ -172,12 +162,12 @@
             </div>
             <div class="layui-col-xs3 word">
                 <div class="statistic">
-                    <span class="price-tit">总商品金额：</span>
-                    <em class="price" >￥66.00</em>
+                    <span class="price-tit">共计:</span>
+                    <em class="price" th:text="${food.foodPrice}">￥66.00</em>
                 </div>
                 <div class="price-panel">
-                    <span class="m-price">使用优惠券：</span>
-                    <em class="n-price" >-￥50.00</em>
+                    <span class="m-price">优惠:</span>
+                    <em class="n-price" >-￥00.0</em>
                 </div>
                 <div class="price-info">
                     <div class="set-but">
@@ -198,7 +188,10 @@
             </div>
             <div class="layui-col-xs3">
                 <div class="sub-but">
-                    <button  class="but">提交订单</button>
+                    <form action="creatOrder" method="post">
+                        <input type="hidden" name="foodId" class="foodId" th:value="${food.foodId}">
+                        <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单"></input>
+                    </form>
                 </div>
             </div>
         </div>
