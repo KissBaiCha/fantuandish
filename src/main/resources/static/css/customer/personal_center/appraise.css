@@ -2,41 +2,53 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-color: #f8f8f8;
+}
+.form-main{
+    background-color: #fff;
+}
 /*商品订单评价区*/
 .orderpic{
     width:100%;
     height: 200px;
     margin-top: 20px;
-    /* background-color: rgb(132, 236, 29); * /
+    /* /* background-color: rgb(132, 236, 29); * / */
 }
 .orderpic img{/*商品图片*/
     width:95%;
     height: 200px;
 }
+.msg{
+    margin-left: 50px;
+    margin-top: 10px;
+}
 .ordermsg{/*商品信息*/
     width:100%;
     height: 200px;
-    margin-top: 20px;
+    margin-top: 10px;
+
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 0 20px 1px  gray ;
-
+    border: 1px solid rgb(255,107,55);
+    background-color: #fff;
 }
 .name{/*商品名字*/
     width: 300px;
     height: 50px;
-    margin-left: 20px;
+    margin-left: 70px;
     margin-top: 20px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(255,107,55);
 
 }
 .name span{
     font-size: 26px;
-    font-weight: 37px;
+    /*font-weight: 37px;*/
 }
 .score{/*商品评分区*/
     width: 250px;
     height: 30px;
+    margin-left: 50px;
     background-color: #fff;
 }
 .o-cont{/*星星区*/
@@ -63,33 +75,34 @@
     font-weight: bolder;
 }
 .order-aps{/*下单商品名称区*/
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-left: 70px;
+    margin-top: 10px;
 
 }
 .order-aps span{/*下单商品名称区 文字*/
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 25px;
 }
 .order-score{/*商品评分*/
     width: 100%;
-    margin-top: 10px;
+    margin-top: -20px;
     margin-left: 20px;
-    border-bottom: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
 
 }
 .recommend{/*附近推荐区*/
     width: 90%;
     margin-left: 10px;
-    margin-top: -200px;
+    margin-top:10px;
     float: left;
-    box-shadow:  0 0 10px 1px rgb(181, 179, 179);
-
+    border: 1px solid rgb(255,107,55);
+    background-color: #fff;
 }
 .title{/*附近推荐 标题区*/
     width: 240px;
     height: 40px;
-    margin-top:10px;
-    margin-left: 10px;
+    margin-top:20px;
+    margin-left: auto;
 
 }
 .title span{/*附近推荐 标题区 文字*/
@@ -99,7 +112,7 @@
 
 .recom{/*推荐商品区*/
     width:100%;
-    height: 280px;   
+    height: 280px;
     margin-bottom: 20px;
 
 
@@ -115,77 +128,14 @@
 .info{/* 推荐商品 店名*/
     width: 90%;
     float: left;
-
+    margin-left: 10px;
 }
 .info span{/* 推荐商品 店名  文字*/
     font-size: 15px;
     font-weight: bolder;
 }
-
-.UEditor{/* 富文本编辑器*/
-    float: left;
-    width: 75%;
-    margin-top: 50px;
-    /* height: 650px; */
-
+.layui-rate {
+    padding: 10px 5px 10px 0;
+    font-size: 0;
+    margin-left: 10px;
 }
-
-
-  #editor—wrapper {
-    border: 1px solid #ccc;
-    z-index: 100; /* 按需定义 */
-  }
-  #toolbar-container { border-bottom: 1px solid #ccc; }
-  #editor-container { height: 500px; }
-  .editor-content-view {
-    border: 3px solid #ccc;
-    border-radius: 5px;
-    padding: 0 10px;
-    margin-top: 20px;
-    overflow-x: auto;
-  }
-  
-  .editor-content-view p,
-  .editor-content-view li {
-    white-space: pre-wrap; /* 保留空格 */
-  }
-  
-  .editor-content-view blockquote {
-    border-left: 8px solid #d0e5f2;
-    padding: 10px 10px;
-    margin: 10px 0;
-    background-color: #f1f1f1;
-  }
-  
-  .editor-content-view code {
-    font-family: monospace;
-    background-color: #eee;
-    padding: 3px;
-    border-radius: 3px;
-  }
-  .editor-content-view pre>code {
-    display: block;
-    padding: 10px;
-  }
-  
-  .editor-content-view table {
-    border-collapse: collapse;
-  }
-  .editor-content-view td,
-  .editor-content-view th {
-    border: 1px solid #ccc;
-    min-width: 50px;
-    height: 20px;
-  }
-  .editor-content-view th {
-    background-color: #f1f1f1;
-  }
-  
-  .editor-content-view ul,
-  .editor-content-view ol {
-    padding-left: 20px;
-  }
-  
-  .editor-content-view input[type="checkbox"] {
-    margin-right: 5px;
-  }

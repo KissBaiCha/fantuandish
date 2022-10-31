@@ -1,64 +1,63 @@
+layui.use('layedit', function(){
+    var layedit = layui.layedit
+        ,$ = layui.jquery;
+
+    //构建一个默认的编辑器
+    var index = layedit.build('LAY_demo1');
+
+    //编辑器外部操作
+    var active = {
+        content: function(){
+            alert(layedit.getContent(index)); //获取编辑器内容
+        }
+        ,text: function(){
+            alert(layedit.getText(index)); //获取编辑器纯文本内容
+        }
+        ,selection: function(){
+            alert(layedit.getSelection(index));
+        }
+    };
+
+    $('.site-demo-layedit').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
+});
 layui.use(['rate'], function(){
     var rate = layui.rate;
-     //只读
-rate.render({
-elem: '#test8'
-,value: 5
-,readonly: true
-});});
+    //只读
+    rate.render({
+        elem: '#test8'
+        ,value: 5
+        ,readonly: true
+    });});
 
 
-const { createEditor, createToolbar } = window.wangEditor
-
-const editorConfig = {
-    placeholder: 'Type here...',
-    onChange(editor) {
-      const html = editor.getHtml()
-      console.log('editor content', html)
-      // 也可以同步到 <textarea>
-    }
-}
-
-const editor = createEditor({
-    selector: '#editor-container',
-    html: '<p><br></p>',
-    config: editorConfig,
-    mode: 'default', // or 'simple'
-})
-
-const toolbarConfig = {}
-
-const toolbar = createToolbar({
-    editor,
-    selector: '#toolbar-container',
-    config: toolbarConfig,
-    mode: 'default', // or 'simple'
-})
-
-
-layui.use(['rate'], function(){
-    var rate = layui.rate;
-     //只读
-rate.render({
-elem: '#test9'
-,value: 5
-,readonly: true
-});});
 
 layui.use(['rate'], function(){
     var rate = layui.rate;
-     //只读
-rate.render({
-elem: '#test10'
-,value: 5
-,readonly: true
-});});
+    //只读
+    rate.render({
+        elem: '#test9'
+        ,value: 5
+        ,readonly: true
+    });});
 
 layui.use(['rate'], function(){
     var rate = layui.rate;
-     //只读
-rate.render({
-elem: '#test11'
-,value: 5
-,readonly: true
-});});
+    //只读
+    rate.render({
+        elem: '#test10'
+        ,value: 5
+        ,readonly: true
+    });});
+
+layui.use(['rate'], function(){
+    var rate = layui.rate;
+    //只读
+    rate.render({
+        elem: '#test11'
+        ,value: 5
+        ,readonly: true
+    });});
