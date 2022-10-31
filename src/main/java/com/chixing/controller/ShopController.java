@@ -12,11 +12,9 @@ import com.chixing.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 
-// Shop getById(Integer shopId);
-//    int save(Shop shop);
-//    int update(Shop shop);
-//    int remove(Integer shopId);
-// 查 get  增 save  改 update   删 remove
+/**
+ * @author ZhangJiuJiu
+ */
 @RestController
 @Slf4j
 public class ShopController {
@@ -69,7 +67,6 @@ public class ShopController {
                                      @RequestParam(value = "sort",required = false)String sort,
                                   HttpServletRequest request){
         String cusName = JwtUtil.getCusNameBySession(request);
-
         ModelAndView mav = new ModelAndView();
         mav.addObject("shop",shopService.getBySift(pageNum,foodType,foodPrice,sort));
         mav.addObject("skfood",foodService.getSKPro());

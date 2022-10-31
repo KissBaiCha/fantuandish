@@ -15,7 +15,7 @@ $(".login-btn").click(function (){
             console.log("result:" + result.data.token);
             //保存信息到本地，里面都 token
             var token = result.data.token;
-            window.location.href="shop/getIndex/1";
+            window.location.href="shop/shopsift/1";
         },
     })
 })

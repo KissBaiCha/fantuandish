@@ -113,6 +113,7 @@
                         <li th:each="shop:${shop.records}">
                             <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="proimg"><img th:src="${shop.shopMainImg}"></a>
                             <h4><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
+                            <label><i></i><i></i><i></i><i></i><i></i></label>
                             <label th:text="${shop.shopScore}">5</label><label>分</label>
                             <a href="" class="comment">
                                 <span>1234</span>
