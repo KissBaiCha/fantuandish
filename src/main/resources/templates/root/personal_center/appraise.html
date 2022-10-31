@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="http://localhost:8080/fan/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>评价页面</title>
+  <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+  <link rel="stylesheet" href="css/customer/personal_center/appraise.css">
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" href="css/details/details_header.css">
+  <link rel="stylesheet" href="css/details/details_bottom.css">
+
+  <link rel="stylesheet" href="css/mine/myfantuan.css">
+  <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+
+
+</head>
+
+<body>
+<div class="header">
+  <div class="top-nav ">
+    <div class="layui-main top-main layui-row">
+      <div class="layui-col-xs4">
+        <span>&nbsp</span>
+      </div>
+      <div class="layui-col-xs4">
+        <span>&nbsp</span>
+      </div>
+      <div class="layui-col-xs4">
+        <ul class="layui-nav" lay-filter="">
+          <li class="layui-nav-item"><a href="">登录/注册</a></li>
+          <li class="layui-nav-item"><a href="">帮助中心</a></li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">我的饭团</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a href="">订单中心</a></dd>
+              <dd><a href="">我的优惠券</a></dd>
+              <dd><a href="">我的收藏</a></dd>
+            </dl>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="layui-row header-tip">
+
+    <!--      logo      -->
+    <div class="layui-col-xs3 logo-input">
+      <a href="../index.html" title="饭团网" class="logo-img">
+        <img src="images/mylogo.png"  width="200" height="72">
+      </a>
+    </div>
+    <!--    搜索    -->
+    <div class="layui-col-xs6 search-box">
+      <form class="layui-form layui-form-pane" action="">
+        <div class="layui-form-item searchbox-input">
+          <div class="layui-input-block" style="margin-left: 10px">
+            <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                   placeholder="点此进入美食猩球" class="layui-input">
+            <div class="layui-btn-container" style="display: block;float: left">
+              <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="layui-main">
+
+
+  <div class="layui-row ">
+    <!-- 商品订单评价区-->
+    <div class="layui-col-xs3">
+      <div class="orderpic">
+        <!-- 商品图片-->
+        <img src="images/customer/personal_center/orderpic.png" alt="" class="opic" width="250"
+             height="200">
+      </div>
+    </div>
+    <div class="layui-col-xs7 msg">
+      <div class="ordermsg">
+        <div class="name">
+          <span>猫腻·猫咖·撸猫馆</span>
+        </div>
+        <div class="order-aps">
+          <span>猫腻·猫咖·撸猫馆单人餐</span><br>
+          <span> 地址：姑苏区十全街983号号二楼</span><br>
+          <span>电话：19962656673/18151773863</span><br>
+        </div>
+        <div class="order-score"><!--商品评分-->
+          <div class="score clear">
+            <div class="o-cont">
+              <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+              </fieldset>
+              <div id="test8" class="o-star">
+              </div>
+            </div>
+            <span>5分人均￥58</span>
+          </div>
+        </div>
+      </div><!-- 商品信息-->
+    </div>
+
+    <div class="layui-row">
+      <div class="layui-col-xs9 ">
+        <div class="form-main">
+
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+            <legend>评价界面</legend>
+          </fieldset>
+
+          <textarea class="layui-textarea" id="LAY_demo1" style="display: none">
+                    please
+                  </textarea>
+
+          <div class="site-demo-button" style="margin-top: 20px;">
+            <button class="layui-btn site-demo-layedit" data-type="content">获取内容</button>
+            <button class="layui-btn site-demo-layedit" data-type="text">获取文本内容</button>
+            <button class="layui-btn site-demo-layedit" data-type="selection">获取选中内容</button>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="layui-col-xs3">
+        <div class="grid-demo">
+          <div class="recommend">
+            <div class="title">
+              <span>推荐附件商品</span>
+            </div>
+            <ul>
+              <li class="recom"><!--=========== 商品一区  =============-->
+                <div class="recom-pic"><!--商品图片-->
+                  <img src="images/customer/personal_center/bbq.jpeg" alt="">
+                </div>
+                <div class="recom-msg"><!--商品信息-->
+                  <div class="info"><!--商品名称-->
+                    <a href=""><span>韩宫宴炭火烤肉（苏州吴江万宝店）</span>
+                    </a>
+                  </div>
+                  <div class="star-cont"><!--商品评分-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    </fieldset>
+                    <div id="test9" class="star"></div>
+                    <span> 松陵   人均85</span>
+                  </div>
+                </div>
+              </li>
+              <li class="recom"><!--=========== 商品二区 =============-->
+                <div class="recom-pic"><!--商品图片-->
+                  <img src="images/customer/personal_center/bbq02.jpeg" alt="">
+                </div>
+                <div class="recom-msg"><!--商品信息-->
+                  <div class="info"><!--商品名称-->
+                    <a href=""><span>来点烤肉（苏州观前街店）</span>
+                    </a>
+                  </div>
+                  <div class="star-cont"><!--商品评分-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    </fieldset>
+                    <div id="test10" class="star"></div>
+                    <span> 观前街   人均68</span>
+                  </div>
+                </div>
+              </li>
+              <li class="recom"><!--=========== 商品三区 =============-->
+                <div class="recom-pic"><!--商品图片-->
+                  <img src="images/customer/personal_center/bbq03.jpeg" alt="">
+                </div>
+                <div class="recom-msg"><!--商品信息-->
+                  <div class="info"><!--商品名称-->
+                    <a href=""><span>原始煮意·地锅鸡（观前直营店）</span>
+                    </a>
+                  </div>
+                  <div class="star-cont"><!--商品评分-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    </fieldset>
+                    <div id="test11" class="star"></div>
+                    <span> 观前街   人均64</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="layui/layui.js"></script>
+
+    <script src="js/customer/appraise.js"></script>
+  </div>
+</div>
+</body>
+
+</html>

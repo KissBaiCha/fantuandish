@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="http://localhost:8080/fan/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下单页面</title>
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <link rel="stylesheet" href="css/mine/myfantuan.css">
+    <link rel="stylesheet" href="css/details/details_bottom.css">
+    <link rel="stylesheet" href="css/customer/order/order.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".coupon").hide();
+            $(".coupon-btn").click(function(){
+                $(".coupon").toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="layui-main">
+
+    <div class="header">
+        <div class="top-nav ">
+            <div class="layui-main top-main layui-row">
+                <div class="layui-col-xs4">
+                    <span>&nbsp</span>
+                </div>
+                <div class="layui-col-xs4">
+                    <span>&nbsp</span>
+                </div>
+                <div class="layui-col-xs4">
+                    <ul class="layui-nav" lay-filter="">
+                        <li class="layui-nav-item"><a href="">登录/注册</a></li>
+                        <li class="layui-nav-item"><a href="">帮助中心</a></li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">我的饭团</a>
+                            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                                <dd><a href="">订单中心</a></dd>
+                                <dd><a href="">我的优惠券</a></dd>
+                                <dd><a href="">我的收藏</a></dd>
+                            </dl>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row header-tip">
+
+            <!--      logo      -->
+            <div class="layui-col-xs3 logo-input">
+                <a href="../index.html" title="饭团网" class="logo-img">
+                    <img src="../../images/mylogo.png"  width="200" height="72">
+                </a>
+            </div>
+            <!--    搜索    -->
+            <div class="layui-col-xs6 search-box">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item searchbox-input">
+                        <div class="layui-input-block" style="margin-left: 10px">
+                            <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                                   placeholder="点此进入美食猩球" class="layui-input">
+                            <div class="layui-btn-container" style="display: block;float: left">
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--=======  商品名称区  ======-->
+    <div class="product">
+        <div class="layui-row">
+            <div class="layui-col-xs6 pro-row-item">
+                <div class="pro-itemname">
+                    <p>项目</p>
+                </div>
+            </div>
+            <div class="layui-col-xs2 pro-row-price">
+                <div class="pro-pricename">
+                    <p>数量</p>
+                </div>
+            </div>
+            <div class="layui-col-xs2 pro-row-number">
+                <div class="pro-numname">
+                    <p>单价</p>
+                </div>
+            </div>
+            <div class="layui-col-xs2 pro-row-sum">
+                <div class="pro-sumname">
+                    <p>总价</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=======  商品详情区  ======-->
+    <div class="Pro-details">
+        <div class="layui-row">
+            <div class="layui-col-xs6  pro-shop">
+                <div class="layui-row pro-msg">
+                    <div class="layui-col-xs4">
+                        <div class="shop-pic">
+                            <img class="spic" src="../../images/customer/personal_center/orderpic.png" alt="">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs8">
+                        <div class="shop-name">
+                            <a href="">猫腻·猫咖·撸猫馆: 猫腻·猫咖·撸猫馆单人餐</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs2 ">
+                <div class="pro-btn">
+                    <div class="btn">
+                        <!-- <a href="javascript:void(0)" class="count-symbol subtraction">-</a> -->
+                        <input type="text" class="count" value="1" readonly>
+                        <!-- <a href="javascript:void(0)" class="count-symbol addBtn">+</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs2">
+                <div class="number-price">
+                    <div class="num">
+                        <span>1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs2">
+                <div class="sum-price">
+                    <div class="sum">
+                        <span>￥58</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--=======  结算区  ======-->
+    <div class="settlement">
+        <div class="layui-row">
+            <div class="layui-col-xs9">
+                <div class="coupon1">
+                    <button class="coupon-btn">使用优惠券 ⇩</button>
+                    <div class="layui-row coupon">
+                        <div class="coupon-one">
+                            <input type="radio" name="coupon" value="新用户8折券" />
+                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
+                        </div>
+                        <div class="coupon-two">
+                            <input type="radio" name="coupon" value="满100减10" />
+                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
+                        </div>
+                        <div class="coupon-three">
+                            <input type="radio" name="coupon" value="新用户9折券" />
+                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs3 word">
+                <div class="statistic">
+                    <span class="price-tit">总商品金额：</span>
+                    <em class="price" >￥66.00</em>
+                </div>
+                <div class="price-panel">
+                    <span class="m-price">使用优惠券：</span>
+                    <em class="n-price" >-￥50.00</em>
+                </div>
+                <div class="price-info">
+                    <div class="set-but">
+                        <span>应付金额：</span>
+                    </div>
+                    <div class="but-m">
+                        <span>￥58</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=======  提交订单区  ======-->
+    <div class="Submit-order">
+        <div class="layui-row">
+            <div class="layui-col-xs9">
+                <div class="grid-demo grid-demo-bg1"></div>
+            </div>
+            <div class="layui-col-xs3">
+                <div class="sub-but">
+                    <button  class="but">提交订单</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="layui/layui.js"></script>
+    <script src="js/customer/order/order.js"></script>
+</body>
+
+</html>
