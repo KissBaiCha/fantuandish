@@ -21,6 +21,7 @@
 
 .orders-container .layui-nav .layui-nav-item a {
     color: black !important;
+
 }
 
 .orders-container .layui-nav{
@@ -42,6 +43,7 @@
 
 .layui-nav-item .layui-nav-itemed .title{
     color: black !important;
+
 }
 .layui-nav .layui-nav-item a{
     color: rgb(197, 154, 154);
@@ -64,10 +66,13 @@
 .layui-nav .layui-nav-item {
     position: relative;
     display: inline-block;
-    *display: inline;
-    *zoom: 1;
     vertical-align: middle;
     line-height: 60px;
+}
+
+.layui-nav .layui-nav-item a{
+    color:#393d49 !important;
+
 }
 
 .layui-nav * {

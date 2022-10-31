@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="layui/css/layui.css">
 
 </head>
-<body> <!-- ----------------头部------------------------- -->
+<body>
+<!-- ----------------头部------------------------- -->
 <div class="header">
     <div class="top-nav ">
         <div class="layui-main top-main layui-row">
@@ -29,13 +30,13 @@
             </div>
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
-                    <li class="layui-nav-item" ><a href="user/login.html" class="title">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="" class="title">登录/注册</a></li>
                     <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                            <dd><a href="root/personal_center/allorder.html">订单中心</a></dd>
-                            <dd><a href="root/personal_center/all_quan.html">我的优惠券</a></dd>
+                            <dd><a href="">订单中心</a></dd>
+                            <dd><a href="">我的优惠券</a></dd>
                             <dd><a href="">我的收藏</a></dd>
                         </dl>
                     </li>
@@ -48,7 +49,7 @@
 
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="index.html" title="饭团网" class="logo-img">
+            <a href="../index.html" title="饭团网" class="logo-img">
                 <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
             </a>
         </div>
@@ -117,14 +118,14 @@
             <div class="right">
 
                 <div class="money">
-                    <span class="youhui_money">88</span>
+                    <span class="youhui_money" th:text="${coupon.couponPrice}">88</span>
                     <span class="unit">元</span>
                 </div>
 
 
                 <div class="condition">
                     <span class="text">全店满</span>
-                    <span class="manjian_monry">299</span>
+                    <span class="manjian_monry" th:text="${coupon.couponCondition}">299</span>
                     <span class="text">使用</span>
                 </div>
                 <div class="right-wave"></div>
@@ -148,14 +149,14 @@
             <div class="right">
 
                 <div class="money">
-                    <span class="youhui_money">88</span>
+                    <span class="youhui_money" th:text="${coupon.couponPrice}">88</span>
                     <span class="unit">元</span>
                 </div>
 
 
                 <div class="condition">
                     <span class="text">全店满</span>
-                    <span class="manjian_monry">299</span>
+                    <span class="manjian_monry" th:text="${coupon.couponCondition}">299</span>
                     <span class="text">使用</span>
                 </div>
                 <div class="right-wave"></div>
