@@ -39,6 +39,7 @@ public class ShopController {
         mav.addObject("skpros",foodService.getSKProById(shopId));
         mav.addObject("foods",foodService.getShopProByShopId(shopId));
         mav.addObject("sellfoods",foodService.getShopProByScore(shopId));
+        mav.addObject("shopimgs",shopImgService.getShopSrc(shopId));
         mav.addObject("cusName",cusName);
         mav.setViewName("details/details_shop");
         return mav;
