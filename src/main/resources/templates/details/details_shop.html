@@ -92,11 +92,13 @@
               </div>
         </div>
         <!--                     套餐                         -->
-        <div class="set-meal">
+        <div class="set-meal" th:if="${not #maps.isEmpty(skpros)}">
             <h1>优惠促销</h1>
             <div class="set-meal-list">
                 <ul>
-<!--            <p th:text="${#maps.size()}"></p>-->
+<!--                    <div th:if="${not #maps.isEmpty(skpros)}">-->
+<!--                        <p th:text="${#maps.size(skpros)}"></p>-->
+<!--                    </div>-->
                     <li th:each="skpro:${skpros}">
                         <a href="">
                             <div class="tuan">抢</div>
@@ -116,7 +118,7 @@
             <ul>
                 <h1>推荐菜品</h1>
                 <li th:each="sellfood:${sellfoods}">
-                    <a href="">
+                    <a th:href="'http://localhost:8080/fan/shop/'+${sellfood.shopId}+'/'+ ${sellfood.foodId}">
                         <img th:src="${sellfood.foodMainImg}" >
                         <p th:text="${sellfood.foodName}">清蒸白鱼</p>
                         <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
