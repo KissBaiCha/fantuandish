@@ -192,10 +192,10 @@ body{
 }
 .dishesli-recommend li{
     width: 90%;
-    height: 120px;
+    height: 110px;
     /* background-color: #a66cfd; */
     border-bottom: 1px solid lightgray;
-    margin: 0 0 10px 5%;
+    margin: 0 0 15px 5%;
     padding-bottom: 10px;
 }
 .dishesli-recommend li img{

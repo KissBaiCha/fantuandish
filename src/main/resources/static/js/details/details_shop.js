@@ -15,7 +15,7 @@ document.querySelector(".collect").onclick=function(){
         document.querySelector(".collect-info").innerText = "已收藏";
     }
     if(onclicktime % 2 == 1){
-        document.querySelector(".collect").firstChild.style.backgroundImage = "url(images/details_shop/2022-10-20/0c33e04baf2d42a88d794b423fa6fab5shop-collect-before.svg)";
+        document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/0c33e04baf2d42a88d794b423fa6fab5shop-collect-before.svg)";
         document.querySelector(".collect-info").innerText = "收藏";
     }
     onclicktime++;
