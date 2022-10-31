@@ -45,7 +45,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
     @Override
     public MyOrder getById(String orderId) {
         MyOrder myOrder = myOrderMapper.selectById(orderId);
-        System.out.println("myOrder:" + myOrder);
         return myOrder;
     }
 
@@ -106,5 +105,11 @@ public class MyOrderServiceImpl implements IMyOrderService {
     public Page<MyOrder> getByPage(Integer pageNum) {
         Page<MyOrder> page = new Page<>(1,3);
         return myOrderMapper.selectPage(page,null);
+    }
+
+    @Override
+    public LocalDateTime getOrderDateTime(String orderId) {
+        MyOrder myOrder = myOrderMapper.selectById(orderId);
+        return myOrder.getOrderCreateTime();
     }
 }
