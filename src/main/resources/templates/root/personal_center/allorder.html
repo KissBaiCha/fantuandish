@@ -110,17 +110,17 @@
                         </a>
                     </div>
                     <div  class="product_msg">
-                        <span class="product_title">和牛畅吃套餐</span>
-                        <span class="text_time">下单时间:</span>
+                        <span class="product_title" th:text="${food.foodName}">和牛畅吃套餐</span>
+                        <span class="text_time" th:text="${myorder.orderCreateTime}">下单时间:</span>
                         <span class="time">2022-09-09 12:22</span>
-                        <span class="text_number">数量:</span>
+                        <span class="text_number" >数量:</span>
                         <span class="number">1</span>
                     </div>
 
 
                     <div class="sum_price">
                         <span class="text_price">总价:￥</span>
-                        <span class="price">216</span>
+                        <span class="price" th:text="${myorder.orderPrice}">216</span>
                     </div>
 
                     <div class="zhuangtai">
