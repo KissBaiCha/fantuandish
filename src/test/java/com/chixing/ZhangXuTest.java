@@ -5,6 +5,7 @@ import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
 import com.chixing.service.IEvaluationService;
 import com.chixing.service.IFoodCollectionService;
+import com.chixing.service.IMyCouponService;
 import com.chixing.service.IMyOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,11 @@ public class ZhangXuTest {
     IMyOrderService myOrderService;
     @Autowired
     IEvaluationService evaluationService;
+    @Autowired
+    IMyCouponService myCouponService;
 
     @Test
     public void fun1(){
-        evaluationService.getByFoodId(38);
+
     }
 }

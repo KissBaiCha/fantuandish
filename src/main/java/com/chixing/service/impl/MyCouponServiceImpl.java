@@ -2,13 +2,16 @@ package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chixing.entity.Coupon;
 import com.chixing.entity.MyCoupon;
+import com.chixing.mapper.CouponMapper;
 import com.chixing.mapper.MyCouponMapper;
 import com.chixing.service.IMyCouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -23,24 +26,21 @@ public class MyCouponServiceImpl implements IMyCouponService {
 
     @Autowired
     private MyCouponMapper myCouponMapper;
+    @Autowired
+    private CouponMapper couponMapper;
 
     @Override
-    public int save(MyCoupon myCoupon) {
+    public Integer save(MyCoupon myCoupon) {
         return myCouponMapper.insert(myCoupon);
     }
 
     @Override
-    public int remove(int myCouponId) {
-        return myCouponMapper.deleteById(myCouponId);
-    }
-
-    @Override
-    public int update(MyCoupon myCoupon) {
+    public Integer update(MyCoupon myCoupon) {
         return myCouponMapper.updateById(myCoupon);
     }
 
     @Override
-    public MyCoupon getById(int myCouponId) {
+    public MyCoupon getById(Integer myCouponId) {
         return myCouponMapper.selectById(myCouponId);
     }
 
@@ -51,9 +51,35 @@ public class MyCouponServiceImpl implements IMyCouponService {
     }
 
     @Override
-    public List<MyCoupon> getMyCoupon(int customerId) {
+    public List<MyCoupon> getMyCouponByShopId(Integer customerId,Integer shopId) {
+        //查询出当前店铺发布的优惠券
+        QueryWrapper<Coupon> couponQueryWrapper = new QueryWrapper<>();
+        couponQueryWrapper.eq("shop_id",shopId);
+        List<Coupon> coupons = couponMapper.selectList(couponQueryWrapper);
+        List<Integer> couponIdList = coupons.stream().map(Coupon::getCouponId).collect(Collectors.toList());
+        //查询用户所有优惠券
         QueryWrapper<MyCoupon> wrapper = new QueryWrapper<>();
         wrapper.eq("customer_id",customerId);
+        //添加查询条件: 未使用的优惠券
+        wrapper.eq("my_coupon_status",1);
+        //添加查询条件: 属于当前店铺的优惠券
+        wrapper.in("coupon_id",couponIdList);
+        return myCouponMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<MyCoupon> getAvailableMyCoupon(Integer cusId) {
+        QueryWrapper<MyCoupon> wrapper = new QueryWrapper<>();
+        wrapper.eq("customer_id",cusId);
+        wrapper.eq("my_coupon_status",1);
+        return myCouponMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<MyCoupon> getNotAvailableMyCoupon(Integer cusId) {
+        QueryWrapper<MyCoupon> wrapper = new QueryWrapper<>();
+        wrapper.eq("customer_id",cusId);
+        wrapper.eq("my_coupon_status",0);
         return myCouponMapper.selectList(wrapper);
     }
 }

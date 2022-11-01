@@ -1,43 +1,40 @@
-
-layui.use('dropdown', function(){
+layui.use(['dropdown', 'util', 'layer', 'table'], function () {
     var dropdown = layui.dropdown
+        , util = layui.util
+        , layer = layui.layer
+        , table = layui.table
+        , $ = layui.jquery;
+    //初演示
     dropdown.render({
-        elem: '#demo1' //可绑定在任意元素中，此处以上述按钮为例
-        ,data: [{
-            title: 'menu item 1'
-            ,id: 100
-            ,href: '#'
-        },{
-            title: 'menu item 2'
-            ,id: 101
-            ,href: 'https://' //开启超链接
-            ,target: '_blank' //新窗口方式打开
-        },{type: '-'},{
-            title: 'menu item 3'
-            ,id: 102,
-            title: 'menu item 4'
-            ,id: 108
-        },{
-            title: 'menu item 5'
-            ,id: 109
-            ,
-            title: 'menu item 6'
-            ,id: 6
-            ,type: 'group'
-            ,isSpreadItem: false
-            ,child: [{
-                title: 'menu item 6-1'
-                ,id: 61
-            },{
-                title: 'menu item 6-2'
-                ,id: 62
-            }]
+        elem: '.couponList',
+        data: [{
+            title: 'menu item11'
+            , id: 100
+        }, {
+            title: 'menu item22'
+            , id: 101
+        }, {
+            title: 'menu item33'
+            , id: 102
         }]
-        ,id: 'demo1'
-        //菜单被点击的事件
-        ,click: function(obj){
-            console.log(obj);
-            layer.msg('回调返回的参数已显示再控制台');
+        , click: function (obj) {
+            layer.tips('点击了：' + obj.title, this.elem, {tips: [1, '#ff6b37']})
         }
     });
-});
+})
+
+$(".couponList").click(function (){
+    layer.tab({
+        area: ['600px', '300px'],
+        tab: [{
+            title: '可用优惠券',
+            content: '内容1'
+        }, {
+            title: 'TAB2',
+            content: '内容2'
+        }, {
+            title: 'TAB3',
+            content: '内容3'
+        }]
+    });
+})

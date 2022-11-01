@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2022/9/23 18:21
  */
 public interface IAliPayService {
-//    String goAliPay(String orderId);
-//
-//    ModelAndView alipayReturnNotice(HttpServletRequest request, HttpServletRequest response);
-//
-//    String alipayNotifyNotice(HttpServletRequest request, HttpServletRequest response);
+    String goAliPay(String orderId);
+
+    ModelAndView alipayReturnNotice(HttpServletRequest request, HttpServletRequest response);
+
+    String alipayNotifyNotice(HttpServletRequest request, HttpServletRequest response);
 }

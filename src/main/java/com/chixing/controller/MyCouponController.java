@@ -49,7 +49,7 @@ public class MyCouponController {
     }
 
     @GetMapping("/getMyCoupon/{id}")
-    public List<MyCoupon> getMyCoupon(@PathVariable("id")int customerId){
-        return myCouponService.getMyCoupon(customerId);
+    public List<MyCoupon> getMyCoupon(@PathVariable("id") Integer customerId,Integer shopId){
+        return null;
     }
 }

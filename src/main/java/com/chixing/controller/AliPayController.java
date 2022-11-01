@@ -18,25 +18,25 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class AliPayController {
-//    private IAliPayService aliPayService;
-//    @Autowired
-//    public void setAliPayService(IAliPayService aliPayService) {
-//        this.aliPayService = aliPayService;
-//    }
-//
-//    @PostMapping("alipay/goAlipay")
-//    @ResponseBody
-//    public String goAliPay(@RequestParam("orderId") String orderId){
-//        System.err.println(orderId);
-//        return aliPayService.goAliPay(orderId);
-//    }
-//    @GetMapping("alipayReturnNotice")
-//    public ModelAndView alipayReturnNotice(HttpServletRequest request, HttpServletRequest response){
-//        return aliPayService.alipayReturnNotice(request,response);
-//    }
-//    @PostMapping("alipayNotifyNotice")
-//    @ResponseBody
-//    public String alipayNotifyNotice(HttpServletRequest request, HttpServletRequest response){
-//        return aliPayService.alipayNotifyNotice(request,response);
-//    }
+    private IAliPayService aliPayService;
+    @Autowired
+    public void setAliPayService(IAliPayService aliPayService) {
+        this.aliPayService = aliPayService;
+    }
+
+    @PostMapping("alipay/goAlipay")
+    @ResponseBody
+    public String goAliPay(@RequestParam("orderNum") String orderNum){
+        System.err.println(orderNum);
+        return aliPayService.goAliPay(orderNum);
+    }
+    @GetMapping("alipayReturnNotice")
+    public ModelAndView alipayReturnNotice(HttpServletRequest request, HttpServletRequest response){
+        return aliPayService.alipayReturnNotice(request,response);
+    }
+    @PostMapping("alipayNotifyNotice")
+    @ResponseBody
+    public String alipayNotifyNotice(HttpServletRequest request, HttpServletRequest response){
+        return aliPayService.alipayNotifyNotice(request,response);
+    }
 }

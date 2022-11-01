@@ -13,10 +13,29 @@ import java.util.List;
  * @since 2022-09-30
  */
 public interface IMyCouponService  {
-    int save(MyCoupon myCoupon);
-    int remove(int myCouponId);
-    int update(MyCoupon myCoupon);
-    MyCoupon getById(int myCouponId);
+    Integer save(MyCoupon myCoupon);
+    Integer update(MyCoupon myCoupon);
+    MyCoupon getById(Integer myCouponId);
     List<MyCoupon> getByPage(Integer pageNum);
-    List<MyCoupon> getMyCoupon(int customerId);
+    /**
+     * 查询用户当前店铺可使用优惠券
+     * @param cusId 用户Id
+     * @param shopId 店铺Id
+     * @return List<MyCoupon>为当前店铺可使用优惠券
+     */
+    List<MyCoupon> getMyCouponByShopId(Integer cusId,Integer shopId);
+
+    /**
+     * 根据用户Id查询所有可用优惠券
+     * @param cusId 用户Id
+     * @return 当前用户所有可用优惠券
+     */
+    List<MyCoupon> getAvailableMyCoupon(Integer cusId);
+
+    /**
+     * 根据用户Id查询所有过期(失效)优惠券
+     * @param cusId 用户Id
+     * @return 当前用户所有过期(失效)优惠券
+     */
+    List<MyCoupon> getNotAvailableMyCoupon(Integer cusId);
 }

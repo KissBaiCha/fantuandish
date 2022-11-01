@@ -19,7 +19,7 @@ public class ImgController {
     }
     @ResponseBody
     @PostMapping("upload")
-    public String sendFile( MultipartFile myfile){
+    public String sendFile(MultipartFile myfile){
         // images/log  ---- user ----- customer ------ food ---- shop ----
         //  images/filter_page  筛选页Img
         //  images/details_shop 店铺详情页Img

@@ -99,6 +99,7 @@ public class MyOrderController {
             if(myOrder.getOrderStatus() == 1){
                 myOrder.setOrderStatus(0);
                 myOrder.setOrderUpdateTime(LocalDateTime.now());
+                myOrderService.update(myOrder);
             }
             //是否批量签收
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
