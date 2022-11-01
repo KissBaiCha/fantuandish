@@ -25,11 +25,6 @@ public class FoodController {
         this.shopService = shopService;
         this.evaluationService = evaluationService;
     }
-//查 get  增 save 改update 删 remove
-    //int save(Food food);
-//     int update(Food food);
-//     int delete(Integer foodId);
-
     @GetMapping("/shop/{shopId}/{foodId}")
     private ModelAndView getById(@PathVariable("foodId")Integer foodId,@PathVariable("shopId") Integer shopId){
         ModelAndView modelAndView = new ModelAndView();

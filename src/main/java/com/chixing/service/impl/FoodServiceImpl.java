@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 @Service
 public class FoodServiceImpl implements IFoodService {
     @Autowired
-    private FoodMapper foodMapper;//持久层依赖导入
+    private FoodMapper foodMapper;
     @Autowired
-    private SecondKillMapper secondKillMapper;//持久层依赖导入
+    private SecondKillMapper secondKillMapper;
 
     private QueryWrapper<Food> wrapper = new QueryWrapper<>();
 

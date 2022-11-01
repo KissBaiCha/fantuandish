@@ -162,11 +162,14 @@
                                 <div class="layui-col-xs11 comment-details">
                                     <div class="layui-card">
                                         <div class="layui-card-header" style="background-color: #f4f4f4">
-                                            <div class="grade-tip"></div>
+                                            <strong class="score-text">评分:</strong>
+                                            <div class="score-item">
+                                                <div class="score" th:text="${e.score}"></div>
+                                            </div>
+                                            <strong class="date-text">评论日期:</strong>
+                                            <div class="date" th:text="${e.createDate}"></div>
                                         </div>
                                         <div th:text="${e.evaContent}" class="layui-card-body comment-details-text">
-                                            我靠这是什么东西我这辈子没吃过这么好吃的虾<br>
-                                            快要给我吃瞎了
                                             <!--评价图片-->
                                             <div class="shop-pictures">
                                                 <ul>
