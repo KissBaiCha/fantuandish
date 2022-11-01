@@ -25,12 +25,12 @@ public class FoodController {
         this.shopService = shopService;
         this.evaluationService = evaluationService;
     }
-    @GetMapping("/shop/{shopId}/{foodId}")
-    private ModelAndView getById(@PathVariable("foodId")Integer foodId,@PathVariable("shopId") Integer shopId){
+    @GetMapping("/shop/{shopId}/{foodId}/{pageNum}")
+    private ModelAndView getById(@PathVariable("foodId")Integer foodId,@PathVariable("shopId") Integer shopId,@PathVariable("pageNum") Integer pageNum){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",foodService.getById(foodId));
         modelAndView.addObject("shop",shopService.getById(shopId));
-        modelAndView.addObject("evaList",evaluationService.getByFoodId(foodId));
+        modelAndView.addObject("evaMap",evaluationService.getByFoodId(foodId,pageNum));
         modelAndView.setViewName("details/details_product");
         return modelAndView;
     }

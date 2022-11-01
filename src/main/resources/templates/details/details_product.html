@@ -108,6 +108,7 @@
                         <!--商品名-->
                         <div class="dish-name">
                             <span id="dish-name" th:text="${food.foodName}"></span>
+                            <input type="hidden" class="shop-score" th:value="${shop.shopScore}">
                             <div class="sum-people">
                                 <span class="people-count">1120</span>
                                 <span>人推荐</span>
@@ -148,8 +149,10 @@
                 </div>
                 <!--       评价list     -->
                 <div class="dish-comment-list">
+                    <input type="hidden" class="total" th:value="${evaMap.total}">
+                    <input type="hidden" class="curr" th:value="${evaMap.curr}">
                     <ul>
-                        <li th:each="e: ${evaList}" class="comment" >
+                        <li th:each="e: ${evaMap.evaluationVoList}" class="comment" >
                             <div class="layui-row ">
                                 <!--      用户容器       -->
                                 <div class="layui-col-xs1 user-tip">
@@ -199,7 +202,7 @@
                         &nbsp
                     </div>
                     <div class="layui-col-xs8">
-                        <div id="page"></div>
+                        <div id="pages"></div>
                     </div>
                     <div class="layui-col-xs1">
                         &nbsp
