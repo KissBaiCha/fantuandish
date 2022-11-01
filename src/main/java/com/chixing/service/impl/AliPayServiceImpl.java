@@ -43,15 +43,15 @@ public class AliPayServiceImpl implements IAliPayService {
         MyOrder myOrder = myOrderMapper.selectById(orderId);
         String orderAmount = myOrder.getOrderPrice().toString();
         Food food = foodMapper.selectById(myOrder.getFoodId());
-//        Product product = productMapper.selectById(orders.getProductId());
-//        String orderAmount = orders.getOrderAmount();
-//        System.out.println(orderAmount);
         String name = food.getFoodName();
+        //获得初始化的AlipayClient
         AlipayClient alipayClient =  new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id,
-                AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);  //获得初始化的AlipayClient
-        AlipayTradePagePayRequest alipayRequest =  new  AlipayTradePagePayRequest(); //创建API对应的request
+                AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+        //创建API对应的request
+        AlipayTradePagePayRequest alipayRequest =  new  AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl( "http://localhost:8080/fan/alipayReturnNotice" );
-        alipayRequest.setNotifyUrl( "" ); //在公共参数中设置回跳和通知地址
+        //在公共参数中设置回跳和通知地址
+        alipayRequest.setNotifyUrl( "" );
 
         String timeout_express = "1c";
 
@@ -102,7 +102,6 @@ public class AliPayServiceImpl implements IAliPayService {
         UpdateWrapper<MyOrder> myOrderUpdateWrapper = new UpdateWrapper<>();
         myOrderUpdateWrapper.eq("order_id",out_trade_no);
         myOrderMapper.update(order,myOrderUpdateWrapper);
-
         String foodName = food.getFoodName();
         modelAndView.addObject("productName",foodName);
         modelAndView.addObject("trade_no",trade_no);
