@@ -25,5 +25,7 @@ public interface IEvaluationService{
      * @return 根据美食Id返回所有该美食评论信息（EvaluationVo）包括 用户头像，用户名，评分，评论时间，以及对应的图片
      */
     List<EvaluationVo> getByFoodId(Integer foodId);
+
+
 }
 

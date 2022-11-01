@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class EvaluationServiceImpl  implements IEvaluationService {
 
     @Override
     public int save(Evaluation evaluation) {
+        evaluation.setPraiseNum(Long.valueOf(0));
+        evaluation.setEvaDateTime(LocalDateTime.now());
+        evaluation.setEvaCreateTime(LocalDateTime.now());
         return evaluationMapper.insert(evaluation);
     }
 
