@@ -68,6 +68,11 @@ public class AliOssUtil {
         return null;
     }
 
+    /**
+     * 此方法是将前端文件MultipartFile 对象转换为 File对象的方法
+     * @param multipartFile 前端文件对象
+     * @return File对象
+     */
     private static File transferToFile(MultipartFile multipartFile)  {
         String originalFilename = multipartFile.getOriginalFilename();
         String prefix = originalFilename.split("\\.")[0];

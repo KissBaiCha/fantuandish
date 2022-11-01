@@ -25,11 +25,7 @@ public class MyCouponController {
         return myCoupon.toString();
     }
 
-    @DeleteMapping("/remove/{id}")
-    public String remove(@PathVariable("id")int myCouponId){
-        int row = myCouponService.remove(myCouponId);
-        return "移除我的优惠券 " + myCouponId;
-    }
+
 
     @PutMapping("/update")
     public String update(MyCoupon myCoupon){
@@ -49,7 +45,7 @@ public class MyCouponController {
     }
 
     @GetMapping("/getMyCoupon/{id}")
-    public List<MyCoupon> getMyCoupon(@PathVariable("id")int customerId){
-        return myCouponService.getMyCoupon(customerId);
+    public List<MyCoupon> getMyCoupon(@PathVariable("id") Integer customerId,Integer shopId){
+        return null;
     }
 }

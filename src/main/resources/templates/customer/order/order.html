@@ -8,20 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下单页面</title>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="css/mine/myfantuan.css">
     <link rel="stylesheet" href="css/details/details_bottom.css">
     <link rel="stylesheet" href="css/customer/order/order.css">
     <link rel="stylesheet" href="css/details/details_header.css">
-    <link rel="stylesheet" href="layui/css/layui.css">
     <script src="js/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".coupon").hide();
-            $(".coupon-btn").click(function(){
-                $(".coupon").toggle();
-            });
-        });
-    </script>
+    <script src="layer/layer.js"></script>
 </head>
 
 <body>
@@ -54,7 +47,6 @@
             </div>
         </div>
         <div class="layui-row header-tip">
-
             <!--      logo      -->
             <div class="layui-col-xs3 logo-input">
                 <a href="shop/shopsift/1" title="饭团网" class="logo-img">
@@ -77,8 +69,6 @@
             </div>
         </div>
     </div>
-
-
     <!--=======  商品名称区  ======-->
     <div class="product">
         <div class="layui-row">
@@ -150,14 +140,11 @@
     <div class="settlement">
         <div class="layui-row">
             <div class="layui-col-xs9">
-                <div class="coupon1">
-                    <button class="coupon-btn">选择优惠券</button>
-                    <div class="layui-row coupon">
-                        <div class="coupon-one">
-                            <input type="radio" name="coupon" value="新用户8折券" />
-                            <span>新用户8折券</span><span>汉堡店的XXXXXX用户体验券</span>
-                        </div>
-                    </div>
+                <div class="layui-btn-container">
+                    <button class="layui-btn couponList" style="background: #ff6b37">
+                        选择优惠券
+                        <i class="layui-icon layui-icon-down layui-font-12"></i>
+                    </button>
                 </div>
             </div>
             <div class="layui-col-xs3 word">
