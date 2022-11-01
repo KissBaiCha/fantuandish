@@ -25,6 +25,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static com.chixing.config.AlipayConfig.return_url;
+
 /**
  * @author Xu Zhang
  * @version 1.0
@@ -93,7 +95,7 @@ public class AliPayServiceImpl implements IAliPayService {
         System.out.println("return trade_no:" + trade_no);
         System.out.println("return total_amount:" + total_amount);
         // 回调页面
-        modelAndView.setViewName("");
+        modelAndView.setViewName(return_url);
 
         MyOrder order = myOrderMapper.selectById(out_trade_no);
         Food food = foodMapper.selectById(order.getFoodId());

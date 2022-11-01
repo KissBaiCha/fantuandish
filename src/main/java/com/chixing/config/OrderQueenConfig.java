@@ -30,24 +30,20 @@ public class OrderQueenConfig {
         arguments.put("x-message-ttl",60000);
         return new Queue("order-delay-queue",true,false,false,arguments);
     }
-
     @Bean
     public Queue orderReleaseOrderQueue() {
         return new Queue("order-release-queue",true,false,false);
     }
-
     @Bean
     public Exchange orderExchange() {
         return new TopicExchange("order-exchange",true,false);
     }
-
     @Bean
     public Binding orderCreate() {
         //String destination, Binding.DestinationType destinationType, String exchange, String routingKey, @Nullable Map<String, Object> arguments
         //目的地、目的地类型、交换机、路由键
         return new Binding("order-delay-queue",Binding.DestinationType.QUEUE,"order-exchange","order-create",null);
     }
-
     @Bean
     public Binding orderRelease() {
         return new Binding("order-release-queue", Binding.DestinationType.QUEUE,"order-exchange","order-release",null);
