@@ -20,6 +20,17 @@ document.querySelector(".collect").onclick=function(){
     }
     onclicktime++;
 }
+//评分
+var score = document.querySelector(".score-num").innerText;
+for (var i=1;i<=5;i++) {
+    if(score >= i*2) {
+        document.querySelector(".score-img").children[i-1].style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)";
+    } else if( score > (i-1)*2 && score < i*2 ) {
+        document.querySelector(".score-img").children[i-1].style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)";
+    } else {
+        document.querySelector(".score-img").children[i-1].style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)";
+    }
+}
 // 店铺轮播图
 layui.use(['carousel', 'form'], function () {
     var carousel = layui.carousel

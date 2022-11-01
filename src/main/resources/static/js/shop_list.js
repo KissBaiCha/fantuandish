@@ -196,3 +196,4 @@ function download_method(url){
         // })
     window.location.href=url;
 }
+
