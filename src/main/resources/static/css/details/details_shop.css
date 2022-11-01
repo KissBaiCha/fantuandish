@@ -67,7 +67,6 @@ body{
     display: inline-block;
     height: 14px;
     width: 16px;
-    background-image: url(http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/fff64c4a874649699bcbdd984cb9fcaashop-wellreceived-icon.svg?Expires=1666631527&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=y1Up9JxuKUyMTaW85C4SUo8XD5w%3D);
     background-repeat: no-repeat;
 }
 .shop-info .score label{
@@ -289,10 +288,10 @@ body{
 }
 .map{
     position: fixed;
-    width: 800px; 
+    width: 800px;
     height: 450px;
-    top: 100px; 
-    left: 300px; 
+    top: 100px;
+    left: 300px;
     display: none;
     background-color: #FFF;
     z-index: 3;

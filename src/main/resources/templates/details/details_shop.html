@@ -92,7 +92,7 @@
               </div>
         </div>
         <!--                     套餐                         -->
-        <div class="set-meal">
+        <div class="set-meal"  th:if="${not #maps.isEmpty(skpros)}">>
             <h1>优惠促销</h1>
             <div class="set-meal-list">
                 <ul>
@@ -116,7 +116,7 @@
             <ul>
                 <h1>推荐菜品</h1>
                 <li th:each="sellfood:${sellfoods}">
-                    <a href="">
+                    <a th:href="'http://localhost:8080/fan/shop/'+${sellfood.shopId}+'/'+ ${sellfood.foodId}">
                         <img th:src="${sellfood.foodMainImg}" >
                         <p th:text="${sellfood.foodName}">清蒸白鱼</p>
                         <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="layui-tab-item">
                         <div class="brand-story">
-                            <img src="http://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/0123e6b4c57b4898a1197be4609a1459index-pro.webp?Expires=1666630798&OSSAccessKeyId=LTAI5tG7nJQaHNGWeSvwmYn9&Signature=czMrX2YLsRMKXyBPN%2Ftnjj2pfsI%3D">
+                            <img th:src="${shop.shopMainImg}">
                             <h1 th:text="'关于 '+${shop.shopName}">关于 青鹤谷</h1>
                             <p th:text="${shop.shopDetail}">青鹤谷是一家韩国料理店，位于李公堤三期21幢(近金鸡湖景区)
                                 餐厅布置的一片韩式古色古香的味道，外面围墙上有传统的韩风壁画，
