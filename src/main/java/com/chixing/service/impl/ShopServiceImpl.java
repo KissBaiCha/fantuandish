@@ -7,11 +7,14 @@ import com.chixing.entity.Shop;
 import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.ShopMapper;
 import com.chixing.service.IShopService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -24,10 +27,13 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ShopServiceImpl implements IShopService {
-    @Resource
+    @Autowired
     private ShopMapper shopMapper;
-    @Resource
+    @Autowired
     private FoodMapper foodMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     private QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
     private QueryWrapper<Food> foodQueryWrapper = new QueryWrapper<>();
     private void cleanQueryWrapper(){
@@ -61,107 +67,59 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
-    public Page<Shop> getByFoodType(String foodType) {
-        Page<Shop> page = new Page<>(1,4);
-        cleanQueryWrapper();
-        foodQueryWrapper.eq("food_type",foodType);
-        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
-        Set<Integer> collect = foods.stream()
-                .map(Food::getShopId)
-                .collect(Collectors.toSet());
-        shopQueryWrapper.in("shop_id",collect);
-        return shopMapper.selectPage(page,shopQueryWrapper);
-    }
-
-    @Override
-    public Page<Shop> getByShopAvgCost(Float shopMinCost,Float shopMaxCost) {
-        cleanQueryWrapper();
-        if (shopMinCost!=null)
-            shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
-        if (shopMaxCost!=null)
-            shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
-        Page<Shop> page = new Page<>(1,4);
-        return shopMapper.selectPage(page,shopQueryWrapper);
-    }
-
-
-//    @Override
-//    public List<Shop> getBySift(String foodType,Float shopMinCost,Float shopMaxCost){
-//        cleanQueryWrapper();
-//        foodQueryWrapper.eq("food_type",foodType);
-//        List<Food> foods = foodMapper.selectList(foodQueryWrapper);
-//        Set<Integer> collect = foods.stream()
-//                .map(Food::getShopId)
-//                .collect(Collectors.toSet());
-//        shopQueryWrapper.in("shop_id",collect).between("shop_avg_cost",shopMinCost,shopMaxCost);
-//        return shopMapper.selectList(shopQueryWrapper);
-//    }
-
-    @Override
-    public Page<Shop> getByPrice(Integer pageNum) {
-        shopQueryWrapper.clear();
-        shopQueryWrapper.orderByDesc("shop_avg_cost");
-        Page<Shop> page = new Page<>(pageNum,4);
-        return shopMapper.selectPage(page,shopQueryWrapper);
-    }
-
-    @Override
-    public Page<Shop> getByScore(Integer pageNum) {
-        shopQueryWrapper.clear();
-        shopQueryWrapper.orderByDesc("shop_score");
-        Page<Shop> page = new Page<>(pageNum,4);
-        return shopMapper.selectPage(page,shopQueryWrapper);
-    }
-
-    @Override
     public Page<Shop> getBySift(Integer pageNum, String foodType,String foodPrice,String foodSort) {
         cleanQueryWrapper();
+        String key = "shop_pageNum_"+pageNum+"_foodType_"+foodType+"_foodPrice_"+foodPrice+"_foodSort_"+foodSort;
+        ValueOperations<String, Page<Shop>> operations = redisTemplate.opsForValue();
         Page<Shop> page = new Page<>(pageNum,4);
         System.out.println("类型"+foodType+"价格"+foodPrice);
-        if (foodType!=null){
-            System.out.println("类型不为空");
-            foodQueryWrapper.eq("food_type",foodType);
-            List<Food> foods = foodMapper.selectList(foodQueryWrapper);
-            Set<Integer> collect = foods.stream()
-                    .map(Food::getShopId)
-                    .collect(Collectors.toSet());
-            shopQueryWrapper.in("shop_id",collect);
-        }
-        if (foodPrice!=null){
-            System.out.println("价格不为空");
-            if (foodPrice.endsWith("元以上")){
-                String maxPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
-                Float shopMaxCost = Float.valueOf(maxPrice);
-                shopQueryWrapper.ge("shop_avg_cost",shopMaxCost);
-                System.out.println("元以上");
+        boolean haskey = redisTemplate.hasKey(key);
+        if (haskey){
+            return operations.get(key);
+        }else {
+            if (foodType != null) {
+                System.out.println("类型不为空");
+                foodQueryWrapper.eq("food_type", foodType);
+                List<Food> foods = foodMapper.selectList(foodQueryWrapper);
+                Set<Integer> collect = foods.stream()
+                        .map(Food::getShopId)
+                        .collect(Collectors.toSet());
+                shopQueryWrapper.in("shop_id", collect);
             }
-            else if (foodPrice.endsWith("元以下")){
-                String minPrice = foodPrice.substring(0,foodPrice.indexOf("元"));
-                Float shopMinCost = Float.valueOf(minPrice);
-                shopQueryWrapper.le("shop_avg_cost",shopMinCost);
-                System.out.println("元以下");
+            if (foodPrice != null) {
+                System.out.println("价格不为空");
+                if (foodPrice.endsWith("元以上")) {
+                    String maxPrice = foodPrice.substring(0, foodPrice.indexOf("元"));
+                    Float shopMaxCost = Float.valueOf(maxPrice);
+                    shopQueryWrapper.ge("shop_avg_cost", shopMaxCost);
+                    System.out.println("元以上");
+                } else if (foodPrice.endsWith("元以下")) {
+                    String minPrice = foodPrice.substring(0, foodPrice.indexOf("元"));
+                    Float shopMinCost = Float.valueOf(minPrice);
+                    shopQueryWrapper.le("shop_avg_cost", shopMinCost);
+                    System.out.println("元以下");
+                } else {
+                    String minPrice = foodPrice.substring(0, foodPrice.indexOf("-"));
+                    String maxPrice = foodPrice.substring(foodPrice.indexOf("-") + 1, foodPrice.indexOf("元"));
+                    Float shopMinCost = Float.valueOf(minPrice);
+                    Float shopMaxCost = Float.valueOf(maxPrice);
+                    shopQueryWrapper.ge("shop_avg_cost", shopMinCost);
+                    shopQueryWrapper.le("shop_avg_cost", shopMaxCost);
+                    System.out.println("元=====元");
+                }
             }
-            else {
-                String minPrice =foodPrice.substring(0,foodPrice.indexOf("-"));
-                String maxPrice =foodPrice.substring(foodPrice.indexOf("-")+1,foodPrice.indexOf("元"));
-                Float shopMinCost = Float.valueOf(minPrice);
-                Float shopMaxCost = Float.valueOf(maxPrice);
-                shopQueryWrapper.ge("shop_avg_cost",shopMinCost);
-                shopQueryWrapper.le("shop_avg_cost",shopMaxCost);
-                System.out.println("元=====元");
-            }
-        }
 
-        if (foodSort!=null){
-            if (foodSort.equals("价格")){
-                shopQueryWrapper.orderByDesc("shop_avg_cost");
+            if (foodSort != null) {
+                if (foodSort.equals("价格")) {
+                    shopQueryWrapper.orderByDesc("shop_avg_cost");
+                }
+                if (foodSort.equals("好评最多")) {
+                    shopQueryWrapper.orderByDesc("shop_score");
+                }
             }
-            if (foodSort.equals("好评最多")){
-                shopQueryWrapper.orderByDesc("shop_score");
-            }
+            operations.set(key,shopMapper.selectPage(page, shopQueryWrapper),24, TimeUnit.HOURS);
+            return shopMapper.selectPage(page, shopQueryWrapper);
         }
-        System.out.println("dddd");
-        return shopMapper.selectPage(page,shopQueryWrapper);
     }
 
 

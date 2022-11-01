@@ -113,14 +113,27 @@
                         <li th:each="shop:${shop.records}">
                             <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="proimg"><img th:src="${shop.shopMainImg}"></a>
                             <h4><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
-                            <label th:text="${shop.shopScore}">5</label><label>分</label>
-                            <a href="" class="comment">
+                            <label class="proscoreimg"><i></i><i></i><i></i><i></i><i></i></label>
+                            <label class="proscore" th:text="${shop.shopScore}">5</label><label>分</label>
+                            <script>
+                                var score = $(".proscore:last").text();
+                                for (var i=1;i<=5;i++) {
+                                    if(score >= i*2) {
+                                        $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)");
+                                    } else if( score > (i-1)*2 && score < i*2 ) {
+                                        $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)");
+                                    } else {
+                                        $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)");
+                                    }
+                                }
+                            </script>
+                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="comment">
                                 <span>1234</span>
                                 <span>条评论</span>
                             </a>
-                            <span class="sty"><a href="" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
-                            <span class="sty"><a href="">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
-                            <span class="sty">推荐菜：<a href=""><span>巧克力蛋糕</span></a></span>
+                            <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
+                            <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
+                            <span class="sty">推荐菜：<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"><span>巧克力蛋糕</span></a></span>
                         </li>
 
 
@@ -129,10 +142,12 @@
                     <!-- 分页 -->
                     <input type="hidden" id="pagenum" th:value="${shop.current}">
                     <input type="hidden" id="total" th:value="${shop.total}">
-                    <div class="paging">
+                    <div class="paging" th:if="${#lists.size(shop.records)} eq 0">
+                        <p>暂无符合条件的店铺</p>
+                    </div>
+                    <div class="paging" th:if="${#lists.size(shop.records)} gt 0">
                         <div id="demo7"></div>
                     </div>
-
 
                 </div>
             </div>
