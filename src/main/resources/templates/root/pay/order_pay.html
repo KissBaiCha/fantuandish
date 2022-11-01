@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>支付界面</title>
-
+    <script src="js/jquery.js"></script>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="icon" href="images/minilogo.png">
     <link rel="stylesheet" href="css/details/details_header.css">
     <link rel="stylesheet" href="css/customer/pay/order_pay.css">
+
 
 </head>
 <body>
@@ -72,9 +73,9 @@
     <div class="order_pay_time">
         <div class="pay_time">
             <i class="time_logo"></i>
-            <span class="text1">请在</span>
-            <span class="time">29:56</span>
-            <span class="text2">分钟内完成支付，超时订单会自动取消</span>
+            <span class="text1"></span>
+            <span class="time test">29:56</span>
+            <span class="text2"></span>
         </div>
     </div>
     <!-- ----------------------------待支付产品----------------------------- -->
@@ -96,27 +97,45 @@
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
                     <input type="radio" class="pay_Alipay">
-                    <img src="../../images/Alipay.svg">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/Alipay/Alipay.svg">
 
                     <div class="fukuan">
                         <div class="fukuan_price">
                             <span>支付￥</span>
                             <span class="fukuan_pri" th:text="${food.foodPrice}">216</span>
                             <form action="" method="post">
+                                <input type="hidden" class="orderNum" th:value="${orderNum}">
+                                <input type="hidden" class="myOrderCreatTime" th:value="${myOrderCreatTime}">
                                 <input type="submit" value="去付款" class="gopay">
                             </form>
-                            <a href="root/personal_center/order_wait_pay.html" class="update_order">返回修改订单</a>
+                            <a href="" class="update_order">返回修改订单</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <script src="layui/layui.js"></script>
+    <script>
+        var endTimeValue = $(".myOrderCreatTime").val();
+        var endTime = new Date(endTimeValue);
+        console.log(endTime)
+        endTime.setMinutes(endTime.getMinutes() + 15,endTime.getSeconds(),0)
+        console.log( typeof endTime)
+        layui.use('util', function(){
+            var util = layui.util;
+            //示例
+            var newEndTime = endTime.getTime(); //假设为结束日期
+            var serverTime = new Date().getTime(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+            util.countdown(newEndTime, serverTime, function(date, serverTime, timer){
+                var str = date[0] + '天' + date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+                layui.$('.test').html('请在'+ str);
+            });
+        });
 
+    </script>
 </body>
 </html>
 

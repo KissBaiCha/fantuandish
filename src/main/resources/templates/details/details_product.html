@@ -50,7 +50,7 @@
 
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="shop_list.html" title="饭团网" class="logo-img">
+            <a href="shop/shopsift/1" title="饭团网" class="logo-img">
                 <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
             </a>
         </div>
@@ -83,8 +83,6 @@
             </span>
         </div>
     </div>
-
-
     <div class="layui-row container-shop-dish">
         <!--   商品详情     -->
         <div class="layui-col-xs9 ">
@@ -93,13 +91,11 @@
                 <div class="dish-pictures-area">
                     <!--    详情bigImg     -->
                     <div class="picture-preview">
-                        <div class="layui-carousel" id="img-list" lay-filter="test4">
-                            <div carousel-item="">
-                                <div><img src="../images/details/dish.jpg"></div>
-                                <div><img src="../images/details/dish.jpg"></div>
-                                <div><img src="../images/details/dish.jpg"></div>
-                                <div><img src="../images/details/dish.jpg"></div>
-                                <div><img src="../images/details/dish.jpg"></div>
+                        <div class="layui-carousel" id="test9">
+                            <div carousel-item>
+                                <div><img th:src="${food.foodMainImg}"></div>
+                                <div><img th:src="${food.foodMainImg}"></div>
+                                <div><img th:src="${food.foodMainImg}"></div>
                             </div>
                         </div>
                     </div>
@@ -124,7 +120,7 @@
                             <span id="text-price">店铺价格:<del>168</del></span>
                         </div>
                         <!--       购买按钮        -->
-                        <form action="order" method="post">
+                        <form action="getOrderDetails" method="get">
                             <div class="layui-btn-container but-btn">
                                 <input type="hidden" name="foodId" th:value="${food.foodId}">
                                 <input style="float: left" type="submit" value="点此购入" class="layui-btn layui-btn-primary layui-btn-radius mybtn buy_btn">点此购入
@@ -301,5 +297,17 @@
 </div>
 <script src="layui/layui.js"></script>
 <script src="js/details/details_product.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test9'
+            ,width: '220px' //设置容器宽度
+            ,arrow: 'always' //始终显示箭头
+            ,height:'220px'
+        });
+    });
+</script>
 </body>
 </html>
