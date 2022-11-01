@@ -117,7 +117,7 @@ public class ShopServiceImpl implements IShopService {
                     shopQueryWrapper.orderByDesc("shop_score");
                 }
             }
-            operations.set(key,shopMapper.selectPage(page, shopQueryWrapper),24, TimeUnit.HOURS);
+            operations.set(key,shopMapper.selectPage(page, shopQueryWrapper),1, TimeUnit.MINUTES);
             return shopMapper.selectPage(page, shopQueryWrapper);
         }
     }
