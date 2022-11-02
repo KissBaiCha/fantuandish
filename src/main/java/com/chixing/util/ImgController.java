@@ -25,4 +25,10 @@ public class ImgController {
         //  images/details_shop 店铺详情页Img
         return AliOssUtil.sendImg(myfile,"images/");
     }
+
+    @ResponseBody
+    @PostMapping("upload_eva")
+    public String sendImgToServer(MultipartFile myfile){
+        return AliOssUtil.sendImg(myfile,"evaImgTest/");
+    }
 }

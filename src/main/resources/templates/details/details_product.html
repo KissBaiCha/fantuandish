@@ -108,6 +108,7 @@
                         <!--商品名-->
                         <div class="dish-name">
                             <span id="dish-name" th:text="${food.foodName}"></span>
+                            <input type="hidden" class="shop-score" th:value="${shop.shopScore}">
                             <div class="sum-people">
                                 <span class="people-count">1120</span>
                                 <span>人推荐</span>
@@ -148,8 +149,10 @@
                 </div>
                 <!--       评价list     -->
                 <div class="dish-comment-list">
+                    <input type="hidden" class="total" th:value="${evaMap.total}">
+                    <input type="hidden" class="curr" th:value="${evaMap.curr}">
                     <ul>
-                        <li th:each="e: ${evaList}" class="comment" >
+                        <li th:each="e: ${evaMap.evaluationVoList}" class="comment" >
                             <div class="layui-row ">
                                 <!--      用户容器       -->
                                 <div class="layui-col-xs1 user-tip">
@@ -162,11 +165,14 @@
                                 <div class="layui-col-xs11 comment-details">
                                     <div class="layui-card">
                                         <div class="layui-card-header" style="background-color: #f4f4f4">
-                                            <div class="grade-tip"></div>
+                                            <strong class="score-text">评分:</strong>
+                                            <div class="score-item">
+                                                <div class="score" th:text="${e.score}"></div>
+                                            </div>
+                                            <strong class="date-text">评论日期:</strong>
+                                            <div class="date" th:text="${e.createDate}"></div>
                                         </div>
                                         <div th:text="${e.evaContent}" class="layui-card-body comment-details-text">
-                                            我靠这是什么东西我这辈子没吃过这么好吃的虾<br>
-                                            快要给我吃瞎了
                                             <!--评价图片-->
                                             <div class="shop-pictures">
                                                 <ul>
@@ -196,7 +202,7 @@
                         &nbsp
                     </div>
                     <div class="layui-col-xs8">
-                        <div id="page"></div>
+                        <div id="pages"></div>
                     </div>
                     <div class="layui-col-xs1">
                         &nbsp
@@ -272,6 +278,8 @@
             </div>
         </div>
     </div>
+    <ul id="demo">
+    </ul>
     <div class="layui-row">
         <div class="layui-edge-bottom detail-bottom">
             <div class="layui-col-xs2">
