@@ -17,11 +17,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,6 +66,10 @@ public class MyOrderController {
         modelAndView.addObject("myOrderCreatTime",myOrder.getOrderCreateTime());
         //向队列发送订单编号
         rabbitTemplate.convertAndSend("order-exchange","order-create",orderNum);
+        if(newCouponId != null){
+            //向队列发送我的优惠券ID
+            rabbitTemplate.convertAndSend("coupon-Exchange","coupon",newCouponId);
+        }
         modelAndView.setViewName("root/pay/order_pay");
         return modelAndView;
     }

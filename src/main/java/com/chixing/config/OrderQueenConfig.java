@@ -20,7 +20,7 @@ public class OrderQueenConfig {
     @Bean
     public Queue orderDelayQueue() {
         //String name, boolean durable, boolean exclusive, boolean autoDelete, @Nullable Map<String, Object> arguments
-        //名字、是否持久化、是否排他、是否自动删除、自定义属性....
+        //名字、        是否持久化、         是否排他、           是否自动删除、             自定义属性....
         Map<String,Object> arguments = new HashMap<>(2);
         //死信路由
         arguments.put("x-dead-letter-exchange","order-exchange");

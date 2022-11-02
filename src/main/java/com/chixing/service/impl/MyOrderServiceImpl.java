@@ -67,14 +67,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
         myOrder.setOrderStatus(1);
         myOrder.setOrderCreateTime(LocalDateTime.now());
         myOrder.setOrderUpdateTime(LocalDateTime.now());
-        if(myCouponId != null){
-            myOrder.setCouponId(myCouponId);
-            Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
-            BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
-            myOrder.setCouponPrice(couponPrice);
-            log.info(myOrder.getCouponPrice().toString());
-            myOrder.setOrderPrice(food.getFoodPrice().subtract(myOrder.getCouponPrice()));
-        }
         if(isSecondKill){
             myOrder.setOrderType(1);
             QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
@@ -85,9 +77,18 @@ public class MyOrderServiceImpl implements IMyOrderService {
             myOrder.setOrderPrice(secondKillPrice.subtract(myOrder.getCouponPrice()));
         }else{
             myOrder.setOrderType(0);
-            myOrder.setOrderOnePrice(food.getFoodPrice());
-            myOrder.setOrderPrice(food.getFoodPrice());
         }
+        if(myCouponId != null){
+            myOrder.setCouponId(myCouponId);
+            Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
+            BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
+            myOrder.setCouponPrice(couponPrice);
+            log.info(myOrder.getCouponPrice().toString());
+            BigDecimal subtract = food.getFoodPrice().subtract(myOrder.getCouponPrice());
+            log.info("订单优惠后价格"+subtract);
+            myOrder.setOrderPrice(subtract);
+        }
+
         myOrderMapper.insert(myOrder);
         return uuId;
     }
