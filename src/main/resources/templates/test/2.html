@@ -40,8 +40,32 @@
         </div>
         <button type="button" class="layui-btn layui-btn-danger">发表评论</button>
 
-</div>
+    <h2>Elasticsearch搜索引擎</h2>
+    <form>
+        <input type="text" class="kw">
+        <input type="button" class="btn" value="搜索">
+    </form>
+    <div>
+        <ul class="info">
 
+        </ul>
+    </div>
+</div>
+<script>
+    $(".btn").click(function (){
+        $.ajax({
+            type:"get",
+            url:"http://localhost:8080/fan/es/"+$(".kw").val(),
+            success:function (result){
+                console.log(result)
+                $(".info").html("");
+                for (var i=0;i<result.length;i++){
+                    $(".info").append("<li>Id:"+result[i].shopId+ " Name : " + result[i].shopName+"</li>");
+                }
+            }
+        })
+    })
+</script>
 
 </body>
 </html>

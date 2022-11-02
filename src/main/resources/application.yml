@@ -2,6 +2,8 @@ server:
   servlet:
     context-path: /fan
 spring:
+  elasticsearch:
+    uris: localhost:9200
 #静态资源
   web:
     resources:
