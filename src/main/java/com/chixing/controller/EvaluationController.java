@@ -22,24 +22,15 @@ public class EvaluationController {
     private IEvaImgService evaImgService;
 
     @PostMapping("/save")
-    public String save(Evaluation evaluation,String[] imgArr){
-        EvaImg evaImg = new EvaImg();
-        Integer evaId = (int)(Math.random()*100+1);
-        LocalDateTime nowTime = LocalDateTime.now();
-        for (int i = 0; i < imgArr.length; i++) {
-            System.out.println(imgArr[i]);
-            evaImg.setEvaId(evaId);
-            evaImg.setImgStatus(0);
-            evaImg.setEvaImgCreateTime(nowTime);
-            evaImg.setEvaImgPath(imgArr[i]);
-            evaImgService.save(evaImg);
-        }
+    public String save(Evaluation evaluation,EvaImg evaImg,String[] imgArr){
 //        Integer custId = JwtUtil.getCusIdBySession(request);
-//        evaluation.setCustomerId((int)(Math.random()*100+1));
-//        evaluation.setFoodId((int)(Math.random()*100+1));
-//        evaluation.setOrderId(UUID.randomUUID().toString().replace("-",""));
-//
-//        int row = evaluationService.save(evaluation);
+
+        evaluation.setCustomerId((int)(Math.random()*100+1));
+        evaluation.setFoodId((int)(Math.random()*100+1));
+        evaluation.setOrderId(UUID.randomUUID().toString().replace("-",""));
+
+        evaImgService.save(evaImg,imgArr);
+        int row = evaluationService.save(evaluation);
         return evaluation.toString();
     }
 

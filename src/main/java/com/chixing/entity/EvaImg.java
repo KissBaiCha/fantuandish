@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.mysql.cj.jdbc.Blob;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
