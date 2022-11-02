@@ -32,7 +32,7 @@ layui.use(['laypage', 'layer'], function(){
         ,count: total
         ,theme: '#FF5722'
         ,curr : pageNum
-        ,limit: 4
+        ,limit: 10
         ,jump: function(obj, first){
             let newPageNum = obj.curr;
             //obj包含了当前分页的所有参数，比如：
@@ -40,6 +40,7 @@ layui.use(['laypage', 'layer'], function(){
             console.log(obj.limit); //得到每页显示的条数
             //首次不执行
             if(!first){
+                document.querySelector('#anchor').scrollIntoView(true)
                 let url = window.location.href
                 newUrl = url.substring(0,url.length - 1).concat(obj.curr)
                 if(!first){

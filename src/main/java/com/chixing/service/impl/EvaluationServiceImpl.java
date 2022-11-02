@@ -66,7 +66,7 @@ public class EvaluationServiceImpl  implements IEvaluationService {
         //根据美食ID查出所有评论信息
         QueryWrapper<Evaluation> evaluationQueryWrapper = new QueryWrapper<>();
         evaluationQueryWrapper.eq("food_id",foodId);
-        Page<Evaluation> page = new Page<>(pageNum,4);
+        Page<Evaluation> page = new Page<>(pageNum,10);
         Page<Evaluation> pageEvaluations = evaluationMapper.selectPage(page, evaluationQueryWrapper);
         Map<String,Object> map = new HashMap<>(3);
         map.put("total",pageEvaluations.getTotal());
