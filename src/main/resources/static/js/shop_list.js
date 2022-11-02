@@ -1,3 +1,32 @@
+//分页
+layui.use(['laypage', 'layer'], function () {
+    var pagenum = document.getElementById("pagenum").value;
+    var total = document.getElementById("total").value;
+    var laypage = layui.laypage
+        , layer = layui.layer;
+    laypage.render({
+        elem: 'demo7'
+        ,count: total,
+        limit:4,
+        curr:pagenum,
+        jump:function (obj,first){
+            pageNum = obj.curr;
+            console.log(pageNum)
+            if (!first){
+                var url = window.location.href;
+                var firstUrl = url.split("shopsift")[0];
+                var lastUrl = url.split("?")[1];
+                if(!url.includes("?")){
+                    url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum);
+                }else{
+                    url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum,"?",lastUrl);
+                }
+                window.location.href=url;
+            }
+        }
+    });
+})
+
 // 筛选
 
 //url取值处理（传入url和参数key,获取参数val）
