@@ -25,6 +25,14 @@ public class FoodController {
         this.shopService = shopService;
         this.evaluationService = evaluationService;
     }
+
+    /**
+     * 用户点击美食后访问此方法
+     * @param foodId 美食id
+     * @param shopId 店铺id
+     * @param pageNum 评论页码
+     * @return 美食详情页面
+     */
     @GetMapping("/shop/{shopId}/{foodId}/{pageNum}")
     private ModelAndView getById(@PathVariable("foodId")Integer foodId,@PathVariable("shopId") Integer shopId,@PathVariable("pageNum") Integer pageNum){
         ModelAndView modelAndView = new ModelAndView();

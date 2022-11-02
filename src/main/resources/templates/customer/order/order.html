@@ -30,7 +30,7 @@
                     <span>&nbsp</span>
                 </div>
                 <div class="layui-col-xs4">
-                    <ul class="layui-nav" lay-filter="">
+                    <ul class="layui-nav">
                         <li class="layui-nav-item"><a href="">登录/注册</a></li>
                         <li class="layui-nav-item"><a href="">帮助中心</a></li>
                         <li class="layui-nav-item">
@@ -73,7 +73,7 @@
     <div class="product">
         <div class="layui-row">
             <div class="layui-col-xs6 pro-row-item">
-                <div class="pro-itemname">
+                <div class="pro-itemname xiang-mu" >
                     <p>项目</p>
                 </div>
             </div>
@@ -145,6 +145,30 @@
                         选择优惠券
                         <i class="layui-icon layui-icon-down layui-font-12"></i>
                     </button>
+                    <div class="layui-row layui-col-space15 couponCard">
+                        <div class="layui-col-md6">
+                            <div class="layui-panel">
+                                <div style="padding: 10px;">
+                                    <form class="layui-form" action="">
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <ul>
+                                                    <li th:each="c:${myCouponVoList}">
+                                                        <input type="radio" name="couponId" th:value="${c.myCoupon.myCouponId}" th:title="'给你便宜'+${c.couponPrice}+'元'">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: rgb(255,107,55)">立即提交</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="layui-col-xs3 word">
@@ -177,6 +201,7 @@
                 <div class="sub-but">
                     <form action="creatOrder" method="post">
                         <input type="hidden" name="foodId" class="foodId" th:value="${food.foodId}">
+                        <input type="hidden" name="shopId" class="shopId" th:value="${food.shopId}">
                         <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单"></input>
                     </form>
                 </div>
@@ -184,8 +209,7 @@
         </div>
     </div>
 </div>
-    <script src="layui/layui.js"></script>
-    <script src="js/customer/order/order.js"></script>
+<script src="layui/layui.js"></script>
+<script src="js/customer/order/order.js"></script>
 </body>
-
 </html>

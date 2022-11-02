@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Coupon;
 import com.chixing.entity.MyCoupon;
+import com.chixing.entity.vo.MyCouponVO;
 import com.chixing.mapper.CouponMapper;
 import com.chixing.mapper.MyCouponMapper;
 import com.chixing.service.IMyCouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,20 +54,34 @@ public class MyCouponServiceImpl implements IMyCouponService {
     }
 
     @Override
-    public List<MyCoupon> getMyCouponByShopId(Integer customerId,Integer shopId) {
+    public List<MyCouponVO> getMyCouponByShopId(Integer customerId,Integer shopId) {
         //查询出当前店铺发布的优惠券
         QueryWrapper<Coupon> couponQueryWrapper = new QueryWrapper<>();
         couponQueryWrapper.eq("shop_id",shopId);
         List<Coupon> coupons = couponMapper.selectList(couponQueryWrapper);
+        if(coupons.size() == 0){
+            return null;
+        }
         List<Integer> couponIdList = coupons.stream().map(Coupon::getCouponId).collect(Collectors.toList());
         //查询用户所有优惠券
         QueryWrapper<MyCoupon> wrapper = new QueryWrapper<>();
         wrapper.eq("customer_id",customerId);
-        //添加查询条件: 未使用的优惠券
+            //添加查询条件: 未使用的优惠券
         wrapper.eq("my_coupon_status",1);
         //添加查询条件: 属于当前店铺的优惠券
         wrapper.in("coupon_id",couponIdList);
-        return myCouponMapper.selectList(wrapper);
+        //添加查询条件: 未过期的优惠券
+        wrapper.lt("my_coupon_lose_time",LocalDateTime.now());
+        List<MyCoupon> myCoupons = myCouponMapper.selectList(wrapper);
+        List<MyCouponVO> myCouponVOList = new ArrayList<>();
+        for (MyCoupon myCoupon : myCoupons) {
+            Coupon coupon = couponMapper.selectById(myCoupon.getCouponId());
+            MyCouponVO myCouponVO = new MyCouponVO(myCoupon
+                    ,coupon.getCouponPrice()
+                    ,coupon.getCouponCondition());
+            myCouponVOList.add(myCouponVO);
+        }
+        return myCouponVOList;
     }
 
     @Override
