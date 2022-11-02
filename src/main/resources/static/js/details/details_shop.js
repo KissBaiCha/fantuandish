@@ -48,13 +48,13 @@ var latitude = document.querySelector(".latitude").value;
 console.log(longitude)
 console.log(latitude)
 var map = new AMap.Map('container', {
-    zoom:20, //初始化地图层级
+    zoom:16, //初始化地图层级
     center: [longitude,latitude] //初始化地图中心点
 });
 // 定位图标
 var marker = new AMap.Marker({ 
     map: map,
     position: [longitude,latitude],
-    icon: '../images/map-location-icon.png' ,
-    offset: new AMap.Pixel(-13, -30)
+    icon: 'https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/map-location-icon.svg' ,
+    // offset: new AMap.Pixel(-13, -30)
 });

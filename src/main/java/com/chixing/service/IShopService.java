@@ -33,4 +33,6 @@ public interface IShopService{
 
     //整合
     Page<Shop> getBySift(Integer pageNum,String foodType,String foodPrice,String foodSort);
+    //查询全部
+    List<Shop> getAll();
 }
