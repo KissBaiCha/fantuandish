@@ -43,12 +43,7 @@ layui.use(['laypage', 'layer'], function(){
                 document.querySelector('#anchor').scrollIntoView(true)
                 let url = window.location.href
                 newUrl = url.substring(0,url.length - 1).concat(obj.curr)
-                if(!first){
-                    let url = window.location.href
-                    console.log(url)
-                    newUrl = url.substring(0,url.length - 1).concat(obj.curr)
-                    window.location.href = newUrl
-                }
+                window.location.href = newUrl
             }
         }
     });
