@@ -11,6 +11,7 @@ import com.chixing.service.IMyCouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,12 @@ public class MyCouponServiceImpl implements IMyCouponService {
     @Override
     public MyCoupon getById(Integer myCouponId) {
         return myCouponMapper.selectById(myCouponId);
+    }
+
+    @Override
+    public BigDecimal getCouponPriceByMyCouponId(Integer myCouponId) {
+        Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
+        return couponMapper.selectById(couponId).getCouponPrice();
     }
 
     @Override

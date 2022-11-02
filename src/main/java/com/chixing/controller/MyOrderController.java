@@ -51,14 +51,20 @@ public class MyOrderController {
         return null;
     }
     @PostMapping("/creatOrder")
-    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId, HttpServletRequest request){
+    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId,
+                                   @RequestParam("newCouponId") Integer newCouponId,
+                                   @RequestParam("isSecondKillVal") Integer isSecondKillVal,
+                                   HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
         Food food = iFoodService.getById(foodId);
-        String orderNum = myOrderService.save(cusId, null, foodId, false);
+        String orderNum = myOrderService.save(cusId, newCouponId, foodId, isSecondKillVal == 1);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",food);
         MyOrder myOrder = myOrderService.getById(orderNum);
         modelAndView.addObject("orderNum",orderNum);
+        modelAndView.addObject("cusName",cusName);
+        modelAndView.addObject("cusId",cusId);
         modelAndView.addObject("myOrderCreatTime",myOrder.getOrderCreateTime());
         //向队列发送订单编号
         rabbitTemplate.convertAndSend("order-exchange","order-create",orderNum);

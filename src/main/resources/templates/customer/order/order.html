@@ -154,14 +154,14 @@
                                             <div class="layui-input-block">
                                                 <ul>
                                                     <li th:each="c:${myCouponVoList}">
-                                                        <input type="radio" name="couponId" th:value="${c.myCoupon.myCouponId}" th:title="'给你便宜'+${c.couponPrice}+'元'">
+                                                        <input type="radio" class="myCouponId" name="couponId" th:value="${c.myCoupon.myCouponId}" th:title="'给你便宜'+${c.couponPrice}+'元'">
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="layui-form-item">
                                             <div class="layui-input-block">
-                                                <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: rgb(255,107,55)">立即提交</button>
+                                                <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: rgb(255,107,55)">确定</button>
                                             </div>
                                         </div>
                                     </form>
@@ -174,18 +174,19 @@
             <div class="layui-col-xs3 word">
                 <div class="statistic">
                     <span class="price-tit">共计:</span>
-                    <em class="price" th:text="${food.foodPrice}">￥66.00</em>
+                    <em class="price" th:text="${food.foodPrice}"></em>
                 </div>
                 <div class="price-panel">
                     <span class="m-price">优惠:</span>
-                    <em class="n-price" >-￥00.0</em>
+                    <em class="n-price">00.0</em>
                 </div>
                 <div class="price-info">
                     <div class="set-but">
                         <span>应付金额：</span>
                     </div>
                     <div class="but-m">
-                        <span>￥58</span>
+                        ￥
+                        <span class="payNum" th:text="${food.foodPrice}">58</span>
                     </div>
                 </div>
             </div>
@@ -199,10 +200,12 @@
             </div>
             <div class="layui-col-xs3">
                 <div class="sub-but">
-                    <form action="creatOrder" method="post">
+                    <form action="creatOrder" class="dataForm" method="post">
                         <input type="hidden" name="foodId" class="foodId" th:value="${food.foodId}">
                         <input type="hidden" name="shopId" class="shopId" th:value="${food.shopId}">
-                        <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单"></input>
+                        <input type="hidden" name="isSecondKill" class="isSecondKillVal" value="0">
+                        <input type="hidden" name="newCouponId" class="newCouponId" value="">
+                        <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单">
                     </form>
                 </div>
             </div>

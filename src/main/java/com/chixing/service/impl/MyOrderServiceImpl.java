@@ -8,6 +8,7 @@ import com.chixing.entity.SecondKill;
 import com.chixing.mapper.*;
 
 import com.chixing.service.IMyOrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,8 @@ import java.util.UUID;
  * @since 2022-10-02
  */
 @Service
+@Slf4j
 public class MyOrderServiceImpl implements IMyOrderService {
-
-
     private final MyOrderMapper myOrderMapper;
     private final MyCouponMapper myCouponMapper;
     private final CouponMapper couponMapper;
@@ -72,6 +72,7 @@ public class MyOrderServiceImpl implements IMyOrderService {
             Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
             BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
             myOrder.setCouponPrice(couponPrice);
+            log.info(myOrder.getCouponPrice().toString());
             myOrder.setOrderPrice(food.getFoodPrice().subtract(myOrder.getCouponPrice()));
         }
         if(isSecondKill){
@@ -94,11 +95,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
     @Override
     public boolean update(MyOrder myOrder) {
         return myOrderMapper.updateById(myOrder) > 0;
-    }
-
-    @Override
-    public boolean remove(String orderId) {
-        return myOrderMapper.deleteById(orderId) >0;
     }
 
     @Override
