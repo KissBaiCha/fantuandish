@@ -1,15 +1,20 @@
 package com.chixing.controller;
 
+import com.chixing.commons.R;
 import com.chixing.entity.MyCoupon;
 import com.chixing.service.IMyCouponService;
+import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.chixing.commons.ResultCodeEnum.DATA_EMPTY;
+
 @RestController
-@RequestMapping("/mycoupon")
+@RequestMapping("/myCoupon")
 public class MyCouponController {
 
     @Autowired
@@ -26,23 +31,22 @@ public class MyCouponController {
     }
 
 
-
-    @PutMapping("/update")
-    public String update(MyCoupon myCoupon){
-        myCoupon.setMyCouponUpdateTime(LocalDateTime.now());
-        int row = myCouponService.update(myCoupon);
-        return myCoupon.toString();
-    }
-
     @GetMapping("/getById/{id}")
     public MyCoupon getById(@PathVariable("id")int myCouponId){
         return myCouponService.getById(myCouponId);
     }
 
-    @GetMapping("/getByPage/{pageNum}")
-    public List<MyCoupon> getMyCoupon(@PathVariable("pageNum")Integer pageNum){
-        return myCouponService.getByPage(pageNum);
-    }
+//    @GetMapping("/getCoupon/{shopId}")
+//    @ResponseBody
+//    public R<List<MyCoupon>> getMyCoupon(@PathVariable("shopId")Integer shopId, HttpServletRequest request){
+//        Integer cusId = JwtUtil.getCusIdBySession(request);
+//        List<MyCoupon> myCouponByShopId = myCouponService.getMyCouponByShopId(1, shopId);
+//        R<List<MyCoupon>> result = R.ok("couponList",myCouponByShopId);
+//        if(myCouponByShopId == null){
+//            result = R.fail(DATA_EMPTY);
+//        }
+//        return result;
+//    }
 
     @GetMapping("/getMyCoupon/{id}")
     public List<MyCoupon> getMyCoupon(@PathVariable("id") Integer customerId,Integer shopId){

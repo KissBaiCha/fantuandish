@@ -1,6 +1,7 @@
 package com.chixing.service;
 
 import com.chixing.entity.MyCoupon;
+import com.chixing.entity.vo.MyCouponVO;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface IMyCouponService  {
      * @param shopId 店铺Id
      * @return List<MyCoupon>为当前店铺可使用优惠券
      */
-    List<MyCoupon> getMyCouponByShopId(Integer cusId,Integer shopId);
+    List<MyCouponVO> getMyCouponByShopId(Integer cusId, Integer shopId);
 
     /**
      * 根据用户Id查询所有可用优惠券

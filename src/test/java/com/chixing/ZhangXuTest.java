@@ -33,6 +33,6 @@ public class ZhangXuTest {
 
     @Test
     public void fun1(){
-
+        myCouponService.getMyCouponByShopId(1,10);
     }
 }

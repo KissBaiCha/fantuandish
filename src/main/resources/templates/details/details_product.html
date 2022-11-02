@@ -73,15 +73,7 @@
 <div class="layui-main main">
     <!--头-->
     <div class="layui-row detail-shop-dish">
-        <!--  灰色过度 (面包屑)  -->
-        <div class="layui-col-xs12 dish-nav">
-            <span class="layui-breadcrumb" lay-separator=" >>">
-              <a href="../index1.html">首页</a>
-              <a href="">小吃快餐</a>
-              <a href="">张家面馆</a>
-              <a><cite>张家虾仁</cite></a>
-            </span>
-        </div>
+
     </div>
     <div class="layui-row container-shop-dish">
         <!--   商品详情     -->
@@ -124,6 +116,7 @@
                         <form action="getOrderDetails" method="get">
                             <div class="layui-btn-container but-btn">
                                 <input type="hidden" name="foodId" th:value="${food.foodId}">
+                                <input type="hidden" name="shopId" th:value="${shop.shopId}">
                                 <input style="float: left" type="submit" value="点此购入" class="layui-btn layui-btn-primary layui-btn-radius mybtn buy_btn">点此购入
                                 </input>
                             </div>

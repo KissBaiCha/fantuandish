@@ -2,23 +2,21 @@
     padding: 0;
     margin: 0;
 }
-
 .product{/*商品名称区*/
     width: 100%;
     height: 40px;
     margin-top: 10px;
-    /* border-radius: 10px; */
     border: 1px solid #e0e0e0;
     background-color: #f9f9f9
-    /* background-color: rgb(232, 232, 230); */
+}
+.xiang-mu{
+    margin-left: 10px;
 }
 .pro-itemname,.pro-pricename,.pro-numname,.pro-sumname{/*（项目，数量，单价，总价 ）区*/
     width: 50px;
     height: 40px;
-    /* background-color: rgb(194, 235, 89); */
 }
 .pro-itemname,.pro-pricename,.pro-numname,.pro-sumname p{/*（项目，数量，单价，总价 ）区 标签*/
-    margin-left: 10px;
     margin-top: 10px;
     font-size: 12px;
     font-weight: 700;
@@ -27,7 +25,6 @@
 .pro-msg{/*订单信息*/
     width: 100%;
     height: 180px;
-
 }
 .pro-shop{
     display: block;
@@ -43,24 +40,20 @@
     height: auto;
     text-align: center;
     margin-top: 80px;
-
 }
 .pro-btn ,.number-price ,.sum-price{/*按钮 数量 与 总价*/
     width: 100px;
     height: 180px;
-
 }
 .btn ,.num , .sum{
     width: 100%;
     height: 30px;
     margin-top: 80px;
     float: left;
-
 }
 .grid-demo{
     width: 100px;
     height: 50px;
-    /* background-color: rgb(236, 123, 123); */
 }
 .count{
     width: 30px;
@@ -71,23 +64,18 @@
 }
 /*加减号*/
 .count-symbol{
-    /* display: block; */
     width: 20px;
     height: 20px;
     float: left;
     text-align: center;
-    /* border: 1px solid gray; */
 }
 .Pro-details{/*商品详情信息区*/
     width: 100%;
     height: 160px;
     border-bottom: 1px solid gray;
-
 }
 .coupon-btn{/*优惠券按钮*/
     color: #f4f4f4;
-    /* display: inline-block; */
-    /* position: relative; */
     z-index: 1;
     padding-right: 33px;
     padding-left: 10px;
@@ -96,7 +84,6 @@
     border: 1px solid rgb(255,107,55);
     border-radius: 3px;
     background-color: rgb(255,107,55);
-
 }
 
 .settlement{/*结算区*/
@@ -129,7 +116,6 @@
     height: 40px;
     display: block;
     padding-top: 20px;
-
     border-color: rgb(255,107,55);
     border-width: 2px;
     background-color: #f4f4f4;
@@ -140,7 +126,6 @@
     display: block;
     margin-top: 20px;
     padding-top: 20px;
-
     border-color: rgb(255,107,55);
     border-width: 2px;
     background-color: #f4f4f4;
@@ -151,7 +136,6 @@
     display: block;
     margin-top: 20px;
     padding-top: 20px;
-
     border-color: rgb(255,107,55);
     border-width: 2px;
     background-color: #f4f4f4;
@@ -233,7 +217,6 @@
 }
 .price {
     color: #333;
-
     /* width: 100px; */
     text-align: right;
     font-family: verdana;
@@ -264,4 +247,18 @@
     font-weight: bolder;
     border: snow;
     background-color:rgb(255,107,55)
+}
+.btn, .num, .sum {
+    width: 100%;
+    height: 30px;
+    margin-top: 60px;
+    float: left;
+}
+
+.layui-form-radio:hover *, .layui-form-radioed, .layui-form-radioed>i {
+    color: rgb(255,107,55);
+}
+.layui-input-block {
+    margin-left: 30px;
+    min-height: 36px;
 }
