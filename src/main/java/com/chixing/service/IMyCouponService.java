@@ -3,6 +3,7 @@ package com.chixing.service;
 import com.chixing.entity.MyCoupon;
 import com.chixing.entity.vo.MyCouponVO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public interface IMyCouponService  {
     Integer save(MyCoupon myCoupon);
     Integer update(MyCoupon myCoupon);
     MyCoupon getById(Integer myCouponId);
+    BigDecimal getCouponPriceByMyCouponId(Integer myCouponId);
     List<MyCoupon> getByPage(Integer pageNum);
     /**
      * 查询用户当前店铺可使用优惠券

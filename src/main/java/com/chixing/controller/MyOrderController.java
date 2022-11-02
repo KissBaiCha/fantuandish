@@ -51,10 +51,10 @@ public class MyOrderController {
         return null;
     }
     @PostMapping("/creatOrder")
-    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId, HttpServletRequest request){
+    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId,@RequestParam("newCouponId") Integer newCouponId, HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
         Food food = iFoodService.getById(foodId);
-        String orderNum = myOrderService.save(cusId, null, foodId, false);
+        String orderNum = myOrderService.save(cusId, newCouponId, foodId, false);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",food);
         MyOrder myOrder = myOrderService.getById(orderNum);

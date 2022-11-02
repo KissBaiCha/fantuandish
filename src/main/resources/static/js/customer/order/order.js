@@ -7,7 +7,20 @@ layui.use('form', function(){
     var form = layui.form;
     //提交
     form.on('submit(formDemo)', function(data){
-        layer.msg(JSON.stringify(data.field));
+        let couponId = data.field.couponId;
+        $(".newCouponId").val(couponId)
+        $.ajax({
+            url:'http://localhost:8080/fan/myCoupon/getMyCouponPrice/'+couponId,
+            type:'GET',
+            success:function (data) {
+                let gongJi = $(".price").text();
+                gongJi = Number( gongJi)
+                console.log(gongJi)
+                $(".n-price").text(data)
+                console.log(data)
+                $(".payNum").text(gongJi - data)
+            }
+        })
         return false;
     });
 });

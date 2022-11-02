@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,8 +49,9 @@ public class MyCouponController {
 //        return result;
 //    }
 
-    @GetMapping("/getMyCoupon/{id}")
-    public List<MyCoupon> getMyCoupon(@PathVariable("id") Integer customerId,Integer shopId){
-        return null;
+    @GetMapping("/getMyCouponPrice/{id}")
+    @ResponseBody
+    public BigDecimal getCouponPriceByMyCouponId(@PathVariable("id") Integer id){
+        return myCouponService.getCouponPriceByMyCouponId(id);
     }
 }
