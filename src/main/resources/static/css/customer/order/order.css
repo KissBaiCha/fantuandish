@@ -142,14 +142,12 @@
 }
 .price-tit{/*  总商品金额： */
     float: left;
-    background-color: rgba(255, 255, 255, 0.44);
     margin-left: 80px;
     display: block;
     width: 100px;
 }
 .m-price{/*优惠券*/
     float: left;
-    background-color: rgba(255, 255, 255, 0.44);
     margin-left: 80px;
     display: block;
     width: 100px;
@@ -199,7 +197,7 @@
     font-weight: bolder;
 }
 .but-m{
-    width: 60px;
+    width: 80px;
     height: 40px;
     float: left;
 
