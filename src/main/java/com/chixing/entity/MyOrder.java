@@ -3,6 +3,7 @@ package com.chixing.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -36,6 +37,7 @@ public class MyOrder implements Serializable {
     private Integer orderType;
     private Integer orderStatus;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:DD:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @JsonDeserialize(using = LocalDateDeserializer.class)		// 反序列化
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDateTime orderCreateTime;

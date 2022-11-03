@@ -102,9 +102,11 @@ public class MyOrderServiceImpl implements IMyOrderService {
 
     @Override
     public Page<MyOrder> getByPage(Integer pageNum) {
-        Page<MyOrder> page = new Page<>(1,3);
+        Page<MyOrder> page = new Page<>(pageNum,3);
         return myOrderMapper.selectPage(page,null);
     }
+
+
 
     @Override
     public LocalDateTime getOrderDateTime(String orderId) {
