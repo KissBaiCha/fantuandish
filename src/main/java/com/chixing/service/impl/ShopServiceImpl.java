@@ -122,5 +122,10 @@ public class ShopServiceImpl implements IShopService {
         }
     }
 
+    @Override
+    public List<Shop> getAll() {
+        return shopMapper.selectList(null);
+    }
+
 
 }

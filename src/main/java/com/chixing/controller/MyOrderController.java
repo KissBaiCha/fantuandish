@@ -2,8 +2,11 @@ package com.chixing.controller;
 
 
 import com.chixing.entity.Food;
+import com.chixing.entity.MyCoupon;
 import com.chixing.entity.MyOrder;
+import com.chixing.entity.vo.MyCouponVO;
 import com.chixing.service.IFoodService;
+import com.chixing.service.IMyCouponService;
 import com.chixing.service.IMyOrderService;
 import com.chixing.util.JwtUtil;
 import com.rabbitmq.client.Channel;
@@ -14,11 +17,10 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author ZhangJiuJiu
@@ -30,6 +32,8 @@ public class MyOrderController {
     private IFoodService iFoodService;
     @Autowired
     private IMyOrderService myOrderService;
+    @Autowired
+    private IMyCouponService myCouponService;
     @Autowired
     private RabbitTemplate rabbitTemplate;
     @GetMapping("/order")
@@ -45,17 +49,27 @@ public class MyOrderController {
         return null;
     }
     @PostMapping("/creatOrder")
-    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId, HttpServletRequest request){
+    public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId,
+                                   @RequestParam("newCouponId") Integer newCouponId,
+                                   @RequestParam("isSecondKillVal") Integer isSecondKillVal,
+                                   HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
         Food food = iFoodService.getById(foodId);
-        String orderNum = myOrderService.save(cusId, null, foodId, false);
+        String orderNum = myOrderService.save(cusId, newCouponId, foodId, isSecondKillVal == 1);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",food);
         MyOrder myOrder = myOrderService.getById(orderNum);
         modelAndView.addObject("orderNum",orderNum);
+        modelAndView.addObject("cusName",cusName);
+        modelAndView.addObject("cusId",cusId);
         modelAndView.addObject("myOrderCreatTime",myOrder.getOrderCreateTime());
         //向队列发送订单编号
         rabbitTemplate.convertAndSend("order-exchange","order-create",orderNum);
+        if(newCouponId != null){
+            //向队列发送我的优惠券ID
+            rabbitTemplate.convertAndSend("coupon-Exchange","coupon",newCouponId);
+        }
         modelAndView.setViewName("root/pay/order_pay");
         return modelAndView;
     }
@@ -67,10 +81,12 @@ public class MyOrderController {
      * @return 返回订单确认界面
      */
     @GetMapping("/getOrderDetails")
-    public ModelAndView getOrderDetails(@RequestParam("foodId") Integer foodId, HttpServletRequest request){
+    public ModelAndView getOrderDetails(@RequestParam("foodId") Integer foodId,@RequestParam("shopId") Integer shopId, HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
         Food food = iFoodService.getById(foodId);
+        List<MyCouponVO> myCouponVoList = myCouponService.getMyCouponByShopId(cusId, shopId);
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("myCouponVoList",myCouponVoList);
         modelAndView.addObject("food",food);
         modelAndView.setViewName("customer/order/order");
         return modelAndView;
@@ -89,7 +105,7 @@ public class MyOrderController {
      * @throws IOException IO异常
      */
     @RabbitListener(queues = "order-release-queue")
-    public void listener(String orderNum, Message message, Channel channel) throws IOException {
+    public void orderListener(String orderNum, Message message, Channel channel) throws IOException {
         System.out.println("接收到过期未支付的订单信息"+orderNum);
         System.out.println("处理过期订单....");
         MyOrder myOrder = null;

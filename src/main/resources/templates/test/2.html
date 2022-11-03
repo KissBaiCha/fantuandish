@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<!--    <base href="http://localhost:8080/fan/">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="http://localhost:8080/fan/layui/css/layui.css">
+    <link rel="stylesheet" href="2.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src=" https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.js"></script>
+</head>
+<body>
+
+<div class="test">
+
+        <div class="img">
+            <label class="layui-form-label">上传图片：</label>
+
+            <div class="layui-input-block upload_div">
+                <form method="post" enctype="multipart/form-data" class="upload_form">
+                    <input type="file" class="myimg" accept="image/*" name="myfile">
+                    <div class="upload_icon"></div>
+                </form>
+            </div>
+        </div>
+        <div class="score_div">
+            <label class="layui-form-label">店铺评分：</label>
+            <div class="layui-input-block">
+                <div id="pingfen"></div>
+            </div>
+        </div>
+        <div class="content_div">
+            <label class="layui-form-label">评价：</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea" id="eva_content"></textarea>
+            </div>
+        </div>
+        <button type="button" class="layui-btn layui-btn-danger">发表评论</button>
+
+    <h2>Elasticsearch搜索引擎</h2>
+    <form>
+        <input type="text" class="kw">
+        <input type="button" class="btn" value="搜索">
+    </form>
+    <div>
+        <ul class="info">
+
+        </ul>
+    </div>
+</div>
+<script>
+    $(".btn").click(function (){
+        $.ajax({
+            type:"get",
+            url:"http://localhost:8080/fan/es/"+$(".kw").val(),
+            success:function (result){
+                console.log(result)
+                $(".info").html("");
+                for (var i=0;i<result.length;i++){
+                    $(".info").append("<li>Id:"+result[i].shopId+ " Name : " + result[i].shopName+"</li>");
+                }
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
+<script src="http://localhost:8080/fan/layui/layui.js"></script>
+<script src="2.js"></script>

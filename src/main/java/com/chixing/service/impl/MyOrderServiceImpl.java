@@ -8,6 +8,7 @@ import com.chixing.entity.SecondKill;
 import com.chixing.mapper.*;
 
 import com.chixing.service.IMyOrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,8 @@ import java.util.UUID;
  * @since 2022-10-02
  */
 @Service
+@Slf4j
 public class MyOrderServiceImpl implements IMyOrderService {
-
-
     private final MyOrderMapper myOrderMapper;
     private final MyCouponMapper myCouponMapper;
     private final CouponMapper couponMapper;
@@ -67,13 +67,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
         myOrder.setOrderStatus(1);
         myOrder.setOrderCreateTime(LocalDateTime.now());
         myOrder.setOrderUpdateTime(LocalDateTime.now());
-        if(myCouponId != null){
-            myOrder.setCouponId(myCouponId);
-            Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
-            BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
-            myOrder.setCouponPrice(couponPrice);
-            myOrder.setOrderPrice(food.getFoodPrice().subtract(myOrder.getCouponPrice()));
-        }
         if(isSecondKill){
             myOrder.setOrderType(1);
             QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
@@ -84,9 +77,18 @@ public class MyOrderServiceImpl implements IMyOrderService {
             myOrder.setOrderPrice(secondKillPrice.subtract(myOrder.getCouponPrice()));
         }else{
             myOrder.setOrderType(0);
-            myOrder.setOrderOnePrice(food.getFoodPrice());
-            myOrder.setOrderPrice(food.getFoodPrice());
         }
+        if(myCouponId != null){
+            myOrder.setCouponId(myCouponId);
+            Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
+            BigDecimal couponPrice = couponMapper.selectById(couponId).getCouponPrice();
+            myOrder.setCouponPrice(couponPrice);
+            log.info(myOrder.getCouponPrice().toString());
+            BigDecimal subtract = food.getFoodPrice().subtract(myOrder.getCouponPrice());
+            log.info("订单优惠后价格"+subtract);
+            myOrder.setOrderPrice(subtract);
+        }
+
         myOrderMapper.insert(myOrder);
         return uuId;
     }
@@ -94,11 +96,6 @@ public class MyOrderServiceImpl implements IMyOrderService {
     @Override
     public boolean update(MyOrder myOrder) {
         return myOrderMapper.updateById(myOrder) > 0;
-    }
-
-    @Override
-    public boolean remove(String orderId) {
-        return myOrderMapper.deleteById(orderId) >0;
     }
 
     @Override

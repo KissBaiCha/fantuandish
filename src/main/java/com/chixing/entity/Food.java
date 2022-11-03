@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
 /**
  * <p>
  * 
@@ -19,6 +18,7 @@ import lombok.Setter;
  * @since 2022-09-30
  */
 @Data
+
 public class Food implements Serializable {
 
     private static final long serialVersionUID = 1L;

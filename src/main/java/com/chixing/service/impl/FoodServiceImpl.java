@@ -9,6 +9,8 @@ import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.SecondKillMapper;
 import com.chixing.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -29,9 +32,11 @@ import java.util.stream.Collectors;
 @Service
 public class FoodServiceImpl implements IFoodService {
     @Autowired
-    private FoodMapper foodMapper;//持久层依赖导入
+    private FoodMapper foodMapper;
     @Autowired
-    private SecondKillMapper secondKillMapper;//持久层依赖导入
+    private SecondKillMapper secondKillMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     private QueryWrapper<Food> wrapper = new QueryWrapper<>();
 
@@ -77,29 +82,34 @@ public class FoodServiceImpl implements IFoodService {
 
     @Override
     public List<Food> foodTypes() {
-        wrapper.clear();
-        wrapper.select("distinct food_type");
-        List<Food> foodList = foodMapper.selectList(wrapper);
-//        return foodList.stream()
-//                .map(Food::getFoodType)
-//                .collect(Collectors.toSet());
-        return foodList;
+        String key = "foodTypes";
+        ValueOperations<String,List<Food>> operations = redisTemplate.opsForValue();
+        boolean haskey = redisTemplate.hasKey(key);
+        if (haskey){
+            return operations.get(key);
+        }else {
+            wrapper.clear();
+            wrapper.select("distinct food_type");
+            operations.set(key,foodMapper.selectList(wrapper),24, TimeUnit.HOURS);
+            List<Food> foodList = foodMapper.selectList(wrapper);
+            return foodList;
+        }
     }
 
     @Override
     public Map<SecondKill,Food> getSKPro() {
-        Map<SecondKill,Food> map = new HashMap<>();
-        Page<SecondKill> page = new Page<>(1,4);
-        List<SecondKill> secondKills = secondKillMapper.selectPage(page,null).getRecords();
-        if (secondKills.size()>0){
-            for (SecondKill secondKill : secondKills){
-                Integer foodId = secondKill.getFoodId();
-                Food food = foodMapper.selectById(foodId);
-                map.put(secondKill,food);
+            Map<SecondKill, Food> map = new HashMap<>();
+            Page<SecondKill> page = new Page<>(1, 4);
+            List<SecondKill> secondKills = secondKillMapper.selectPage(page, null).getRecords();
+            if (secondKills.size() > 0) {
+                for (SecondKill secondKill : secondKills) {
+                    Integer foodId = secondKill.getFoodId();
+                    Food food = foodMapper.selectById(foodId);
+                    map.put(secondKill,food);
+                }
+                return map;
             }
-            return map;
-        }
-        return null;
+            return null;
     }
 
     @Override

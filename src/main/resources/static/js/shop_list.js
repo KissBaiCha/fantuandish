@@ -1,3 +1,32 @@
+//分页
+layui.use(['laypage', 'layer'], function () {
+    var pagenum = document.getElementById("pagenum").value;
+    var total = document.getElementById("total").value;
+    var laypage = layui.laypage
+        , layer = layui.layer;
+    laypage.render({
+        elem: 'demo7'
+        ,count: total,
+        limit:4,
+        curr:pagenum,
+        jump:function (obj,first){
+            pageNum = obj.curr;
+            console.log(pageNum)
+            if (!first){
+                var url = window.location.href;
+                var firstUrl = url.split("shopsift")[0];
+                var lastUrl = url.split("?")[1];
+                if(!url.includes("?")){
+                    url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum);
+                }else{
+                    url = firstUrl.substring(0,firstUrl.length).concat("shopsift/",pageNum,"?",lastUrl);
+                }
+                window.location.href=url;
+            }
+        }
+    });
+})
+
 // 筛选
 
 //url取值处理（传入url和参数key,获取参数val）
@@ -195,5 +224,50 @@ function download_method(url){
         //     }
         // })
     window.location.href=url;
+
 }
 
+window.onbeforeunload = function () {
+
+    var scrollPos;
+
+    if (typeof window.pageYOffset != 'undefined') {
+
+        scrollPos = window.pageYOffset;
+
+    }
+
+    else if (typeof document.compatMode != 'undefined' &&
+
+        document.compatMode != 'BackCompat') {
+
+        scrollPos = document.documentElement.scrollTop;
+
+    }
+
+    else if (typeof document.body != 'undefined') {
+
+        scrollPos = document.body.scrollTop;
+
+    }
+
+    document.cookie = "scrollTop=" + scrollPos; //存储滚动条位置到cookies中
+
+}
+
+window.onload = function () {
+
+    if (document.cookie.match(/scrollTop=([^;]+)(;|$)/) != null) {
+
+        var arr = document.cookie.match(/scrollTop=([^;]+)(;|$)/); //cookies中不为空，则读取滚动条位置
+
+        // document.documentElement.scrollTop = parseInt(arr[1]);
+        //
+        // document.body.scrollTop = parseInt(arr[1]);
+        window.scrollTo({
+            top: parseInt(arr[1]),
+            behavior: "smooth"
+        });
+    }
+
+}

@@ -92,7 +92,7 @@
               </div>
         </div>
         <!--                     套餐                         -->
-        <div class="set-meal"  th:if="${not #maps.isEmpty(skpros)}">>
+        <div class="set-meal"  th:if="${not #maps.isEmpty(skpros)}">
             <h1>优惠促销</h1>
             <div class="set-meal-list">
                 <ul>
@@ -138,7 +138,7 @@
                         <ul class="dishesli-ads">
                             <li th:each="food:${foods}">
 <!--           <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}+'food/'+ ${food.foodId}">                     -->
-                                <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+ ${food.foodId}">
+                                <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+ ${food.foodId} + '/1'">
                                 <img th:src="${food.foodMainImg}">
                                     <p th:text="${food.foodName}">清蒸白鱼</p>
                                     <label><span>￥</span><span th:text="${food.foodPrice}">68</span></label>

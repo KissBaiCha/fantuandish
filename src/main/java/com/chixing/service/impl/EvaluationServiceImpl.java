@@ -14,8 +14,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,6 +40,9 @@ public class EvaluationServiceImpl  implements IEvaluationService {
 
     @Override
     public int save(Evaluation evaluation) {
+        evaluation.setPraiseNum(Long.valueOf(0));
+        evaluation.setEvaDateTime(LocalDateTime.now());
+        evaluation.setEvaCreateTime(LocalDateTime.now());
         return evaluationMapper.insert(evaluation);
     }
 
@@ -56,12 +62,17 @@ public class EvaluationServiceImpl  implements IEvaluationService {
     }
 
     @Override
-    public List<EvaluationVo> getByFoodId(Integer foodId) {
+    public Map<String,Object> getByFoodId(Integer foodId,Integer pageNum) {
+        //根据美食ID查出所有评论信息
         QueryWrapper<Evaluation> evaluationQueryWrapper = new QueryWrapper<>();
         evaluationQueryWrapper.eq("food_id",foodId);
-        List<Evaluation> evaluations = evaluationMapper.selectList(evaluationQueryWrapper);
+        Page<Evaluation> page = new Page<>(pageNum,10);
+        Page<Evaluation> pageEvaluations = evaluationMapper.selectPage(page, evaluationQueryWrapper);
+        Map<String,Object> map = new HashMap<>(3);
+        map.put("total",pageEvaluations.getTotal());
+        map.put("curr",pageEvaluations.getCurrent());
         List<EvaluationVo> evaluationVoList = new ArrayList<>();
-        for (Evaluation evaluation : evaluations) {
+        for (Evaluation evaluation : pageEvaluations.getRecords()) {
             QueryWrapper<Customer> customerQueryWrapper = new QueryWrapper<>();
             customerQueryWrapper.select("customer_head_img","customer_name").eq("customer_id",evaluation.getCustomerId());
             Customer customer = customerMapper.selectOne(customerQueryWrapper);
@@ -78,6 +89,7 @@ public class EvaluationServiceImpl  implements IEvaluationService {
                     ,evaImgs);
             evaluationVoList.add(evaluationVo);
         }
-        return evaluationVoList;
+        map.put("evaluationVoList",evaluationVoList);
+        return map;
     }
 }

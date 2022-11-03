@@ -6,11 +6,13 @@ import com.chixing.entity.Food;
 import com.chixing.service.IEvaluationService;
 import com.chixing.service.IFoodService;
 import com.chixing.service.IShopService;
+import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -25,17 +27,27 @@ public class FoodController {
         this.shopService = shopService;
         this.evaluationService = evaluationService;
     }
-//查 get  增 save 改update 删 remove
-    //int save(Food food);
-//     int update(Food food);
-//     int delete(Integer foodId);
 
-    @GetMapping("/shop/{shopId}/{foodId}")
-    private ModelAndView getById(@PathVariable("foodId")Integer foodId,@PathVariable("shopId") Integer shopId){
+    /**
+     * 用户点击美食后访问此方法
+     * @param foodId 美食id
+     * @param shopId 店铺id
+     * @param pageNum 评论页码
+     * @return 美食详情页面
+     */
+    @GetMapping("/shop/{shopId}/{foodId}/{pageNum}")
+    private ModelAndView getById(@PathVariable("foodId")Integer foodId,
+                                 @PathVariable("shopId") Integer shopId,
+                                 @PathVariable("pageNum") Integer pageNum,
+                                 HttpServletRequest request){
+        String cusName = JwtUtil.getCusNameBySession(request);
+        Integer cusId = JwtUtil.getCusIdBySession(request);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",foodService.getById(foodId));
+        modelAndView.addObject("cusName",cusName);
+        modelAndView.addObject("cusId",cusId);
         modelAndView.addObject("shop",shopService.getById(shopId));
-        modelAndView.addObject("evaList",evaluationService.getByFoodId(foodId));
+        modelAndView.addObject("evaMap",evaluationService.getByFoodId(foodId,pageNum));
         modelAndView.setViewName("details/details_product");
         return modelAndView;
     }
