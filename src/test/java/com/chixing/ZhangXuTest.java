@@ -3,10 +3,7 @@ package com.chixing;
 import com.chixing.commons.R;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
-import com.chixing.service.IEvaluationService;
-import com.chixing.service.IFoodCollectionService;
-import com.chixing.service.IMyCouponService;
-import com.chixing.service.IMyOrderService;
+import com.chixing.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +27,11 @@ public class ZhangXuTest {
     IEvaluationService evaluationService;
     @Autowired
     IMyCouponService myCouponService;
+    @Autowired
+    ICouponService couponService;
 
     @Test
     public void fun1(){
-        myCouponService.getMyCouponByShopId(1,10);
+        System.out.println(couponService.saveByCusId(1, 2));
     }
 }

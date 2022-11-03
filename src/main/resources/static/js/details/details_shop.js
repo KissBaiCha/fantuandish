@@ -58,3 +58,17 @@ var marker = new AMap.Marker({
     icon: 'https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/map-location-icon.svg' ,
     // offset: new AMap.Pixel(-13, -30)
 });
+$(".coupon-item").click(function (){
+    let CouponIdVal = $(this).children().children().first().val()
+    console.log(CouponIdVal)
+    $.ajax({
+        url:'coupon/save',
+        type:'POST',
+        data:{
+            couponId:CouponIdVal
+        },
+        success:function (data) {
+            console.log(data)
+        }
+    })
+})

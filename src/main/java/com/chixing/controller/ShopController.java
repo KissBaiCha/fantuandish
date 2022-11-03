@@ -36,6 +36,7 @@ public class ShopController {
     public ModelAndView getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
         String cusName = JwtUtil.getCusNameBySession(request);
+        Integer cusId = JwtUtil.getCusIdBySession(request);
         mav.addObject("shop",shopService.getById(shopId));
         mav.addObject("skpros",foodService.getSKProById(shopId));
         mav.addObject("foods",foodService.getShopProByShopId(shopId));
@@ -43,6 +44,7 @@ public class ShopController {
         mav.addObject("shopimgs",shopImgService.getShopSrc(shopId));
         mav.addObject("couponList",couponService.getByShopId(shopId));
         mav.addObject("cusName",cusName);
+        mav.addObject("cusId",cusId);
         mav.setViewName("details/details_shop");
         return mav;
     }
