@@ -5,6 +5,7 @@ import com.chixing.entity.MyCoupon;
 import com.chixing.service.IMyCouponService;
 import com.chixing.util.JwtUtil;
 import com.rabbitmq.client.Channel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -21,6 +22,7 @@ import static com.chixing.commons.ResultCodeEnum.DATA_EMPTY;
 
 @RestController
 @RequestMapping("/myCoupon")
+@Slf4j
 public class MyCouponController {
 
     @Autowired
@@ -69,6 +71,7 @@ public class MyCouponController {
     @RabbitHandler
     @RabbitListener(queues = "coupon-Queue")
     public void couponListener(Integer newCouponId, Channel channel , Message message){
+        log.info("接收到了"+newCouponId+"优惠券的使用信息。正在更改状态");
         MyCoupon myCoupon = myCouponService.getById(newCouponId);
         myCoupon.setMyCouponStatus(2);
         myCouponService.update(myCoupon);
