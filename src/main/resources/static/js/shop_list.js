@@ -56,17 +56,17 @@
 // }
 
 $("#es_btn").click(function (){
-    selectEs($("#es_input").val())
+    selectEs(0,$("#es_input").val())
 });
-    function selectEs(shopName){
+    function selectEs(pageNum,shopName){
     $.ajax({
         type:"get",
-        url:"http://localhost:8080/fan/esshopname/"+shopName,
+        url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName,
         success:function (result){
             console.log(result)
             $(".pro ul").html("");
-            for (var i=0;i<result.length;i++){
-                var shop = result[i];
+            for (var i=0;i<result.shopList.length;i++){
+                var shop = result.shopList[i];
                 console.log(shop)
                 $(".pro ul").append("                        <li th:each=\"shop:${shop.records}\">\n" +
                     "                            <a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
@@ -82,30 +82,30 @@ $("#es_btn").click(function (){
                     "                            <span class=\"sty\">推荐菜：<a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\"><span>巧克力蛋糕</span></a></span>\n" +
                     "                        </li>");
 
-                $(".paging").html("");
-                $(".paging").append("<div id=\"demoES\"></div>");
-
-                layui.use(['laypage', 'layer'], function () {
-                    var pagenum = result.number+1;
-                    var total = result.totalElements;
-                    var laypage = layui.laypage
-                        , layer = layui.layer;
-                    laypage.render({
-                        elem: 'demoES'
-                        ,count: total,
-                        limit:4,
-                        curr:pagenum,
-                        jump:function (obj,first){
-                            pageNum = obj.curr;
-                            console.log(pageNum)
-                            if (!first){
-                                pageNum = obj.curr;
-                                // selectEs(pageNum+1)
-                            }
-                        }
-                    });
-                })
             }
+
+            $(".paging").html("");
+            $(".paging").append("<div id=\"demoES\"></div>");
+            layui.use(['laypage', 'layer'], function () {
+                var pagenum = pageNum+1;
+                var total = result.page;
+                var laypage = layui.laypage
+                    , layer = layui.layer;
+                laypage.render({
+                    elem: 'demoES'
+                    ,count: total,
+                    limit:4,
+                    curr:pagenum,
+                    jump:function (obj,first){
+                        var pageNumd = obj.curr;
+                        console.log(pageNumd)
+                        if (!first){
+                            // pageNum = obj.curr;
+                            selectEs(pageNumd-1,shopName)
+                        }
+                    }
+                });
+            })
         }
     })
 }
