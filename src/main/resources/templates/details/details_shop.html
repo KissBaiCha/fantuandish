@@ -91,7 +91,33 @@
                 </div>
               </div>
         </div>
+        <!--                     优惠券                         -->
+        <div class="set-coupon">
+            <h1>限时领券</h1>
+            <div class="set-coupon-list">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+
+        <!--                   推荐 菜品                      -->
+        <div class="dishesli-recommend">
+            <ul>
+                <h1>推荐菜品</h1>
+                <li th:each="sellfood:${sellfoods}">
+                    <a th:href="'http://localhost:8080/fan/shop/'+${sellfood.shopId}+'/'+ ${sellfood.foodId}">
+                        <img th:src="${sellfood.foodMainImg}" >
+                        <p th:text="${sellfood.foodName}">清蒸白鱼</p>
+                        <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
         <!--                     套餐                         -->
+
         <div class="set-meal"  th:if="${not #maps.isEmpty(skpros)}">
             <h1>优惠促销</h1>
             <div class="set-meal-list">
@@ -111,21 +137,7 @@
                 </ul>
             </div>
         </div>
-        <!--                   推荐 菜品                      -->
-        <div class="dishesli-recommend">
-            <ul>
-                <h1>推荐菜品</h1>
-                <li th:each="sellfood:${sellfoods}">
-                    <a th:href="'http://localhost:8080/fan/shop/'+${sellfood.shopId}+'/'+ ${sellfood.foodId}">
-                        <img th:src="${sellfood.foodMainImg}" >
-                        <p th:text="${sellfood.foodName}">清蒸白鱼</p>
-                        <p th:text="${sellfood.foodDetail}">清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼清蒸白鱼</p>
-                    </a>
-                </li>
 
-                
-            </ul>
-        </div>
         <!--                   菜品 列表                      -->
         <div class="dishesli-all">
             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
