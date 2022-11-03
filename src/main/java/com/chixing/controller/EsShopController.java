@@ -6,6 +6,7 @@
 //import org.elasticsearch.index.query.BoolQueryBuilder;
 //import org.elasticsearch.index.query.QueryBuilders;
 //import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+//import org.elasticsearch.search.sort.SortBuilders;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
@@ -60,13 +61,21 @@
 //     * @param shopName
 //     * @return
 //     */
-//    @GetMapping("esshopname/{pageNum}/{shopName}")
-//    public Map<String,Object> getByPage(@PathVariable("pageNum")Integer pageNum,@PathVariable("shopName")String shopName){
+//    @GetMapping("esshopname/{pageNum}/{shopName}/{sort}")
+//    public Map<String,Object> getByPage(@PathVariable("pageNum")Integer pageNum,
+//                                        @PathVariable("shopName")String shopName,
+//                                        @PathVariable(value = "sort",required = false)Integer sort){
 //        List<Shop> shops= esShopService.findByShopName(shopName);
 //        System.out.println("num"+shops.size());
 //        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
 //                .should(QueryBuilders.matchQuery("shopName",shopName));
-//        Pageable page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
+//        Pageable page = null;
+//        if(sort==1)
+//            page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
+//        else if (sort==2)
+//            page = PageRequest.of(pageNum,4, Sort.Direction.DESC,"shopAvgCost");
+//        else
+//            page = PageRequest.of(pageNum,4, Sort.Direction.DESC,"shopScore");
 //        //构建高亮查询
 //        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
 //                .withQuery(boolQueryBuilder)
