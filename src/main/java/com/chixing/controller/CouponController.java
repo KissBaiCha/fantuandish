@@ -22,9 +22,9 @@ public class  CouponController {
     private ICouponService couponService;
 
     @PostMapping("/save")
-    public R<Object> save(@RequestParam("couponId") Integer couponId){
-//        Integer cusId = JwtUtil.getCusIdBySession(request);
-        if(couponService.saveByCusId(couponId,1)){
+    public R<Object> save(@RequestParam("couponId") Integer couponId,HttpServletRequest request){
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        if(couponService.saveByCusId(couponId,cusId)){
             return R.ok();
         }
         return R.fail();
