@@ -18,8 +18,8 @@ spring:
       filter:
         enabled: true
   datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://47.103.61.23:3306/fantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.103.61.23:3306/fantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: zhangxu1023
   rabbitmq:
