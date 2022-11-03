@@ -21,6 +21,7 @@
 //import org.springframework.web.bind.annotation.RestController;
 //
 //import java.util.ArrayList;
+//import java.util.HashMap;
 //import java.util.List;
 //import java.util.Map;
 //
@@ -39,24 +40,37 @@
 //        esShopService.saveAll(shopList);
 //        return "success";
 //    }
+//
+//    /**
+//     * Elasticsearch分页查询
+//     * @param pageNum
+//     * @return
+//     */
 //    @GetMapping("es/{pageNum}")
 //    public Page<Shop> getByPage(@PathVariable("pageNum")Integer pageNum){
-////        esShopService.findByShopName(shopName);
 //        Pageable page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
 //        Page<Shop> allShop = esShopService.findAll(page);
 //        System.out.println(allShop);
 //        return allShop;
 //    }
 //
-//    @GetMapping("esshopname/{shopName}")
-//    public List<Shop> getByPage(@PathVariable("shopName")String shopName){
-////        esShopService.findByShopName(shopName);
+//    /**
+//     * Elasticsearch分页高亮显示
+//     * @param pageNum
+//     * @param shopName
+//     * @return
+//     */
+//    @GetMapping("esshopname/{pageNum}/{shopName}")
+//    public Map<String,Object> getByPage(@PathVariable("pageNum")Integer pageNum,@PathVariable("shopName")String shopName){
+//        List<Shop> shops= esShopService.findByShopName(shopName);
+//        System.out.println("num"+shops.size());
 //        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
 //                .should(QueryBuilders.matchQuery("shopName",shopName));
-//
+//        Pageable page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
 //        //构建高亮查询
 //        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
 //                .withQuery(boolQueryBuilder)
+//                .withPageable(page)
 //                .withHighlightFields(
 //                        new HighlightBuilder.Field("shopName"))
 //                .withHighlightBuilder(new HighlightBuilder()
@@ -67,7 +81,6 @@
 //        SearchHits<Shop> search = restTemplate.search(searchQuery,Shop.class);
 //
 //        List<SearchHit<Shop>> searchHits = search.getSearchHits();
-//
 //        List<Shop> ShopList = new ArrayList<>();
 //        for (SearchHit<Shop> searchHit : searchHits){
 //            Map<String ,List<String>> highlightFields = searchHit.getHighlightFields();
@@ -75,9 +88,11 @@
 //            String name = highlightFields.get("shopName") == null ?
 //                    searchHit.getContent().getShopName() : highlightFields.get("shopName").get(0);
 //            searchHit.getContent().setShopName(name);
-//
 //            ShopList.add(searchHit.getContent());
 //        }
-//        return ShopList;
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("shopList",ShopList);
+//        map.put("page",shops.size());
+//        return map;
 //    }
 //}
