@@ -57,10 +57,10 @@
             type:"get",
             url:"http://localhost:8080/fan/es/"+$(".kw").val(),
             success:function (result){
-                console.log(result)
+                console.log(result.content)
                 $(".info").html("");
-                for (var i=0;i<result.length;i++){
-                    $(".info").append("<li>Id:"+result[i].shopId+ " Name : " + result[i].shopName+"</li>");
+                for (var i=0;i<result.size;i++){
+                    $(".info").append("<li>Id:"+result.content[i].shopId+ " Name : " + result.content[i].shopName+"</li>");
                 }
             }
         })

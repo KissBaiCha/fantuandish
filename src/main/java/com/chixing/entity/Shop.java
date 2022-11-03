@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -97,7 +98,8 @@ public class Shop implements Serializable {
     /**
      * 营业时间
      */
-    @Field(type = FieldType.Date,format = DateFormat.basic_t_time_no_millis, pattern = "HH:mm:ss")//自动检测类型
+    @Field(type = FieldType.Date, format = DateFormat.custom,pattern ="HH:mm:ss")
+    @JsonFormat(pattern="HH:mm:ss",timezone="GMT+8")
     @JsonDeserialize(using = LocalTimeDeserializer.class)		// 反序列化
     @JsonSerialize(using = LocalTimeSerializer.class)		// 序列化
     private LocalTime shopOpenTime;
@@ -105,7 +107,8 @@ public class Shop implements Serializable {
     /**
      * 打烊时间
      */
-    @Field(type = FieldType.Date,format = DateFormat.basic_t_time_no_millis, pattern = "HH:mm:ss")//自动检测类型
+    @Field(type = FieldType.Date, format = DateFormat.custom,pattern ="HH:mm:ss")
+    @JsonFormat(pattern="HH:mm:ss",timezone="GMT+8")
     @JsonDeserialize(using = LocalTimeDeserializer.class)		// 反序列化
     @JsonSerialize(using = LocalTimeSerializer.class)		// 序列化
     private LocalTime shopCloseTime;

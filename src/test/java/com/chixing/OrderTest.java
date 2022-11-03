@@ -32,8 +32,8 @@ public class OrderTest {
 
     @Test
     public void delete(){
-       boolean result = myOrderService.remove("1001");
-        System.out.println(result);
+//       boolean result = myOrderService.remove("1001");
+//        System.out.println(result);
 
     }
 
