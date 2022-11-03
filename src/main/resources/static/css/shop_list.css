@@ -199,6 +199,9 @@ body{
  .prolist .paging #demo7{
     padding-top: 25px;
  }
+.prolist .paging #demoES{
+    padding-top: 25px;
+}
  .layui-laypage .layui-laypage-curr .layui-laypage-em{
     background-color: rgb(255,107,55);
  }

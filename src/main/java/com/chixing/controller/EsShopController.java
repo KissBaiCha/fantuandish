@@ -40,15 +40,26 @@
 //        esShopService.saveAll(shopList);
 //        return "success";
 //    }
+//
+//    /**
+//     * Elasticsearch分页查询
+//     * @param pageNum
+//     * @return
+//     */
 //    @GetMapping("es/{pageNum}")
 //    public Page<Shop> getByPage(@PathVariable("pageNum")Integer pageNum){
-////        esShopService.findByShopName(shopName);
 //        Pageable page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
 //        Page<Shop> allShop = esShopService.findAll(page);
 //        System.out.println(allShop);
 //        return allShop;
 //    }
 //
+//    /**
+//     * Elasticsearch分页高亮显示
+//     * @param pageNum
+//     * @param shopName
+//     * @return
+//     */
 //    @GetMapping("esshopname/{pageNum}/{shopName}")
 //    public Map<String,Object> getByPage(@PathVariable("pageNum")Integer pageNum,@PathVariable("shopName")String shopName){
 //        List<Shop> shops= esShopService.findByShopName(shopName);
