@@ -16,5 +16,11 @@ public interface ICouponService {
     int remove(int couponId);
     int update(Coupon coupon);
     Coupon getById(int couponId);
-    List<Coupon> getByPage(Integer pageNum);
+
+    /**
+     * 根据商家ID查询其所发布的优惠券
+     * @param shopId 商家ID
+     * @return 优惠券List
+     */
+    List<Coupon> getByShopId(Integer shopId);
 }
