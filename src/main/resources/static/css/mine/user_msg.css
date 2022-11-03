@@ -91,6 +91,7 @@
     border:none;
     background-color:white;
     padding-left: 10px;
+    color: rgb(102, 99, 99);
 }
 
 .my_msg .update,.save{

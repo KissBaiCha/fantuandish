@@ -81,7 +81,8 @@ public class MyOrderController {
      * @return 返回订单确认界面
      */
     @GetMapping("/getOrderDetails")
-    public ModelAndView getOrderDetails(@RequestParam("foodId") Integer foodId,@RequestParam("shopId") Integer shopId, HttpServletRequest request){
+    public ModelAndView getOrderDetails(@RequestParam("foodId") Integer foodId,
+                                        @RequestParam("shopId") Integer shopId, HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
         Food food = iFoodService.getById(foodId);
         List<MyCouponVO> myCouponVoList = myCouponService.getMyCouponByShopId(cusId, shopId);
