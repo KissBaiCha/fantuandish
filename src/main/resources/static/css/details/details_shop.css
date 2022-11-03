@@ -18,6 +18,14 @@ body{
     height: 260px;
     float:right;  
 }
+/* 优惠券 */
+.set-coupon{
+    width: 70%;
+    height: 155px;
+    margin-top: 12px;
+    background-color: #FFF;
+    float: left;
+}
 /* 套餐 */
 .set-meal{
     width: 70%;
@@ -119,6 +127,18 @@ body{
     margin: 23px 10px 0 5px;
     text-align: center;
     float: right;
+}
+
+/* 优惠券 */
+.set-coupon h1{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 10px 15px;
+}
+.set-coupon .set-meal-coupon{
+    width: 98%;
+    height: 60%;
+    margin-left: 15px;
 }
 /* 优惠促销 */
 .set-meal h1{
