@@ -96,7 +96,6 @@ public class AliPayServiceImpl implements IAliPayService {
         System.out.println("return total_amount:" + total_amount);
         // 回调页面
         modelAndView.setViewName(return_url);
-
         MyOrder order = myOrderMapper.selectById(out_trade_no);
         Food food = foodMapper.selectById(order.getFoodId());
         order.setOrderStatus(2);
