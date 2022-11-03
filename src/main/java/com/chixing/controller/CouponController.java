@@ -43,9 +43,6 @@ public class  CouponController {
         return couponService.getById(couponId);
     }
 
-    @GetMapping("/getByPage/{pageNum}")
-    public List<Coupon> getByPage(@PathVariable("pageNum")Integer pageNum){
-        return couponService.getByPage(pageNum);
-    }
+
 
 }

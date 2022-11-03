@@ -1,5 +1,6 @@
 package com.chixing.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Coupon;
 import com.chixing.mapper.CouponMapper;
@@ -44,8 +45,9 @@ public class CouponServiceImpl implements ICouponService {
     }
 
     @Override
-    public List<Coupon> getByPage(Integer pageNum) {
-        Page<Coupon> page = new Page<>(pageNum,3);
-        return couponMapper.selectPage(page,null).getRecords();
+    public List<Coupon> getByShopId(Integer shopId) {
+        QueryWrapper<Coupon> couponQueryWrapper = new QueryWrapper<>();
+        couponQueryWrapper.eq("shop_id",shopId);
+        return couponMapper.selectList(couponQueryWrapper);
     }
 }
