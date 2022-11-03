@@ -3,6 +3,14 @@ $(".couponList").click(function (){
     let shopId = $(".shopId").val();
     $(".couponCard").toggle();
 })
+$(".quXiaoBtn").click(function (){
+    let gongJi = $(".price").text();
+    gongJi = Number( gongJi)
+    $(".newCouponId").val(0)
+    $(".n-price").text(0)
+    $(".payNum").text(gongJi)
+    $(".couponCard").hide();
+})
 layui.use('form', function(){
     var form = layui.form;
     //提交

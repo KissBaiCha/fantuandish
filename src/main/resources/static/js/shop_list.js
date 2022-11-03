@@ -1,14 +1,19 @@
 //ES
+
 $("#es_btn").click(function (){
+    selectEs($("#es_input").val())
+});
+    function selectEs(pageNum){
     $.ajax({
         type:"get",
-        url:"http://localhost:8080/fan/es/"+$("#es_input").val(),
+        url:"http://localhost:8080/fan/es/"+pageNum,
         success:function (result){
-            console.log(result.content)
-            $(".info ul").html("");
+            console.log(result)
+            $(".pro ul").html("");
             for (var i=0;i<result.size;i++){
                 var shop = result.content[i];
-                $(".info ul").append("                        <li th:each=\"shop:${shop.records}\">\n" +
+                console.log(shop)
+                $(".pro ul").append("                        <li th:each=\"shop:${shop.records}\">\n" +
                     "                            <a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
                     "                            <h4><a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\">"+shop.shopName+"</a></h4>\n" +
                     "                            <label class=\"proscoreimg\"><i></i><i></i><i></i><i></i><i></i></label>\n" +
@@ -21,10 +26,35 @@ $("#es_btn").click(function (){
                     "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
                     "                            <span class=\"sty\">推荐菜：<a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\"><span>巧克力蛋糕</span></a></span>\n" +
                     "                        </li>");
+
+                $(".paging").html("");
+                $(".paging").append("<div id=\"demoES\"></div>");
+
+                layui.use(['laypage', 'layer'], function () {
+                    var pagenum = result.number+1;
+                    var total = result.totalElements;
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    laypage.render({
+                        elem: 'demoES'
+                        ,count: total,
+                        limit:4,
+                        curr:pagenum,
+                        jump:function (obj,first){
+                            pageNum = obj.curr;
+                            console.log(pageNum)
+                            if (!first){
+                                pageNum = obj.curr;
+                                // var url = "http://localhost:8080/fan/es/"+pageNum;
+                                // window.location.href=url;
+                            }
+                        }
+                    });
+                })
             }
         }
     })
-})
+}
 
 //分页
 layui.use(['laypage', 'layer'], function () {
@@ -256,46 +286,30 @@ function download_method(url){
 }
 
 window.onbeforeunload = function () {
-
     var scrollPos;
-
     if (typeof window.pageYOffset != 'undefined') {
-
         scrollPos = window.pageYOffset;
-
     }
-
     else if (typeof document.compatMode != 'undefined' &&
-
         document.compatMode != 'BackCompat') {
-
         scrollPos = document.documentElement.scrollTop;
-
     }
 
     else if (typeof document.body != 'undefined') {
-
         scrollPos = document.body.scrollTop;
-
     }
-
     document.cookie = "scrollTop=" + scrollPos; //存储滚动条位置到cookies中
-
 }
 
 window.onload = function () {
-
     if (document.cookie.match(/scrollTop=([^;]+)(;|$)/) != null) {
-
         var arr = document.cookie.match(/scrollTop=([^;]+)(;|$)/); //cookies中不为空，则读取滚动条位置
-
-        // document.documentElement.scrollTop = parseInt(arr[1]);
-        //
-        // document.body.scrollTop = parseInt(arr[1]);
-        window.scrollTo({
-            top: parseInt(arr[1]),
-            behavior: "smooth"
-        });
+        document.documentElement.scrollTop = parseInt(arr[1]);
+        document.body.scrollTop = parseInt(arr[1]);
+        // window.scrollTo({
+        //     top: parseInt(arr[1]),
+        //     behavior: "smooth"
+        // });
     }
 
 }

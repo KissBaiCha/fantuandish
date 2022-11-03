@@ -74,6 +74,7 @@ public class MyCouponController {
         log.info("接收到了"+newCouponId+"优惠券的使用信息。正在更改状态");
         MyCoupon myCoupon = myCouponService.getById(newCouponId);
         myCoupon.setMyCouponStatus(2);
+        myCoupon.setMyCouponUpdateTime(LocalDateTime.now());
         myCouponService.update(myCoupon);
         try {
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);

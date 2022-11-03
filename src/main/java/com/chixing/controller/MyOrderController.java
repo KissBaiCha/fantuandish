@@ -56,6 +56,9 @@ public class MyOrderController {
         Integer cusId = JwtUtil.getCusIdBySession(request);
         String cusName = JwtUtil.getCusNameBySession(request);
         Food food = iFoodService.getById(foodId);
+        if(newCouponId == 0){
+            newCouponId = null;
+        }
         String orderNum = myOrderService.save(cusId, newCouponId, foodId, isSecondKillVal == 1);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food",food);
@@ -63,6 +66,7 @@ public class MyOrderController {
         modelAndView.addObject("orderNum",orderNum);
         modelAndView.addObject("cusName",cusName);
         modelAndView.addObject("cusId",cusId);
+        modelAndView.addObject("myOrder",myOrder);
         modelAndView.addObject("myOrderCreatTime",myOrder.getOrderCreateTime());
         //向队列发送订单编号
         rabbitTemplate.convertAndSend("order-exchange","order-create",orderNum);
@@ -84,11 +88,13 @@ public class MyOrderController {
     public ModelAndView getOrderDetails(@RequestParam("foodId") Integer foodId,
                                         @RequestParam("shopId") Integer shopId, HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
         Food food = iFoodService.getById(foodId);
         List<MyCouponVO> myCouponVoList = myCouponService.getMyCouponByShopId(cusId, shopId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("myCouponVoList",myCouponVoList);
         modelAndView.addObject("food",food);
+        modelAndView.addObject("cusName",cusName);
         modelAndView.setViewName("customer/order/order");
         return modelAndView;
     }

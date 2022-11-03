@@ -31,7 +31,7 @@
                 </div>
                 <div class="layui-col-xs4">
                     <ul class="layui-nav">
-                        <li class="layui-nav-item"><a href="">登录/注册</a></li>
+                        <li class="layui-nav-item"><a href="" th:text="${cusName}">登录/注册</a></li>
                         <li class="layui-nav-item"><a href="">帮助中心</a></li>
                         <li class="layui-nav-item">
                             <a href="javascript:;">我的饭团</a>
@@ -162,6 +162,7 @@
                                         <div class="layui-form-item">
                                             <div class="layui-input-block">
                                                 <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: rgb(255,107,55)">确定</button>
+                                                <button type="reset" class="layui-btn layui-btn-primary quXiaoBtn" style="background-color: rgb(255,107,55)">取消</button>
                                             </div>
                                         </div>
                                     </form>
@@ -204,7 +205,7 @@
                         <input type="hidden" name="foodId" class="foodId" th:value="${food.foodId}">
                         <input type="hidden" name="shopId" class="shopId" th:value="${food.shopId}">
                         <input type="hidden" name="isSecondKillVal" class="isSecondKillVal" value="0">
-                        <input type="hidden" name="newCouponId" class="newCouponId" value="">
+                        <input type="hidden" name="newCouponId" class="newCouponId" value="0">
                         <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单">
                     </form>
                 </div>
