@@ -1,6 +1,7 @@
 package com.chixing.controller;
 
 import com.chixing.entity.Shop;
+import com.chixing.service.ICouponService;
 import com.chixing.service.IFoodService;
 import com.chixing.service.IShopImgService;
 import com.chixing.service.IShopService;
@@ -24,6 +25,8 @@ public class ShopController {
     private IFoodService foodService;
     @Autowired
     private IShopImgService shopImgService;
+    @Autowired
+    private ICouponService couponService;
     /**
      * 筛选页跳转查询店铺信息
      * @param shopId
@@ -33,12 +36,15 @@ public class ShopController {
     public ModelAndView getById(@PathVariable("id") Integer shopId, HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
         String cusName = JwtUtil.getCusNameBySession(request);
+        Integer cusId = JwtUtil.getCusIdBySession(request);
         mav.addObject("shop",shopService.getById(shopId));
         mav.addObject("skpros",foodService.getSKProById(shopId));
         mav.addObject("foods",foodService.getShopProByShopId(shopId));
         mav.addObject("sellfoods",foodService.getShopProByScore(shopId));
         mav.addObject("shopimgs",shopImgService.getShopSrc(shopId));
+        mav.addObject("couponList",couponService.getByShopId(shopId));
         mav.addObject("cusName",cusName);
+        mav.addObject("cusId",cusId);
         mav.setViewName("details/details_shop");
         return mav;
     }

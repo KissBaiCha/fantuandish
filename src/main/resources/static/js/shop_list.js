@@ -1,62 +1,70 @@
-//ES
-
+//Elasticsearch搜索引擎
 $("#es_btn").click(function (){
-    selectEs($("#es_input").val())
+    selectEs(0,$("#es_input").val())
 });
-    function selectEs(pageNum){
+    function selectEs(pageNum,shopName){
     $.ajax({
         type:"get",
-        url:"http://localhost:8080/fan/es/"+pageNum,
+        url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName,
         success:function (result){
             console.log(result)
             $(".pro ul").html("");
-            for (var i=0;i<result.size;i++){
-                var shop = result.content[i];
+            for (var i=0;i<result.shopList.length;i++){
+                var shop = result.shopList[i];
                 console.log(shop)
-                $(".pro ul").append("                        <li th:each=\"shop:${shop.records}\">\n" +
-                    "                            <a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
-                    "                            <h4><a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\">"+shop.shopName+"</a></h4>\n" +
+                $(".pro ul").append("                        <li>\n" +
+                    "                            <a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
+                    "                            <h4><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">"+shop.shopName+"</a></h4>\n" +
                     "                            <label class=\"proscoreimg\"><i></i><i></i><i></i><i></i><i></i></label>\n" +
                     "                            <label class=\"proscore\" >"+shop.shopScore+"</label><label>分</label>\n" +
-                    "                            <a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\" class=\"comment\">\n" +
+                    "                            <a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\" class=\"comment\">\n" +
                     "                                <span>1234</span>\n" +
                     "                                <span>条评论</span>\n" +
                     "                            </a>\n" +
-                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\">"+shop.shopAddressDetail+"</a></span>\n" +
-                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
-                    "                            <span class=\"sty\">推荐菜：<a href=\"'http://localhost:8080/fan/shop/'+${shop.shopId}\"><span>巧克力蛋糕</span></a></span>\n" +
+                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">"+shop.shopAddressDetail+"</a></span>\n" +
+                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
+                    "                            <span class=\"sty\">推荐菜：<a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\"><span>巧克力蛋糕</span></a></span>\n" +
                     "                        </li>");
+                var score = $(".proscore:last").text();
+                console.log(score)
+                for (var j=1;j<=5;j++) {
+                    if(score >= j*2) {
+                        $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)");
+                    } else if( score > (j-1)*2 && score < j*2 ) {
+                        $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)");
+                    } else {
+                        $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)");
+                    }
+                }
 
-                $(".paging").html("");
-                $(".paging").append("<div id=\"demoES\"></div>");
-
-                layui.use(['laypage', 'layer'], function () {
-                    var pagenum = result.number+1;
-                    var total = result.totalElements;
-                    var laypage = layui.laypage
-                        , layer = layui.layer;
-                    laypage.render({
-                        elem: 'demoES'
-                        ,count: total,
-                        limit:4,
-                        curr:pagenum,
-                        jump:function (obj,first){
-                            pageNum = obj.curr;
-                            console.log(pageNum)
-                            if (!first){
-                                pageNum = obj.curr;
-                                // var url = "http://localhost:8080/fan/es/"+pageNum;
-                                // window.location.href=url;
-                            }
-                        }
-                    });
-                })
             }
+
+            $(".paging").html("");
+            $(".paging").append("<div id=\"demoES\"></div>");
+            layui.use(['laypage', 'layer'], function () {
+                var pagenum = pageNum+1;
+                var total = result.page;
+                var laypage = layui.laypage
+                    , layer = layui.layer;
+                laypage.render({
+                    elem: 'demoES'
+                    ,count: total,
+                    limit:4,
+                    curr:pagenum,
+                    jump:function (obj,first){
+                        var pageNumd = obj.curr;
+                        console.log(pageNumd)
+                        if (!first){
+                            // pageNum = obj.curr;
+                            selectEs(pageNumd-1,shopName)
+                        }
+                    }
+                });
+            })
         }
     })
 }
-
-//分页
+//默认分页
 layui.use(['laypage', 'layer'], function () {
     var pagenum = document.getElementById("pagenum").value;
     var total = document.getElementById("total").value;
@@ -85,7 +93,7 @@ layui.use(['laypage', 'layer'], function () {
     });
 })
 
-// 筛选
+// 多条件筛选
 
 //url取值处理（传入url和参数key,获取参数val）
 function handleUrl(url,key){

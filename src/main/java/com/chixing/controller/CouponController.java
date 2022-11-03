@@ -1,10 +1,13 @@
 package com.chixing.controller;
 
+import com.chixing.commons.R;
 import com.chixing.entity.Coupon;
 import com.chixing.service.ICouponService;
+import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,10 +22,12 @@ public class  CouponController {
     private ICouponService couponService;
 
     @PostMapping("/save")
-    public String save(Coupon coupon){
-        coupon.setCouponCreateTime(LocalDateTime.now());
-        int row = couponService.save(coupon);
-        return coupon.toString();
+    public R<Object> save(@RequestParam("couponId") Integer couponId,HttpServletRequest request){
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        if(couponService.saveByCusId(couponId,cusId)){
+            return R.ok();
+        }
+        return R.fail();
     }
 
     @DeleteMapping("/remove/{id}")
@@ -43,9 +48,6 @@ public class  CouponController {
         return couponService.getById(couponId);
     }
 
-    @GetMapping("/getByPage/{pageNum}")
-    public List<Coupon> getByPage(@PathVariable("pageNum")Integer pageNum){
-        return couponService.getByPage(pageNum);
-    }
+
 
 }
