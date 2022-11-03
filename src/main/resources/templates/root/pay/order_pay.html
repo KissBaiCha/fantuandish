@@ -89,7 +89,7 @@
         </div>
         <div class="pro_price">
             <span class="yingfu">应付金额￥</span>
-            <span class="price" th:text="${food.foodPrice}">216</span>
+            <span class="price" th:text="${myOrder.orderPrice}">216</span>
         </div>
     </div>
     <!-- -----------------------------支付宝支付----------------------------------- -->
@@ -106,13 +106,12 @@
                     <div class="fukuan">
                         <div class="fukuan_price">
                             <span>支付￥</span>
-                            <span class="fukuan_pri" th:text="${food.foodPrice}">216</span>
+                            <span class="fukuan_pri" th:text="${myOrder.orderPrice}">216</span>
                             <form action="alipay/goAlipay" method="post">
                                 <input type="hidden" class="orderNum" name="orderNum" th:value="${orderNum}">
                                 <input type="hidden" class="myOrderCreatTime" name="myOrderCreatTime" th:value="${myOrderCreatTime}">
                                 <input type="submit" value="去付款" class="gopay">
                             </form>
-                            <a href="" class="update_order">返回修改订单</a>
                         </div>
                     </div>
                 </div>

@@ -74,6 +74,8 @@ public class MyOrderServiceImpl implements IMyOrderService {
             Integer couponId = myCouponMapper.selectById(myCouponId).getCouponId();
             couponPrice = couponMapper.selectById(couponId).getCouponPrice();
             myOrder.setCouponPrice(couponPrice);
+        }else{
+            couponPrice = BigDecimal.ZERO;
         }
         if(isSecondKill){
             myOrder.setOrderType(1);
@@ -85,6 +87,7 @@ public class MyOrderServiceImpl implements IMyOrderService {
             myOrder.setOrderPrice(secondKillPrice.subtract(couponPrice));
         }else{
             myOrder.setOrderOnePrice(food.getFoodPrice());
+            log.info("订单金额" + food.getFoodPrice().subtract(couponPrice));
             myOrder.setOrderPrice(food.getFoodPrice().subtract(couponPrice));
             myOrder.setOrderType(0);
         }
