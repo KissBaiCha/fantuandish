@@ -69,8 +69,10 @@ public class EvaluationServiceImpl  implements IEvaluationService {
         Page<Evaluation> page = new Page<>(pageNum,10);
         Page<Evaluation> pageEvaluations = evaluationMapper.selectPage(page, evaluationQueryWrapper);
         Map<String,Object> map = new HashMap<>(3);
+        //将页码信息放入Map
         map.put("total",pageEvaluations.getTotal());
         map.put("curr",pageEvaluations.getCurrent());
+        //返回数据EvaluationVo集合
         List<EvaluationVo> evaluationVoList = new ArrayList<>();
         for (Evaluation evaluation : pageEvaluations.getRecords()) {
             QueryWrapper<Customer> customerQueryWrapper = new QueryWrapper<>();
@@ -79,7 +81,7 @@ public class EvaluationServiceImpl  implements IEvaluationService {
             QueryWrapper<EvaImg> imgQueryWrapper = new QueryWrapper<>();
             imgQueryWrapper.select("eva_img_path")
                     .eq("eva_id",evaluation.getEvaId())
-                    .eq("img_status",1);
+                    .eq("img_status",0);
             List<EvaImg> evaImgs = evaImgMapper.selectList(imgQueryWrapper);
             EvaluationVo evaluationVo = new EvaluationVo(customer.getCustomerHeadImg()
                     ,customer.getCustomerName()
