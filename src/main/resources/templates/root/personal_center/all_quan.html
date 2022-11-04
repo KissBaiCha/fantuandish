@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>我的饭团</title>
@@ -115,82 +115,42 @@
             <div class="right">
 
                 <div class="money">
-                    <span class="youhui_money">88</span>
+                    <span class="youhui_money">9</span>
                     <span class="unit">元</span>
                 </div>
 
 
                 <div class="condition">
-                    <span class="text">全店满</span>
-                    <span class="manjian_monry">299</span>
-                    <span class="text">使用</span>
+                    <span class="text">无门槛</span>
                 </div>
+
                 <div class="right-wave"></div>
             </div>
         </div>
 
 
 
-        <div class="coupon">
-            <div class="left">
-                <div class="left-wave"></div>
-                优惠券
-            </div>
-            <div class="mid">
-                <!-- <div class="top-radius"></div> -->
-                <div class="mid-left"></div>
-                <div class="mid-line"></div>
-                <div class="mid-right"></div>
-                <div class="btm-radius"></div>
-            </div>
-            <div class="right">
-
-                <div class="money">
-                    <span class="youhui_money">88</span>
-                    <span class="unit">元</span>
-                </div>
-
-
-                <div class="condition">
-                    <span class="text">全店满</span>
-                    <span class="manjian_monry">299</span>
-                    <span class="text">使用</span>
-                </div>
-                <div class="right-wave"></div>
-            </div>
-        </div>
-
-
-        <div class="coupon">
-            <div class="left">
-                <div class="left-wave"></div>
-                优惠券
-            </div>
-            <div class="mid">
-                <!-- <div class="top-radius"></div> -->
-                <div class="mid-left"></div>
-                <div class="mid-line"></div>
-                <div class="mid-right"></div>
-                <div class="btm-radius"></div>
-            </div>
-            <div class="right">
-
-                <div class="money">
-                    <span class="youhui_money">88</span>
-                    <span class="unit">元</span>
-                </div>
-
-
-                <div class="condition">
-                    <span class="text">全店满</span>
-                    <span class="manjian_monry">299</span>
-                    <span class="text">使用</span>
-                </div>
-                <div class="right-wave"></div>
-            </div>
-        </div>
-
-
+<!--        <div class="set-coupon">-->
+<!--            <div class="set-coupon-list">-->
+<!--                <ul>-->
+<!--                    <li th:each="cou:${couponList}" class="layui-col-xs6 coupon-item">-->
+<!--                        <form class="coupon-get-card">-->
+<!--                            <input type="hidden" name="coupon-cusId" th:value="${cou.couponId}">-->
+<!--                            <input type="hidden" name="coupon-cusId" th:value="${cusId}">-->
+<!--                            <input type="hidden" name="coupon-shopId" th:value="${shop.shopId}">-->
+<!--                            <div class="coupon coupon-wave-left coupon-yellow">-->
+<!--                                <div class="coupon-info coupon-hole coupon-info-right-dashed">-->
+<!--                                    <div class="coupon-price" th:text="'¥'+${cou.couponPrice}">5.00</div>-->
+<!--                                    <div class="coupon-desc" th:text="${cou.couponPrice}+'元'+${cou.couponDetail}"></div>-->
+<!--                                    <div class="coupon-expiry-date" th:text="'有效期:自领取后'+${cou.couponValidDays}+'日内有效'"></div>-->
+<!--                                </div>-->
+<!--                                <div class="coupon-get coupon-get-already">立即领取</div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
         <!-- ---------------------------底部-------------------------------- -->
         <div class="layui-row">
             <div class="layui-edge-bottom detail-bottom">

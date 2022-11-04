@@ -122,21 +122,6 @@ body{
     color: #666464;
     float: left;
 }
-.pro-main .prolist .sort3{
-    height: 50px;
-    width: 240px;
-    background-color: #FFF;
-}
-.prolist .sort .sort3 a{
-    display: block;
-    width: 80px;
-    line-height: 50px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 13px;
-    color: #666464;
-    float: left;
-}
 .a_active{
     color: rgb(255,107,55) !important;
 }

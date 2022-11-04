@@ -2,7 +2,6 @@ package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chixing.commons.IGlobalCache;
 import com.chixing.entity.Coupon;
 import com.chixing.entity.MyCoupon;
 import com.chixing.mapper.CouponMapper;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
@@ -30,8 +28,6 @@ public class CouponServiceImpl implements ICouponService {
     private CouponMapper couponMapper;
     @Autowired
     private MyCouponMapper myCouponMapper;
-    @Autowired
-    private IGlobalCache globalCache;
 
     @Override
     public int save(Coupon coupon) {
@@ -67,19 +63,12 @@ public class CouponServiceImpl implements ICouponService {
             myCoupon.setCustomerId(cusId);
             myCoupon.setCouponId(couponId);
             myCoupon.setMyCouponGetTime(LocalDateTime.now());
-            //优惠券自领取后有效天数
-            Integer couponValidDays = couponMapper.selectById(couponId).getCouponValidDays();
-            myCoupon.setMyCouponLoseTime(LocalDateTime.now().plusDays(couponValidDays));
+            myCoupon.setMyCouponLoseTime(LocalDateTime.now().plusDays(couponMapper.selectById(couponId).getCouponValidDays()));
             myCoupon.setMyCouponStatus(1);
             myCoupon.setMyCouponCteateTime(LocalDateTime.now());
             myCoupon.setMyCouponUpdateTime(LocalDateTime.now());
-            if(myCouponMapper.insert(myCoupon) == 1){
-                String key = "myCoupon:" + myCoupon.getMyCouponId();
-                  //存入redis并设置过期时间
-//                globalCache.set(key,myCoupon,couponValidDays * 24 * 3600);
-                globalCache.set(key,myCoupon,20);
-                return true;
-            }
+            myCouponMapper.insert(myCoupon);
+            return true;
         }
         return false;
     }

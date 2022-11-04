@@ -55,19 +55,24 @@ public class RedisConfig extends CachingConfigurerSupport {
          *  过期方法：om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
          */
         om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
+
         // 日期序列化处理
         om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         om.registerModule(new Jdk8Module())
                 .registerModule(new JavaTimeModule())
                 .registerModule(new ParameterNamesModule());
         redisSerializer.setObjectMapper(om);
+
         // 设置值（value）的序列化采用Jackson2JsonRedisSerializer
         template.setValueSerializer(redisSerializer);
         template.setHashValueSerializer(redisSerializer);
+
         // 设置键（key）的序列化采用StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new StringRedisSerializer());
+
         template.afterPropertiesSet();
+
         return template;
     }
 

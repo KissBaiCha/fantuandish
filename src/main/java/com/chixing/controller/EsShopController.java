@@ -2,12 +2,11 @@
 //
 //import com.chixing.entity.Shop;
 //import com.chixing.service.IEsShopService;
-//import com.chixing.service.IFoodService;
 //import com.chixing.service.IShopService;
-//import com.chixing.util.JwtUtil;
 //import org.elasticsearch.index.query.BoolQueryBuilder;
 //import org.elasticsearch.index.query.QueryBuilders;
 //import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+//import org.elasticsearch.search.sort.SortBuilders;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
@@ -22,7 +21,6 @@
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.RestController;
 //
-//import javax.servlet.http.HttpServletRequest;
 //import java.util.ArrayList;
 //import java.util.HashMap;
 //import java.util.List;
@@ -36,13 +34,7 @@
 //    private IShopService shopService;
 //    @Autowired
 //    private IEsShopService esShopService;
-//    @Autowired
-//    private IFoodService foodService;
 //
-//    /**
-//     * 向Elasticsearch加入数据库数据
-//     * @return
-//     */
 //    @GetMapping("test")
 //    public String save(){
 //        List<Shop>  shopList = shopService.getAll();
@@ -72,26 +64,18 @@
 //    @GetMapping("esshopname/{pageNum}/{shopName}/{sort}")
 //    public Map<String,Object> getByPage(@PathVariable("pageNum")Integer pageNum,
 //                                        @PathVariable("shopName")String shopName,
-//                                        @PathVariable(value = "sort",required = false)Integer sort,
-//                                        HttpServletRequest request){
-//        String cusName = JwtUtil.getCusNameBySession(request);
+//                                        @PathVariable(value = "sort",required = false)Integer sort){
 //        List<Shop> shops= esShopService.findByShopName(shopName);
 //        System.out.println("num"+shops.size());
 //        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
 //                .should(QueryBuilders.matchQuery("shopName",shopName));
 //        Pageable page = null;
-//        if (sort==0){
+//        if(sort==1)
 //            page = PageRequest.of(pageNum,4, Sort.Direction.ASC,"shopId");
-//            System.out.println("sort = " + sort);
-//        }else if(sort==1){
+//        else if (sort==2)
 //            page = PageRequest.of(pageNum,4, Sort.Direction.DESC,"shopAvgCost");
-//            System.out.println("sort = " + sort);
-//        }else if (sort==2){
+//        else
 //            page = PageRequest.of(pageNum,4, Sort.Direction.DESC,"shopScore");
-//            System.out.println("sort = " + sort);
-//        }
-//
-//
 //        //构建高亮查询
 //        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
 //                .withQuery(boolQueryBuilder)
@@ -118,8 +102,6 @@
 //        Map<String,Object> map = new HashMap<>();
 //        map.put("shopList",ShopList);
 //        map.put("page",shops.size());
-//        map.put("skfood",foodService.getSKPro());
-//        map.put("cusName",cusName);
 //        return map;
 //    }
 //}

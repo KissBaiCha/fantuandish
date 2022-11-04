@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,4 +29,6 @@ public interface IMyOrderService {
 
     LocalDateTime getOrderDateTime(String orderId);
 
+    //订单商品
+    Map<MyOrder,Shop> getOrderShop(Integer customerId);
 }
