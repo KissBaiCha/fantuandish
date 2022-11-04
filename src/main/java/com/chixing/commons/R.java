@@ -18,7 +18,7 @@ public class R<T> {
 
     private Map<String,T> data = new HashMap<>();
     public static<T> R<T> ok(){
-        return build(null,null,ResultCodeEnum.SUCCESS);
+        return build(null,null);
     }
     public static<T> R<T> ok(String key,T value){
         return build(key,value,ResultCodeEnum.SUCCESS);

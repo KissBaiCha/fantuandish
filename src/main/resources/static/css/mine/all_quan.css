@@ -54,8 +54,9 @@
 }
 .money .youhui_money{
     margin-top: -10px;
-    margin-left: -22px;
+    margin-left: 2px;
     float: left;
+    /* background-color: #fff; */
 
 }
 .money .unit {
@@ -65,14 +66,24 @@
     margin-left:8px;
     margin-top: 24px;
 
-
-
 }
 .right .condition {
     font-size: 26px;
-    margin-left: -46px;
+    margin-left: -80px;
     float: left;
+
 }
+
+.condition .text{
+    display: block;
+    font-size: 26px;
+    margin-left: -10px;
+    float: left;
+    margin-top: 90px;
+    /* background-color: #fff; */
+}
+
+
 .right .right-wave {
     position: absolute;
     right: -7px;

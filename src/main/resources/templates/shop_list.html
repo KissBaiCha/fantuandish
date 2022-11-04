@@ -106,7 +106,6 @@
                         <a href="javascript:;" onclick="download_method()" class="a_active">默认</a>
                         <a href="javascript:;" onclick="download_method()">价格</a>
                         <a href="javascript:;" onclick="download_method()">好评最多</a>
-
                     </div>
                 </div>
                 <div class="pro">
@@ -119,9 +118,9 @@
                             <script>
                                 var score = $(".proscore:last").text();
                                 for (var i=1;i<=5;i++) {
-                                    if(score >= i) {
+                                    if(score >= i*2) {
                                         $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)");
-                                    } else if( score > (i-1) && score < i ) {
+                                    } else if( score > (i-1)*2 && score < i*2 ) {
                                         $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)");
                                     } else {
                                         $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)");
@@ -178,7 +177,6 @@
 
 <script src="layui/layui.js"></script>
 <script src="js/shop_list.js"></script>
-<script src="js/elasticsearch_util.js"></script>
 
 </body>
 </html>

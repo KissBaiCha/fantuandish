@@ -60,7 +60,7 @@
                 <div class="layui-form-item searchbox-input">
                     <div class="layui-input-block" style="margin-left: 10px">
                         <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
-                               placeholder="点此进入美食猩球" class="layui-input" id="es_input">
+                               placeholder="点此进入美食猩球" class="layui-input">
                         <div class="layui-btn-container" style="display: block;float: left">
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
                         </div>
@@ -150,7 +150,9 @@
                                 <!--      用户容器       -->
                                 <div class="layui-col-xs1 user-tip">
                                     <!--      用户头像       -->
-                                    <img th:src="${e.cusHeadImgPath}">
+                                    <div>
+                                        <img th:src="${e.cusHeadImgPath}" width="48px" height="48px">
+                                    </div>
                                     <!--      用户名       -->
                                     <span th:text="${e.cusName}" class="user-name">用户名1</span>
                                 </div>
@@ -298,7 +300,6 @@
 </div>
 <script src="layui/layui.js"></script>
 <script src="js/details/details_product.js"></script>
-<script src="js/elasticsearch_util.js"></script>
 <script>
     layui.use('carousel', function(){
         var carousel = layui.carousel;

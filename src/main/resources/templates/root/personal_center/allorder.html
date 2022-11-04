@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <base href="http://localhost:8080/fan/">
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的饭团</title>
 
-
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
     <link rel="stylesheet" href="css/mine/myfantuan.css">
     <link rel="stylesheet" href="css/mine/order.css">
@@ -83,6 +83,7 @@
                 <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
                     <dd><a href="root/personal_center/allorder.html" class="title_next">全部订单</a></dd>
+        <!--<dd><a th:href="'http://localhost:8080/fan/order/'+${orderId}+'/1'" class="title_next">全部订单</a></dd>-->
                     <dd><a href="root/personal_center/myorder.html" class="title_next">我的订单</a></dd>
                     <dd><a href="root/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
                     <dd><a href="root/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
@@ -102,100 +103,59 @@
         <!-- -----------------orders-body-------------------- -->
 
         <div class="orders-body">
+
             <ul>
-                <li>
+                <li th:each="order:${orders.records}">
                     <div class="product_img">
-                        <a href="'http://localhost:8080/fan/shop/'+${shop.shopId}">
-                            <img src="../../images/details/groupbuy/lunbo1.jfif"/>
+                        <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">
+                            <img th:src="${food.foodMainImg}"/>
                         </a>
                     </div>
                     <div  class="product_msg">
-                        <span class="product_title">和牛畅吃套餐</span>
+                        <span class="product_title" th:text="${food.foodName}">和牛畅吃套餐</span>
                         <span class="text_time">下单时间:</span>
-                        <span class="time">2022-09-09 12:22</span>
+                        <span class="time" th:text="${order.orderCreateTime}"></span>
+                        <script>
+                            console.log()
+                            var time = $(".time:last").text().replace("T"," ");
+                            $(".time:last").text(time);
+
+                        </script>
                         <span class="text_number">数量:</span>
-                        <span class="number">1</span>
+                        <span class="number" th:text="${order.orderNumber}">1</span>
                     </div>
 
 
                     <div class="sum_price">
                         <span class="text_price">总价:￥</span>
-                        <span class="price">216</span>
+                        <span class="price" th:text="${order.orderPrice}">216</span>
                     </div>
 
                     <div class="zhuangtai">
-                        <span>已关闭</span>
+                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 0}">已取消</span>
+                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 1}">已下单</span>
+                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 2}">已支付</span>
+                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 3}">已完成</span>
                     </div>
+
 
                     <div class="other">
-                        <a href="'http://localhost:8080/fan/shop/'+${shop.shopId}">商品详情</a>
-                    </div>
-
-                </li>
-
-                <li>
-                    <div class="product_img">
-                        <a href="details/details_product.html">
-                            <img src="../../images/details/groupbuy/lunbo1.jfif"/>
-                        </a>
-                    </div>
-                    <div class="product_msg">
-                        <span class="product_title">和牛畅吃套餐</span>
-                        <span class="text_time">下单时间:</span>
-                        <span class="time">2022-09-09 12:22</span>
-                        <span class="text_number">数量:</span>
-                        <span class="number">1</span>
-                    </div>
-
-
-                    <div class="sum_price">
-                        <span class="text_price">总价:￥</span>
-                        <span class="price">216</span>
-                    </div>
-
-                    <div class="zhuangtai">
-                        <span>已关闭</span>
-                    </div>
-
-                    <div class="other">
-                        <a href="details/details_product.html">商品详情</a>
-                    </div>
-
-                </li>
-
-
-                <li>
-                    <div class="product_img">
-                        <a href="details/details_product.html">
-                            <img src="../../images/details/groupbuy/lunbo1.jfif"/>
-                        </a>
-                    </div>
-                    <div class="product_msg">
-                        <span class="product_title">和牛畅吃套餐</span>
-                        <span class="text_time">下单时间:</span>
-                        <span class="time">2022-09-09 12:22</span>
-                        <span class="text_number">数量:</span>
-                        <span class="number">1</span>
-                    </div>
-
-
-                    <div class="sum_price">
-                        <span class="text_price">总价:￥</span>
-                        <span class="price">216</span>
-                    </div>
-
-                    <div class="zhuangtai">
-                        <span>已关闭</span>
-                    </div>
-
-                    <div class="other">
-                        <a href="details/details_product.html">商品详情</a>
+                        <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">商品详情</a>
                     </div>
 
                 </li>
 
             </ul>
         </div>
+
+            <!--分页-->
+
+        <input type="hidden" id="pagenum" th:value="${orders.current}">
+        <input type="hidden" id="total" th:value="${orders.total}">
+
+
+
+
 
         <div id="demo2-1" class="page"></div>
 
@@ -236,6 +196,7 @@
 <script src="layui/layui.js"></script>
 
 
+
 </body>
 </html>
 
@@ -257,12 +218,16 @@
 
 <script>
     layui.use(['laypage', 'layer'], function(){
+        var pagenum = document.getElementById("pagenum").value;
+        var total = document.getElementById("total").value;
         var laypage = layui.laypage
             ,layer = layui.layer;
 
         laypage.render({
             elem: 'demo2-1'
-            ,count: 100
+            ,count: total
+            ,curr:pagenum
+            ,limit:3
             ,theme: '#FF6B37'
         });
 
