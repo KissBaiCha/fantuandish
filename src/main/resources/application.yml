@@ -47,6 +47,13 @@ spring:
     host: 47.103.61.23
     port: 6379
     password: zhangxu
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
 #  web:
 #    resources:
 #      static-locations: classpath:static/*
