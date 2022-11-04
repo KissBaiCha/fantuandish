@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
 import com.chixing.entity.SecondKill;
+import com.chixing.entity.Shop;
 import com.chixing.mapper.*;
 
 import com.chixing.service.IMyOrderService;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -33,14 +36,18 @@ public class MyOrderServiceImpl implements IMyOrderService {
     private final CouponMapper couponMapper;
     private final FoodMapper foodMapper;
     private final SecondKillMapper secondKillMapper;
+    private final ShopMapper shopMapper;
     @Autowired
-    public MyOrderServiceImpl(MyOrderMapper myOrderMapper, MyCouponMapper myCouponMapper,CouponMapper couponMapper,FoodMapper foodMapper,SecondKillMapper secondKillMapper) {
+    public MyOrderServiceImpl(MyOrderMapper myOrderMapper, MyCouponMapper myCouponMapper,CouponMapper couponMapper,FoodMapper foodMapper,SecondKillMapper secondKillMapper,ShopMapper shopMapper) {
         this.myOrderMapper = myOrderMapper;
         this.myCouponMapper = myCouponMapper;
         this.couponMapper = couponMapper;
         this.foodMapper = foodMapper;
         this.secondKillMapper = secondKillMapper;
+        this.shopMapper = shopMapper;
     }
+
+
 
     @Override
     public MyOrder getById(String orderId) {
@@ -112,5 +119,22 @@ public class MyOrderServiceImpl implements IMyOrderService {
     public LocalDateTime getOrderDateTime(String orderId) {
         MyOrder myOrder = myOrderMapper.selectById(orderId);
         return myOrder.getOrderCreateTime();
+    }
+
+    @Override
+    public Map<MyOrder, Shop> getOrderShop(Integer customerId) {
+        Map<MyOrder,Shop> map = new HashMap<>();
+        Page<MyOrder> page = new Page<>(1,3);
+        List<MyOrder> myOrders = myOrderMapper.selectPage(page,null).getRecords();
+        if(myOrders.size() > 0){
+            for (MyOrder myOrder : myOrders){
+                Integer shopId = myOrder.getFoodId();
+                Shop shop = shopMapper.selectById(shopId);
+                map.put(myOrder,shop);
+            }
+            return map;
+        }
+
+        return null;
     }
 }
