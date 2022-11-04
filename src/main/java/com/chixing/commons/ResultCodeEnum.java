@@ -36,8 +36,11 @@ public enum ResultCodeEnum {
     /**
      *  没有美食收藏
      */
-    NO_FOODCOLLECTION(501,"您还没有收藏美食")
-    ;
+    NO_FOODCOLLECTION(501,"您还没有收藏美食"),
+    /**
+     * 已领取过此优惠券
+     */
+    HAS_COUPON(601,"每位用户只能领取一次");
     /**
      *
      * 状态码

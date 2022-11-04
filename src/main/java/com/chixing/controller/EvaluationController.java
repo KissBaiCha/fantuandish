@@ -59,5 +59,4 @@ public class EvaluationController {
         return evaluationService.getById(evaId);
     }
 
-
 }
