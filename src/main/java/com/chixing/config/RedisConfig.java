@@ -1,107 +1,92 @@
 package com.chixing.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.cache.CacheManager;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.time.Duration;
 
+/**
+ * @author ZhangJiuJiu
+ */
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
     /**
-     * 选择redis作为默认缓存工具
+     * 设置redis键值的序列化方式
+     * @param redisConnectionFactory
+     * @return
      */
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory){
-        //设置缓存有效一小时
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.
-                defaultCacheConfig().entryTtl(Duration.ofHours(1));
-        return RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory)).cacheDefaults(redisCacheConfiguration).build();
-    }
-
-    /**
-     * 配置redistemplate相关配置
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
-
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        // 配置连接工厂
-        template.setConnectionFactory(factory);
+        template.setConnectionFactory(redisConnectionFactory);
 
-        //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）
-        Jackson2JsonRedisSerializer jacksonSeial = new Jackson2JsonRedisSerializer(Object.class);
+        /*
+         * value值的序列化可采用如下几种方式
+         * 1.默认采用JdkSerializationRedisSerializer 序列化后的长度最短，时间适中，但不是明文显示
+         * 2.采用Jackson2JsonRedisSerializer 明文显示，序列化速度最快，长度适中，但会使存入redis中timestamp类型的数据以long类型存储
+         * 3.采用GenericJackson2JsonRedisSerializer 明文显示，在redis中显示了@class字段保存有类型的包路径，反序列化更容易，但是序列化时间最长，长度最大，明文显示
+         * 4.自定义FastJsonRedisSerializer实现RedisSerializer接口
+         * 这里使用Jackson2JsonRedisSerializer，并对日期类型做特别处理
+         */
 
+        Jackson2JsonRedisSerializer<Object> redisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
         ObjectMapper om = new ObjectMapper();
         // 指定要序列化的域，field,get和set,以及修饰符范围，ANY是都有包括private和public
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jacksonSeial.setObjectMapper(om);
+        /*
+         *  指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
+         *  过期方法：om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+         */
+        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
 
-        // 值采用json序列化
-        template.setValueSerializer(jacksonSeial);
-        //使用StringRedisSerializer来序列化和反序列化redis的key值
+        // 日期序列化处理
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule())
+                .registerModule(new ParameterNamesModule());
+        redisSerializer.setObjectMapper(om);
+
+        // 设置值（value）的序列化采用Jackson2JsonRedisSerializer
+        template.setValueSerializer(redisSerializer);
+        template.setHashValueSerializer(redisSerializer);
+
+        // 设置键（key）的序列化采用StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
-
-        // 设置hash key 和value序列化模式
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(jacksonSeial);
+
         template.afterPropertiesSet();
 
         return template;
     }
 
     /**
-     * 对hash类型的数据操作
-     */
-    public HashOperations<String,String,Object> hashOperations(RedisTemplate<String,Object> redisTemplate){
-        return redisTemplate.opsForHash();
-    }
-
-    /**
-     * 对redis字符串类型数据库操作
+     * Redis 监听器
+     * @param connectionFactory
+     * @return
      */
     @Bean
-    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForValue();
+    RedisMessageListenerContainer redisMessageListenerContainer(RedisConnectionFactory connectionFactory) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        // 监听所有库的key过期事件
+        container.setConnectionFactory(connectionFactory);
+        return container;
     }
 
-    /**
-     * 对链表类型的数据操作
-     */
-    @Bean
-    public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForList();
-    }
-
-    /**
-     * 对无序集合Set操作
-     */
-    @Bean
-    public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForSet();
-    }
-
-    /**
-     * 对有序集合
-     */
-    @Bean
-    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
-        return redisTemplate.opsForZSet();
-    }
 }
