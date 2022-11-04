@@ -1,13 +1,17 @@
 //Elasticsearch搜索引擎
 $("#es_btn").click(function (){
-    selectEs(0,$("#es_input").val())
+    selectEs(0,$("#es_input").val(),0)
 });
-    function selectEs(pageNum,shopName){
+    function selectEs(pageNum,shopName,sort){
     $.ajax({
         type:"get",
-        url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName,
+        url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName+"/"+sort,
         success:function (result){
             console.log(result)
+            $(".sort2").html("");
+            $(".sort2").append("<a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,0)+"\" class=\"a_active\">默认</a>\n" +
+                "                        <a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,1)+"\">价格</a>\n" +
+                "                        <a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,2)+"\">好评最多</a>");
             $(".pro ul").html("");
             for (var i=0;i<result.shopList.length;i++){
                 var shop = result.shopList[i];
@@ -56,7 +60,7 @@ $("#es_btn").click(function (){
                         console.log(pageNumd)
                         if (!first){
                             // pageNum = obj.curr;
-                            selectEs(pageNumd-1,shopName)
+                            selectEs(pageNumd-1,shopName,sort)
                         }
                     }
                 });

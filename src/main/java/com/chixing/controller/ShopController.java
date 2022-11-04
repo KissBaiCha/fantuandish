@@ -65,7 +65,15 @@ public class ShopController {
     }
 
 
-
+    /**
+     * 点击筛选项动态查询店铺信息
+     * @param pageNum
+     * @param foodType
+     * @param foodPrice
+     * @param sort
+     * @param request
+     * @return
+     */
     @GetMapping("/shop/shopsift/{pageNum}")
     public ModelAndView getBySift(@PathVariable("pageNum")Integer pageNum,
                                      @RequestParam(value = "foodType",required = false)String foodType,

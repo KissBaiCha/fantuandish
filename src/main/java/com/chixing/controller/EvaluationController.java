@@ -21,6 +21,13 @@ public class EvaluationController {
     @Autowired
     private IEvaImgService evaImgService;
 
+    /**
+     * 发布评论
+     * @param evaluation
+     * @param evaImg
+     * @param imgArr
+     * @return
+     */
     @PostMapping("/save")
     public String save(Evaluation evaluation,EvaImg evaImg,String[] imgArr){
 //        Integer custId = JwtUtil.getCusIdBySession(request);
