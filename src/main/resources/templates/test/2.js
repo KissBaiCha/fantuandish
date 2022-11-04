@@ -29,7 +29,7 @@ $(".myimg").change(function () {
         var img_src = URL.createObjectURL(this.files[0]);
     // 设置图片标签的src为这个选择的图片的虚拟路径   这样就可以完成图片预览的功能了
         console.log(img_src);
-        upload_formEle.prepend("<a href='"+img_src+"' target='_blank' style='display:inline-block;'><img class='upimg' src='"+ img_src +"'></a>");
+        upload_formEle.prepend("<a href='"+img_src+"' target='_blank' class='upload_a' style='display:inline-block;'><img class='upimg' src='"+ img_src +"'></a>");
         upload_formEle.ajaxSubmit({
             url: "../upload_eva",
             method: 'POST',
