@@ -39,6 +39,10 @@
 //    @Autowired
 //    private IFoodService foodService;
 //
+//    /**
+//     * 向Elasticsearch加入数据库数据
+//     * @return
+//     */
 //    @GetMapping("test")
 //    public String save(){
 //        List<Shop>  shopList = shopService.getAll();
