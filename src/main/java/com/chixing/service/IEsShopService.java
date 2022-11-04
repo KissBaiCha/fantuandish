@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
-//@Repository
-//public interface IEsShopService extends ElasticsearchRepository<Shop,Integer> {
-//    List<Shop> findByShopName(String shopName);
-//}
+@Service
+@Repository
+public interface IEsShopService extends ElasticsearchRepository<Shop,Integer> {
+    List<Shop> findByShopName(String shopName);
+}

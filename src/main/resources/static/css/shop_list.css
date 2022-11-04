@@ -122,6 +122,21 @@ body{
     color: #666464;
     float: left;
 }
+.pro-main .prolist .sort3{
+    height: 50px;
+    width: 240px;
+    background-color: #FFF;
+}
+.prolist .sort .sort3 a{
+    display: block;
+    width: 80px;
+    line-height: 50px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    color: #666464;
+    float: left;
+}
 .a_active{
     color: rgb(255,107,55) !important;
 }
@@ -192,22 +207,22 @@ body{
     margin-top: 10px;
     text-align: center;
     background-color: #FFF;
- }
+}
 .prolist .paging p{
     line-height: 100px;
 }
- .prolist .paging #demo7{
+.prolist .paging #demo7{
     padding-top: 25px;
- }
+}
 .prolist .paging #demoES{
     padding-top: 25px;
 }
- .layui-laypage .layui-laypage-curr .layui-laypage-em{
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
     background-color: rgb(255,107,55);
- }
- .layui-laypage-default a:hover {
+}
+.layui-laypage-default a:hover {
     color:rgb(255,107,55);
- }
+}
 /*========================推荐===============================*/
 .recommend li{
     width: 100%;
@@ -247,7 +262,7 @@ body{
 .recommend li span{
     height: 20px;
     width: 80px;
-    overflow: hidden;   
+    overflow: hidden;
     display: block;
     margin: 0 8%;
     font-size: 12px;
