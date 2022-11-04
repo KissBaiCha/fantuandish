@@ -23,12 +23,12 @@ public class ImgController {
         // images/log  ---- user ----- customer ------ food ---- shop ----
         //  images/filter_page  筛选页Img
         //  images/details_shop 店铺详情页Img
-        return AliOssUtil.sendImg(myfile,"images/");
+        return AliOssUtil.sendImg(myfile,"images");
     }
 
     @ResponseBody
     @PostMapping("upload_eva")
     public String sendImgToServer(MultipartFile myfile){
-        return AliOssUtil.sendImg(myfile,"evaImgTest/");
+        return AliOssUtil.sendImg(myfile,"evaImgTest");
     }
 }
