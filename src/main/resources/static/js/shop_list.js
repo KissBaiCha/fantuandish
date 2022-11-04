@@ -1,46 +1,86 @@
 //Elasticsearch搜索引擎
+//搜索,排序监听
+
+function hide_div(){
+    $(".fifter").hide();
+    $(".sort").html("");
+    $(".sort").append("<div class='sort3' ><a href=\"javascript:;\" onclick='selectEs(0,\""+document.querySelector("#es_input").value+"\",0)' class=\"a_active\">默认</a>\n" +
+        "<a href=\"javascript:;\" onclick='selectEs(0,\""+document.querySelector("#es_input").value+"\",1)' >价格</a>\n" +
+        "<a href=\"javascript:;\" onclick='selectEs(0,\""+document.querySelector("#es_input").value+"\",2)' >好评最多</a></div>");
+
+    document.querySelector(".sort3").onclick = function(event) {
+        var element = event.target;
+        var arr = document.querySelector(".sort3").children;
+        for (var i = 0; i < arr.length; i++) {
+            arr[i].className = "";
+        }
+        element.className = "a_active";
+    }
+}
+if (window.location.search.includes("?")){
+    var htmlurl = decodeURIComponent(window.location.search);
+    es_search_val = htmlurl.substring(htmlurl.indexOf("=")+1,htmlurl.length)
+    $("#es_input").val(es_search_val);
+    hide_div();
+    $(".paging:last").hide();
+    selectEs(0,es_search_val,0);
+}
+
 $("#es_btn").click(function (){
-    selectEs(0,$("#es_input").val(),0)
+    selectEs(0,$("#es_input").val(),0);
+    hide_div();
 });
-    function selectEs(pageNum,shopName,sort){
+//Elasticsearch搜索引擎异步请求
+function selectEs(pageNum,shopName,sort){
     $.ajax({
         type:"get",
         url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName+"/"+sort,
         success:function (result){
             console.log(result)
-            $(".sort2").html("");
-            $(".sort2").append("<a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,0)+"\" class=\"a_active\">默认</a>\n" +
-                "                        <a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,1)+"\">价格</a>\n" +
-                "                        <a href=\"javascript:;\" onclick=\""+selectEs(0,shopName,2)+"\">好评最多</a>");
+
             $(".pro ul").html("");
             for (var i=0;i<result.shopList.length;i++){
                 var shop = result.shopList[i];
                 console.log(shop)
-                $(".pro ul").append("                        <li>\n" +
-                    "                            <a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
-                    "                            <h4><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">"+shop.shopName+"</a></h4>\n" +
-                    "                            <label class=\"proscoreimg\"><i></i><i></i><i></i><i></i><i></i></label>\n" +
-                    "                            <label class=\"proscore\" >"+shop.shopScore+"</label><label>分</label>\n" +
-                    "                            <a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\" class=\"comment\">\n" +
-                    "                                <span>1234</span>\n" +
-                    "                                <span>条评论</span>\n" +
-                    "                            </a>\n" +
-                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">"+shop.shopAddressDetail+"</a></span>\n" +
-                    "                            <span class=\"sty\"><a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
-                    "                            <span class=\"sty\">推荐菜：<a href=\"'http://localhost:8080/fan/shop/'"+shop.shopId+"\"><span>巧克力蛋糕</span></a></span>\n" +
-                    "                        </li>");
+                $(".pro ul").append("<li>\n" +
+                                    "<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\" class=\"proimg\"><img src=\" "+shop.shopMainImg+"  \"></a>\n" +
+                                    "<h4><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">"+shop.shopName+"</a></h4>\n" +
+                                    "<label class=\"proscoreimg\"><i></i><i></i><i></i><i></i><i></i></label>\n" +
+                                    "<label class=\"proscore\" >"+shop.shopScore+"</label><label>分</label>\n" +
+                                    "<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\" class=\"comment\">\n" +
+                                    "    <span>1234</span>\n" +
+                                    "    <span>条评论</span>\n" +
+                                    "</a>\n" +
+                                    "<span class=\"sty\"><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">"+shop.shopAddressDetail+"</a></span>\n" +
+                                    "<span class=\"sty\"><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
+                                    "<span class=\"sty\">推荐菜：<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\"><span>巧克力蛋糕</span></a></span>\n" +
+                                    "</li>");
                 var score = $(".proscore:last").text();
                 console.log(score)
                 for (var j=1;j<=5;j++) {
-                    if(score >= j*2) {
+                    if(score >= j) {
                         $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)");
-                    } else if( score > (j-1)*2 && score < j*2 ) {
+                    } else if( score > (j-1) && score < j ) {
                         $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)");
                     } else {
                         $(".proscoreimg:last").children().eq(j-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)");
                     }
                 }
 
+            }
+
+            $(".recommend ul li").html("");
+            for (var i=0;i<result.skfood.length;i++){
+                var skfood = result.skfood[i];
+                $(".recommend ul").append("<li >\n" +
+                    "<a href=\"secondkill/seckill.html\">\n" +
+                    "<img src=''>\n" +
+                    "<h6>"+skfood.value.foodName+"</h6>\n" +
+                    "<span>"+skfood.key.secondKillStock+"</span>\n" +
+                    "</a>\n" +
+                    "<span><label>￥</label><label>"+skfood.key.secondKillPrice+"</label></span>\n" +
+                    "<a href=\"secondkill/seckill.html\" class=\"seckillbtn\">立即抢购</a>\n" +
+                    "</li>");
             }
 
             $(".paging").html("");
@@ -68,6 +108,8 @@ $("#es_btn").click(function (){
         }
     })
 }
+
+
 //默认分页
 layui.use(['laypage', 'layer'], function () {
     var pagenum = document.getElementById("pagenum").value;
@@ -98,7 +140,6 @@ layui.use(['laypage', 'layer'], function () {
 })
 
 // 多条件筛选
-
 //url取值处理（传入url和参数key,获取参数val）
 function handleUrl(url,key){
     var lastUrl = url.split(key);
@@ -119,8 +160,6 @@ function stringConcat(url,key,val){
         url = firstUrl.substring(0,firstUrl.length).concat("shopsift/1");
     else
         url =  firstUrl.substring(0,firstUrl.length).concat("shopsift/1?",lastUrl);
-
-
     if (!url.includes("?"))
         url +="?".concat(key,"=",val);
     else if (!url.includes(key))
@@ -149,8 +188,6 @@ function deleteUrl(url,key) {
         url = firstUrl.substring(0,firstUrl.length).concat("shopsift/1");
     else
         url =  firstUrl.substring(0,firstUrl.length).concat("shopsift/1?",lastUrl);
-
-
     var lastUrl = url.split(key);
     if(lastUrl[1]==null){
         var delurl = lastUrl[0];
@@ -198,9 +235,6 @@ if (urltext.includes("sort=")){
             arr3[i].className = "a_active";
     }
 }
-
-
-
 
 document.querySelector(".fifter1").onclick = function(event){
     var element = event.target;
@@ -251,11 +285,9 @@ document.querySelector(".fifter2").onclick = function(event){
             url = stringConcat(url,"foodPrice",element.firstElementChild.innerText);
         download_method(url);
         console.log(element.firstElementChild.innerText);
-
         console.log(url)
     }
     if(element.nodeName === 'SPAN'){
-
         var arr = document.querySelector(".fifter2").children;
         for(var i=0;i<arr.length;i++){
             arr[i].className = "fifters";
@@ -270,6 +302,7 @@ document.querySelector(".fifter2").onclick = function(event){
         console.log(url)
     }
 }
+
 document.querySelector(".sort2").onclick = function(event){
     var element = event.target;
         var arr = document.querySelector(".sort2").children;
@@ -285,16 +318,9 @@ document.querySelector(".sort2").onclick = function(event){
         console.log(element.innerText);
         console.log(url)
 }
-function download_method(url){
-        // $.ajax({
-        //     type:"get",
-        //     url:url,
-        //     success:function (result){
-        //         console.log("result:" + result);
-        //     }
-        // })
-    window.location.href=url;
 
+function download_method(url){
+    window.location.href=url;
 }
 
 window.onbeforeunload = function () {
@@ -306,7 +332,6 @@ window.onbeforeunload = function () {
         document.compatMode != 'BackCompat') {
         scrollPos = document.documentElement.scrollTop;
     }
-
     else if (typeof document.body != 'undefined') {
         scrollPos = document.body.scrollTop;
     }
@@ -318,10 +343,6 @@ window.onload = function () {
         var arr = document.cookie.match(/scrollTop=([^;]+)(;|$)/); //cookies中不为空，则读取滚动条位置
         document.documentElement.scrollTop = parseInt(arr[1]);
         document.body.scrollTop = parseInt(arr[1]);
-        // window.scrollTo({
-        //     top: parseInt(arr[1]),
-        //     behavior: "smooth"
-        // });
     }
 
 }
