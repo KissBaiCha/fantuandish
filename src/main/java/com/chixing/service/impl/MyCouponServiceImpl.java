@@ -78,7 +78,7 @@ public class MyCouponServiceImpl implements IMyCouponService {
         //添加查询条件: 属于当前店铺的优惠券
         wrapper.in("coupon_id",couponIdList);
         //添加查询条件: 未过期的优惠券
-        wrapper.lt("my_coupon_lose_time",LocalDateTime.now());
+        wrapper.gt("my_coupon_lose_time",LocalDateTime.now());
         List<MyCoupon> myCoupons = myCouponMapper.selectList(wrapper);
         List<MyCouponVO> myCouponVOList = new ArrayList<>();
         for (MyCoupon myCoupon : myCoupons) {
