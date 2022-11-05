@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的饭团</title>
+    <title>待付款</title>
     <base href="http://localhost:8080/fan/">
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
     <script src="js/jquery.js"></script>
@@ -106,28 +106,37 @@
 
         <div class="orders-body">
             <ul>
+<!--                <li th:each="order:${orders.records}">-->
                 <li>
                     <div class="product_img">
                         <a href="details/details_product.html">
-                            <img src="../../images/details/groupbuy/lunbo1.jfif"/>
+                            <img th:src="${food.foodMainImg}"/>
                         </a>
                     </div>
                     <div class="product_msg">
-                        <span class="product_title">和牛畅吃套餐</span>
+                        <span class="product_title" th:text="${food.foodName}">和牛畅吃套餐</span>
                         <span class="text_time">下单时间:</span>
-                        <span class="time">2022-09-09 12:22</span>
+                        <span class="time" th:text="${order.orderCreateTime}">2022-09-09 12:22</span>
+
+                        <script>
+                            console.log()
+                            var time = $(".time:last").text().replace("T"," ");
+                            $(".time:last").text(time);
+
+                        </script>
+
                         <span class="text_number">数量:</span>
-                        <span class="number">1</span>
+                        <span class="number"  th:text="${order.orderNumber}">1</span>
                     </div>
 
 
                     <div class="sum_price">
                         <span class="text_price">需支付:￥</span>
-                        <span class="price">216</span>
+                        <span class="price" th:text="${order.orderPrice}">216</span>
                     </div>
 
                     <div class="zhuangtai">
-                        <span>待付款</span>
+                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 1}">已下单</span>
                     </div>
 
                     <div class="other">

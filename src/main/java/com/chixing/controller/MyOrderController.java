@@ -151,6 +151,7 @@ public class MyOrderController {
         return mav;
     }
 
+
     @GetMapping("/order/{orderId}/{pageNum}")
     public ModelAndView getAllOrderByPage(@PathVariable("pageNum") Integer pageNum,
                                   @PathVariable("orderId") String orderId) {
@@ -169,6 +170,13 @@ public class MyOrderController {
     }
 
 
+
+    /**
+     * 全部订单
+     * @param pageNum
+     * @param orderId
+     * @return
+     */
     @GetMapping("/myorder/{orderId}/{pageNum}")
     public ModelAndView getMyOrderByPage(@PathVariable("pageNum") Integer pageNum,
                                   @PathVariable("orderId") String orderId) {
@@ -187,6 +195,12 @@ public class MyOrderController {
     }
 
 
+    /**
+     * 待付款
+     * @param pageNum
+     * @param orderId
+     * @return
+     */
     @GetMapping("/waitPayOrder/{orderId}/{pageNum}")
     public ModelAndView getWaitPayByPage(@PathVariable("pageNum") Integer pageNum,
                                          @PathVariable("orderId") String orderId) {
@@ -199,6 +213,31 @@ public class MyOrderController {
         mav.addObject("foodImg", iFoodService.getById(foodId));
         System.out.println(iFoodService.getById(foodId));
         mav.addObject("orders", myOrderService.getByPage(pageNum));
+
+        mav.setViewName("root/personal_center/order_wait_pay");
+
+        return mav;
+    }
+
+    /**
+     * 待评价
+     * @param pageNum
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/waitJudgeOrder/{orderId}/{pageNum}")
+    public ModelAndView getWaitJudgeByPage(@PathVariable("pageNum") Integer pageNum,
+                                         @PathVariable("orderId") String orderId) {
+
+        ModelAndView mav = new ModelAndView();
+        Integer foodId = myOrderService.getById(orderId).getFoodId();
+        Integer shopId = iFoodService.getById(foodId).getShopId();
+        mav.addObject("order", myOrderService.getById(orderId));
+        mav.addObject("food", iFoodService.getById(foodId));
+        mav.addObject("foodImg", iFoodService.getById(foodId));
+        System.out.println(iFoodService.getById(foodId));
+        mav.addObject("orders", myOrderService.getByPage(pageNum));
+
         mav.setViewName("root/personal_center/order_wait_judge");
 
         return mav;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的饭团</title>
+    <title>待评价</title>
 
     <base href="http://localhost:8080/fan/">
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
@@ -102,7 +102,8 @@
 
         <div class="orders-body">
             <ul>
-                <li th:each="order:${orders.records}">
+<!--                <li th:each="order:${orders.records}">-->
+                <li>
                     <div class="product_img">
                         <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">
                             <img th:src="${food.foodMainImg}"/>
@@ -129,15 +130,12 @@
                     </div>
 
                     <div class="zhuangtai">
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 0}">已取消</span>
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 1}">已下单</span>
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 2}">已支付</span>
                         <span class="order_zhuangtai" th:if="${order.orderStatus eq 3}">已完成</span>
                     </div>
 
 
                     <div class="other">
-                        <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">商品详情</a>
+                        <a href="">去评价</a>
                     </div>
 
                 </li>

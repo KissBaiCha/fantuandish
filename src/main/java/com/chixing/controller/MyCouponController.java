@@ -2,7 +2,9 @@ package com.chixing.controller;
 
 import com.chixing.commons.R;
 import com.chixing.entity.MyCoupon;
+import com.chixing.service.ICouponService;
 import com.chixing.service.IMyCouponService;
+import com.chixing.service.IShopService;
 import com.chixing.util.JwtUtil;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -28,6 +31,14 @@ public class MyCouponController {
     @Autowired
     private IMyCouponService myCouponService;
 
+    @Autowired
+    private ICouponService couponService;
+
+    @Autowired
+    private IShopService shopService;
+
+
+
     @PostMapping("/save")
     public String save(MyCoupon myCoupon){
         myCoupon.setMyCouponGetTime(LocalDateTime.now());
@@ -44,17 +55,6 @@ public class MyCouponController {
         return myCouponService.getById(myCouponId);
     }
 
-//    @GetMapping("/getCoupon/{shopId}")
-//    @ResponseBody
-//    public R<List<MyCoupon>> getMyCoupon(@PathVariable("shopId")Integer shopId, HttpServletRequest request){
-//        Integer cusId = JwtUtil.getCusIdBySession(request);
-//        List<MyCoupon> myCouponByShopId = myCouponService.getMyCouponByShopId(1, shopId);
-//        R<List<MyCoupon>> result = R.ok("couponList",myCouponByShopId);
-//        if(myCouponByShopId == null){
-//            result = R.fail(DATA_EMPTY);
-//        }
-//        return result;
-//    }
 
     @GetMapping("/getMyCouponPrice/{id}")
     @ResponseBody
@@ -82,4 +82,34 @@ public class MyCouponController {
             throw new RuntimeException(e);
         }
     }
+
+
+
+    @GetMapping("/coupon/{mycouponId}/{pageNum}")
+    public ModelAndView getCanUseCouponByPage(@PathVariable("pageNum") Integer pageNum,
+                                         @PathVariable("mycouponId") Integer myCouponId,
+                                         HttpServletRequest request){
+        ModelAndView mav = new ModelAndView();
+
+
+
+
+        Integer shopId = couponService.getById(myCouponId).getShopId();
+        String shopName = shopService.getById(shopId).getShopName();
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        System.out.println("===============");
+        mav.addObject("mycoupon",myCouponService.getById(myCouponId));
+        mav.addObject("price",couponService.getById(shopId));
+        mav.addObject("cusId",cusId);
+        mav.addObject("shop",shopService.getById(shopId));
+        mav.addObject("coupons",myCouponService.getByPage(pageNum));
+        mav.setViewName("root/personal_center/all_quan");
+        return mav;
+
+    }
+
+
+
+
+
 }

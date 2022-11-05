@@ -100,7 +100,8 @@
 
         <div class="orders-body">
             <ul>
-                <li th:each="order:${orders.records}">
+<!--                <li th:each="order:${orders.records}">-->
+                <li>
                     <div class="product_img">
                         <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">
                             <img th:src="${food.foodMainImg}"/>
