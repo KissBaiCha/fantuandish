@@ -70,12 +70,11 @@ public class ShopServiceImpl implements IShopService {
     public Page<Shop> getBySift(Integer pageNum, String foodType,String foodPrice,String foodSort) {
         cleanQueryWrapper();
         String key = "shop_pageNum_"+pageNum+":foodType:"+foodType+":foodPrice_"+foodPrice+":foodSort_"+foodSort;
-        ValueOperations<String, Page<Shop>> operations = iGlobalCache.getRedisTemplate().opsForValue();
         Page<Shop> page = new Page<>(pageNum,4);
         System.out.println("类型"+foodType+"价格"+foodPrice);
         boolean haskey = iGlobalCache.hasKey(key);
         if (haskey){
-            return operations.get(key);
+            return (Page<Shop>) iGlobalCache.get(key);
         }else {
             if (foodType != null) {
                 System.out.println("类型不为空");
@@ -117,7 +116,7 @@ public class ShopServiceImpl implements IShopService {
                     shopQueryWrapper.orderByDesc("shop_score");
                 }
             }
-            operations.set(key,shopMapper.selectPage(page, shopQueryWrapper),1, TimeUnit.MINUTES);
+            iGlobalCache.set(key,shopMapper.selectPage(page, shopQueryWrapper),60*2);
             return shopMapper.selectPage(page, shopQueryWrapper);
         }
     }

@@ -2,6 +2,7 @@ package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chixing.commons.IGlobalCache;
 import com.chixing.entity.Food;
 import com.chixing.entity.SecondKill;
 import com.chixing.entity.Shop;
@@ -36,7 +37,7 @@ public class FoodServiceImpl implements IFoodService {
     @Autowired
     private SecondKillMapper secondKillMapper;
     @Autowired
-    private RedisTemplate redisTemplate;
+    private IGlobalCache iGlobalCache;
 
     private QueryWrapper<Food> wrapper = new QueryWrapper<>();
 
@@ -83,14 +84,14 @@ public class FoodServiceImpl implements IFoodService {
     @Override
     public List<Food> foodTypes() {
         String key = "foodTypes";
-        ValueOperations<String,List<Food>> operations = redisTemplate.opsForValue();
-        boolean haskey = redisTemplate.hasKey(key);
+//        ValueOperations<String,List<Food>> operations = iGlobalCache.getRedisTemplate().opsForValue();
+        boolean haskey = iGlobalCache.hasKey(key);
         if (haskey){
-            return operations.get(key);
+            return (List<Food>) iGlobalCache.get(key);
         }else {
             wrapper.clear();
             wrapper.select("distinct food_type");
-            operations.set(key,foodMapper.selectList(wrapper),24, TimeUnit.HOURS);
+            iGlobalCache.set(key,foodMapper.selectList(wrapper),60*60*24);
             List<Food> foodList = foodMapper.selectList(wrapper);
             return foodList;
         }

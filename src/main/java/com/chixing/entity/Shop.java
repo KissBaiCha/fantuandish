@@ -48,7 +48,7 @@ public class Shop implements Serializable {
     /**
      * 商店名
      */
-    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_max_word")
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_smart")
     private String shopName;
 
     /**
@@ -62,37 +62,37 @@ public class Shop implements Serializable {
     /**
      * 省
      */
-    @Field(type = FieldType.Auto)//自动检测类型
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_smart")
     private String shopProvince;
 
     /**
      * 市
      */
-    @Field(type = FieldType.Auto)//自动检测类型
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_smart")
     private String shopCity;
 
     /**
      * 区/县
      */
-    @Field(type = FieldType.Auto)//自动检测类型
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_smart")
     private String shopArea;
 
     /**
      * 街道
      */
-    @Field(type = FieldType.Auto)//自动检测类型
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_smart")
     private String shopStreet;
 
     /**
      * 详细地址
      */
-    @Field(type = FieldType.Auto)//自动检测类型
+    @Field(type = FieldType.Text,analyzer = "ik_smart",searchAnalyzer = "ik_max_word")
     private String shopAddressDetail;
 
     /**
      * 电话
      */
-    @Field(type = FieldType.Long)//自动检测类型
+    @Field(type = FieldType.Long)
     private Long shopTelno;
 
     /**
