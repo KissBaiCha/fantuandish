@@ -1,6 +1,7 @@
 package com.chixing.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Customer;
 import com.chixing.entity.MyOrder;
@@ -11,11 +12,8 @@ import com.chixing.service.IFoodService;
 import com.chixing.service.IMyOrderService;
 import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,14 +54,13 @@ public class MyFanTuanController {
      * @param request 请求
      * @return 订单数据
      */
-    @GetMapping("/getAllOrder/{pageNum}")
-    public ModelAndView getByPage(@PathVariable("pageNum")Integer pageNum,
-                                  HttpServletRequest request){
+    @GetMapping("/getAllOrder")
+    public ModelAndView getByPage(Integer pageNum, Integer status,HttpServletRequest request){
         //订单ID
         Integer cusId = JwtUtil.getCusIdBySession(request);
         String cusName = JwtUtil.getCusNameBySession(request);
         ModelAndView mav = new ModelAndView();
-        Page<MyOrder> myOrderData = myOrderService.getByPage(pageNum, cusId);
+        Page<MyOrder> myOrderData = myOrderService.getByPage(pageNum, cusId,status);
         List<MyOrderVo> MyOrderVoList = new ArrayList<>();
         for (MyOrder myOrder : myOrderData.getRecords()) {
             MyOrderVo myOrderVo = new MyOrderVo();
@@ -77,7 +74,5 @@ public class MyFanTuanController {
         mav.setViewName("root/personal_center/allorder");
         return mav;
     }
-
-
 
 }

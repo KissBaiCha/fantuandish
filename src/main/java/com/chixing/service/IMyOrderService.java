@@ -29,9 +29,11 @@ public interface IMyOrderService {
      * 根据用户Id分页查询所有
      * @param pageNum 页码
      * @param cusId 用户Id
+     * @param status 订单状态
      * @return 订单数据
      */
-    Page<MyOrder> getByPage(Integer pageNum,Integer cusId);
+    Page<MyOrder> getByPage(Integer pageNum,Integer cusId,Integer status);
+
 
     LocalDateTime getOrderDateTime(String orderId);
 

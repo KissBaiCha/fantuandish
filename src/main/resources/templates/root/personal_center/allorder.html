@@ -74,9 +74,9 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="root/personal_center/allorder.html" class="title_next">全部订单</a></dd>
-                    <dd><a href="root/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
-                    <dd><a href="root/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
+                    <dd><a href="customer/getAllOrder?status=3&pageNum=1" class="title_next">全部订单</a></dd>
+                    <dd><a href="customer/getAllOrder?status=1&pageNum=1" class="title_next">待付款</a></dd>
+                    <dd><a href="customer/getAllOrder?status=2&pageNum=1" class="title_next">待评论</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-nav-itemed">
@@ -114,7 +114,7 @@
                     <div class="zhuangtai">
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 0}">已取消</span>
                         <a class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 1}">去支付</a>
-                        <a th:href="'http://localhost:8080/fan/evaluation/'+${food.shopId}" class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 2}">去评价</a>
+                        <a th:if="${order.myOrder.orderStatus eq 2} " th:href="'evaluation/'+${order.myOrder.orderId}" class="order_zhuangtai">去评价</a>
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 3}">已完成</span>
                     </div>
                     <div th:if="${order.myOrder.orderStatus} != 0" class="other">
@@ -123,9 +123,7 @@
                         <input type="hidden" class="flowNum" th:value="${order.flow.flowNumber}">
                         <input type="hidden" class="payTime" th:value="${order.flow.payTime}">
                     </div>
-                    <div class="caozuo layui-btn ">
-                        <a class="layui-btn-danger">去付款</a>
-                    </div>
+
 
                 </li>
             </ul>
