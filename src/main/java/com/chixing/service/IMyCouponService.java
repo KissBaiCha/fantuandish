@@ -1,7 +1,9 @@
 package com.chixing.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.MyCoupon;
 import com.chixing.entity.vo.MyCouponVO;
+
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -41,4 +43,13 @@ public interface IMyCouponService  {
      * @return 当前用户所有过期(失效)优惠券
      */
     List<MyCoupon> getNotAvailableMyCoupon(Integer cusId);
+
+    /**
+     * 根据用户Id分页查询所有
+     * @param pageNum
+     * @param cusId
+     * @param status
+     * @return
+     */
+    Page<MyCoupon> getByPage(Integer pageNum, Integer cusId, Integer status);
 }

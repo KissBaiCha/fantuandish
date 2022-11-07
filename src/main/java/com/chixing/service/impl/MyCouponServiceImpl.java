@@ -1,6 +1,8 @@
 package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.entity.Coupon;
 import com.chixing.entity.MyCoupon;
@@ -106,4 +108,19 @@ public class MyCouponServiceImpl implements IMyCouponService {
         wrapper.eq("my_coupon_status",0);
         return myCouponMapper.selectList(wrapper);
     }
+
+    @Override
+    public Page<MyCoupon> getByPage(Integer pageNum, Integer cusId, Integer status) {
+        Page<MyCoupon> page = new Page<>(pageNum,5);
+        QueryWrapper<MyCoupon>myCouponQueryWrapper = new QueryWrapper<>();
+        myCouponQueryWrapper.eq("customer_id",cusId);
+        if(status != 2){
+            myCouponQueryWrapper.eq("my_coupon_status",status);
+        }
+        return myCouponMapper.selectPage(page,myCouponQueryWrapper);
+    }
+
+
+
+
 }
