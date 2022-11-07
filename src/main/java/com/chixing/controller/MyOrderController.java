@@ -151,6 +151,12 @@ public class MyOrderController {
         return mav;
     }
 
+    /**
+     * 全部订单
+     * @param pageNum
+     * @param orderId
+     * @return
+     */
 
     @GetMapping("/order/{orderId}/{pageNum}")
     public ModelAndView getAllOrderByPage(@PathVariable("pageNum") Integer pageNum,
@@ -172,7 +178,7 @@ public class MyOrderController {
 
 
     /**
-     * 全部订单
+     * 我的订单
      * @param pageNum
      * @param orderId
      * @return
