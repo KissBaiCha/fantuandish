@@ -59,8 +59,8 @@ var marker = new AMap.Marker({
     // offset: new AMap.Pixel(-13, -30)
 });
 $(".coupon-item").click(function (){
+    let liEle = this;
     let CouponIdVal = $(this).children().children().first().val()
-    console.log(CouponIdVal)
     $.ajax({
         url:'coupon/save',
         type:'POST',
@@ -68,7 +68,17 @@ $(".coupon-item").click(function (){
             couponId:CouponIdVal
         },
         success:function (data) {
+            var layer = layui.layer;
+            let msg;
+            if(data.ok){
+                msg = ""
+            }else{
+                msg = "失败"
+            }
+            layer.msg('领取'+ msg +''+data.message);
+            $(liEle).find(".coupon-get").addClass("coupon-get-already")
             console.log(data)
-        }
+        },
+
     })
 })
