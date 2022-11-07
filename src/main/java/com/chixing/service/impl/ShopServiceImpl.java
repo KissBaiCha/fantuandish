@@ -2,13 +2,13 @@ package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chixing.commons.IGlobalCache;
 import com.chixing.entity.Food;
 import com.chixing.entity.Shop;
 import com.chixing.mapper.FoodMapper;
 import com.chixing.mapper.ShopMapper;
 import com.chixing.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +32,7 @@ public class ShopServiceImpl implements IShopService {
     @Autowired
     private FoodMapper foodMapper;
     @Autowired
-    private RedisTemplate redisTemplate;
+    private IGlobalCache iGlobalCache;
 
     private QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
     private QueryWrapper<Food> foodQueryWrapper = new QueryWrapper<>();
@@ -69,13 +69,12 @@ public class ShopServiceImpl implements IShopService {
     @Override
     public Page<Shop> getBySift(Integer pageNum, String foodType,String foodPrice,String foodSort) {
         cleanQueryWrapper();
-        String key = "shop_pageNum_"+pageNum+"_foodType_"+foodType+"_foodPrice_"+foodPrice+"_foodSort_"+foodSort;
-        ValueOperations<String, Page<Shop>> operations = redisTemplate.opsForValue();
+        String key = "shop_pageNum_"+pageNum+":foodType:"+foodType+":foodPrice_"+foodPrice+":foodSort_"+foodSort;
         Page<Shop> page = new Page<>(pageNum,4);
         System.out.println("类型"+foodType+"价格"+foodPrice);
-        boolean haskey = redisTemplate.hasKey(key);
+        boolean haskey = iGlobalCache.hasKey(key);
         if (haskey){
-            return operations.get(key);
+            return (Page<Shop>) iGlobalCache.get(key);
         }else {
             if (foodType != null) {
                 System.out.println("类型不为空");
@@ -117,7 +116,7 @@ public class ShopServiceImpl implements IShopService {
                     shopQueryWrapper.orderByDesc("shop_score");
                 }
             }
-            operations.set(key,shopMapper.selectPage(page, shopQueryWrapper),1, TimeUnit.MINUTES);
+            iGlobalCache.set(key,shopMapper.selectPage(page, shopQueryWrapper),60*2);
             return shopMapper.selectPage(page, shopQueryWrapper);
         }
     }
