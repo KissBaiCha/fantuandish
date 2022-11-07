@@ -93,7 +93,7 @@
               </div>
         </div>
         <!--                     优惠券                         -->
-        <div class="set-coupon">
+        <div class="set-coupon" th:if="${not #lists.isEmpty(couponList)}">
             <h1>限时领券</h1>
             <hr class="layui-border-red">
             <div class="set-coupon-list">

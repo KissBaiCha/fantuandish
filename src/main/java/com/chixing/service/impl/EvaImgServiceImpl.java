@@ -24,7 +24,8 @@ public class EvaImgServiceImpl implements IEvaImgService {
     @Autowired
     private EvaImgMapper evaImgMapper;
     @Override
-    public void save(EvaImg evaImg,String[] imgArr) {
+    public void save(String[] imgArr) {
+        EvaImg evaImg = new EvaImg();
         QueryWrapper<EvaImg> wrapper = new QueryWrapper<>();
         wrapper.select("eva_img_id").orderByDesc("eva_img_id").last("limit 1");
         Integer evaId = (int)(Math.random()*100+1);

@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface IEvaImgService{
-    void save(EvaImg evaImg,String[] imgArr);
+    void save(String[] imgArr);
 }
