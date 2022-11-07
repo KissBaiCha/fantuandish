@@ -43,11 +43,18 @@ public class EvaluationServiceImpl  implements IEvaluationService {
     private EvaImgMapper evaImgMapper;
 
     @Override
-    public int save(Evaluation evaluation) {
+    public int save(String orderId,Integer foodId,Integer custId,Double evaScore,String evaContent) {
+        Evaluation evaluation = new Evaluation();
+        evaluation.setOrderId(orderId);
+        evaluation.setFoodId(foodId);
+        evaluation.setCustomerId(custId);
+        evaluation.setEvaScore(evaScore);
+        evaluation.setEvaContent(evaContent);
         evaluation.setPraiseNum(Long.valueOf(0));
         evaluation.setEvaDateTime(LocalDateTime.now());
         evaluation.setEvaCreateTime(LocalDateTime.now());
-        return evaluationMapper.insert(evaluation);
+        int row = evaluationMapper.insert(evaluation);
+        return evaluation.getEvaId();
     }
 
     @Override
