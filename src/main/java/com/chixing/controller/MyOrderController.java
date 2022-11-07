@@ -140,12 +140,9 @@ public class MyOrderController {
         ModelAndView mav = new ModelAndView();
         Integer foodId = myOrderService.getById(orderId).getFoodId();
         Integer shopId = iFoodService.getById(foodId).getShopId();
-
         mav.addObject("order", myOrderService.getById(orderId));
         mav.addObject("food", iFoodService.getById(foodId));
         mav.addObject("foodImg", iFoodService.getById(foodId));
-
-
         System.out.println(iFoodService.getById(foodId));
         mav.setViewName("root/personal_center/allorder");
         return mav;
@@ -161,7 +158,6 @@ public class MyOrderController {
     @GetMapping("/order/{orderId}/{pageNum}")
     public ModelAndView getAllOrderByPage(@PathVariable("pageNum") Integer pageNum,
                                   @PathVariable("orderId") String orderId) {
-
         ModelAndView mav = new ModelAndView();
         Integer foodId = myOrderService.getById(orderId).getFoodId();
         Integer shopId = iFoodService.getById(foodId).getShopId();
@@ -171,7 +167,6 @@ public class MyOrderController {
         System.out.println(iFoodService.getById(foodId));
         mav.addObject("orders", myOrderService.getByPage(pageNum));
         mav.setViewName("root/personal_center/allorder");
-
         return mav;
     }
 
@@ -186,7 +181,6 @@ public class MyOrderController {
     @GetMapping("/myorder/{orderId}/{pageNum}")
     public ModelAndView getMyOrderByPage(@PathVariable("pageNum") Integer pageNum,
                                   @PathVariable("orderId") String orderId) {
-
         ModelAndView mav = new ModelAndView();
         Integer foodId = myOrderService.getById(orderId).getFoodId();
         Integer shopId = iFoodService.getById(foodId).getShopId();
@@ -196,11 +190,8 @@ public class MyOrderController {
         System.out.println(iFoodService.getById(foodId));
         mav.addObject("orders", myOrderService.getByPage(pageNum));
         mav.setViewName("root/personal_center/myorder");
-
         return mav;
     }
-
-
     /**
      * 待付款
      * @param pageNum
@@ -219,9 +210,7 @@ public class MyOrderController {
         mav.addObject("foodImg", iFoodService.getById(foodId));
         System.out.println(iFoodService.getById(foodId));
         mav.addObject("orders", myOrderService.getByPage(pageNum));
-
         mav.setViewName("root/personal_center/order_wait_pay");
-
         return mav;
     }
 
@@ -234,7 +223,6 @@ public class MyOrderController {
     @GetMapping("/waitJudgeOrder/{orderId}/{pageNum}")
     public ModelAndView getWaitJudgeByPage(@PathVariable("pageNum") Integer pageNum,
                                          @PathVariable("orderId") String orderId) {
-
         ModelAndView mav = new ModelAndView();
         Integer foodId = myOrderService.getById(orderId).getFoodId();
         Integer shopId = iFoodService.getById(foodId).getShopId();
@@ -243,9 +231,7 @@ public class MyOrderController {
         mav.addObject("foodImg", iFoodService.getById(foodId));
         System.out.println(iFoodService.getById(foodId));
         mav.addObject("orders", myOrderService.getByPage(pageNum));
-
         mav.setViewName("root/personal_center/order_wait_judge");
-
         return mav;
     }
 

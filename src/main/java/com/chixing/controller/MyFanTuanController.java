@@ -25,6 +25,12 @@ public class MyFanTuanController {
         return modelAndView;
     }
 
+    /**
+     * 个人订单中心访问
+     * @param orderId
+     * @return
+     */
+
     @GetMapping("/getAllOrder/{orderId}")
     public ModelAndView getByPage(@PathVariable("orderId")String orderId){
         ModelAndView mav = new ModelAndView();
