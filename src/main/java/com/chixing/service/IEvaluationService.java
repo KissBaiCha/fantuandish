@@ -15,7 +15,7 @@ import java.util.Map;
  * @since 2022-09-30
  */
 public interface IEvaluationService{
-    int save(Evaluation evaluation);
+    int save(String orderId,Integer foodId,Integer custId,Double evaScore,String evaContent);
     int remove(int evaId);
     int update(Evaluation evaluation);
     Evaluation getById(int evaId);

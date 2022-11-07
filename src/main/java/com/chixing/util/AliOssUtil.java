@@ -46,7 +46,7 @@ public class AliOssUtil {
             ossClient.putObject(putObjectRequest);
             url = ossClient.generatePresignedUrl(bucketName, objectName, expiration);
             log.info(url.toString());
-            return url.toString();
+            return url.toString().split("\\?")[0];
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");

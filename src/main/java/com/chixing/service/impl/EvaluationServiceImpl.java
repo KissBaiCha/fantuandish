@@ -2,17 +2,21 @@ package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chixing.entity.Customer;
-import com.chixing.entity.EvaImg;
-import com.chixing.entity.Evaluation;
+import com.chixing.entity.*;
 import com.chixing.entity.vo.EvaluationVo;
 import com.chixing.mapper.CustomerMapper;
 import com.chixing.mapper.EvaImgMapper;
 import com.chixing.mapper.EvaluationMapper;
 import com.chixing.service.IEvaluationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.chixing.service.IFoodService;
+import com.chixing.service.IMyOrderService;
+import com.chixing.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,11 +43,18 @@ public class EvaluationServiceImpl  implements IEvaluationService {
     private EvaImgMapper evaImgMapper;
 
     @Override
-    public int save(Evaluation evaluation) {
+    public int save(String orderId,Integer foodId,Integer custId,Double evaScore,String evaContent) {
+        Evaluation evaluation = new Evaluation();
+        evaluation.setOrderId(orderId);
+        evaluation.setFoodId(foodId);
+        evaluation.setCustomerId(custId);
+        evaluation.setEvaScore(evaScore);
+        evaluation.setEvaContent(evaContent);
         evaluation.setPraiseNum(Long.valueOf(0));
         evaluation.setEvaDateTime(LocalDateTime.now());
         evaluation.setEvaCreateTime(LocalDateTime.now());
-        return evaluationMapper.insert(evaluation);
+        int row = evaluationMapper.insert(evaluation);
+        return evaluation.getEvaId();
     }
 
     @Override
