@@ -18,6 +18,8 @@ import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@Component
 public class EsShopController {
     @Autowired
     private ElasticsearchRestTemplate restTemplate;
@@ -41,13 +44,11 @@ public class EsShopController {
 
     /**
      * 向Elasticsearch加入数据库数据
-     * @return
      */
-    @GetMapping("test")
-    public String save(){
-        List<Shop>  shopList = shopService.getAll();
+    @Scheduled(cron = "0 */60 * * * ?")
+    public void saveToEs(){
+        List<Shop> shopList = shopService.getAll();
         esShopService.saveAll(shopList);
-        return "success";
     }
 
     /**

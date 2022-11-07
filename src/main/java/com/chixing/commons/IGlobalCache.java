@@ -1,5 +1,7 @@
 package com.chixing.commons;
 
+import com.chixing.entity.Food;
+import com.chixing.entity.SecondKill;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.List;
@@ -113,7 +115,6 @@ public interface IGlobalCache {
      * @return true 成功 false 失败
      */
     boolean hmset(String key, Map<String, Object> map);
-
     /**
      * HashSet 并设置时间
      *

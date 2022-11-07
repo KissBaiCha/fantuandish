@@ -59,10 +59,8 @@ public class EvaluationController {
     @PostMapping("/save")
     public String save(String orderId,Integer foodId,Double evaScore,String evaContent,String[] imgArr,HttpServletRequest request){
         Integer custId = JwtUtil.getCusIdBySession(request);
-//        evaluation.setCustomerId((int)(Math.random()*100+1));
-//        evaluation.setFoodId((int)(Math.random()*100+1));
-//        evaluation.setOrderId(UUID.randomUUID().toString().replace("-",""));
         int evaId = evaluationService.save(orderId,foodId,custId,evaScore,evaContent);
+        myOrderService.updStatus(orderId);
         evaImgService.save(evaId,imgArr);
 
         return "success";

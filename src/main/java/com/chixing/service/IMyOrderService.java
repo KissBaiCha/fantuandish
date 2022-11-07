@@ -23,7 +23,7 @@ public interface IMyOrderService {
     MyOrder getById(String orderId);
     List<MyOrder> getAllByCusId(Integer cusId);
     String save(Integer cusId,Integer myCouponId,Integer foodId,Boolean isSecondKill);
-    boolean update(MyOrder myOrder);
+    boolean updStatus(String orderId);
     //分页查询
     Page<MyOrder> getByPage(Integer pageNum);
 

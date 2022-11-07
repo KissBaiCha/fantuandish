@@ -110,35 +110,39 @@
         </div>
     </div>
     <!--  秒杀商品区  -->
+
     <div class="layui-row">
-        <div class="layui-col-xs3 box">
+
+
+        <div class="layui-col-xs3 box" th:each="skpro:${skPro}">
+
             <div class="layui-row commodity">
                 <div class="layui-col-xs12">
                     <ul>
                         <li class="comm">
                             <div class="comm-pic">
-                                <img src="images/customer/personal_center/comm1.jpg" alt="">
+                                <img th:src="${skpro.foodMainImg}" alt="">
                             </div>
                             <div class="comm-msg">
                                 <div class="info">
-                                    <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
+                                    <a href="" th:text="${skpro.foodName}">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
                                 </div>
                                 <div class="price">
                                     <div class="money">
                                         <span>￥</span>
                                     </div>
                                     <div class="new-price">
-                                        <span>199</span>
+                                        <span th:text="${skpro.secondKillPrice}">199</span>
                                     </div>
                                     <div class="old-price">
-                                        <span>￥260</span>
+                                        <span th:text="'￥'+${skpro.foodPrice}">￥260</span>
                                     </div>
                                     <a class="s-but" href="">
                                         <span>立即抢购</span>
                                     </a>
                                 </div>
                                 <div class="s-percent">
-                                    <span>已售70%</span>
+                                    <span th:text="'库存'+${skpro.secondKillStock}">已售70%</span>
                                 </div>
                             </div>
                         </li>
@@ -146,253 +150,9 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-xs3 box">
-            <div class="layui-row commodity">
-                <div class="layui-col-xs12">
-                    <ul>
-                        <li class="comm">
-                            <div class="comm-pic">
-                                <img src="images/customer/personal_center/comm1.jpg" alt="">
-                            </div>
-                            <div class="comm-msg">
-                                <div class="info">
-                                    <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                </div>
-                                <div class="price">
-                                    <div class="money">
-                                        <span>￥</span>
-                                    </div>
-                                    <div class="new-price">
-                                        <span>199</span>
-                                    </div>
-                                    <div class="old-price">
-                                        <span>￥260</span>
-                                    </div>
-                                    <a class="s-but" href="">
-                                        <span>立即抢购</span>
-                                    </a>
-                                </div>
-                                <div class="s-percent">
-                                    <span>已售70%</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-xs3 box">
-            <div class="layui-row commodity">
-                <div class="layui-col-xs12">
-                    <ul>
-                        <li class="comm">
-                            <div class="comm-pic">
-                                <img src="images/customer/personal_center/comm1.jpg" alt="">
-                            </div>
-                            <div class="comm-msg">
-                                <div class="info">
-                                    <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                </div>
-                                <div class="price">
-                                    <div class="money">
-                                        <span>￥</span>
-                                    </div>
-                                    <div class="new-price">
-                                        <span>199</span>
-                                    </div>
-                                    <div class="old-price">
-                                        <span>￥260</span>
-                                    </div>
-                                    <a class="s-but" href="">
-                                        <span>立即抢购</span>
-                                    </a>
-                                </div>
-                                <div class="s-percent">
-                                    <span>已售70%</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-xs3 box">
-            <div class="layui-row commodity">
-                <div class="layui-col-xs12">
-                    <ul>
-                        <li class="comm">
-                            <div class="comm-pic">
-                                <img src="images/customer/personal_center/comm1.jpg" alt="">
-                            </div>
-                            <div class="comm-msg">
-                                <div class="info">
-                                    <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                </div>
-                                <div class="price">
-                                    <div class="money">
-                                        <span>￥</span>
-                                    </div>
-                                    <div class="new-price">
-                                        <span>199</span>
-                                    </div>
-                                    <div class="old-price">
-                                        <span>￥260</span>
-                                    </div>
-                                    <a class="s-but" href="">
-                                        <span>立即抢购</span>
-                                    </a>
-                                </div>
-                                <div class="s-percent">
-                                    <span>已售70%</span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="layui-row">
-            <div class="layui-col-xs3 box">
-                <div class="layui-row commodity">
-                    <div class="layui-col-xs12">
-                        <ul>
-                            <li class="comm">
-                                <div class="comm-pic">
-                                    <img src="images/customer/personal_center/comm1.jpg" alt="">
-                                </div>
-                                <div class="comm-msg">
-                                    <div class="info">
-                                        <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                    </div>
-                                    <div class="price">
-                                        <div class="money">
-                                            <span>￥</span>
-                                        </div>
-                                        <div class="new-price">
-                                            <span>199</span>
-                                        </div>
-                                        <div class="old-price">
-                                            <span>￥260</span>
-                                        </div>
-                                        <a class="s-but" href="">
-                                            <span>立即抢购</span>
-                                        </a>
-                                    </div>
-                                    <div class="s-percent">
-                                        <span>已售70%</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-xs3 box">
-                <div class="layui-row commodity">
-                    <div class="layui-col-xs12">
-                        <ul>
-                            <li class="comm">
-                                <div class="comm-pic">
-                                    <img src="images/customer/personal_center/comm1.jpg" alt="">
-                                </div>
-                                <div class="comm-msg">
-                                    <div class="info">
-                                        <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                    </div>
-                                    <div class="price">
-                                        <div class="money">
-                                            <span>￥</span>
-                                        </div>
-                                        <div class="new-price">
-                                            <span>199</span>
-                                        </div>
-                                        <div class="old-price">
-                                            <span>￥260</span>
-                                        </div>
-                                        <a class="s-but" href="">
-                                            <span>立即抢购</span>
-                                        </a>
-                                    </div>
-                                    <div class="s-percent">
-                                        <span>已售70%</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-xs3 box">
-                <div class="layui-row commodity">
-                    <div class="layui-col-xs12">
-                        <ul>
-                            <li class="comm">
-                                <div class="comm-pic">
-                                    <img src="images/customer/personal_center/comm1.jpg" alt="">
-                                </div>
-                                <div class="comm-msg">
-                                    <div class="info">
-                                        <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                    </div>
-                                    <div class="price">
-                                        <div class="money">
-                                            <span>￥</span>
-                                        </div>
-                                        <div class="new-price">
-                                            <span>199</span>
-                                        </div>
-                                        <div class="old-price">
-                                            <span>￥260</span>
-                                        </div>
-                                        <a class="s-but" href="">
-                                            <span>立即抢购</span>
-                                        </a>
-                                    </div>
-                                    <div class="s-percent">
-                                        <span>已售70%</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-xs3 box">
-                <div class="layui-row commodity">
-                    <div class="layui-col-xs12">
-                        <ul>
-                            <li class="comm">
-                                <div class="comm-pic">
-                                    <img src="images/customer/personal_center/comm1.jpg" alt="">
-                                </div>
-                                <div class="comm-msg">
-                                    <div class="info">
-                                        <a href="">Penhouse Brunch&Bistro 贰叁楼·Lapis（十全街店）</a>
-                                    </div>
-                                    <div class="price">
-                                        <div class="money">
-                                            <span>￥</span>
-                                        </div>
-                                        <div class="new-price">
-                                            <span>199</span>
-                                        </div>
-                                        <div class="old-price">
-                                            <span>￥260</span>
-                                        </div>
-                                        <a class="s-but" href="">
-                                            <span>立即抢购</span>
-                                        </a>
-                                    </div>
-                                    <div class="s-percent">
-                                        <span>已售70%</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
         <script src="layui/layui.js"></script>
     </div>
 </div>

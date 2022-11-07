@@ -1,10 +1,26 @@
 package com.chixing.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chixing.commons.IGlobalCache;
+import com.chixing.entity.Food;
 import com.chixing.entity.SecondKill;
+import com.chixing.entity.vo.SecondKillVo;
 import com.chixing.mapper.SecondKillMapper;
+import com.chixing.service.IFoodService;
 import com.chixing.service.ISecondKillService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -14,7 +30,56 @@ import org.springframework.stereotype.Service;
  * @author baomidou
  * @since 2022-09-30
  */
+@Component
 @Service
 public class SecondKillServiceImpl  implements ISecondKillService {
 
+    @Autowired
+    private SecondKillMapper secondKillMapper;
+    @Autowired
+    private IFoodService foodService;
+    @Autowired
+    private IGlobalCache iGlobalCache;
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+
+    @Override
+//    @Scheduled(cron = "0/20 * * * * ?")//20s
+    @Scheduled(cron = "0 */60 * * * ?")//1h
+    public List<SecondKillVo> getAllFromMysql() {
+        String key = "allSkPro";
+        if (iGlobalCache.hasKey(key))
+            iGlobalCache.del(key);
+        QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        secondKillQueryWrapper.gt("second_kill_start_time", LocalDateTime.parse(LocalDate.now()+" 00:00:00",formatter));
+//        secondKillQueryWrapper.lt("second_kill_end_time",LocalDateTime.parse(LocalDate.now().plusDays(1)+" 00:00:00",formatter));
+        List<SecondKill> secondKills = secondKillMapper.selectList(secondKillQueryWrapper);
+        List<SecondKillVo> listVo = new ArrayList<>();
+        for (SecondKill secondKill : secondKills){
+            Integer foodId = secondKill.getFoodId();
+            Food food = foodService.getById(foodId);
+            String foodMainImg = food.getFoodMainImg();
+            String foodName = food.getFoodName();
+            BigDecimal secondKillPrice = secondKill.getSecondKillPrice();
+            BigDecimal foodPrice = food.getFoodPrice();
+            Integer secondKillStock = secondKill.getSecondKillStock();
+            SecondKillVo secondKillVo = new SecondKillVo(foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
+            listVo.add(secondKillVo);
+            redisTemplate.opsForValue().set(key+secondKill.getSecondKillId(),secondKillVo,1,TimeUnit.HOURS);
+        }
+        return listVo;
+    }
+
+    @Override
+    public List<SecondKillVo> getAllPro() {
+        String key = "allSkPro";
+        if (iGlobalCache.hasKey(key)){
+            return (List<SecondKillVo>) iGlobalCache.get(key);
+        }else{
+            List<SecondKillVo> listVo = getAllFromMysql();
+            redisTemplate.opsForValue().set(key,listVo,1,TimeUnit.HOURS);
+            return listVo;
+        }
+    }
 }

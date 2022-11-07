@@ -1,7 +1,8 @@
 package com.chixing.service;
 
-import com.chixing.entity.SecondKill;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.chixing.entity.vo.SecondKillVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface ISecondKillService {
-
+    List<SecondKillVo> getAllFromMysql();
+    List<SecondKillVo> getAllPro();
 }
