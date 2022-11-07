@@ -1,5 +1,6 @@
 package com.chixing;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chixing.commons.R;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
@@ -29,9 +30,15 @@ public class ZhangXuTest {
     IMyCouponService myCouponService;
     @Autowired
     ICouponService couponService;
+    @Autowired
+    IFlowService flowService;
 
     @Test
     public void fun1(){
-        System.out.println(couponService.saveByCusId(1, 2));
+        Page<MyOrder> byPage = myOrderService.getByPage(1, 1);
+        for (MyOrder record : byPage.getRecords()) {
+            log.info("我的订单= {}",record);
+        }
+
     }
 }

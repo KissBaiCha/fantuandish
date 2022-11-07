@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="css/shop_list.css">
     <link rel="stylesheet" href="css/details/details_header.css">
     <link rel="stylesheet" href="css/shop_list.css">
-
 </head>
 <body>
-
 <!--                     头部                         -->
 <div class="header">
     <div class="top-nav ">
@@ -29,13 +27,13 @@
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
                     <li class="layui-nav-item" >
-                        <a href="" class="title" th:text="${cusName}">登录/注册</a>
+                        <a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a>
                     </li>
                     <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                            <dd><a href="">订单中心</a></dd>
+                            <dd><a href="customer/getAllOrder/1">订单中心</a></dd>
                             <dd><a href="">我的优惠券</a></dd>
                             <dd><a href="">我的收藏</a></dd>
                         </dl>

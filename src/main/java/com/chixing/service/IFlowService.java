@@ -12,5 +12,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface IFlowService  {
-
+    /**
+     * 根据订单编号查询流水信息
+     * @param orderNum 订单编号
+     * @return Flow对象
+     */
+    Flow getByOrderNum(String orderNum);
 }

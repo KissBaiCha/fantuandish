@@ -108,12 +108,12 @@ public class MyOrderServiceImpl implements IMyOrderService {
     }
 
     @Override
-    public Page<MyOrder> getByPage(Integer pageNum) {
-        Page<MyOrder> page = new Page<>(pageNum,3);
-        return myOrderMapper.selectPage(page,null);
+    public Page<MyOrder> getByPage(Integer pageNum,Integer cusId) {
+        Page<MyOrder> page = new Page<>(pageNum,5);
+        QueryWrapper<MyOrder>myOrderQueryWrapper = new QueryWrapper<>();
+        myOrderQueryWrapper.eq("customer_id",cusId);
+        return myOrderMapper.selectPage(page,myOrderQueryWrapper);
     }
-
-
 
     @Override
     public LocalDateTime getOrderDateTime(String orderId) {

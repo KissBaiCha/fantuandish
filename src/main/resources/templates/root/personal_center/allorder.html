@@ -6,16 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全部订单</title>
-
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
     <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
     <link rel="stylesheet" href="css/mine/myfantuan.css">
     <link rel="stylesheet" href="css/mine/order.css">
     <link rel="stylesheet" href="css/details/details_bottom.css">
     <link rel="stylesheet" href="css/details/details_header.css">
     <link rel="stylesheet" href="layui/css/layui.css">
-
-
 </head>
 <body>
 <!-- ----------------头部------------------------- -->
@@ -30,7 +27,7 @@
             </div>
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
-                    <li class="layui-nav-item" ><a href="user/login.html" class="title" th:text="${cusName}">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="http://localhost:8080/fan/customer/user_details" class="title" th:text="${cusName}">登录/注册</a></li>
                     <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
@@ -46,7 +43,6 @@
         </div>
     </div>
     <div class="layui-row header-tip">
-
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
             <a href="index.html" title="饭团网" class="logo-img">
@@ -71,19 +67,14 @@
 </div>
 
 <div class="layui-main">
-
     <!-- --------------我的饭团 左侧栏------------------------ -->
     <div class="orders-container">
-
         <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
             <li class="layui-nav-item"><a href="root/personal_center/myfantuan.html">我的饭团</a></li>
-
-
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="title">订单</a>
                 <dl class="layui-nav-child">
                     <dd><a href="root/personal_center/allorder.html" class="title_next">全部订单</a></dd>
-                    <dd><a href="root/personal_center/myorder.html" class="title_next">我的订单</a></dd>
                     <dd><a href="root/personal_center/order_wait_pay.html" class="title_next">待付款</a></dd>
                     <dd><a href="root/personal_center/order_wait_judge.html" class="title_next">待评论</a></dd>
                 </dl>
@@ -97,69 +88,53 @@
             </li>
             <li class="layui-nav-item"><a href="root/personal_center/user_msg.html">个人信息</a></li>
         </ul>
-
-
         <!-- -----------------orders-body-------------------- -->
-
         <div class="orders-body">
-
             <ul>
-                <li th:each="order:${orders.records}">
+                <li th:each="order:${MyOrderVoList}">
                     <div class="product_img">
-                        <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">
-                            <img th:src="${food.foodMainImg}"/>
+                        <a th:href="'http://localhost:8080/fan/shop/'+${order.food.shopId}+'/'+${order.food.foodId}+'/1'">
+                            <img th:src="${order.food.foodMainImg}"/>
                         </a>
                     </div>
                     <div  class="product_msg">
-                        <span class="product_title" th:text="${food.foodName}">和牛畅吃套餐</span>
+                        <span class="product_title" th:text="${order.food.foodName}">和牛畅吃套餐</span>
                         <span class="text_time">下单时间:</span>
-                        <span class="time" th:text="${order.orderCreateTime}"></span>
-                        <script>
-                            console.log()
-                            var time = $(".time:last").text().replace("T"," ");
-                            $(".time:last").text(time);
-
-                        </script>
-                        <span class="text_number">数量:</span>
-                        <span class="number" th:text="${order.orderNumber}">1</span>
+                        <span class="time" th:text="${order.myOrder.orderCreateTime}"></span>
+<!--                        <script>-->
+<!--                            console.log()-->
+<!--                            var time = $(".time:last").text().replace("T"," ");-->
+<!--                            $(".time:last").text(time);-->
+<!--                        </script>-->
                     </div>
-
-
                     <div class="sum_price">
                         <span class="text_price">总价:￥</span>
-                        <span class="price" th:text="${order.orderPrice}">216</span>
+                        <span class="price" th:text="${order.flow.flowPrice}">216</span>
                     </div>
-
                     <div class="zhuangtai">
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 0}">已取消</span>
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 1}">已下单</span>
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 2}">已支付</span>
-                        <span class="order_zhuangtai" th:if="${order.orderStatus eq 3}">已完成</span>
+                        <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 0}">已取消</span>
+                        <a class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 1}">去支付</a>
+                        <a th:href="'http://localhost:8080/fan/evaluation/'+${food.shopId}" class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 2}">去评价</a>
+                        <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 3}">已完成</span>
                     </div>
-
-
-                    <div class="other">
-                        <a th:href="'http://localhost:8080/fan/shop/'+${food.shopId}+'/'+${food.foodId}+'/1'">商品详情</a>
+                    <div th:if="${order.myOrder.orderStatus} != 0" class="other">
+                        <span class="order-details" style="color: rgb(255,107,55)">订单详情</span>
+                        <input type="hidden" class="orderNum" th:value="${order.flow.orderId}">
+                        <input type="hidden" class="flowNum" th:value="${order.flow.flowNumber}">
+                        <input type="hidden" class="payTime" th:value="${order.flow.payTime}">
+                    </div>
+                    <div class="caozuo layui-btn ">
+                        <a class="layui-btn-danger">去付款</a>
                     </div>
 
                 </li>
-
             </ul>
         </div>
-
             <!--分页-->
-
 <!--        <input type="hidden" id="pagenum" th:value="${orders.current}">-->
 <!--        <input type="hidden" id="total" th:value="${orders.total}">-->
 <!--        <div id="demo2-1" class="page"></div>-->
-
     </div>
-
-
-
-
-
-
     <!-- ---------------------------底部-------------------------------- -->
     <div class="layui-row">
         <div class="layui-edge-bottom detail-bottom">
@@ -183,34 +158,18 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
 <script src="layui/layui.js"></script>
-
-
-
-</body>
-</html>
-
-
+<script src="js/customer/personal_center/myfantuan.js"></script>
 <script>
-
     layui.use('element', function(){
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
         //导航点击事件
         element.on('nav(demo)', function(elem){
             //console.log(elem)
             layer.msg(elem.text());
         });
     });
-</script>
-
-
-
-<script>
     layui.use(['laypage', 'layer'], function(){
         var pagenum = document.getElementById("pagenum").value;
         var total = document.getElementById("total").value;
@@ -224,6 +183,7 @@
             ,limit:3
             ,theme: '#FF6B37'
         });
-
     });
 </script>
+</body>
+</html>

@@ -36,7 +36,7 @@ public class Flow implements Serializable {
     /**
      * 流水号
      */
-    private Long flowNumber;
+    private String flowNumber;
 
     /**
      * 流水金额（实际支付金额）
