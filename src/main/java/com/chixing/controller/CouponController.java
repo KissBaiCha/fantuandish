@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.chixing.commons.ResultCodeEnum.HAS_COUPON;
+
 /**
  * @author ZhangJiuJiu
  */
@@ -27,7 +29,7 @@ public class  CouponController {
         if(couponService.saveByCusId(couponId,cusId)){
             return R.ok();
         }
-        return R.fail();
+        return R.fail(HAS_COUPON);
     }
 
     @DeleteMapping("/remove/{id}")
