@@ -54,9 +54,7 @@ public class AliPayServiceImpl implements IAliPayService {
         alipayRequest.setReturnUrl( "http://localhost:8080/fan/alipayReturnNotice" );
         //在公共参数中设置回跳和通知地址
         alipayRequest.setNotifyUrl( "" );
-
         String timeout_express = "1c";
-
         alipayRequest.setBizContent( "{"  +
                 "    \"out_trade_no\":\"" + orderId + "\","  +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","  +
@@ -110,9 +108,10 @@ public class AliPayServiceImpl implements IAliPayService {
         modelAndView.addObject("out_trade_no",out_trade_no);
         Flow flow = new Flow();
         flow.setOrderId(out_trade_no);
-        flow.setFlowNumber(Long.valueOf(trade_no));
+        flow.setFlowNumber(trade_no.trim());
         flow.setFlowPrice(BigDecimal.valueOf(Double.valueOf(total_amount)));
         flow.setFlowCteateTime(LocalDateTime.now());
+        flow.setFlowUpdateTime(LocalDateTime.now());
         flow.setPayTime(LocalDateTime.now());
         flow.setFlowStatus(1);
         flowMapper.insert(flow);

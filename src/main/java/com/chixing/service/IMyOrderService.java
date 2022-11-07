@@ -23,9 +23,17 @@ public interface IMyOrderService {
     MyOrder getById(String orderId);
     List<MyOrder> getAllByCusId(Integer cusId);
     String save(Integer cusId,Integer myCouponId,Integer foodId,Boolean isSecondKill);
-    boolean updStatus(String orderId);
-    //分页查询
-    Page<MyOrder> getByPage(Integer pageNum);
+    boolean update(MyOrder myOrder);
+
+    /**
+     * 根据用户Id分页查询所有
+     * @param pageNum 页码
+     * @param cusId 用户Id
+     * @param status 订单状态
+     * @return 订单数据
+     */
+    Page<MyOrder> getByPage(Integer pageNum,Integer cusId,Integer status);
+
 
     LocalDateTime getOrderDateTime(String orderId);
 

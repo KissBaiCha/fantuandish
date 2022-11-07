@@ -35,6 +35,7 @@ public class LoginController {
         if(result.getCode() == 200){
             HttpSession session = request.getSession();
             session.setAttribute("token",result.getData().get("token"));
+            session.setMaxInactiveInterval(60*60);
         }
         return result;
     }

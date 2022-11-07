@@ -111,9 +111,14 @@ public class MyOrderServiceImpl implements IMyOrderService {
 
 
     @Override
-    public Page<MyOrder> getByPage(Integer pageNum) {
-        Page<MyOrder> page = new Page<>(pageNum,3);
-        return myOrderMapper.selectPage(page,null);
+    public Page<MyOrder> getByPage(Integer pageNum,Integer cusId,Integer status) {
+        Page<MyOrder> page = new Page<>(pageNum,5);
+        QueryWrapper<MyOrder>myOrderQueryWrapper = new QueryWrapper<>();
+        myOrderQueryWrapper.eq("customer_id",cusId);
+        if(status != 3){
+            myOrderQueryWrapper.eq("order_status",status);
+        }
+        return myOrderMapper.selectPage(page,myOrderQueryWrapper);
     }
 
 

@@ -116,6 +116,11 @@ public class MyOrderController {
     public void orderListener(String orderNum, Message message, Channel channel) throws IOException {
         System.out.println("接收到过期未支付的订单信息" + orderNum);
         System.out.println("处理过期订单....");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         MyOrder myOrder = null;
         try {
             //TODO 判断订单是否已经支付成功，如果支付成功，无需再取消订单
@@ -148,91 +153,5 @@ public class MyOrderController {
         return mav;
     }
 
-    /**
-     * 全部订单
-     * @param pageNum
-     * @param orderId
-     * @return
-     */
-
-    @GetMapping("/order/{orderId}/{pageNum}")
-    public ModelAndView getAllOrderByPage(@PathVariable("pageNum") Integer pageNum,
-                                  @PathVariable("orderId") String orderId) {
-        ModelAndView mav = new ModelAndView();
-        Integer foodId = myOrderService.getById(orderId).getFoodId();
-        Integer shopId = iFoodService.getById(foodId).getShopId();
-        mav.addObject("order", myOrderService.getById(orderId));
-        mav.addObject("food", iFoodService.getById(foodId));
-        mav.addObject("foodImg", iFoodService.getById(foodId));
-        System.out.println(iFoodService.getById(foodId));
-        mav.addObject("orders", myOrderService.getByPage(pageNum));
-        mav.setViewName("root/personal_center/allorder");
-        return mav;
-    }
-
-
-
-    /**
-     * 我的订单
-     * @param pageNum
-     * @param orderId
-     * @return
-     */
-    @GetMapping("/myorder/{orderId}/{pageNum}")
-    public ModelAndView getMyOrderByPage(@PathVariable("pageNum") Integer pageNum,
-                                  @PathVariable("orderId") String orderId) {
-        ModelAndView mav = new ModelAndView();
-        Integer foodId = myOrderService.getById(orderId).getFoodId();
-        Integer shopId = iFoodService.getById(foodId).getShopId();
-        mav.addObject("order", myOrderService.getById(orderId));
-        mav.addObject("food", iFoodService.getById(foodId));
-        mav.addObject("foodImg", iFoodService.getById(foodId));
-        System.out.println(iFoodService.getById(foodId));
-        mav.addObject("orders", myOrderService.getByPage(pageNum));
-        mav.setViewName("root/personal_center/myorder");
-        return mav;
-    }
-    /**
-     * 待付款
-     * @param pageNum
-     * @param orderId
-     * @return
-     */
-    @GetMapping("/waitPayOrder/{orderId}/{pageNum}")
-    public ModelAndView getWaitPayByPage(@PathVariable("pageNum") Integer pageNum,
-                                         @PathVariable("orderId") String orderId) {
-
-        ModelAndView mav = new ModelAndView();
-        Integer foodId = myOrderService.getById(orderId).getFoodId();
-        Integer shopId = iFoodService.getById(foodId).getShopId();
-        mav.addObject("order", myOrderService.getById(orderId));
-        mav.addObject("food", iFoodService.getById(foodId));
-        mav.addObject("foodImg", iFoodService.getById(foodId));
-        System.out.println(iFoodService.getById(foodId));
-        mav.addObject("orders", myOrderService.getByPage(pageNum));
-        mav.setViewName("root/personal_center/order_wait_pay");
-        return mav;
-    }
-
-    /**
-     * 待评价
-     * @param pageNum
-     * @param orderId
-     * @return
-     */
-    @GetMapping("/waitJudgeOrder/{orderId}/{pageNum}")
-    public ModelAndView getWaitJudgeByPage(@PathVariable("pageNum") Integer pageNum,
-                                         @PathVariable("orderId") String orderId) {
-        ModelAndView mav = new ModelAndView();
-        Integer foodId = myOrderService.getById(orderId).getFoodId();
-        Integer shopId = iFoodService.getById(foodId).getShopId();
-        mav.addObject("order", myOrderService.getById(orderId));
-        mav.addObject("food", iFoodService.getById(foodId));
-        mav.addObject("foodImg", iFoodService.getById(foodId));
-        System.out.println(iFoodService.getById(foodId));
-        mav.addObject("orders", myOrderService.getByPage(pageNum));
-        mav.setViewName("root/personal_center/order_wait_judge");
-        return mav;
-    }
 
 }

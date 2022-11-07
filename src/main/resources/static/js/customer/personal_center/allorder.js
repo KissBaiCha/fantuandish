@@ -1,1 +1,0 @@
-var time =$(".time").text( $(".time").text().replace("T"," "));
