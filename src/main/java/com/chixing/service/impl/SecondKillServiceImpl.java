@@ -15,11 +15,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,9 +46,10 @@ public class SecondKillServiceImpl  implements ISecondKillService {
 //    @Scheduled(cron = "0/20 * * * * ?")//20s
     @Scheduled(cron = "0 */60 * * * ?")//1h
     public List<SecondKillVo> getAllFromMysql() {
-        String key = "allSkPro";
-        if (iGlobalCache.hasKey(key))
-            iGlobalCache.del(key);
+        String key = "allSkPro:skpro_*";
+        Set keys = iGlobalCache.getRedisTemplate().keys(key);
+        if (keys.size()>0)
+            iGlobalCache.getRedisTemplate().delete(keys);
         QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        secondKillQueryWrapper.gt("second_kill_start_time", LocalDateTime.parse(LocalDate.now()+" 00:00:00",formatter));
@@ -58,29 +58,33 @@ public class SecondKillServiceImpl  implements ISecondKillService {
         List<SecondKillVo> listVo = new ArrayList<>();
         for (SecondKill secondKill : secondKills){
             Integer secondKillId = secondKill.getSecondKillId();
+            BigDecimal secondKillPrice = secondKill.getSecondKillPrice();
             Integer foodId = secondKill.getFoodId();
             Food food = foodService.getById(foodId);
             String foodMainImg = food.getFoodMainImg();
             String foodName = food.getFoodName();
-            BigDecimal secondKillPrice = secondKill.getSecondKillPrice();
             BigDecimal foodPrice = food.getFoodPrice();
+            Integer shopId = food.getShopId();
             Integer secondKillStock = secondKill.getSecondKillStock();
-            SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
+            SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodId,shopId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
             listVo.add(secondKillVo);
-            redisTemplate.opsForValue().set(key+secondKill.getSecondKillId(),secondKillVo,1,TimeUnit.HOURS);
+            key = "allSkPro:skpro_"+secondKillId;
+            redisTemplate.opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
         }
         return listVo;
     }
 
     @Override
     public List<SecondKillVo> getAllPro() {
-        String key = "allSkPro";
-        if (iGlobalCache.hasKey(key)){
-            return (List<SecondKillVo>) iGlobalCache.get(key);
+        String key = "allSkPro:skpro_*";
+        if (iGlobalCache.getRedisTemplate().keys(key).size()>0){
+            Set keys =  iGlobalCache.getRedisTemplate().keys(key);
+            return iGlobalCache.getRedisTemplate().opsForValue().multiGet(keys);
         }else{
             List<SecondKillVo> listVo = getAllFromMysql();
             for (SecondKillVo secondKillVo : listVo){
-                redisTemplate.opsForValue().set(key+secondKillVo.getSecondKillId(),secondKillVo,1,TimeUnit.HOURS);
+                key = "allSkPro:skpro_"+secondKillVo.getSecondKillId();
+                redisTemplate.opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
             }
             return listVo;
         }

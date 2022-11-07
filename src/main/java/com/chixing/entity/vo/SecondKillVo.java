@@ -4,14 +4,18 @@ import java.math.BigDecimal;
 
 public class SecondKillVo {
     private Integer secondKillId;
+    private Integer foodId;
+    private Integer shopId;
     private String foodMainImg;
     private String foodName;
     private BigDecimal secondKillPrice;
     private BigDecimal foodPrice;
     private Integer secondKillStock;
 
-    public SecondKillVo(Integer secondKillId, String foodMainImg, String foodName, BigDecimal secondKillPrice, BigDecimal foodPrice, Integer secondKillStock) {
+    public SecondKillVo(Integer secondKillId, Integer foodId, Integer shopId, String foodMainImg, String foodName, BigDecimal secondKillPrice, BigDecimal foodPrice, Integer secondKillStock) {
         this.secondKillId = secondKillId;
+        this.foodId = foodId;
+        this.shopId = shopId;
         this.foodMainImg = foodMainImg;
         this.foodName = foodName;
         this.secondKillPrice = secondKillPrice;
@@ -65,5 +69,21 @@ public class SecondKillVo {
 
     public void setSecondKillStock(Integer secondKillStock) {
         this.secondKillStock = secondKillStock;
+    }
+
+    public Integer getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 }

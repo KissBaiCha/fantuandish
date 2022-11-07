@@ -137,7 +137,7 @@
                                     <div class="old-price">
                                         <span th:text="'￥'+${skpro.foodPrice}">￥260</span>
                                     </div>
-                                    <a class="s-but" href="">
+                                    <a class="s-but" th:href="'http://localhost:8080/fan/shop/'+${skpro.shopId}+'/'+ ${skpro.foodId} + '/1'">
                                         <span>立即抢购</span>
                                     </a>
                                 </div>
