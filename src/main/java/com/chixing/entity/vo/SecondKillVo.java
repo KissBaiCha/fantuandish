@@ -3,18 +3,28 @@ package com.chixing.entity.vo;
 import java.math.BigDecimal;
 
 public class SecondKillVo {
+    private Integer secondKillId;
     private String foodMainImg;
     private String foodName;
     private BigDecimal secondKillPrice;
     private BigDecimal foodPrice;
     private Integer secondKillStock;
 
-    public SecondKillVo(String foodMainImg, String foodName, BigDecimal secondKillPrice, BigDecimal foodPrice, Integer secondKillStock) {
+    public SecondKillVo(Integer secondKillId, String foodMainImg, String foodName, BigDecimal secondKillPrice, BigDecimal foodPrice, Integer secondKillStock) {
+        this.secondKillId = secondKillId;
         this.foodMainImg = foodMainImg;
         this.foodName = foodName;
         this.secondKillPrice = secondKillPrice;
         this.foodPrice = foodPrice;
         this.secondKillStock = secondKillStock;
+    }
+
+    public Integer getSecondKillId() {
+        return secondKillId;
+    }
+
+    public void setSecondKillId(Integer secondKillId) {
+        this.secondKillId = secondKillId;
     }
 
     public String getFoodMainImg() {
@@ -55,16 +65,5 @@ public class SecondKillVo {
 
     public void setSecondKillStock(Integer secondKillStock) {
         this.secondKillStock = secondKillStock;
-    }
-
-    @Override
-    public String toString() {
-        return "SecondKillVo{" +
-                "foodMainImg='" + foodMainImg + '\'' +
-                ", foodName='" + foodName + '\'' +
-                ", secondKillPrice=" + secondKillPrice +
-                ", foodPrice=" + foodPrice +
-                ", second_kill_stock=" + secondKillStock +
-                '}';
     }
 }

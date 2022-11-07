@@ -57,6 +57,7 @@ public class SecondKillServiceImpl  implements ISecondKillService {
         List<SecondKill> secondKills = secondKillMapper.selectList(secondKillQueryWrapper);
         List<SecondKillVo> listVo = new ArrayList<>();
         for (SecondKill secondKill : secondKills){
+            Integer secondKillId = secondKill.getSecondKillId();
             Integer foodId = secondKill.getFoodId();
             Food food = foodService.getById(foodId);
             String foodMainImg = food.getFoodMainImg();
@@ -64,7 +65,7 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             BigDecimal secondKillPrice = secondKill.getSecondKillPrice();
             BigDecimal foodPrice = food.getFoodPrice();
             Integer secondKillStock = secondKill.getSecondKillStock();
-            SecondKillVo secondKillVo = new SecondKillVo(foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
+            SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
             listVo.add(secondKillVo);
             redisTemplate.opsForValue().set(key+secondKill.getSecondKillId(),secondKillVo,1,TimeUnit.HOURS);
         }
@@ -78,7 +79,9 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             return (List<SecondKillVo>) iGlobalCache.get(key);
         }else{
             List<SecondKillVo> listVo = getAllFromMysql();
-            redisTemplate.opsForValue().set(key,listVo,1,TimeUnit.HOURS);
+            for (SecondKillVo secondKillVo : listVo){
+                redisTemplate.opsForValue().set(key+secondKillVo.getSecondKillId(),secondKillVo,1,TimeUnit.HOURS);
+            }
             return listVo;
         }
     }

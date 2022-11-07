@@ -103,6 +103,11 @@ public class MyOrderServiceImpl implements IMyOrderService {
     }
 
     @Override
+    public boolean update(MyOrder myOrder) {
+        return myOrderMapper.updateById(myOrder)>0;
+    }
+
+    @Override
     public boolean updStatus(String orderId) {
         MyOrder myOrder = myOrderMapper.selectById(orderId);
         myOrder.setOrderStatus(3);
