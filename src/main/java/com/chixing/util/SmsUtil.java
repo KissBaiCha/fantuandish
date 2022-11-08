@@ -40,7 +40,7 @@ public class SmsUtil {
         SendSmsRequest sendSmsRequest = SendSmsRequest.builder()
                 .signName("阿里云短信测试")
                 .templateCode("SMS_154950909")
-                .phoneNumbers("17604619048")
+                .phoneNumbers("17849037840")
                 .templateParam("{\"code\":\"" + code + "\"}")
                 .build();
         CompletableFuture<SendSmsResponse> response = client.sendSms(sendSmsRequest);

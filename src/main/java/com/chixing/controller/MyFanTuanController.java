@@ -66,7 +66,10 @@ public class MyFanTuanController {
             MyOrderVo myOrderVo = new MyOrderVo();
             myOrderVo.setMyOrder(myOrder);
             myOrderVo.setFood(foodService.getById(myOrder.getFoodId()));
-            myOrderVo.setFlow(flowService.getByOrderNum(myOrder.getOrderId()));
+            Flow byOrderNum = flowService.getByOrderNum(myOrder.getOrderId());
+            if(byOrderNum != null){
+                myOrderVo.setFlow(byOrderNum);
+            }
             MyOrderVoList.add(myOrderVo);
         }
         mav.addObject("cusName",cusName);

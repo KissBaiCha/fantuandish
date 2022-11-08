@@ -31,9 +31,7 @@
     margin-top:-20px;
 }
 .shop-pic .spic{/*订单图片*/
-    width: 90%;
-    height: 90%;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .shop-name{
     width: 90%;
@@ -142,9 +140,9 @@
 }
 .price-tit{/*  总商品金额： */
     float: left;
-    margin-left: 80px;
     display: block;
     width: 100px;
+    margin-left: 80px;
 }
 .m-price{/*优惠券*/
     float: left;
@@ -162,17 +160,14 @@
 .n-price{
     color: #333;
 }
-.n-price{/*-50 */
+.n-price{
     display: block;
     float: left;
-    margin-left: 60px;
-    /* background-color: rgb(210, 32, 32); */
+
 }
-.price{/*  66： */
+.price{
     display: block;
     float: left;
-    margin-left:60px;
-    /* background-color: rgb(210, 32, 32); */
 }
 .price-info{
     display: block;
@@ -181,18 +176,15 @@
     height: 50px;
     margin-top: 40px;
     margin-left: 130px;
-    /* background-color: rgb(74, 234, 34); */
 }
 .set-but{/*应付金额按钮*/
     width: 80px;
     height: 20px;
     text-align: center;
     float: left;
-    /* background-color: rgb(80, 130, 249); */
 }
 .set-but span{
     color: black;
-
     font-size: 14px;
     font-weight: bolder;
 }
@@ -201,11 +193,9 @@
     height: 40px;
     float: left;
 
-    /* background-color: rgb(219, 93, 93); */
 }
 .m-btn{/* 使用优惠券下拉框  */
     border: none;
-
 }
 
 .but-m span{
@@ -215,7 +205,6 @@
 }
 .price {
     color: #333;
-    /* width: 100px; */
     text-align: right;
     font-family: verdana;
 }
@@ -224,7 +213,6 @@
     width: 100%;
     height: 50px;
     margin-top: 20px;
-    /* margin-bottom: 100px; */
     background-color: #f4f4f4
 }
 .sub-but{/*提交订单按钮*/
@@ -233,7 +221,6 @@
     height: 50px;
     text-align: center;
     margin-left: 130px;
-    /* background-color: rgb(94, 99, 238); */
 }
 .but {
     width: 120px;
@@ -259,4 +246,7 @@
 .layui-input-block {
     margin-left: 30px;
     min-height: 36px;
+}
+.word{
+    float: right;
 }
