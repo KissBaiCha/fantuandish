@@ -32,13 +32,11 @@ public class ZhangXuTest {
     ICouponService couponService;
     @Autowired
     IFlowService flowService;
+    @Autowired
+    ISecondKillService secondKillService;
 
     @Test
     public void fun1(){
-        Page<MyOrder> byPage = myOrderService.getByPage(1, 1);
-        for (MyOrder record : byPage.getRecords()) {
-            log.info("我的订单= {}",record);
-        }
-
+        secondKillService.decreaseProductNumFromRedis(1);
     }
 }
