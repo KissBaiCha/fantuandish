@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
-    <link rel="icon" href="../images/minilogo.png">
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <link rel="stylesheet" href="../css/user/register.css">
-    <link rel="stylesheet" href="../css/user/bottom.css">
+    <base href="http://localhost:8080/fan/">
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/user/register.css">
+    <link rel="stylesheet" href="css/user/bottom.css">
 </head>
 <body>
 <div class="layui-row header-mini">
@@ -18,7 +19,7 @@
             <!--     logo     -->
             <div class="logo">
                 <a href="login.html" class="logo" title="~饭团网！">
-                    <img src="../images/mylogo.png" width="126" height="46">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png" width="126" height="46">
                 </a>
             </div>
             <div class="login-block">
@@ -26,7 +27,7 @@
                 <span class="login-block-text">已有饭团账号？</span>
                 <!--     登录按钮     -->
                 <div class="layui-btn-container">
-                    <a href="login.html" class="layui-btn">去登录</a>
+                    <a href="user/login.html" class="layui-btn">去登录</a>
                 </div>
             </div>
         </div>
@@ -36,17 +37,17 @@
     <!--    左侧-->
     <div class="layui-col-xs3 register-left">
         <div class="left-girl">
-            <img src="../images/user/left.png" width="232" height="210" >
+            <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/left.png" width="232" height="210" >
         </div>
     </div>
     <div class="layui-col-xs6 register-mid">
         <!--    注册表单    -->
-        <form class="layui-form myForm" action="javascript:;">
+        <form class="layui-form myForm" >
 
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input id="register-username" type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
+                    <input id="register-username" type="text" name="customerName" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
                            placeholder="请输入用户名" autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -54,7 +55,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block">
-                    <input id="register-password" type="password" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                    <input id="register-password" type="password" name="customerPwd" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
                            autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
@@ -62,7 +63,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">确认密码</label>
                 <div class="layui-input-block">
-                    <input id="register-password-again" type="password" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                    <input id="register-password-again" type="customerPwd" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
                            autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
@@ -71,7 +72,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">验证手机</label>
                     <div class="layui-input-block">
-                        <input id="register-tel" type="tel" name="phone" lay-verify="required|phone"
+                        <input id="register-tel" type="tel" name="customerTelno" lay-verify="required|phone"
                                autocomplete="off" placeholder="请输入手机号" class="layui-input demo-phone">
                     </div>
                 </div>
@@ -90,7 +91,7 @@
             <!--      按钮      -->
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">完成注册</button>
+                    <button type="button" class="layui-btn" id="formbtn">完成注册</button>
                 </div>
             </div>
         </form>
@@ -98,7 +99,7 @@
     <!--  右侧  -->
     <div class="layui-col-xs3 register-right">
         <div class="right-girl">
-            <img src="../images/user/right.png" width="216" height="212" >
+            <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/right.png" width="216" height="212" >
         </div>
     </div>
     <!--  底部  -->
@@ -135,8 +136,7 @@
 
 </div>
 
-
-<script src="../layui/layui.js"></script>
-<script src="../js/user/register.js"></script>
+<script src="layui/layui.js"></script>
+<script src="js/customer/user/register.js"></script>
 </body>
 </html>
