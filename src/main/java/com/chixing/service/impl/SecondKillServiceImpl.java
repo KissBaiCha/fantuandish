@@ -41,13 +41,13 @@ public class SecondKillServiceImpl  implements ISecondKillService {
     private IGlobalCache iGlobalCache;
 
     @Override
-//    @Scheduled(cron = "0/20 * * * * ?")//20s
     @Scheduled(cron = "0 */60 * * * ?")//1h
-    public List<SecondKillVo> getAllFromMysql() {
+    public void getAllFromMysql() {
         String key = "allSkPro:skpro_*";
-        Set keys = iGlobalCache.getRedisTemplate().keys(key);
-        if (keys.size()>0)
+        Set<String> keys = iGlobalCache.getKeys(key);
+        if (keys.size() > 0) {
             iGlobalCache.getRedisTemplate().delete(keys);
+        }
         QueryWrapper<SecondKill> secondKillQueryWrapper = new QueryWrapper<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //        secondKillQueryWrapper.gt("second_kill_start_time", LocalDateTime.parse(LocalDate.now()+" 00:00:00",formatter));
@@ -67,16 +67,15 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodId,shopId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
             listVo.add(secondKillVo);
             key = "allSkPro:skpro_"+secondKillId;
-            iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
+            iGlobalCache.set(key,secondKillVo,60*60);
         }
-        return listVo;
     }
 
     @Override
     public List<SecondKillVo> getAllPro() {
         String key = "allSkPro:skpro_*";
-        if (iGlobalCache.getRedisTemplate().keys(key).size()>0){
-            Set keys =  iGlobalCache.getRedisTemplate().keys(key);
+        if (iGlobalCache.getKeys(key).size()>0){
+            Set<String> keys =  iGlobalCache.getKeys(key);
             return iGlobalCache.getRedisTemplate().opsForValue().multiGet(keys);
         }else{
             List<SecondKillVo> listVo = getAllFromMysql();

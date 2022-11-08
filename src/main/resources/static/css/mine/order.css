@@ -1,3 +1,8 @@
+body {
+    background: url(//www.dpfile.com/s/c/user/skins/default/i/bg.a1af512….jpg) 50% 30px no-repeat #fdfbef;
+    color: #555;
+}
+
 /* ------------------------------orders-body------------------------------- */
 .orders-container .orders-body{
     width: 980px;

@@ -9,15 +9,8 @@ body{
     width: 100%;
     height: 1500px;
     margin: 0 auto;
-    /* background-color: aqua; */
-}
-/* .main .header{
-    width: 100%;
-    height: 150px;
-    margin-bottom: 12px;
-    background-color: #FFF;
-} */
 
+}
 .main .pro-main{
     width: 79%;
     height: auto;
@@ -27,7 +20,6 @@ body{
 .main .fifter{
     width: 100%;
     height: 200px;
-    /* background-color: aquamarine; */
     background-color: #FFF;
 }
 /*列表区*/
@@ -35,15 +27,11 @@ body{
     width: 100%;
     height: 600px;
     margin-top: 12px;
-    /* background-color: #FFF; */
-    /* background-color: wheat; */
 }
 /*推荐区*/
 .main .recommend{
     width: 20%;
     height: 920px;
-    /* background-color: #FFF; */
-    /* background-color: rgb(170, 118, 51); */
     float: right;
     margin-top: 12px;
 }
@@ -57,7 +45,6 @@ body{
     font-size: 14px;
     padding-top: 25px;
     margin-left: 20px;
-    /* background-color:aqua ; */
 }
 .fifter .Condition label{
     width: 80px;
@@ -104,8 +91,6 @@ body{
     width: 100% !important;;
     height: 50px;
     background-color: #FFF;
-    /* background-color: rgb(0, 0, 0); */
-    /* border-bottom: 1px solid lightgray; */
 }
 .pro-main .prolist .sort2{
     height: 50px;
@@ -146,7 +131,6 @@ body{
 .prolist .pro{
     width: 100%;
     height: 170px;
-    /* background-color: yellowgreen; */
 }
 .prolist .pro li{
     padding-bottom: 25px;
@@ -230,7 +214,6 @@ body{
     list-style: none;
     padding-top: 10px;
     background-color: #FFF;
-    /* background-color: aqua; */
 }
 .recommend li:hover{
     background-color: rgba(248, 248, 248);
@@ -286,6 +269,18 @@ body{
     line-height: 30px;
     color: white;
     background-color: rgb(230, 67, 71);
+}
+.layui-nav .layui-this:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 5px;
+    background-color: rgb(255,107,55);;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    pointer-events: none;
 }
 
 

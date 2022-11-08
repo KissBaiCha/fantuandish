@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2022-09-30
  */
 public interface ISecondKillService {
-    List<SecondKillVo> getAllFromMysql();
+    void getAllFromMysql();
     List<SecondKillVo> getAllPro();
     SecondKillVo decreaseProductNumFromRedis(Integer secondKillId);
 }

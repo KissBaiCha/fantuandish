@@ -34,7 +34,6 @@
                             <dd><a href="">我的收藏</a></dd>
                         </dl>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -118,15 +117,10 @@
                     <span class="nicheng">昵称</span>
                     <input type="text" th:value="${customer.customerName}" class="nichengkuang">
                 </div>
-                <div class="birthday">
-                    <span class="pwd">密码</span>
-                    <input type="text" class="mimakuang" value="密码">
-                </div>
                 <div class="updatePhone">
                     <span class="shoujihao">换绑手机</span>
                     <input type="text" th:value="${customer.customerTelno}" class="phonenumber">
                 </div>
-                <input type="submit" value="修改" class="update">
                 <input type="submit" value="保存" class="save">
             </form>
         </div>
@@ -155,14 +149,9 @@
         </div>
     </div>
 </div>
-
 <script src="layui/layui.js"></script>
-
-
 </body>
 </html>
-
-
 <script>
     layui.use(['upload', 'element', 'layer'], function () {
         var $ = layui.jquery
@@ -209,11 +198,7 @@
             }
         });
     });
-
-
 </script>
-
-
 <script>
     layui.use('element', function () {
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
@@ -224,22 +209,14 @@
             layer.msg(elem.text());
         });
     });
-
 </script>
-
-
 <!--保存修改的信息-->
-
 <!--<script>-->
 <!--    $(document).ready(function(){-->
 <!--        $("update").on("click",function (){-->
 <!--            $.ajax({-->
 <!--                type: 'post'-->
-
-
 <!--                })-->
-
 <!--        })-->
-
 <!--    })-->
 <!--</script>-->
