@@ -72,17 +72,11 @@ public class SecondKillServiceImpl  implements ISecondKillService {
     @Override
     public List<SecondKillVo> getAllPro() {
         String key = "allSkPro:skpro_*";
-        if (iGlobalCache.getKeys(key).size()>0){
+        if (iGlobalCache.getKeys(key).size() > 0){
             Set<String> keys =  iGlobalCache.getKeys(key);
             return iGlobalCache.getRedisTemplate().opsForValue().multiGet(keys);
-        }else{
-            List<SecondKillVo> listVo = getAllFromMysql();
-            for (SecondKillVo secondKillVo : listVo){
-                key = "allSkPro:skpro_"+secondKillVo.getSecondKillId();
-                iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
-            }
-            return listVo;
         }
+        return null;
     }
 
     //抢购时商品减库存
