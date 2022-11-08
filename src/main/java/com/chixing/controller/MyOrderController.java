@@ -4,10 +4,12 @@ package com.chixing.controller;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyCoupon;
 import com.chixing.entity.MyOrder;
+import com.chixing.entity.SecondKill;
 import com.chixing.entity.vo.MyCouponVO;
 import com.chixing.service.IFoodService;
 import com.chixing.service.IMyCouponService;
 import com.chixing.service.IMyOrderService;
+import com.chixing.service.ISecondKillService;
 import com.chixing.util.JwtUtil;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -35,12 +37,14 @@ public class MyOrderController {
     @Autowired
     private IMyCouponService myCouponService;
     @Autowired
+    private ISecondKillService secondKillService;
+    @Autowired
     private RabbitTemplate rabbitTemplate;
 
     @GetMapping("/order")
     public ModelAndView getOrder() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("customer/pay/order_pay.html");
+        modelAndView.setViewName("customer/pay/order_pay");
         return modelAndView;
     }
 
@@ -95,6 +99,27 @@ public class MyOrderController {
         modelAndView.addObject("food", food);
         modelAndView.addObject("cusName", cusName);
         modelAndView.setViewName("customer/order/order");
+        return modelAndView;
+    }
+
+    /**
+     * 秒杀点击进入订单确认
+     * @param secondId
+     * @param request
+     * @return
+     */
+    @GetMapping("/getSecondOrderDetails")
+    public ModelAndView getSecondOrderDetails(@RequestParam("secondId") Integer secondId,
+                                              HttpServletRequest request) {
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
+        SecondKill secondKill = secondKillService.getById(secondId);
+        Food food = iFoodService.getById(secondKill.getFoodId());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("secondKill",secondKill);
+        modelAndView.addObject("cusName", cusName);
+        modelAndView.addObject("food", food);
+        modelAndView.setViewName("customer/order/skOrder");
         return modelAndView;
     }
 

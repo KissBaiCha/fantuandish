@@ -53,6 +53,11 @@ public class SecondKillServiceImpl implements ISecondKillService {
     private RabbitTemplate rabbitTemplate;
 
     @Override
+    public SecondKill getById(Integer skId) {
+        return secondKillMapper.selectById(skId);
+    }
+
+    @Override
     @Scheduled(cron = "0 */60 * * * ?")//1h
     public void getAllFromMysql() {
         String key = "allSkPro:skpro_*";

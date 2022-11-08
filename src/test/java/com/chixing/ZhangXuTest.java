@@ -5,6 +5,7 @@ import com.chixing.commons.R;
 import com.chixing.entity.Food;
 import com.chixing.entity.MyOrder;
 import com.chixing.service.*;
+import com.chixing.util.SmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,6 @@ public class ZhangXuTest {
 
     @Test
     public void fun1(){
-        secondKillService.decreaseProductNumFromRedis(1);
+        SmsUtil.sendMsg();
     }
 }

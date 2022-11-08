@@ -30,15 +30,15 @@
                     <span>&nbsp</span>
                 </div>
                 <div class="layui-col-xs4">
-                    <ul class="layui-nav" lay-filter="">
-                        <li class="layui-nav-item" ><a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a></li>
-                        <li class="layui-nav-item" ><a href="#" class="title">帮助中心</a></li>
+                    <ul class="layui-nav">
+                        <li class="layui-nav-item"><a href="" th:text="${cusName}">登录/注册</a></li>
+                        <li class="layui-nav-item"><a href="">帮助中心</a></li>
                         <li class="layui-nav-item">
-                            <a href="javascript:;" class="title">我的饭团</a>
+                            <a href="javascript:;">我的饭团</a>
                             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                                <dd><a href="customer/getAllOrder?status=3&pageNum=1">订单中心</a></dd>
-                                <dd><a href="customer/getAllCoupon?status=1&pageNum=1">我的优惠券</a></dd>
-                                <dd><a href="#">我的收藏</a></dd>
+                                <dd><a href="">订单中心</a></dd>
+                                <dd><a href="">我的优惠券</a></dd>
+                                <dd><a href="">我的收藏</a></dd>
                             </dl>
                         </li>
 
@@ -61,7 +61,7 @@
                             <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
                                    placeholder="点此进入美食猩球" class="layui-input" id="es_input">
                             <div class="layui-btn-container" style="display: block;float: left">
-                                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn" id="es_btn">去觅食</button>
+                                <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食</button>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                 <div class="sum-price" >
                     <div class="sum">
                         ￥
-                        <span th:text="${food.foodPrice}">58</span>
+                        <span th:text="${secondKill.secondKillPrice}">58</span>
                     </div>
                 </div>
             </div>
@@ -141,41 +141,13 @@
         <div class="layui-row">
             <div class="layui-col-xs9">
                 <div class="layui-btn-container">
-                    <button class="layui-btn couponList" style="background: #ff6b37">
-                        选择优惠券
-                        <i class="layui-icon layui-icon-down layui-font-12"></i>
-                    </button>
-                    <div class="layui-row layui-col-space15 couponCard">
-                        <div class="layui-col-md6">
-                            <div class="layui-panel">
-                                <div style="padding: 10px;">
-                                    <form class="layui-form" action="">
-                                        <div class="layui-form-item">
-                                            <div class="layui-input-block">
-                                                <ul>
-                                                    <li th:each="c:${myCouponVoList}">
-                                                        <input type="radio" class="myCouponId" name="couponId" th:value="${c.myCoupon.myCouponId}" th:title="${c.couponPrice}+'元无门槛优惠券'">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="layui-form-item">
-                                            <div class="layui-input-block">
-                                                <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: rgb(255,107,55)">确定</button>
-                                                <button type="reset" class="layui-btn layui-btn-primary quXiaoBtn" style="background-color: rgb(255,107,55)">取消</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="layui-col-xs3 word">
                 <div class="statistic">
                     <span class="price-tit">共计:</span>
-                    <em class="price" th:text="${food.foodPrice}"></em>
+                    <em class="price" th:text="${secondKill.secondKillPrice}"></em>
                 </div>
                 <div class="price-panel">
                     <span class="m-price">优惠:</span>
@@ -187,7 +159,7 @@
                     </div>
                     <div class="but-m">
                         ￥
-                        <span class="payNum" th:text="${food.foodPrice}">58</span>
+                        <span class="payNum" th:text="${secondKill.secondKillPrice}"></span>
                     </div>
                 </div>
             </div>
@@ -197,14 +169,13 @@
     <div class="Submit-order">
         <div class="layui-row">
             <div class="layui-col-xs9">
-                <div class="grid-demo grid-demo-bg1"></div>
+                &nbsp;
             </div>
             <div class="layui-col-xs3">
                 <div class="sub-but">
                     <form action="creatOrder" class="dataForm" method="post">
-                        <input type="hidden" name="foodId" class="foodId" th:value="${food.foodId}">
-                        <input type="hidden" name="shopId" class="shopId" th:value="${food.shopId}">
-                        <input type="hidden" name="isSecondKillVal" class="isSecondKillVal" value="0">
+                        <input type="hidden" name="foodId" class="foodId" th:value="${secondKill.foodId}">
+                        <input type="hidden" name="isSecondKillVal" class="isSecondKillVal" value="1">
                         <input type="hidden" name="newCouponId" class="newCouponId" value="0">
                         <input type="submit" class="but gotoAliPay" name="提交订单" value="提交订单">
                     </form>

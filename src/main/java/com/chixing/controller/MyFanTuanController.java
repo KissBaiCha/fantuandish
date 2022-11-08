@@ -2,6 +2,7 @@ package com.chixing.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.chixing.commons.R;
 import com.chixing.entity.*;
 import com.chixing.entity.vo.MyCouponCenterVo;
 import com.chixing.entity.vo.MyOrderVo;
@@ -24,9 +25,9 @@ public class MyFanTuanController {
     @Autowired
     private IFoodService foodService;
     @Autowired
-    private IFlowService flowService;
-    @Autowired
     private IMyCouponService myCouponService;
+    @Autowired
+    private IFlowService flowService;
     @Autowired
     private ICouponService couponService;
     @Autowired
@@ -51,6 +52,8 @@ public class MyFanTuanController {
 
     /**
      * 个人订单中心访问
+     * @param pageNum 页码
+     * @param status 状态
      * @param request 请求
      * @return 订单数据
      */
@@ -66,7 +69,6 @@ public class MyFanTuanController {
             MyOrderVo myOrderVo = new MyOrderVo();
             myOrderVo.setMyOrder(myOrder);
             myOrderVo.setFood(foodService.getById(myOrder.getFoodId()));
-            myOrderVo.setFlow(flowService.getByOrderNum(myOrder.getOrderId()));
             MyOrderVoList.add(myOrderVo);
         }
         mav.addObject("cusName",cusName);
@@ -74,6 +76,22 @@ public class MyFanTuanController {
         mav.setViewName("root/personal_center/allorder");
         return mav;
     }
+    @GetMapping("/getFlow/{orderId}")
+    public R<Flow> getFlowByOrderId(@PathVariable("orderId") String orderId){
+        Flow flow = flowService.getByOrderNum(orderId);
+        if(flow == null){
+            return R.fail();
+        }
+        return R.ok("flow",flow);
+    }
+
+    /**
+     * 根据优惠券状态获得所有优惠券
+     * @param pageNum 页码
+     * @param status 优惠券状态
+     * @param request 请求
+     * @return
+     */
     @GetMapping("/getAllCoupon")
     public ModelAndView getCouponByStatus(Integer pageNum, Integer status,HttpServletRequest request){
         Integer cusId = JwtUtil.getCusIdBySession(request);

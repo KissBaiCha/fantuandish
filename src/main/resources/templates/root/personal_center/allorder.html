@@ -28,13 +28,13 @@
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
                     <li class="layui-nav-item" ><a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a></li>
-                    <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item" ><a href="#" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                            <dd><a href="customer/getAllOrder?status=1&pageNum=1">订单中心</a></dd>
+                            <dd><a href="customer/getAllOrder?status=3&pageNum=1">订单中心</a></dd>
                             <dd><a href="customer/getAllCoupon?status=1&pageNum=1">我的优惠券</a></dd>
-                            <dd><a href="">我的收藏</a></dd>
+                            <dd><a href="#">我的收藏</a></dd>
                         </dl>
                     </li>
 
@@ -109,15 +109,13 @@
                         <span class="product_title" th:text="${order.food.foodName}">和牛畅吃套餐</span>
                         <span class="text_time">下单时间:</span>
                         <span class="time" th:text="${order.myOrder.orderCreateTime}"></span>
-<!--                        <script>-->
-<!--                            console.log()-->
-<!--                            var time = $(".time:last").text().replace("T"," ");-->
-<!--                            $(".time:last").text(time);-->
-<!--                        </script>-->
+                        <script>
+                            var time =$(".time:last").text($(".time:last").text().replace("T"," "));
+                        </script>
                     </div>
                     <div class="sum_price">
                         <span class="text_price">总价:￥</span>
-                        <span class="price" th:text="${order.flow.flowPrice}">216</span>
+                        <span class="price" th:text="${order.myOrder.orderPrice}">216</span>
                     </div>
                     <div class="zhuangtai">
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 0}">已取消</span>
@@ -125,11 +123,9 @@
                         <a th:if="${order.myOrder.orderStatus eq 2} " th:href="'evaluation/'+${order.myOrder.orderId}" class="order_zhuangtai">去评价</a>
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 3}">已完成</span>
                     </div>
-                    <div th:if="${order.myOrder.orderStatus} != 0" class="other">
+                    <div th:if="${order.myOrder.orderStatus eq 2} " class="other">
                         <span class="order-details" style="color: rgb(255,107,55)">订单详情</span>
-                        <input type="hidden" class="orderNum" th:value="${order.flow.orderId}">
-                        <input type="hidden" class="flowNum" th:value="${order.flow.flowNumber}">
-                        <input type="hidden" class="payTime" th:value="${order.flow.payTime}">
+                        <input type="hidden" class="orderId" th:value="${order.myOrder.orderId}">
                     </div>
                 </li>
             </ul>
@@ -179,7 +175,6 @@
         var total = document.getElementById("total").value;
         var laypage = layui.laypage
             ,layer = layui.layer;
-
         laypage.render({
             elem: 'demo2-1'
             ,count: total

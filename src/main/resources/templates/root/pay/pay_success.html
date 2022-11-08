@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base href="http://localhost:8080/fan/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>支付成功</title>
+    <link rel="icon" href="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/minilogo.png">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/details/details_bottom.css">
+    <link rel="stylesheet" href="css/details/details_header.css">
+    <link rel="stylesheet" href="css/customer/pay/pay_success.css">
+<body>
+<!-- ----------------头部------------------------- -->
+<div class="header">
+    <div class="top-nav ">
+        <div class="layui-main top-main layui-row">
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <span>&nbsp</span>
+            </div>
+            <div class="layui-col-xs4">
+                <ul class="layui-nav" lay-filter="">
+                    <li class="layui-nav-item" >
+                        <a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a>
+                    </li>
+                    <li class="layui-nav-item" ><a href="" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" class="title">我的饭团</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            <dd><a href="customer/getAllOrder?status=1&pageNum=1">订单中心</a></dd>
+                            <dd><a href="customer/getAllCoupon?status=1&pageNum=1">我的优惠券</a></dd>
+                            <dd><a href="">我的收藏</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row header-tip">
+
+        <!--      logo      -->
+        <div class="layui-col-xs3 logo-input">
+            <a href="index.html" title="饭团网" class="logo-img">
+                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
+            </a>
+        </div>
+        <!--    搜索    -->
+        <div class="layui-col-xs6 search-box">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item searchbox-input">
+                    <div class="layui-input-block" style="margin-left: 10px">
+                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                               placeholder="点此进入美食猩球" class="layui-input" id="es_input">
+                        <div class="layui-btn-container" style="display: block;float: left">
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn" id="es_btn">去觅食</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--   支付成功   -->
+<div class="layui-main">
+    <div class="layui-row pay">
+        <div class="layui-col-xs4">
+            <div class="grid">
+                <div class="box">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/Alipay/foodleft.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs4">
+            <div class="pay_item">
+                <div class="pay_img">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/Alipay/success.png" alt="">
+                </div>
+                <div class="pay_word">
+                    <span>支付成功</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs4">
+            <div class="grid_right">
+                <div class="box">
+                    <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/Alipay/foodright.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   文字区  -->
+    <div class="layui-row pay">
+        <div class="layui-col-xs4">
+            <div class="gridone"></div>
+        </div>
+        <div class="layui-col-xs4">
+            <div class="word_item">
+                <div class="details-item" th:text="'商品名: '+${productName}"></div>
+                <div class="details-item" th:text="'流水编号: '+${trade_no}"></div>
+                <div class="details-item" th:text="'流水金额: '+${total_amount}"></div>
+                <div class="details-item" th:text="'订单编号: '+${out_trade_no}"></div>
+            </div>
+        </div>
+        <div class="layui-col-xs4">
+            <div class="gridone"></div>
+        </div>
+    </div>
+    <!--   返回首页+查看订单   -->
+    <div class="layui-row over">
+        <div class="layui-col-xs1">
+            <div class="gridtwo"></div>
+        </div>
+        <div class="layui-col-xs5">
+            <div class="return">
+                <a href="customer/user_details" class="layui-btn layui-btn-primary layui-border-orange">返回首页</a>
+            </div>
+        </div>
+        <div class="layui-col-xs5">
+            <div class="check">
+                <a href="customer/getAllOrder?status=3&pageNum=1" class="layui-btn layui-btn-primary layui-border-orange">查看订单</a>
+            </div>
+        </div>
+        <div class="layui-col-xs1">
+            <div class="gridtwo"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ---------------------------底部-------------------------------- -->
+<div class="layui-row">
+    <div class="layui-edge-bottom detail-bottom">
+        <div class="layui-col-xs2">
+            关于饭团
+        </div>
+        <div class="layui-col-xs2">
+            加入我们
+        </div>
+        <div class="layui-col-xs2">
+            商家入驻
+        </div>
+        <div class="layui-col-xs2">
+            帮助中心
+        </div>
+        <div class="layui-col-xs2">
+            手机APP
+        </div>
+        <div class="layui-col-xs2">
+            <a href="javascript:;" title="@张旭 @刘海萍 @刘丽 @商建">@作者</a>
+        </div>
+    </div>
+</div>
+<script src="layui/layui.js"></script>
+</body>
+</html>

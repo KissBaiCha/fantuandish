@@ -14,12 +14,12 @@ import lombok.Data;
 public class MyOrderVo {
     private MyOrder myOrder;
     private Food food;
-    private Flow flow;
 
-    public MyOrderVo(MyOrder myOrder, Food food, Flow flow) {
+
+    public MyOrderVo(MyOrder myOrder, Food food) {
         this.myOrder = myOrder;
         this.food = food;
-        this.flow = flow;
+
     }
 
     public MyOrderVo() {

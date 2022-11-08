@@ -27,7 +27,7 @@ public class OrderQueenConfig {
         //死信路由键
         arguments.put("x-dead-letter-routing-key","order-release");
         //消息过期时间、单位：毫秒、60000代表1分钟
-        arguments.put("x-message-ttl",60000);
+        arguments.put("x-message-ttl",60000 * 15);
         return new Queue("order-delay-queue",true,false,false,arguments);
     }
     @Bean

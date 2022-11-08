@@ -24,16 +24,17 @@
             </div>
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
-                    <li class="layui-nav-item"><a href="user/login.html" class="title" th:text="${cusName}">登录/注册</a></li>
-                    <li class="layui-nav-item"><a href="" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item" ><a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a></li>
+                    <li class="layui-nav-item" ><a href="#" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                            <dd><a href="">订单中心</a></dd>
-                            <dd><a href="">我的优惠券</a></dd>
-                            <dd><a href="">我的收藏</a></dd>
+                            <dd><a href="customer/getAllOrder?status=3&pageNum=1">订单中心</a></dd>
+                            <dd><a href="customer/getAllCoupon?status=1&pageNum=1">我的优惠券</a></dd>
+                            <dd><a href="#">我的收藏</a></dd>
                         </dl>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -41,9 +42,8 @@
     <div class="layui-row header-tip">
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
-            <a href="../index.html" title="饭团网" class="logo-img">
-                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png" width="200"
-                     height="72">
+            <a href="shop/shopsift/1" title="饭团网" class="logo-img">
+                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
             </a>
         </div>
         <!--    搜索    -->
@@ -51,13 +51,10 @@
             <form class="layui-form layui-form-pane" action="">
                 <div class="layui-form-item searchbox-input">
                     <div class="layui-input-block" style="margin-left: 10px">
-                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left"
-                               type="text" name="title" autocomplete="off"
-                               placeholder="点此进入美食猩球" class="layui-input">
+                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                               placeholder="点此进入美食猩球" class="layui-input" id="es_input">
                         <div class="layui-btn-container" style="display: block;float: left">
-                            <button type="button"
-                                    class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn">去觅食
-                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn" id="es_btn">去觅食</button>
                         </div>
                     </div>
                 </div>

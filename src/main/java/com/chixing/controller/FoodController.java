@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class FoodController {
@@ -48,6 +49,7 @@ public class FoodController {
         modelAndView.addObject("cusId",cusId);
         modelAndView.addObject("shop",shopService.getById(shopId));
         modelAndView.addObject("evaMap",evaluationService.getByFoodId(foodId,pageNum));
+        modelAndView.addObject("recommend",foodService.getByScore().stream().limit(3).collect(Collectors.toList()));
         modelAndView.setViewName("details/details_product");
         return modelAndView;
     }
