@@ -98,22 +98,22 @@
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-tongYong">
                                             <input type="text" name="customerTel" lay-verify="title" autocomplete="off"
-                                                   placeholder="请输入手机号" class="layui-input customerTel">
+                                                   placeholder="请输入手机号" class="layui-input customerTel" id="customerTelno">
                                         </div>
                                     </div>
                                     <!--         验证码输入框           -->
                                     <div class="layui-form-item ">
                                         <div class="login-tongYong ">
                                             <input type="text" name="verifyCode" placeholder="请输入验证码"
-                                                   autocomplete="off" class="verifyCode layui-input">
+                                                   autocomplete="off" class="verifyCode layui-input" id="verCode">
                                             <div class="get-verifyCode">
-                                                <button type="button" class="layui-btn layui-btn-danger" style="padding: 0 6px">获取验证码</button>
+                                                <button type="button" class="layui-btn layui-btn-danger" style="padding: 0 6px" id="codebtn">获取验证码</button>
                                             </div>
                                         </div>
                                     </div>
                                     <!--         登录按钮          -->
                                     <div class="layui-form-item">
-                                        <button class="login-btn-code">登录</button>
+                                        <button type="button" class="login-btn-code" id="loginByCode">登录</button>
                                     </div>
                                     <!--         用户协议        -->
                                     <div class="layui-form-item" pane="">

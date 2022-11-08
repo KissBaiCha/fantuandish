@@ -4,16 +4,15 @@ import com.chixing.commons.R;
 import com.chixing.entity.Customer;
 import com.chixing.service.ICustomerService;
 import com.chixing.util.JwtUtil;
+import com.chixing.util.SmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 /**
  * @author Xu Zhang
@@ -26,32 +25,35 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private ICustomerService customerService;
+
     @ResponseBody
     @PostMapping("login")
-    public R<String> login(Customer customer,HttpServletRequest request){
+    public R<String> login(Customer customer, HttpServletRequest request) {
         log.info("login获得的用户名" + customer.getCustomerName());
         log.info("login获得的密码" + customer.getCustomerPwd());
         R<String> result = customerService.loginByName(customer);
-        if(result.getCode() == 200){
+        if (result.getCode() == 200) {
             HttpSession session = request.getSession();
-            session.setAttribute("token",result.getData().get("token"));
-            session.setMaxInactiveInterval(60*60);
+            session.setAttribute("token", result.getData().get("token"));
+            session.setMaxInactiveInterval(60 * 60);
         }
         return result;
     }
 
-    @PostMapping("register")
     @ResponseBody
-    public String register(Customer customer){
-        Customer hasCustomer = customerService.getCustomerByName(customer.getCustomerName());
-        if (hasCustomer==null){
-            Customer hasTelno = customerService.getCustomerByTel(customer.getCustomerTelno());
-            if (hasTelno==null){
-                customerService.registerUser(customer);
-                return "注册成功";
-            }else
-                return "该号码已经注册，请更换手机号码！";
+    @PostMapping("loginByCode/{telno}/{verCode}")
+    public R<String> loginByCode(@PathVariable("telno") Long customerTelno,
+                                 @PathVariable("verCode") Integer code,
+                                 HttpServletRequest request){
+        Integer sessionCode = (Integer) request.getSession().getAttribute("vercode");
+        R<String> result = customerService.loginByCode(customerTelno,code,sessionCode);
+        if (result.getCode() == 200){
+            HttpSession session = request.getSession();
+            session.setAttribute("token", result.getData().get("token"));
+            session.setMaxInactiveInterval(60 * 60);
         }
-        return "该用户名已存在，请重新注册！";
+        System.out.println(result.getMessage());
+        return result;
     }
+
 }

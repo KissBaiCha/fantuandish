@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
-import static com.chixing.commons.ResultCodeEnum.CUSTOMER_ERR;
-import static com.chixing.commons.ResultCodeEnum.NO_FIND_ANT_ERR;
+import static com.chixing.commons.ResultCodeEnum.*;
 
 
 /**
@@ -62,17 +62,20 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public R<String> loginByCode(Customer customer,Integer code) {
+    public R<String> loginByCode(Long telno,Integer code,Integer sessionCode) {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("customer_telno",customer.getCustomerTelno());
+        queryWrapper.eq("customer_telno",telno);
         if(customerMapper.selectCount(queryWrapper) == 0){
             return R.fail(NO_FIND_ANT_ERR);
         }
-        R<Integer> integerR = SmsUtil.sendMsg();
-        if(integerR.getData().get("code").equals(code)){
-
+        System.out.println(sessionCode);
+        System.out.println(code);
+//        Integer verCode = SmsUtil.sendMsg(String.valueOf(telno)).getData().get("code");
+        if(sessionCode.equals(code)){
+            Customer customer = customerMapper.selectOne(queryWrapper);
+            return loginByName(customer);
         }
-        return null;
+        return R.fail(CODE_ERR);
     }
 
     @Override
@@ -109,9 +112,25 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public int registerUser(Customer customer) {
-        customer.setCustomerStatus(1);
-        customer.setCustomerCreateDate(LocalDate.now());
-        return customerMapper.insert(customer);
+    public String registerUser(Customer customer,Integer code,Integer verCode) {
+        Customer hasCustomer =getCustomerByName(customer.getCustomerName());
+        if (code!=null){
+            if (code.equals(verCode)) {
+                if (hasCustomer == null) {
+                    Customer hasTelno = getCustomerByTel(customer.getCustomerTelno());
+                    if (hasTelno == null) {
+                        customer.setCustomerStatus(1);
+                        customer.setCustomerCreateDate(LocalDate.now());
+                        customerMapper.insert(customer);
+                        return "注册成功！";
+                    } else
+                        return "该号码已经注册，请更换手机号码！";
+                }
+                return "该用户名已存在，请重新注册！";
+            } else
+                return "验证码错误";
+        }else
+            return "请获取验证码";
+
     }
 }

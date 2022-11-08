@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
  * @date 2022/10/18 15:29
  */
 public class SmsUtil {
-    public static R<Integer> sendMsg(){
+    public static R<Integer> sendMsg(String telno){
         //随机生成六位随机数
         StringBuffer stringBuffer = new StringBuffer();
         for (int x=0;x<=5;x++) {
@@ -40,7 +40,7 @@ public class SmsUtil {
         SendSmsRequest sendSmsRequest = SendSmsRequest.builder()
                 .signName("阿里云短信测试")
                 .templateCode("SMS_154950909")
-                .phoneNumbers("17604619048")
+                .phoneNumbers(String.valueOf(telno))
                 .templateParam("{\"code\":\"" + code + "\"}")
                 .build();
         CompletableFuture<SendSmsResponse> response = client.sendSms(sendSmsRequest);

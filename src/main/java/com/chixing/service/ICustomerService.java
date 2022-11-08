@@ -19,7 +19,7 @@ public interface ICustomerService {
      * @return 返回前端数据封装
      */
     R<String> loginByName(Customer customer);
-    R<String> loginByCode(Customer customer,Integer code);
+    R<String> loginByCode(Long telno,Integer code,Integer sessionCode);
 
 
     /**
@@ -30,5 +30,6 @@ public interface ICustomerService {
     Customer getCustomerById(Integer customerId);
     Customer getCustomerByName(String customerName);
     Customer getCustomerByTel(Long telno);
-    int registerUser(Customer customer);
+    //注册
+    String registerUser(Customer customer,Integer code,Integer verCode);
 }

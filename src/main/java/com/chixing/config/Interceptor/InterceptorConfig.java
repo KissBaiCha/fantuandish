@@ -18,6 +18,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //                进行拦截，一般登录不拦截，企业都拦截
                 .addPathPatterns("/customer/**")
                 .excludePathPatterns("/customer/login")
-                .excludePathPatterns("/customer/register");
+                .excludePathPatterns("/customer/loginByCode")
+                .excludePathPatterns("/customer/sendCode/*")
+                .excludePathPatterns("/customer/register/*")
+        ;
     }
 }

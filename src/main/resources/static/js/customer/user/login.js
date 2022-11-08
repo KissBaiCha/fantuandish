@@ -19,3 +19,31 @@ $(".login-btn").click(function (){
         },
     })
 })
+//发送验证码
+$("#codebtn").click( function (){
+    $.ajax({
+        type:"post",
+        url:"customer/sendCode/"+$("#customerTelno").val(),
+        success: function (data){
+            alert(data)
+        }
+    })
+})
+
+$("#loginByCode").click( function() {
+    console.log("customer/loginByCode/" + $("#customerTelno").val() + "/" + $("#verCode").val())
+    $.ajax({
+        type: "post",
+        url: "customer/loginByCode/" + $("#customerTelno").val() + "/" + $("#verCode").val(),
+
+        success: function (data) {
+            alert(data.message);
+            var token = data.data.token;
+            window.location.href="shop/shopsift/1";
+        },
+        error: function (data) {
+            alert("登录,请稍后重试！")
+
+        }
+    })
+})

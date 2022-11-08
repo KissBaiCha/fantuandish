@@ -40,8 +40,11 @@ public enum ResultCodeEnum {
     /**
      * 已领取过此优惠券
      */
-    HAS_COUPON(601,"每位用户只能领取一次");
-    ;
+    HAS_COUPON(601,"每位用户只能领取一次"),
+    /**
+     * 验证码错误
+     */
+    CODE_ERR(701,"验证码错误");
     /**
      *
      * 状态码
