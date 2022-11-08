@@ -157,13 +157,13 @@
 
 
                 <li th:each="skfood:${skfood}">
-                    <a href="secondkill/seckill.html">
+                    <a href="http://localhost:8080/fan/secondKill/getAllPro">
                         <img th:src="${skfood.value.foodMainImg}">
                         <h6 th:text="${skfood.value.foodName}">熊猫不走生日蛋糕（苏州店）</h6>
                         <span th:text="'库存：'+${skfood.key.secondKillStock}"></span>
                     </a>
                     <span><label>￥</label><label th:text="${skfood.key.secondKillPrice}">188.0</label></span>
-                    <a href="secondkill/seckill.html" class="seckillbtn">立即抢购</a>
+                    <a href="http://localhost:8080/fan/secondKill/getAllPro" class="seckillbtn">立即抢购</a>
                 </li>
 
 

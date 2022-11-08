@@ -39,8 +39,6 @@ public class SecondKillServiceImpl  implements ISecondKillService {
     private IFoodService foodService;
     @Autowired
     private IGlobalCache iGlobalCache;
-    @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
 
     @Override
 //    @Scheduled(cron = "0/20 * * * * ?")//20s
@@ -69,7 +67,7 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodId,shopId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
             listVo.add(secondKillVo);
             key = "allSkPro:skpro_"+secondKillId;
-            redisTemplate.opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
+            iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
         }
         return listVo;
     }
@@ -84,9 +82,48 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             List<SecondKillVo> listVo = getAllFromMysql();
             for (SecondKillVo secondKillVo : listVo){
                 key = "allSkPro:skpro_"+secondKillVo.getSecondKillId();
-                redisTemplate.opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
+                iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
             }
             return listVo;
+        }
+    }
+
+    //抢购时商品减库存
+    @Override
+    public SecondKillVo decreaseProductNumFromRedis(Integer secondKillId){
+        SecondKillVo secondKillPro = null;
+        String key = "skpro_"+secondKillId;
+        String uuid = UUID.randomUUID().toString().replace("-","");
+
+        boolean isLock = iGlobalCache.getRedisTemplate().opsForValue().setIfAbsent(key,uuid,100,TimeUnit.SECONDS);
+        if (isLock){
+            secondKillPro = (SecondKillVo) iGlobalCache.get("allSkPro:skpro_"+secondKillId);
+            if (secondKillPro == null)
+                return null;
+            if (secondKillPro.getSecondKillStock()==0)
+                return null;
+            else {
+                secondKillPro.setSecondKillStock(secondKillPro.getSecondKillStock()-1);
+                iGlobalCache.set("allSkPro:skpro_"+secondKillId,secondKillPro,60*60);
+
+                //执行lua脚本，删除锁
+//                Long execute = iGlobalCache.getRedisTemplate().execute(script,Arrays.asList(key),uuid);
+                iGlobalCache.del(key);
+                return secondKillPro;
+            }
+        }else {
+            try {
+                Thread.sleep(100);
+                secondKillPro = (SecondKillVo) iGlobalCache.get("allSkPro:skpro_"+secondKillId);
+                if (secondKillPro!=null && secondKillPro.getSecondKillStock()>0){
+                    decreaseProductNumFromRedis(secondKillId);
+                    return secondKillPro;
+                }else
+                    return null;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
     }
 }

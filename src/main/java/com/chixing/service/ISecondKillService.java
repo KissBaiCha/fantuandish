@@ -15,4 +15,5 @@ import java.util.List;
 public interface ISecondKillService {
     List<SecondKillVo> getAllFromMysql();
     List<SecondKillVo> getAllPro();
+    SecondKillVo decreaseProductNumFromRedis(Integer secondKillId);
 }
