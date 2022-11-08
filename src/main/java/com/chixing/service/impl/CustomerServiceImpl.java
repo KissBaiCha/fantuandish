@@ -12,6 +12,9 @@ import com.chixing.util.SmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+
 import static com.chixing.commons.ResultCodeEnum.CUSTOMER_ERR;
 import static com.chixing.commons.ResultCodeEnum.NO_FIND_ANT_ERR;
 
@@ -87,5 +90,28 @@ public class CustomerServiceImpl implements ICustomerService {
         }
 
         return customer;
+    }
+
+    @Override
+    public Customer getCustomerByName(String customerName) {
+        QueryWrapper<Customer> wrapper = new QueryWrapper<>();
+        wrapper.eq("customer_name",customerName);
+        Customer customer = customerMapper.selectOne(wrapper);
+        return customer;
+    }
+
+    @Override
+    public Customer getCustomerByTel(Long telno) {
+        QueryWrapper<Customer> wrapper = new QueryWrapper<>();
+        wrapper.eq("customer_telno",telno);
+        Customer customer = customerMapper.selectOne(wrapper);
+        return customer;
+    }
+
+    @Override
+    public int registerUser(Customer customer) {
+        customer.setCustomerStatus(1);
+        customer.setCustomerCreateDate(LocalDate.now());
+        return customerMapper.insert(customer);
     }
 }

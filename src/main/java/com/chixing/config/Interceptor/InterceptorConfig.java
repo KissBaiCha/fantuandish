@@ -17,6 +17,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new TokenInterceptor())
 //                进行拦截，一般登录不拦截，企业都拦截
                 .addPathPatterns("/customer/**")
-                .excludePathPatterns("/customer/login");
+                .excludePathPatterns("/customer/login")
+                .excludePathPatterns("/customer/register");
     }
 }

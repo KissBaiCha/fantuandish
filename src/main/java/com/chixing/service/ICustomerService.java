@@ -28,6 +28,7 @@ public interface ICustomerService {
      * @return
      */
     Customer getCustomerById(Integer customerId);
-
-
+    Customer getCustomerByName(String customerName);
+    Customer getCustomerByTel(Long telno);
+    int registerUser(Customer customer);
 }

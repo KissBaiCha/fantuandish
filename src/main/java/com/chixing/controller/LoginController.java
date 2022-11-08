@@ -40,5 +40,18 @@ public class LoginController {
         return result;
     }
 
-
+    @PostMapping("register")
+    @ResponseBody
+    public String register(Customer customer){
+        Customer hasCustomer = customerService.getCustomerByName(customer.getCustomerName());
+        if (hasCustomer==null){
+            Customer hasTelno = customerService.getCustomerByTel(customer.getCustomerTelno());
+            if (hasTelno==null){
+                customerService.registerUser(customer);
+                return "注册成功";
+            }else
+                return "该号码已经注册，请更换手机号码！";
+        }
+        return "该用户名已存在，请重新注册！";
+    }
 }

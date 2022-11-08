@@ -72,6 +72,27 @@ layer.open({
 //     shadeClose: true, //开启遮罩关闭
 //     content: '内容'
 // });
-
-
+$("#formbtn").click( function() {
+    $.ajax({
+        type: "post",
+        url: "customer/register",
+        data: {
+            customerName: $("#register-username").val(),
+            customerPwd: $("#register-password").val(),
+            customerTelno: $("#register-tel").val()
+        },
+        success: function (data) {
+            if (data==="注册成功！"){
+                alert(data)
+                window.location.href="user/login.html";
+            }else{
+                alert(data)
+            }
+        },
+        error: function (data) {
+            alert("注册异常,请稍后重试！")
+            window.location.href="user/register.html";
+        }
+    })
+})
 

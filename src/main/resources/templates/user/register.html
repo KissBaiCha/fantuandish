@@ -27,7 +27,7 @@
                 <span class="login-block-text">已有饭团账号？</span>
                 <!--     登录按钮     -->
                 <div class="layui-btn-container">
-                    <a href=" '''user/login.html" class="layui-btn">去登录</a>
+                    <a href="user/login.html" class="layui-btn">去登录</a>
                 </div>
             </div>
         </div>
@@ -42,12 +42,12 @@
     </div>
     <div class="layui-col-xs6 register-mid">
         <!--    注册表单    -->
-        <form class="layui-form myForm" action="javascript:;">
+        <form class="layui-form myForm" >
 
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-block">
-                    <input id="register-username" type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
+                    <input id="register-username" type="text" name="customerName" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
                            placeholder="请输入用户名" autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block">
-                    <input id="register-password" type="password" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                    <input id="register-password" type="password" name="customerPwd" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
                            autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">确认密码</label>
                 <div class="layui-input-block">
-                    <input id="register-password-again" type="password" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                    <input id="register-password-again" type="customerPwd" name="title" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
                            autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">验证手机</label>
                     <div class="layui-input-block">
-                        <input id="register-tel" type="tel" name="phone" lay-verify="required|phone"
+                        <input id="register-tel" type="tel" name="customerTelno" lay-verify="required|phone"
                                autocomplete="off" placeholder="请输入手机号" class="layui-input demo-phone">
                     </div>
                 </div>
@@ -91,7 +91,7 @@
             <!--      按钮      -->
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">完成注册</button>
+                    <button type="button" class="layui-btn" id="formbtn">完成注册</button>
                 </div>
             </div>
         </form>
@@ -136,8 +136,7 @@
 
 </div>
 
-
 <script src="layui/layui.js"></script>
-<script src="js/user/register.js"></script>
+<script src="js/customer/user/register.js"></script>
 </body>
 </html>
