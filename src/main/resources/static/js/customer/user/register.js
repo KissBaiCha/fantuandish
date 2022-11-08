@@ -3,14 +3,14 @@ pwd.on({
     focus:function (){
         var left = $(".left-girl img");
         var right = $(".right-girl img");
-        left.attr("src","../../images/user/left-close.png");
-        right.attr("src","../../images/user/right-close.png")
+        left.attr("src","https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/left-close.png");
+        right.attr("src","https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/right-close.png")
     },
     blur:function (){
         var left = $(".left-girl img");
         var right = $(".right-girl img");
-        left.attr("src","../../images/user/left.png");
-        right.attr("src","../../images/user/right.png")
+        left.attr("src","https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/left.png");
+        right.attr("src","https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/right.png")
     }
 })
 
@@ -52,8 +52,8 @@ layer.open({
         '在您注册过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细闼读、' +
         '充分理解协议中的条款内容后再点击同意（尤其是以粗体或下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制)。' +
         '<br><br> ' +
-        '<a href="javascript:;" style="text-decoration: none; color: #a66cfd;">《饭团用户协议》、</a>' +
-        '<a href="javascript:;" style="text-decoration: none; color: #a66cfd;">《隐私政策》</a></div>'
+        '<a href="javascript:;" style="text-decoration: none; color: rgb(255,107,55);">《饭团用户协议》、</a>' +
+        '<a href="javascript:;" style="text-decoration: none; color: rgb(255,107,55);">《隐私政策》</a></div>'
     // ,success: function(layero){
     //     var btn = layero.find('.layui-layer-btn');
     //     btn.find('.layui-layer-btn0').attr({
