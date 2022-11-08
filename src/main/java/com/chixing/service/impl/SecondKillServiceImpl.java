@@ -53,7 +53,6 @@ public class SecondKillServiceImpl  implements ISecondKillService {
 //        secondKillQueryWrapper.gt("second_kill_start_time", LocalDateTime.parse(LocalDate.now()+" 00:00:00",formatter));
 //        secondKillQueryWrapper.lt("second_kill_end_time",LocalDateTime.parse(LocalDate.now().plusDays(1)+" 00:00:00",formatter));
         List<SecondKill> secondKills = secondKillMapper.selectList(secondKillQueryWrapper);
-        List<SecondKillVo> listVo = new ArrayList<>();
         for (SecondKill secondKill : secondKills){
             Integer secondKillId = secondKill.getSecondKillId();
             BigDecimal secondKillPrice = secondKill.getSecondKillPrice();
@@ -65,7 +64,6 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             Integer shopId = food.getShopId();
             Integer secondKillStock = secondKill.getSecondKillStock();
             SecondKillVo secondKillVo = new SecondKillVo(secondKillId,foodId,shopId,foodMainImg,foodName,secondKillPrice,foodPrice,secondKillStock);
-            listVo.add(secondKillVo);
             key = "allSkPro:skpro_"+secondKillId;
             iGlobalCache.set(key,secondKillVo,60*60);
         }
