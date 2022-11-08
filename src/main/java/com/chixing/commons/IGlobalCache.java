@@ -373,6 +373,13 @@ public interface IGlobalCache {
     void rangeRemove(String key, Long stard, Long end);
 
     /**
+     * 根据前缀获取所有符合的键
+     * @param pattern key前缀 xxx*
+     * @return key集合
+     */
+    Set<String> getKeys(String pattern);
+
+    /**
      * 返回当前redisTemplate
      *
      * @return

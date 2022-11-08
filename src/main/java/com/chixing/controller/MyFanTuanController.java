@@ -1,21 +1,15 @@
 package com.chixing.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.chixing.entity.Customer;
-import com.chixing.entity.MyOrder;
+import com.chixing.entity.*;
+import com.chixing.entity.vo.MyCouponCenterVo;
 import com.chixing.entity.vo.MyOrderVo;
-import com.chixing.service.ICustomerService;
-import com.chixing.service.IFlowService;
-import com.chixing.service.IFoodService;
-import com.chixing.service.IMyOrderService;
+import com.chixing.service.*;
 import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +25,12 @@ public class MyFanTuanController {
     private IFoodService foodService;
     @Autowired
     private IFlowService flowService;
+    @Autowired
+    private IMyCouponService myCouponService;
+    @Autowired
+    private ICouponService couponService;
+    @Autowired
+    private IShopService shopService;
 
     /**
      * 个人信息访问方法
@@ -74,5 +74,26 @@ public class MyFanTuanController {
         mav.setViewName("root/personal_center/allorder");
         return mav;
     }
-
+    @GetMapping("/getAllCoupon")
+    public ModelAndView getCouponByStatus(Integer pageNum, Integer status,HttpServletRequest request){
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
+        Page<MyCoupon> myCouponList = myCouponService.getByPage(pageNum, cusId, status);
+        List<MyCouponCenterVo> myCouponVOList = new ArrayList<>();
+        for (MyCoupon myCoupon : myCouponList.getRecords()) {
+            Coupon coupon = couponService.getById(myCoupon.getCouponId());
+            Shop shop = shopService.getById(coupon.getShopId());
+            MyCouponCenterVo myCouponCenterVo = new MyCouponCenterVo();
+            myCouponCenterVo.setShopId(coupon.getShopId());
+            myCouponCenterVo.setShopName(shop.getShopName());
+            myCouponCenterVo.setCoupon(myCoupon);
+            myCouponCenterVo.setCouponPrice(myCouponService.getCouponPriceByMyCouponId(myCoupon.getMyCouponId()));
+            myCouponVOList.add(myCouponCenterVo);
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("cusName",cusName);
+        modelAndView.addObject("myCouponList",myCouponVOList);
+        modelAndView.setViewName("root/personal_center/all_quan");
+        return modelAndView;
+    }
 }

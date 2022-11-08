@@ -114,9 +114,7 @@ public class MyCouponServiceImpl implements IMyCouponService {
         Page<MyCoupon> page = new Page<>(pageNum,5);
         QueryWrapper<MyCoupon>myCouponQueryWrapper = new QueryWrapper<>();
         myCouponQueryWrapper.eq("customer_id",cusId);
-        if(status != 2){
-            myCouponQueryWrapper.eq("my_coupon_status",status);
-        }
+        myCouponQueryWrapper.eq("my_coupon_status",status);
         return myCouponMapper.selectPage(page,myCouponQueryWrapper);
     }
 

@@ -411,4 +411,9 @@ public final class AppRedisCacheManager implements IGlobalCache {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public Set<String> getKeys(String pattern) {
+        return redisTemplate.keys(pattern);
+    }
 }
