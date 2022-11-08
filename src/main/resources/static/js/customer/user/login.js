@@ -38,8 +38,10 @@ $("#loginByCode").click( function() {
 
         success: function (data) {
             alert(data.message);
-            var token = data.data.token;
-            window.location.href="shop/shopsift/1";
+            if (data.message==="成功"){
+                var token = data.data.token;
+                window.location.href="shop/shopsift/1";
+            }
         },
         error: function (data) {
             alert("登录,请稍后重试！")
