@@ -83,17 +83,18 @@ public class MyCouponController {
         }
     }
 
-
-
+    /**
+     * 根据用户Id获得可用优惠券
+     * @param pageNum
+     * @param myCouponId
+     * @param request
+     * @return
+     */
     @GetMapping("/coupon/{mycouponId}/{pageNum}")
     public ModelAndView getCanUseCouponByPage(@PathVariable("pageNum") Integer pageNum,
                                          @PathVariable("mycouponId") Integer myCouponId,
                                          HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
-
-
-
-
         Integer shopId = couponService.getById(myCouponId).getShopId();
         String shopName = shopService.getById(shopId).getShopName();
         Integer cusId = JwtUtil.getCusIdBySession(request);

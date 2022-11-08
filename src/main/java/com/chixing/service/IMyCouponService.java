@@ -20,6 +20,11 @@ public interface IMyCouponService  {
     Integer save(MyCoupon myCoupon);
     Integer update(MyCoupon myCoupon);
     MyCoupon getById(Integer myCouponId);
+    /**
+     * 根据myCouponId获得优惠券优惠金额
+     * @param myCouponId myCouponId
+     * @return 优惠金额
+     */
     BigDecimal getCouponPriceByMyCouponId(Integer myCouponId);
     List<MyCoupon> getByPage(Integer pageNum);
     /**
