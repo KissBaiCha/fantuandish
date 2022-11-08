@@ -12,5 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-09-30
  */
 public interface IShopCollectionService  {
+    Long getTotalCollection(Integer shopId);
+    int save(Integer shopId,Integer userId);
+    int delete(Integer shopId,Integer userId);
+    boolean userToCollection(Integer shopId,Integer userId);
 
 }

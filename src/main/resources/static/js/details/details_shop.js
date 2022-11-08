@@ -8,18 +8,49 @@ document.querySelector(".closemap").onclick=function(){
     document.querySelector(".map").style.display = "";
     document.querySelector(".cover").style.display = "";
 }
-var onclicktime = 0;
-document.querySelector(".collect").onclick=function(){
-    if(onclicktime % 2 == 0){
-        document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/82a76dec10f94b98846b487e8e766b26shop-collect-after.svg)";
-        document.querySelector(".collect-info").innerText = "已收藏";
-    }
-    if(onclicktime % 2 == 1){
-        document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/0c33e04baf2d42a88d794b423fa6fab5shop-collect-before.svg)";
-        document.querySelector(".collect-info").innerText = "收藏";
-    }
-    onclicktime++;
+
+if(document.querySelector(".collect-info").innerText === "已收藏"){
+    document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/82a76dec10f94b98846b487e8e766b26shop-collect-after.svg)";
+    collectionStyle(1);
 }
+if(document.querySelector(".collect-info").innerText === "收藏"){
+    document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/0c33e04baf2d42a88d794b423fa6fab5shop-collect-before.svg)";
+    collectionStyle(0);
+}
+function collectionStyle(onclicktime){
+    document.querySelector(".collect").onclick=function(){
+        if(onclicktime % 2 === 0) {
+            document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/82a76dec10f94b98846b487e8e766b26shop-collect-after.svg)";
+            document.querySelector(".collect-info").innerText = "已收藏";
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8080/fan/addCon",
+                data: {
+                    shopId: $("#collect").val()
+                },
+                success: function (result) {
+                    console.log("收藏总数"+result)
+                }
+            })
+        }
+        if(onclicktime % 2 === 1){
+            document.querySelector(".collect").firstChild.style.backgroundImage = "url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/0c33e04baf2d42a88d794b423fa6fab5shop-collect-before.svg)";
+            document.querySelector(".collect-info").innerText = "收藏";
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8080/fan/delCon",
+                data: {
+                    shopId: $("#collect").val()
+                },
+                success: function (result) {
+                    console.log("收藏总数"+result)
+                }
+            })
+        }
+        onclicktime++;
+    }
+}
+
 //评分
 var score = document.querySelector(".score-num").innerText;
 for (var i=1;i<=5;i++) {

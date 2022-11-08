@@ -1,10 +1,7 @@
 package com.chixing.controller;
 
 import com.chixing.entity.Shop;
-import com.chixing.service.ICouponService;
-import com.chixing.service.IFoodService;
-import com.chixing.service.IShopImgService;
-import com.chixing.service.IShopService;
+import com.chixing.service.*;
 import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +24,8 @@ public class ShopController {
     private IShopImgService shopImgService;
     @Autowired
     private ICouponService couponService;
+    @Autowired
+    private IShopCollectionService shopCollectionService;
     /**
      * 筛选页跳转查询店铺信息
      * @param shopId
@@ -43,6 +42,7 @@ public class ShopController {
         mav.addObject("sellfoods",foodService.getShopProByScore(shopId));
         mav.addObject("shopimgs",shopImgService.getShopSrc(shopId));
         mav.addObject("couponList",couponService.getByShopId(shopId));
+        mav.addObject("conllectionStatus",shopCollectionService.userToCollection(shopId,cusId));
         mav.addObject("cusName",cusName);
         mav.addObject("cusId",cusId);
         mav.setViewName("details/details_shop");
