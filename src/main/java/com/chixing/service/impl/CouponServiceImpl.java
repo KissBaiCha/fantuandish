@@ -75,8 +75,8 @@ public class CouponServiceImpl implements ICouponService {
             if(myCouponMapper.insert(myCoupon) == 1){
                 String key = "myCoupon:" + myCoupon.getMyCouponId();
                 //存入redis并设置过期时间
-//                globalCache.set(key,myCoupon,couponValidDays * 24 * 3600);
-                globalCache.set(key,myCoupon,20);
+                globalCache.set(key,myCoupon,couponValidDays * 24 * 3600);
+//                globalCache.set(key,myCoupon,20);
                 return true;
             }
         }

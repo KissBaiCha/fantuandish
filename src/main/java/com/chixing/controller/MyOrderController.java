@@ -44,7 +44,7 @@ public class MyOrderController {
     @GetMapping("/order")
     public ModelAndView getOrder() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("customer/pay/order_pay.html");
+        modelAndView.setViewName("customer/pay/order_pay");
         return modelAndView;
     }
 

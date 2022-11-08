@@ -208,7 +208,7 @@
             <div class="shop-info-wrap">
                 <div class="layui-card shop-info-tip">
                     <div class="layui-card-header shop-info-head">
-                        <a href="" class="shop-info-head-name" th:text="${shop.shopName}">张家面馆</a>
+                        <a th:href="'shop/'+${shop.shopId}" class="shop-info-head-name" th:text="${shop.shopName}">张家面馆</a>
                         <div class="grade-item">
                             <div class="grade-tip"></div>
                         </div>

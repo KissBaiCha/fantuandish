@@ -1,3 +1,4 @@
+var time =$(".time").text( $(".time").text().replace("T"," "));
 $(".couponCard").hide();
 $(".couponList").click(function (){
     let shopId = $(".shopId").val();
