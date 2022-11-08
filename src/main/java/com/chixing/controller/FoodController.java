@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,6 +28,10 @@ public class FoodController {
         this.foodService = foodService;
         this.shopService = shopService;
         this.evaluationService = evaluationService;
+    }
+    @GetMapping("Test1")
+    public Map getTest(){
+        return evaluationService.getByFoodId(1,1);
     }
 
     /**

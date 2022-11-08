@@ -264,10 +264,11 @@ ul{
     text-align: left;
 }
 /*<!--评价图片-->*/
-.comment-details .shop-pictures{
+.shop-pictures{
     zoom: 1;
     padding: 12px 10px 5px;
     height: 68px;
+    width: 100%;
 }
 .shop-pictures .comment-img-item{
     display: block;

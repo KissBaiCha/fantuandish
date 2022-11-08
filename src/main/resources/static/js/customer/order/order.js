@@ -1,9 +1,10 @@
 var time =$(".time").text( $(".time").text().replace("T"," "));
 $(".couponCard").hide();
 $(".couponList").click(function (){
-    let shopId = $(".shopId").val();
     $(".couponCard").toggle();
 })
+
+
 $(".quXiaoBtn").click(function (){
     let gongJi = $(".price").text();
     gongJi = Number( gongJi)
@@ -12,6 +13,9 @@ $(".quXiaoBtn").click(function (){
     $(".payNum").text(gongJi)
     $(".couponCard").hide();
 })
+
+
+
 layui.use('form', function(){
     var form = layui.form;
     //提交
@@ -23,10 +27,8 @@ layui.use('form', function(){
             type:'GET',
             success:function (data) {
                 let gongJi = $(".price").text();
-                gongJi = Number( gongJi)
-                console.log(gongJi)
+                gongJi = Number(gongJi)
                 $(".n-price").text(data)
-                console.log(data)
                 $(".payNum").text(gongJi - data)
             }
         })

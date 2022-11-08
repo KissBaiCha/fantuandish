@@ -89,9 +89,8 @@ public class EvaluationServiceImpl  implements IEvaluationService {
             customerQueryWrapper.select("customer_head_img","customer_name").eq("customer_id",evaluation.getCustomerId());
             Customer customer = customerMapper.selectOne(customerQueryWrapper);
             QueryWrapper<EvaImg> imgQueryWrapper = new QueryWrapper<>();
-            imgQueryWrapper.select("eva_img_path")
-                    .eq("eva_id",evaluation.getEvaId())
-                    .eq("img_status",1);
+            imgQueryWrapper.eq("eva_id",evaluation.getEvaId())
+                           .eq("img_status",1);
             List<EvaImg> evaImgs = evaImgMapper.selectList(imgQueryWrapper);
             EvaluationVo evaluationVo = new EvaluationVo(customer.getCustomerHeadImg()
                     ,customer.getCustomerName()

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/details/details_bottom.css">
     <link rel="stylesheet" href="css/details/details_header.css">
     <style>
-        body{
+        body {
             background-color: #fff;
         }
     </style>
@@ -31,8 +31,9 @@
             </div>
             <div class="layui-col-xs4">
                 <ul class="layui-nav" lay-filter="">
-                    <li class="layui-nav-item" ><a href="customer/user_details" class="title" th:text="${cusName}">登录/注册</a></li>
-                    <li class="layui-nav-item" ><a href="#" class="title">帮助中心</a></li>
+                    <li class="layui-nav-item"><a href="customer/user_details" class="title"
+                                                  th:text="${cusName}">登录/注册</a></li>
+                    <li class="layui-nav-item"><a href="#" class="title">帮助中心</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;" class="title">我的饭团</a>
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
@@ -50,7 +51,8 @@
         <!--      logo      -->
         <div class="layui-col-xs3 logo-input">
             <a href="shop/shopsift/1" title="饭团网" class="logo-img">
-                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png"  width="200" height="72">
+                <img src="https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/logo/mylogo.png" width="200"
+                     height="72">
             </a>
         </div>
         <!--    搜索    -->
@@ -58,10 +60,14 @@
             <form class="layui-form layui-form-pane" action="">
                 <div class="layui-form-item searchbox-input">
                     <div class="layui-input-block" style="margin-left: 10px">
-                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left" type="text" name="title" autocomplete="off"
+                        <input style="border: 2px solid rgb(255,107,55);width: 80%;display: block;float: left"
+                               type="text" name="title" autocomplete="off"
                                placeholder="点此进入美食猩球" class="layui-input" id="es_input">
                         <div class="layui-btn-container" style="display: block;float: left">
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn" id="es_btn">去觅食</button>
+                            <button type="button"
+                                    class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger search-btn"
+                                    id="es_btn">去觅食
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +78,6 @@
 <div class="layui-main main">
     <!--头-->
     <div class="layui-row detail-shop-dish">
-
     </div>
     <div class="layui-row container-shop-dish">
         <!--   商品详情     -->
@@ -116,14 +121,16 @@
                             <div class="layui-btn-container but-btn">
                                 <input type="hidden" name="foodId" th:value="${food.foodId}">
                                 <input type="hidden" name="shopId" th:value="${shop.shopId}">
-                                <input style="float: left" type="submit" value="点此购入" class="layui-btn layui-btn-primary layui-btn-radius mybtn buy_btn">点此购入
+                                <input style="float: left" type="submit" value="点此购入"
+                                       class="layui-btn layui-btn-primary layui-btn-radius mybtn buy_btn">点此购入
                                 </input>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="border-bottom: 2px solid #f4f4f4">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief"
+                 style="border-bottom: 2px solid #f4f4f4">
                 <ul class="layui-tab-title">
                     <li class="layui-this">美食详情</li>
                     <li>备注信息</li>
@@ -144,7 +151,7 @@
                     <input type="hidden" class="total" th:value="${evaMap.total}">
                     <input type="hidden" class="curr" th:value="${evaMap.curr}">
                     <ul>
-                        <li th:each="e: ${evaMap.evaluationVoList}" class="comment" >
+                        <li th:each="e: ${evaMap.evaluationVoList}" class="comment">
                             <div class="layui-row ">
                                 <!--      用户容器       -->
                                 <div class="layui-col-xs1 user-tip">
@@ -153,7 +160,6 @@
                                     <!--      用户名       -->
                                     <span th:text="${e.cusName}" class="user-name">用户名1</span>
                                 </div>
-
                                 <div class="layui-col-xs11 comment-details">
                                     <div class="layui-card">
                                         <div class="layui-card-header" style="background-color: #f4f4f4">
@@ -165,26 +171,27 @@
                                             <div class="date" th:text="${e.createDate}"></div>
                                         </div>
                                         <div th:text="${e.evaContent}" class="layui-card-body comment-details-text">
-                                            <!--评价图片-->
-                                            <div class="shop-pictures">
-                                                <ul>
-                                                    <li th:each="img: ${e.evaImgList}" class="comment-img-item">
-                                                        <img th:src="${img.evaImgPath}" alt="" width="68"
-                                                             height="68">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="comment-details-date">
-                                                <span>2022-8-1</span>
-                                                <div class="comment-perfect">
-                                                    <i class="perfect-img"></i>
-                                                    <span>赞</span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
+                                    <!--评价图片-->
+                                    <div class="shop-pictures">
+                                        <ul>
+                                            <li th:each="img: ${e.evaImgList}" class="comment-img-item">
+                                                <img th:src="${img.evaImgPath}" alt="" width="68"
+                                                     height="68">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="comment-details-date">
+                                        <div class="comment-perfect">
+                                            <i class="perfect-img"></i>
+                                            <span>赞</span>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+
                         </li>
                     </ul>
                 </div>
@@ -208,7 +215,8 @@
             <div class="shop-info-wrap">
                 <div class="layui-card shop-info-tip">
                     <div class="layui-card-header shop-info-head">
-                        <a th:href="'shop/'+${shop.shopId}" class="shop-info-head-name" th:text="${shop.shopName}">张家面馆</a>
+                        <a th:href="'shop/'+${shop.shopId}" class="shop-info-head-name"
+                           th:text="${shop.shopName}">张家面馆</a>
                         <div class="grade-item">
                             <div class="grade-tip"></div>
                         </div>
@@ -287,7 +295,7 @@
             </div>
             <div class="layui-col-xs2">
                 手机APP
-                </div>
+            </div>
             <div class="layui-col-xs2">
                 <a href="javascript:;" title="@张旭 @刘海萍 @刘丽 @商建">@作者</a>
             </div>
@@ -298,14 +306,14 @@
 <script src="js/details/details_product.js"></script>
 <script src="js/elasticsearch_util.js"></script>
 <script>
-    layui.use('carousel', function(){
+    layui.use('carousel', function () {
         var carousel = layui.carousel;
         //建造实例
         carousel.render({
             elem: '#test9'
-            ,width: '220px' //设置容器宽度
-            ,arrow: 'always' //始终显示箭头
-            ,height:'220px'
+            , width: '220px' //设置容器宽度
+            , arrow: 'always' //始终显示箭头
+            , height: '220px'
         });
     });
 </script>
