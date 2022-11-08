@@ -78,12 +78,12 @@ public class SecondKillServiceImpl  implements ISecondKillService {
             Set<String> keys =  iGlobalCache.getKeys(key);
             return iGlobalCache.getRedisTemplate().opsForValue().multiGet(keys);
         }else{
-            List<SecondKillVo> listVo = getAllFromMysql();
-            for (SecondKillVo secondKillVo : listVo){
-                key = "allSkPro:skpro_"+secondKillVo.getSecondKillId();
-                iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
-            }
-            return listVo;
+//            List<SecondKillVo> listVo = getAllFromMysql();
+//            for (SecondKillVo secondKillVo : listVo){
+//                key = "allSkPro:skpro_"+secondKillVo.getSecondKillId();
+//                iGlobalCache.getRedisTemplate().opsForValue().set(key,secondKillVo,1,TimeUnit.HOURS);
+//            }
+            return null;
         }
     }
 

@@ -69,7 +69,10 @@
 
         <!--                   店家 信息                      -->
         <div class="shop-info">
-            <span class="collect-info">收藏</span><a href="javascript:" class="collect" title="收藏"><i></i></a>
+            <input type="hidden" th:value="${shop.shopId}" id="collect">
+            <div th:if="${conllectionStatus}"><span class="collect-info">已收藏</span><a href="javascript:" class="collect" title="已收藏"><i></i></a></div>
+            <div th:unless="${conllectionStatus}"><span class="collect-info">收藏</span><a href="javascript:" class="collect" title="收藏"><i></i></a></div>
+
             <h1 th:text="${shop.shopName}">青鹤谷(苏州店)</h1>
             <div class="score">
                 <label class="score-img"><i></i><i></i><i></i><i></i><i></i></label>
