@@ -27,7 +27,7 @@ function send() {
     var countdown = setInterval(CountDown, 1000);
     function CountDown() {
         $("#codebtn").attr("disabled", true);
-        $("#codebtn").text("重新发送(" + count + ")");
+        $("#codebtn").text("重新发送" + count );
         if (count == 0) {
             $("#codebtn").removeAttr("disabled");
             clearInterval(countdown);
@@ -38,27 +38,32 @@ function send() {
 }
 //发送验证码
 $("#codebtn").click( function (){
-    send();
     $.ajax({
         type:"post",
         url:"customer/sendCode/"+$("#customerTelno").val(),
         success: function (data){
-            alert(data)
+            if (data.code===204){
+                alert(data.message)
+                send();
+            }else
+                alert(data.message)
         }
     })
 })
 
 $("#loginByCode").click( function() {
-    console.log("customer/loginByCode/" + $("#customerTelno").val() + "/" + $("#verCode").val())
     $.ajax({
         type: "post",
         url: "customer/loginByCode/" + $("#customerTelno").val() + "/" + $("#verCode").val(),
 
         success: function (data) {
-            alert(data.message);
             if (data.message==="成功"){
                 var token = data.data.token;
+                alert(data.message)
                 window.location.href="shop/shopsift/1";
+            }
+            else{
+                alert(data.message)
             }
         },
         error:function (data){

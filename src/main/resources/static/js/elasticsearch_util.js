@@ -39,7 +39,7 @@ function selectEs(pageNum,shopName,sort){
         url:"http://localhost:8080/fan/esshopname/"+pageNum+"/"+shopName+"/"+sort,
         success:function (result){
             console.log(result)
-
+            $(".title:first").text(result.cusName);
             $(".pro ul").html("");
             for (var i=0;i<result.shopList.length;i++){
                 var shop = result.shopList[i];
@@ -49,13 +49,9 @@ function selectEs(pageNum,shopName,sort){
                     "<h4><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">"+shop.shopName+"</a></h4>\n" +
                     "<label class=\"proscoreimg\"><i></i><i></i><i></i><i></i><i></i></label>\n" +
                     "<label class=\"proscore\" >"+shop.shopScore+"</label><label>分</label>\n" +
-                    "<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\" class=\"comment\">\n" +
-                    "    <span>1234</span>\n" +
-                    "    <span>条评论</span>\n" +
-                    "</a>\n" +
                     "<span class=\"sty\"><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">"+shop.shopAddressDetail+"</a></span>\n" +
                     "<span class=\"sty\"><a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\">人均 ￥<span>"+shop.shopAvgCost+"</span></a></span>\n" +
-                    "<span class=\"sty\">推荐菜：<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\"><span>巧克力蛋糕</span></a></span>\n" +
+                    "<span class=\"sty\">营业时间：<a href=\"http://localhost:8080/fan/shop/"+shop.shopId+"\"><span>"+ shop.shopOpenTime +" - " + shop.shopCloseTime +"</span></a></span>\n" +
                     "</li>");
                 var score = $(".proscore:last").text();
                 console.log(score)

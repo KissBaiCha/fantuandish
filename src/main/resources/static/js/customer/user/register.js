@@ -44,7 +44,7 @@ layer.open({
         // return false;
     }
     ,btn2: function(index, layero){
-        window.location.href = "/funTuanFood/index1.html";
+        window.location.href = "/fan/user/login.html";
     }
     ,content: '<div style="padding: 50px; line-height: 22px; ' +
         'background-color: #393D49; color: #fff; font-weight: 300;">' +
@@ -74,11 +74,11 @@ layer.open({
 // });
 
 function send() {
-    var count = 5;
+    var count = 60;
     var countdown = setInterval(CountDown, 1000);
     function CountDown() {
         $("#codebtn").attr("disabled", true);
-        $("#codebtn").text("重新发送(" + count + ")");
+        $("#codebtn").text("重新发送" + count );
         if (count == 0) {
             $("#codebtn").removeAttr("disabled");
             clearInterval(countdown);
@@ -89,12 +89,16 @@ function send() {
 }
 
 $("#codebtn").click( function (){
-    send();
+
   $.ajax({
       type:"post",
       url:"customer/sendCode/"+$("#register-tel").val(),
       success: function (data){
-          alert(data)
+          if (data.code===204){
+              alert(data.message)
+              send();
+          }else
+              alert(data.message)
       }
   })
 })
@@ -112,13 +116,14 @@ $("#formbtn").click( function() {
             if (data==="注册成功！"){
                 alert(data)
                 window.location.href="user/login.html";
-            }else{
+            }else if (data==="验证码错误")
+                alert(data)
+            else{
                 alert(data)
             }
         },
         error: function (data) {
             alert("注册异常,请稍后重试！")
-            window.location.href="user/register.html";
         }
     })
 })
