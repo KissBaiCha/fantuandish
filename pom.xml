@@ -18,7 +18,23 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-<!--    搜索引擎    -->
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>org.apache.commons.codec</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>org.apache.commons.codec</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.9</version>
+        </dependency>
+        <!--    搜索引擎    -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
@@ -62,7 +78,7 @@
             <artifactId>alibabacloud-dysmsapi20170525</artifactId>
             <version>1.0.1</version>
         </dependency>
-        <!--    阿里云    -->
+        <!--    阿里云oss    -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
@@ -86,7 +102,7 @@
             <artifactId>fastjson2</artifactId>
             <version>2.0.14</version>
         </dependency>
-        <!--     jwt   -->
+        <!--    jwt   -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>

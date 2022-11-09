@@ -9,7 +9,7 @@ $("#loginByUser").click(function (){
             customerPwd:$(".login-password").val()
         },
         success:function (result){
-            alert(result.message);
+            alert("登录"+result.message);
             console.log("result:" + result.message);
             console.log("result:" + result.code);
             console.log("result:" + result.data.token);
