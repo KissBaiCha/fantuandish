@@ -32,6 +32,8 @@ public class MyFanTuanController {
     private ICouponService couponService;
     @Autowired
     private IShopService shopService;
+    @Autowired
+    private IShopCollectionService shopCollectionService;
 
     /**
      * 个人信息访问方法
@@ -112,6 +114,18 @@ public class MyFanTuanController {
         modelAndView.addObject("cusName",cusName);
         modelAndView.addObject("myCouponList",myCouponVOList);
         modelAndView.setViewName("root/personal_center/all_quan");
+        return modelAndView;
+    }
+
+    @GetMapping("/getShopCollect")
+    public ModelAndView getShopCollect(HttpServletRequest request){
+        Integer cusId = JwtUtil.getCusIdBySession(request);
+        String cusName = JwtUtil.getCusNameBySession(request);
+        List<Shop> shopList = shopCollectionService.getAllShopByUser(cusId);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("cusName",cusName);
+        modelAndView.addObject("myCollectShop",shopList);
+        modelAndView.setViewName("root/personal_center/collectshop");
         return modelAndView;
     }
 }

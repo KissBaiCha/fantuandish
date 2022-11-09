@@ -97,43 +97,40 @@
             </li>
         </ul>
         <!-- -----------------orders-body-------------------- -->
-        <div class="orders-body">
+        <div class="collcetshop pro">
             <ul>
-                <li th:if="${MyOrderVoList} != null" th:each="order:${MyOrderVoList}">
-                    <div class="product_img">
-                        <a th:href="'http://localhost:8080/fan/shop/'+${order.food.shopId}+'/'+${order.food.foodId}+'/1'">
-                            <img th:src="${order.food.foodMainImg}"/>
-                        </a>
-                    </div>
-                    <div  class="product_msg">
-                        <span class="product_title" th:text="${order.food.foodName}">和牛畅吃套餐</span>
-                        <span class="text_time">下单时间:</span>
-                        <span class="time" th:text="${order.myOrder.orderCreateTime}"></span>
-                        <script>
-                            var time =$(".time:last").text($(".time:last").text().replace("T"," "));
-                        </script>
-                    </div>
-                    <div class="sum_price">
-                        <span class="text_price">总价:￥</span>
-                        <span class="price" th:text="${order.myOrder.orderPrice}">216</span>
-                    </div>
-                    <div class="zhuangtai">
-                        <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 0}">已取消</span>
-                        <a class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 1}">去支付</a>
-                        <a th:if="${order.myOrder.orderStatus eq 2} " th:href="'evaluation/'+${order.myOrder.orderId}" class="order_zhuangtai">去评价</a>
-                        <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 3}">已完成</span>
-                    </div>
-                    <div th:if="${order.myOrder.orderStatus eq 2} " class="other">
-                        <span class="order-details" style="color: rgb(255,107,55)">订单详情</span>
-                        <input type="hidden" class="orderId" th:value="${order.myOrder.orderId}">
-                    </div>
+                <li th:each="shop:${myCollectShop}">
+                    <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="proimg"><img th:src="${shop.shopMainImg}"></a>
+                    <h4><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopName}">熊猫不走生日蛋糕（苏州店）</a></h4>
+                    <label class="proscoreimg"><i></i><i></i><i></i><i></i><i></i></label>
+                    <label class="proscore" th:text="${shop.shopScore}">5</label><label>分</label>
+                    <script>
+                        var score = $(".proscore:last").text();
+                        for (var i=1;i<=5;i++) {
+                            if(score >= i*2) {
+                                $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/filter_page/2022-10-20/2937015492394b9eb733593d649ad0e0index-wellreceived-icon.svg)");
+                            } else if( score > (i-1)*2 && score < i*2 ) {
+                                $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/banxing.svg)");
+                            } else {
+                                $(".proscoreimg:last").children().eq(i-1).css("background-image","url(https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/2022-10-20/kongxing.svg)");
+                            }
+                        }
+                    </script>
+                    <!--                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="comment">-->
+                    <!--                                <span>1234</span>-->
+                    <!--                                <span>条评论</span>-->
+                    <!--                            </a>-->
+                    <span class="sty" th:text="${shop.shopAddressDetail}">观前街地区</span>
+                    <span class="sty">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></span>
                 </li>
+
+
             </ul>
         </div>
-            <!--分页-->
-<!--        <input type="hidden" id="pagenum" th:value="${orders.current}">-->
-<!--        <input type="hidden" id="total" th:value="${orders.total}">-->
-<!--        <div id="demo2-1" class="page"></div>-->
+        <!--分页-->
+        <!--        <input type="hidden" id="pagenum" th:value="${orders.current}">-->
+        <!--        <input type="hidden" id="total" th:value="${orders.total}">-->
+        <!--        <div id="demo2-1" class="page"></div>-->
     </div>
     <!-- ---------------------------底部-------------------------------- -->
     <div class="layui-row">
