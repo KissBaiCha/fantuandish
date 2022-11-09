@@ -42,8 +42,8 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("loginByCode/{telno}/{verCode}")
-    public R<String> loginByCode(@PathVariable("telno") Long customerTelno,
-                                 @PathVariable("verCode") Integer code,
+    public R<String> loginByCode(@PathVariable(value = "telno",required = false) Long customerTelno,
+                                 @PathVariable(value = "verCode",required = false) Integer code,
                                  HttpServletRequest request){
         Integer sessionCode = (Integer) request.getSession().getAttribute("vercode");
         R<String> result = customerService.loginByCode(customerTelno,code,sessionCode);

@@ -65,6 +65,8 @@ public class CustomerServiceImpl implements ICustomerService {
     public R<String> loginByCode(Long telno,Integer code,Integer sessionCode) {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("customer_telno",telno);
+        if (telno == null)
+            return R.fail(TEL_NULL);
         if(customerMapper.selectCount(queryWrapper) == 0){
             return R.fail(NO_FIND_ANT_ERR);
         }

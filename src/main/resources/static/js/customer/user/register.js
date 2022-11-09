@@ -73,7 +73,23 @@ layer.open({
 //     content: '内容'
 // });
 
+function send() {
+    var count = 5;
+    var countdown = setInterval(CountDown, 1000);
+    function CountDown() {
+        $("#codebtn").attr("disabled", true);
+        $("#codebtn").text("重新发送(" + count + ")");
+        if (count == 0) {
+            $("#codebtn").removeAttr("disabled");
+            clearInterval(countdown);
+            $("#codebtn").text("发送验证码");
+        }
+        count--;
+    }
+}
+
 $("#codebtn").click( function (){
+    send();
   $.ajax({
       type:"post",
       url:"customer/sendCode/"+$("#register-tel").val(),

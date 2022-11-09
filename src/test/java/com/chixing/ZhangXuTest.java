@@ -38,6 +38,6 @@ public class ZhangXuTest {
 
     @Test
     public void fun1(){
-        SmsUtil.sendMsg();
+//        SmsUtil.sendMsg();
     }
 }

@@ -80,7 +80,7 @@
             </div>
 
             <div class="Condition">
-                <label>用餐人数：</label>
+                <label>人均消费：</label>
                 <div class="Select fifter2">
                     <a href="javascript:;" onclick="download_method()" class="fifters active"><span>所有</span></a>
                     <a href="javascript:;" onclick="download_method()" class="fifters"><span>100元以下</span></a>
@@ -122,10 +122,10 @@
                                     }
                                 }
                             </script>
-                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="comment">
-                                <span>1234</span>
-                                <span>条评论</span>
-                            </a>
+<!--                            <a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" class="comment">-->
+<!--                                <span>1234</span>-->
+<!--                                <span>条评论</span>-->
+<!--                            </a>-->
                             <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
                             <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
                             <span class="sty">推荐菜：<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"><span>巧克力蛋糕</span></a></span>
@@ -157,13 +157,11 @@
                     <a href="http://localhost:8080/fan/secondKill/getAllPro">
                         <img th:src="${skfood.value.foodMainImg}">
                         <h6 th:text="${skfood.value.foodName}">熊猫不走生日蛋糕（苏州店）</h6>
-                        <span th:text="'库存：'+${skfood.key.secondKillStock}"></span>
+                        <span th:text="'限量：'+${skfood.key.secondKillStock}"></span>
                     </a>
                     <span><label>￥</label><label th:text="${skfood.key.secondKillPrice}">188.0</label></span>
                     <a href="http://localhost:8080/fan/secondKill/getAllPro" class="seckillbtn">立即抢购</a>
                 </li>
-
-
 
             </ul>
         </div>

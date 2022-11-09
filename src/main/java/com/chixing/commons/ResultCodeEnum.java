@@ -32,7 +32,7 @@ public enum ResultCodeEnum {
     /**
      * 该手机号未注册
      */
-    NO_FIND_ANT_ERR(401,"请先注册"),
+    NO_FIND_ANT_ERR(401,"该手机号暂未注册,请先注册"),
     /**
      *  没有美食收藏
      */
@@ -44,7 +44,11 @@ public enum ResultCodeEnum {
     /**
      * 验证码错误
      */
-    CODE_ERR(701,"验证码错误");
+    CODE_ERR(701,"验证码错误"),
+    /**
+     * 手机号为空
+     */
+    TEL_NULL(801,"请输入手机号码");
     /**
      *
      * 状态码
