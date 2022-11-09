@@ -7,7 +7,7 @@ body{
 }
 .main{
     width: 100%;
-    height: 1200px;
+    height: auto;
     margin: 0 auto;
 
 }
@@ -31,7 +31,7 @@ body{
 /*推荐区*/
 .main .recommend{
     width: 20%;
-    height: 920px;
+    height: 860px;
     float: right;
     margin-top: 12px;
 }
@@ -214,6 +214,9 @@ body{
     list-style: none;
     padding-top: 10px;
     background-color: #FFF;
+}
+.recommend li a{
+    text-decoration: none;
 }
 .recommend li:hover{
     background-color: rgba(248, 248, 248);

@@ -152,7 +152,7 @@ body{
 /* 推荐菜品 */
 .dishesli-recommend{
     width: 29%;
-    height: auto;
+    height: 710px;
     margin-top: 12px;
     background-color: #FFF;
     float: right;
