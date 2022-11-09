@@ -59,7 +59,7 @@ $("#loginByCode").click( function() {
         success: function (data) {
             if (data.message==="成功"){
                 var token = data.data.token;
-                alert(data.message)
+                alert("登录"+data.message)
                 window.location.href="shop/shopsift/1";
             }
             else{
