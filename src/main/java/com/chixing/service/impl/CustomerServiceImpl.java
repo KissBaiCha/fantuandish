@@ -70,14 +70,24 @@ public class CustomerServiceImpl implements ICustomerService {
         if(customerMapper.selectCount(queryWrapper) == 0){
             return R.fail(NO_FIND_ANT_ERR);
         }
-        System.out.println(sessionCode);
-        System.out.println(code);
-//        Integer verCode = SmsUtil.sendMsg(String.valueOf(telno)).getData().get("code");
+//        System.out.println(sessionCode);
+//        System.out.println(code);
         if(sessionCode.equals(code)){
             Customer customer = customerMapper.selectOne(queryWrapper);
             return loginByName(customer);
         }
         return R.fail(CODE_ERR);
+    }
+
+    @Override
+    public R<String> checkTel(Long telno) {
+        QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("customer_telno",telno);
+        if (telno == null)
+            return R.fail(TEL_NULL);
+        if(customerMapper.selectCount(queryWrapper) == 0)
+            return R.fail(NO_FIND_ANT_ERR);
+        return R.fail(SEND_SUCCESS);
     }
 
     @Override

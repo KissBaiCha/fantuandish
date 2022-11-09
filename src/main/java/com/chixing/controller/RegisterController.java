@@ -1,5 +1,6 @@
 package com.chixing.controller;
 
+import com.chixing.commons.R;
 import com.chixing.entity.Customer;
 import com.chixing.service.ICustomerService;
 import com.chixing.util.SmsUtil;
@@ -17,13 +18,17 @@ public class RegisterController {
 
     @PostMapping("sendCode/{telno}")
     @ResponseBody
-    public String sendCode(@PathVariable("telno") Long customerTelno, HttpServletRequest request) {
-//        Integer verCode = SmsUtil.sendMsg(String.valueOf(customerTelno)).getData().get("code");
-        HttpSession session = request.getSession();
-//        session.setAttribute("vercode", verCode);
-        session.setAttribute("vercode", 123123);
-        session.setMaxInactiveInterval(60 * 5);
-        return "发送成功";
+    public R<String> sendCode(@PathVariable("telno") Long customerTelno, HttpServletRequest request) {
+            R<String> result = customerService.checkTel(customerTelno);
+            if (result.getCode() == 204){
+    //            Integer verCode = SmsUtil.sendMsg(String.valueOf(customerTelno)).getData().get("code");
+                HttpSession session = request.getSession();
+    //            session.setAttribute("vercode", verCode);
+                session.setAttribute("vercode", 123123);
+                session.setMaxInactiveInterval(60 * 5);
+            }
+        return result;
+
     }
 
 

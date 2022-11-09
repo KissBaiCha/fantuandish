@@ -26,6 +26,10 @@ public enum ResultCodeEnum {
      */
     SO_HOT(203,"当前数据访问量过多,请稍后再试"),
     /**
+     * 成功
+     */
+    SEND_SUCCESS(204,"发送成功"),
+    /**
      * 登录错误
      */
     CUSTOMER_ERR(400,"用户信息错误请检查用户名或密码"),
