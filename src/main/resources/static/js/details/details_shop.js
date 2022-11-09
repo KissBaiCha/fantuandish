@@ -29,7 +29,7 @@ function collectionStyle(onclicktime){
                     shopId: $("#collect").val()
                 },
                 success: function (result) {
-                    console.log("收藏总数"+result)
+                    // console.log("收藏总数"+result)
                 }
             })
         }
@@ -43,7 +43,7 @@ function collectionStyle(onclicktime){
                     shopId: $("#collect").val()
                 },
                 success: function (result) {
-                    console.log("收藏总数"+result)
+                    // console.log("收藏总数"+result)
                 }
             })
         }

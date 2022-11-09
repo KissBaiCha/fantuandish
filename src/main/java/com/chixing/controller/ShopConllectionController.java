@@ -20,12 +20,11 @@ public class ShopConllectionController {
      * @return
      */
     @GetMapping("addCon")
-    public Long addCon(Integer shopId, HttpServletRequest request){
+    public void addCon(Integer shopId, HttpServletRequest request){
         Integer userId = JwtUtil.getCusIdBySession(request);
         shopCollectionService.save(shopId,userId);
-        return shopCollectionService.getTotalCollection(shopId);
-    }
 
+    }
     /**
      * 取消收藏
      * @param shopId
@@ -33,10 +32,9 @@ public class ShopConllectionController {
      * @return
      */
     @GetMapping("delCon")
-    public Long delCon(Integer shopId, HttpServletRequest request){
+    public void delCon(Integer shopId, HttpServletRequest request){
         Integer userId = JwtUtil.getCusIdBySession(request);
         shopCollectionService.delete(shopId,userId);
-        return shopCollectionService.getTotalCollection(shopId);
     }
 
 }

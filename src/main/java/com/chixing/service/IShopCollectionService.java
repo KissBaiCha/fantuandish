@@ -16,8 +16,9 @@ import java.util.List;
  */
 public interface IShopCollectionService  {
     Long getTotalCollection(Integer shopId);
-    int save(Integer shopId,Integer userId);
-    int delete(Integer shopId,Integer userId);
-    boolean userToCollection(Integer shopId,Integer userId);
     List<Shop> getAllShopByUser(Integer userId);
+
+    void save(Integer shopId,Integer userId);
+    void delete(Integer shopId,Integer userId);
+    boolean userToCollection(Integer shopId,Integer userId);
 }

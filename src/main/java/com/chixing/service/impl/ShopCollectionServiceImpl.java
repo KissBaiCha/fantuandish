@@ -1,17 +1,20 @@
 package com.chixing.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chixing.commons.IGlobalCache;
 import com.chixing.entity.Shop;
 import com.chixing.entity.ShopCollection;
 import com.chixing.mapper.ShopCollectionMapper;
 import com.chixing.mapper.ShopMapper;
 import com.chixing.service.IShopCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -28,6 +31,8 @@ public class ShopCollectionServiceImpl implements IShopCollectionService {
     private ShopCollectionMapper shopCollectionMapper;
     @Autowired
     private ShopMapper shopMapper;
+    @Autowired
+    private IGlobalCache iGlobalCache;
 
     private QueryWrapper<ShopCollection> wrapper = new QueryWrapper();
     public QueryWrapper<ShopCollection> getConllection(Integer shopId, Integer userId){
@@ -43,25 +48,6 @@ public class ShopCollectionServiceImpl implements IShopCollectionService {
         return shopCollectionMapper.selectCount(wrapper);
     }
 
-    @Override
-    public int save(Integer shopId, Integer userId) {
-        ShopCollection shopCollection = new ShopCollection();
-        shopCollection.setShopId(shopId);
-        shopCollection.setCustomerId(userId);
-        shopCollection.setShopCollectionTime(LocalDateTime.now());
-        shopCollection.setShopCollectionCteateTime(LocalDateTime.now());
-        return shopCollectionMapper.insert(shopCollection);
-    }
-
-    @Override
-    public int delete(Integer shopId, Integer userId) {
-        return shopCollectionMapper.delete(getConllection(shopId,userId));
-    }
-
-    @Override
-    public boolean userToCollection(Integer shopId,Integer userId) {
-        return shopCollectionMapper.selectCount(getConllection(shopId,userId))==1;
-    }
 
     @Override
     public List<Shop> getAllShopByUser(Integer userId) {
@@ -76,5 +62,52 @@ public class ShopCollectionServiceImpl implements IShopCollectionService {
         QueryWrapper<Shop> shopQueryWrapper = new QueryWrapper<>();
         shopQueryWrapper.in("shop_id",shopIdList);
         return shopMapper.selectList(shopQueryWrapper);
+    }
+
+
+@Override
+    public void save(Integer shopId, Integer userId) {
+        String key = "scShop:shopId_"+shopId+"userId_"+userId;
+        ShopCollection shopCollection = new ShopCollection();
+            shopCollection.setShopId(shopId);
+            shopCollection.setCustomerId(userId);
+            shopCollection.setShopCollectionTime(LocalDateTime.now());
+            shopCollection.setShopCollectionCteateTime(LocalDateTime.now());
+            iGlobalCache.set(key,shopCollection,60*10);
+    }
+    @Override
+    public void delete(Integer shopId, Integer userId) {
+        String key = "scShop:shopId_"+shopId+"userId_"+userId;
+        if (iGlobalCache.hasKey(key))
+            iGlobalCache.del(key);
+        else
+            shopCollectionMapper.delete(getConllection(shopId,userId));
+
+    }
+    @Override
+    public boolean userToCollection(Integer shopId,Integer userId) {
+        String key = "scShop:shopId_"+shopId+"userId_"+userId;
+        if (iGlobalCache.hasKey(key))
+            return true;
+        else
+            return shopCollectionMapper.selectCount(getConllection(shopId,userId))==1;
+    }
+
+    /**
+     * 每隔五分钟将Redis数据持久化到数据库
+     */
+    @Scheduled(cron = "0 */5 * * * ?")
+    public void chijiuhua() {
+        String key = "scShop:*";
+        if (iGlobalCache.getKeys(key).size() > 0) {
+            Set<String> keys = iGlobalCache.getKeys(key);
+            List<ShopCollection> shopCollectionList = iGlobalCache.getRedisTemplate().opsForValue().multiGet(keys);
+            for (ShopCollection shopCollection : shopCollectionList){
+                if (shopCollectionMapper.selectCount(getConllection(shopCollection.getShopId(),shopCollection.getCustomerId()))==0)
+                    shopCollectionMapper.insert(shopCollection);
+                iGlobalCache.del("scShop:shopId_"+shopCollection.getShopId()+"userId_"+shopCollection.getCustomerId());
+            }
+        }
+
     }
 }
