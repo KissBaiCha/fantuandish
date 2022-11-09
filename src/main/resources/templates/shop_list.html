@@ -154,17 +154,17 @@
         <!--                     推荐区                         -->
         <div class="recommend">
             <ul>
-                <h4>限时优惠</h4>
+                <h4><a href="http://localhost:8080/fan/secondKill/getAllPro">限时优惠</a></h4>
 
 
                 <li th:each="skfood:${skfood}">
-                    <a href="http://localhost:8080/fan/secondKill/getAllPro">
+                    <a  th:href="'getSecondOrderDetails?secondId='+${skfood.key.secondKillId}">
                         <img th:src="${skfood.value.foodMainImg}">
                         <h6 th:text="${skfood.value.foodName}">熊猫不走生日蛋糕（苏州店）</h6>
                         <span th:text="'限量：'+${skfood.key.secondKillStock}"></span>
                     </a>
                     <span><label>￥</label><label th:text="${skfood.key.secondKillPrice}">188.0</label></span>
-                    <a href="http://localhost:8080/fan/secondKill/getAllPro" class="seckillbtn">立即抢购</a>
+                    <a th:href="'getSecondOrderDetails?secondId='+${skfood.key.secondKillId}" class="seckillbtn">立即抢购</a>
                 </li>
 
             </ul>

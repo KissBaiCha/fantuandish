@@ -131,7 +131,7 @@
                 <ul>
 <!--            <p th:text="${#maps.size()}"></p>-->
                     <li th:each="skpro:${skpros}">
-                        <a href="http://localhost:8080/fan/secondKill/getAllPro">
+                        <a th:href="'getSecondOrderDetails?secondId='+${skpro.key.secondKillId}">
                             <div class="tuan">抢</div>
                             <img th:src="${skpro.value.foodMainImg}">
                             <h2 th:text="${skpro.value.foodName}">隐居家宴套餐</h2>
