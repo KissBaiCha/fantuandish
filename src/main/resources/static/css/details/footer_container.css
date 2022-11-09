@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+div {
+    display: block;
+}
+
+.footer-container {
+    width: 100%;
+    min-width: 1190px;
+    background: #f0f0f0;
+    font-size: 12px;
+    margin-top: 20px;
+}
+.footer-container .index-footer .footer-links .links-item:last-child {
+    width: auto;
+}
+
+.footer-container .index-footer .footer-links .links-item {
+    width: 27%;
+}
+.footer-container .index-footer .footer-links .links-item .link-title {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 700;
+}
+.footer-container .index-footer .links-item, .footer-container .index-footer .list-item, .footer-container .index-footer .tab-item {
+    float: left;
+}
+
+.footer-container .index-footer {
+    width: 1190px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.footer-container .index-footer .footer-links {
+    padding: 20px 0 15px 15px;
+    border-bottom: 1px solid #e3e3e3;
+    color: #777;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel {
+    margin-top: 10px;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel .link-li {
+    line-height: 25px;
+}
+
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel {
+    margin-top: 10px;
+}
+.cate-container ul, .footer-container .index-footer ul {
+    list-style: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel {
+    margin-top: 10px;
+}
+.cate-container ul, .footer-container .index-footer ul {
+    list-style: none;
+}
+.footer-container .clearfix {
+    content: "";
+    display: block;
+    overflow: hidden;
+    clear: both;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel .qrcode-img {
+    float: left;
+    margin-right: 40px;
+    text-align: center;
+}
+
+.footer-container .index-footer .footer-links .links-item .link-panel .qrcode-img .app-qrcode {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    background: url("https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/details_shop/qrcode.jpg");
+    background-size: 100px auto;
+}
+
+.footer-container .index-footer .footer-declare {
+    margin-top: 20px;
+    text-align: center;
+}
+.footer-container .index-footer .footer-declare .company-desc {
+    height: 25px;
+    line-height: 25px;
+    color: #999;
+}
+
+.footer-container .index-footer .footer-declare .all-right {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.footer-container .index-footer .footer-declare .a-link {
+    color: #999;
+}
+.footer-container .index-footer a {
+    color: #333;
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
