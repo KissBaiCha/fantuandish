@@ -137,7 +137,10 @@
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;">
                     <div class="layui-tab-item layui-show" th:text="${food.foodDetail}">原材料:虾仁</div>
-                    <div class="layui-tab-item">自购买起48小时内使用</div>
+                    <div class="layui-tab-item">
+                        1.自购买起48小时内使用<br>
+                        2.请留意手机短信息根据提示完成到店消费
+                    </div>
                 </div>
             </div>
             <!--       评价容器     -->
@@ -177,18 +180,16 @@
                                     <div class="shop-pictures">
                                         <ul>
                                             <li th:each="img: ${e.evaImgList}" class="comment-img-item">
-                                                <img th:src="${img.evaImgPath}" alt="" width="68"
-                                                     height="68">
+                                                <img th:src="${img.evaImgPath}" alt="" width="68" height="68">
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="comment-details-date">
-                                        <div class="comment-perfect">
-                                            <i class="perfect-img"></i>
-                                            <span>赞</span>
-                                        </div>
-                                    </div>
-
+<!--                                    <div class="comment-details-date">-->
+<!--                                        <div class="comment-perfect">-->
+<!--                                            <i class="perfect-img"></i>-->
+<!--                                            <span>赞</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
 
