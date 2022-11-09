@@ -38,6 +38,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             json.put("code","500");
             response.getWriter().append(json.toString());
             log.info("认证失败，未通过拦截器");
+            response.sendRedirect(request.getContextPath()+"/user/login.html");
         } catch (Exception e) {
             return false;
         }

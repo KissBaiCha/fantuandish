@@ -1,7 +1,5 @@
 package com.chixing.commons;
 
-import com.chixing.entity.Food;
-import com.chixing.entity.SecondKill;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.List;
