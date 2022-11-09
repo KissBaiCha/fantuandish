@@ -48,8 +48,6 @@ public class MyOrderController {
         return modelAndView;
     }
 
-
-
     @PostMapping("/creatOrder")
     public ModelAndView creatOrder(@RequestParam("foodId") Integer foodId,
                                    @RequestParam("newCouponId") Integer newCouponId,
