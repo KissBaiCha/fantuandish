@@ -14,6 +14,7 @@ import com.chixing.mapper.MyOrderMapper;
 
 import com.chixing.service.IAliPayService;
 import com.chixing.config.AlipayConfig;
+import com.chixing.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,6 +103,7 @@ public class AliPayServiceImpl implements IAliPayService {
         myOrderUpdateWrapper.eq("order_id",out_trade_no);
         myOrderMapper.update(order,myOrderUpdateWrapper);
         String foodName = food.getFoodName();
+        modelAndView.addObject("cusName", JwtUtil.getCusNameBySession(request));
         modelAndView.addObject("productName",foodName);
         modelAndView.addObject("trade_no",trade_no);
         modelAndView.addObject("total_amount",total_amount);

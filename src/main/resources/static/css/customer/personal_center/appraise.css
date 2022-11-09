@@ -9,6 +9,7 @@ body{
     background-color: #fff;
     margin-top: 10px;
     border: 1px solid rgb(255,107,55);
+    border-radius: 6px;
 }
 /*商品订单评价区*/
 .layui-field-title{
@@ -25,7 +26,6 @@ body{
     height: 200px;
 }
 .msg{
-    margin-left: 50px;
     margin-top: 10px;
 }
 .ordermsg{/*商品信息*/
@@ -95,58 +95,58 @@ body{
     /* border-bottom: 1px solid gray; */
 
 }
-.recommend{/*附近推荐区*/
-    width: 90%;
-    margin-left: 10px;
-    margin-top:10px;
-    float: left;
-    border: 1px solid rgb(255,107,55);
-    background-color: #fff;
-}
-.title{/*附近推荐 标题区*/
-    width: 240px;
-    height: 40px;
-    margin-top:20px;
-    margin-left: auto;
+/*.recommend{!*附近推荐区*!*/
+/*    width: 90%;*/
+/*    margin-left: 10px;*/
+/*    margin-top:10px;*/
+/*    float: left;*/
+/*    border: 1px solid rgb(255,107,55);*/
+/*    background-color: #fff;*/
+/*}*/
+/*.title{!*附近推荐 标题区*!*/
+/*    width: 240px;*/
+/*    height: 40px;*/
+/*    margin-top:20px;*/
+/*    margin-left: auto;*/
 
-}
-.title span{/*附近推荐 标题区 文字*/
-    font-weight: bolder;
-    font-size: 18px;
-}
+/*}*/
+/*.title span{!*附近推荐 标题区 文字*!*/
+/*    font-weight: bolder;*/
+/*    font-size: 18px;*/
+/*}*/
 
-.recom{/*推荐商品区*/
-    width:100%;
-    height: 280px;
-    margin-bottom: 20px;
+/*.recom{!*推荐商品区*!*/
+/*    width:100%;*/
+/*    height: 280px;*/
+/*    margin-bottom: 20px;*/
 
 
-}
-.recom-pic {
-    margin-left: 20px;
-}
-.recom-pic img{
-    width: 95%;
-    height: 200px;
-}
-.recom-msg{/* 推荐商品 店名、评分、人均消费 信息区*/
-    width: 100%;
+/*}*/
+/*.recom-pic {*/
+/*    margin-left: 20px;*/
+/*}*/
+/*.recom-pic img{*/
+/*    width: 95%;*/
+/*    height: 200px;*/
+/*}*/
+/*.recom-msg{!* 推荐商品 店名、评分、人均消费 信息区*!*/
+/*    width: 100%;*/
 
-}
-.info{/* 推荐商品 店名*/
-    width: 90%;
-    float: left;
-    margin-left: 10px;
-}
-.info span{/* 推荐商品 店名  文字*/
-    font-size: 15px;
-    font-weight: bolder;
-}
-.layui-rate {
-    padding: 10px 5px 10px 0;
-    font-size: 0;
-    margin-left: 10px;
-}
+/*}*/
+/*.info{!* 推荐商品 店名*!*/
+/*    width: 90%;*/
+/*    float: left;*/
+/*    margin-left: 10px;*/
+/*}*/
+/*.info span{!* 推荐商品 店名  文字*!*/
+/*    font-size: 15px;*/
+/*    font-weight: bolder;*/
+/*}*/
+/*.layui-rate {*/
+/*    padding: 10px 5px 10px 0;*/
+/*    font-size: 0;*/
+/*    margin-left: 10px;*/
+/*}*/
 
 
 /*评价div*/
