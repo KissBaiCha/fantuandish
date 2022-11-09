@@ -33,7 +33,7 @@
                         <dl class="layui-nav-child"> <!-- 二级菜单 -->
                             <dd><a href="customer/getAllOrder?status=3&pageNum=1">订单中心</a></dd>
                             <dd><a href="customer/getAllCoupon?status=1&pageNum=1">我的优惠券</a></dd>
-                            <dd><a href="#">我的收藏</a></dd>
+                            <dd><a href="customer/getShopCollect">我的收藏</a></dd>
                         </dl>
                     </li>
 
@@ -127,8 +127,8 @@
 <!--                                <span>条评论</span>-->
 <!--                            </a>-->
                             <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}" th:text="${shop.shopAddressDetail}">观前街地区</a></span>
-                            <span class="sty"><a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}">人均 ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
-                            <span class="sty">推荐菜：<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"><span>巧克力蛋糕</span></a></span>
+                            <span class="sty">人均<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"> ￥<span th:text="${shop.shopAvgCost}">141.0</span></a></span>
+                            <span class="sty">营业时间：<a th:href="'http://localhost:8080/fan/shop/'+${shop.shopId}"><span th:text="${shop.shopOpenTime}+' - '+${shop.shopCloseTime}">巧克力蛋糕</span></a></span>
                         </li>
 
 
