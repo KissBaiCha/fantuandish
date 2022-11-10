@@ -24,5 +24,14 @@ $(".order-details").click(function () {
             }
         }
     })
-
+})
+$(".goPay").click(function () {
+    let newOrderId = $(".AliPayNum").val()
+    $.ajax({
+        url:'alipay/goAlipay',
+        type:'POST',
+        data:{
+            orderNum :newOrderId
+        }
+    })
 })

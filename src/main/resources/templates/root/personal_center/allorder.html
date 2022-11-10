@@ -119,7 +119,10 @@
                     </div>
                     <div class="zhuangtai">
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 0}">已取消</span>
-                        <a class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 1}">去支付</a>
+                        <form action="alipay/goAlipay" method="post" th:if="${order.myOrder.orderStatus eq 1}">
+                            <input type="hidden" class="AliPayNum" name="orderNum" th:value="${order.myOrder.orderId}">
+                            <input type="submit" class="order_zhuangtai goPay" value="去支付" style="border: none;color: rgb(255,107,55)"/>
+                        </form>
                         <a th:if="${order.myOrder.orderStatus eq 2} " th:href="'evaluation/'+${order.myOrder.orderId}" class="order_zhuangtai">去评价</a>
                         <span class="order_zhuangtai" th:if="${order.myOrder.orderStatus eq 3}">已完成</span>
                     </div>
