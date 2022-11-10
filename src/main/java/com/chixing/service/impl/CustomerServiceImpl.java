@@ -132,6 +132,7 @@ public class CustomerServiceImpl implements ICustomerService {
                     Customer hasTelno = getCustomerByTel(customer.getCustomerTelno());
                     if (hasTelno == null) {
                         customer.setCustomerStatus(1);
+                        customer.setCustomerHeadImg("https://zhangxu-1023.oss-cn-nanjing.aliyuncs.com/images/user/tb12b543f1a.png");
                         customer.setCustomerCreateDate(LocalDate.now());
                         customerMapper.insert(customer);
                         return "注册成功！";

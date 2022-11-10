@@ -19,10 +19,10 @@ public class RegisterController {
     @PostMapping("sendCode/{telno}")
     @ResponseBody
     public R<String> sendCode(@PathVariable("telno") Long customerTelno, HttpServletRequest request) {
-    //            Integer verCode = SmsUtil.sendMsg(String.valueOf(customerTelno)).getData().get("code");
+                Integer verCode = SmsUtil.sendMsg(String.valueOf(customerTelno)).getData().get("code");
                 HttpSession session = request.getSession();
-    //            session.setAttribute("vercode", verCode);
-                session.setAttribute("vercode", 123123);
+                session.setAttribute("vercode", verCode);
+//                session.setAttribute("vercode", 123123);
                 session.setMaxInactiveInterval(60 * 5);
         return R.ok();
     }
