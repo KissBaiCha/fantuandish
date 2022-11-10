@@ -42,7 +42,7 @@ $("#codebtn").click( function (){
         type:"post",
         url:"customer/sendCode/"+$("#customerTelno").val(),
         success: function (data){
-            if (data.code===204){
+            if (data.code===200){
                 alert(data.message)
                 send();
             }else

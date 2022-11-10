@@ -35,7 +35,7 @@ public class EvaImgServiceImpl implements IEvaImgService {
             evaImg.setEvaImgId(evaImgId_last+1);
             System.out.println(imgArr[i]);
             evaImg.setEvaId(evaId);
-            evaImg.setImgStatus(0);
+            evaImg.setImgStatus(1);
             evaImg.setEvaImgCreateTime(nowTime);
             evaImg.setEvaImgPath(imgArr[i]);
             evaImgMapper.insert(evaImg);
