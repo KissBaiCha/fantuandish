@@ -28,7 +28,6 @@ public class EvaImgServiceImpl implements IEvaImgService {
         EvaImg evaImg = new EvaImg();
         QueryWrapper<EvaImg> wrapper = new QueryWrapper<>();
         wrapper.select("eva_img_id").orderByDesc("eva_img_id").last("limit 1");
-//        Integer evaId = (int)(Math.random()*100+1);
         LocalDateTime nowTime = LocalDateTime.now();
         for (int i = 0; i < imgArr.length; i++) {
             Integer evaImgId_last = evaImgMapper.selectOne(wrapper).getEvaImgId();

@@ -98,7 +98,6 @@ public class MyCouponController {
         Integer shopId = couponService.getById(myCouponId).getShopId();
         String shopName = shopService.getById(shopId).getShopName();
         Integer cusId = JwtUtil.getCusIdBySession(request);
-        System.out.println("===============");
         mav.addObject("mycoupon",myCouponService.getById(myCouponId));
         mav.addObject("price",couponService.getById(shopId));
         mav.addObject("cusId",cusId);

@@ -19,7 +19,7 @@ spring:
         enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.103.61.23:3306/fantuanfood?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/fantuandish?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: zhangxu1023
   rabbitmq:
@@ -44,9 +44,8 @@ spring:
           multiplier: 1.0 #应用于先前传递重试时间间隔的乘数
   redis:
     database: 0
-    host: 47.103.61.23
+    host: localhost
     port: 6379
-    password: zhangxu
     lettuce:
       pool:
         max-active: 8
